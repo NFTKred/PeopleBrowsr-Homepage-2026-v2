@@ -175,6 +175,8 @@ export const EcosystemMap = () => {
                   fill={p.fill}
                   stroke="hsl(222, 47%, 8%)"
                   strokeWidth="3"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
                   className="transition-all duration-300 cursor-pointer"
                   style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.3))" }}
                   onMouseEnter={(e) => {
