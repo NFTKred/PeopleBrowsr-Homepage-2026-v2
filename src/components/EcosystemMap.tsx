@@ -50,28 +50,28 @@ const pieces: PieceData[] = [
     edges: { top: "slot", right: "tab", bottom: "slot", left: "flat" },
   },
   {
-    number: 5, name: "MCP", title: "",
+    number: 0, name: "MCP", title: "",
     description: "",
     icon: "💬", fill: "hsl(45, 50%, 28%)", fillHover: "hsl(45, 55%, 34%)",
     textColor: "hsl(45, 80%, 72%)", col: 1, row: 1,
     edges: { top: "tab", right: "tab", bottom: "tab", left: "slot" },
   },
   {
-    number: 6, name: "Matrix.Kred", title: "Feeds",
+    number: 5, name: "Matrix.Kred", title: "Feeds",
     description: "Node network — curated, AI-filtered activity streams.",
     icon: "⚡", fill: "hsl(250, 30%, 26%)", fillHover: "hsl(250, 35%, 32%)",
     textColor: "hsl(250, 55%, 75%)", col: 2, row: 1,
     edges: { top: "slot", right: "flat", bottom: "slot", left: "slot" },
   },
   {
-    number: 7, name: "OneHub.Kred", title: "Create & Collect",
+    number: 6, name: "OneHub.Kred", title: "Create & Collect",
     description: "Virtual asset platform for communities.",
     icon: "⚙️", fill: "hsl(330, 35%, 25%)", fillHover: "hsl(330, 40%, 31%)",
     textColor: "hsl(330, 60%, 72%)", col: 0, row: 2,
     edges: { top: "tab", right: "tab", bottom: "flat", left: "flat" },
   },
   {
-    number: 9, name: "AgenticGiving", title: "Gift Studio mini App",
+    number: 7, name: "AgenticGiving", title: "Gift Studio mini App",
     description: "Specialized gifting experience for brands.",
     icon: "🎁", fill: "hsl(270, 30%, 28%)", fillHover: "hsl(270, 35%, 34%)",
     textColor: "hsl(270, 55%, 75%)", col: 1, row: 2,
@@ -197,7 +197,7 @@ export const EcosystemMap = () => {
                   height={CELL - 28}
                   className="pointer-events-none"
                 >
-                  {p.number === 5 ? (
+                  {p.number === 0 ? (
                     <div className="flex items-center justify-center h-full">
                       <span
                         className="text-lg sm:text-2xl font-bold"
