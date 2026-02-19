@@ -330,7 +330,7 @@ export const EcosystemMap = () => {
                 {/* Content via foreignObject clipped to piece shape */}
                 <g clipPath="url(#expanded-piece-clip)">
                   <foreignObject x="0" y="0" width="600" height="600">
-                    <div className="flex flex-col items-center justify-center h-full w-full text-center px-16">
+                    <div className="flex flex-col items-center justify-center h-full w-full text-center px-12">
                       {/* Close button */}
                       <button
                         onClick={() => setSelected(null)}
@@ -339,17 +339,94 @@ export const EcosystemMap = () => {
                         ✕
                       </button>
 
-                      <span className="text-6xl mb-6">{selected.icon}</span>
-
                       {selected.number === 0 ? (
-                        <h3
-                          className="text-6xl font-bold font-display"
-                          style={{ color: selected.textColor }}
-                        >
-                          MCP
-                        </h3>
+                        <>
+                          <span className="text-6xl mb-6">{selected.icon}</span>
+                          <h3
+                            className="text-6xl font-bold font-display"
+                            style={{ color: selected.textColor }}
+                          >
+                            MCP
+                          </h3>
+                        </>
+                      ) : selected.number === 1 ? (
+                        /* AgenticID.Kred expanded detail */
+                        <div className="flex flex-col h-full w-full justify-center">
+                          <div className="flex items-center justify-center gap-3 mb-4">
+                            <span className="text-4xl">{selected.icon}</span>
+                            <h3
+                              className="text-2xl font-bold font-display"
+                              style={{ color: selected.textColor }}
+                            >
+                              {selected.number}. {selected.name}
+                            </h3>
+                          </div>
+                          <p
+                            className="text-sm italic mb-5 text-center"
+                            style={{ color: selected.textColor, opacity: 0.85 }}
+                          >
+                            {selected.description}
+                          </p>
+
+                          <div className="grid grid-cols-3 gap-4 text-left px-2">
+                            {/* SubAgents */}
+                            <div>
+                              <h4
+                                className="text-xs font-bold uppercase tracking-wider mb-2"
+                                style={{ color: selected.textColor }}
+                              >
+                                SubAgents
+                              </h4>
+                              <ul className="space-y-1.5" style={{ color: "hsl(210, 30%, 80%)" }}>
+                                {["Reputation Scorer", "Resume Writer (Bio)", "Credential Verification", "Capabilities (Skills)", "Reference Checking Agent"].map((item) => (
+                                  <li key={item} className="text-[11px] leading-tight flex items-start gap-1">
+                                    <span className="text-[9px] mt-0.5" style={{ color: selected.textColor }}>▸</span>
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            {/* Examples */}
+                            <div>
+                              <h4
+                                className="text-xs font-bold uppercase tracking-wider mb-2"
+                                style={{ color: selected.textColor }}
+                              >
+                                Examples
+                              </h4>
+                              <ul className="space-y-1.5" style={{ color: "hsl(210, 30%, 80%)" }}>
+                                {["Domains.Kred", "Agent-only Reseller", "Voight.Kred"].map((item) => (
+                                  <li key={item} className="text-[11px] leading-tight flex items-start gap-1">
+                                    <span className="text-[9px] mt-0.5" style={{ color: selected.textColor }}>▸</span>
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            {/* Monetization */}
+                            <div>
+                              <h4
+                                className="text-xs font-bold uppercase tracking-wider mb-2"
+                                style={{ color: selected.textColor }}
+                              >
+                                Monetization
+                              </h4>
+                              <ul className="space-y-1.5" style={{ color: "hsl(210, 30%, 80%)" }}>
+                                {["String Length", "Premium Names", "Term"].map((item) => (
+                                  <li key={item} className="text-[11px] leading-tight flex items-start gap-1">
+                                    <span className="text-[9px] mt-0.5" style={{ color: selected.textColor }}>▸</span>
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
                       ) : (
                         <>
+                          <span className="text-6xl mb-6">{selected.icon}</span>
                           <h3
                             className="text-4xl font-bold font-display mb-3"
                             style={{ color: selected.textColor }}
