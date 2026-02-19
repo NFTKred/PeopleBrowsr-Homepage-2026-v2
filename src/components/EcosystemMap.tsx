@@ -28,7 +28,7 @@ const tileDetails: Record<number, TileDetail> = {
   },
   4: {
     subAgents: ["Race Object Creator (eg cars)", "Race Properties Agent (speed, strength, endurance, traction, braking)", "Race Environment Agent", "Race Committee Supervisor", "Prize Design Agent"],
-    useCases: ["LightSpeed.d.Kred", "Empire.Kred"],
+    useCases: ["LightSpeed.Kred", "Empire.Kred"],
     monetizeWith: ["XP", "Kredits", "Gifts", "Subscriptions"],
   },
   5: {
