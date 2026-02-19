@@ -132,6 +132,46 @@ function buildPath(col: number, row: number, edges: PieceData["edges"]): string 
   return d;
 }
 
+function buildExpandedPath(edges: PieceData["edges"]): string {
+  const S = 600; // full puzzle size
+  const TR = TAB_R * 3; // scale tab proportionally
+  const TD = TAB_D * 3;
+  const x0 = 0, y0 = 0, x1 = S, y1 = S;
+  const mx = S / 2, my = S / 2;
+
+  let d = `M ${x0},${y0} `;
+
+  if (edges.top === "tab") {
+    d += `L ${mx - TR},${y0} A ${TR} ${TD} 0 0 0 ${mx + TR},${y0} `;
+  } else if (edges.top === "slot") {
+    d += `L ${mx - TR},${y0} A ${TR} ${TD} 0 0 1 ${mx + TR},${y0} `;
+  }
+  d += `L ${x1},${y0} `;
+
+  if (edges.right === "tab") {
+    d += `L ${x1},${my - TR} A ${TD} ${TR} 0 0 1 ${x1},${my + TR} `;
+  } else if (edges.right === "slot") {
+    d += `L ${x1},${my - TR} A ${TD} ${TR} 0 0 0 ${x1},${my + TR} `;
+  }
+  d += `L ${x1},${y1} `;
+
+  if (edges.bottom === "tab") {
+    d += `L ${mx + TR},${y1} A ${TR} ${TD} 0 0 0 ${mx - TR},${y1} `;
+  } else if (edges.bottom === "slot") {
+    d += `L ${mx + TR},${y1} A ${TR} ${TD} 0 0 1 ${mx - TR},${y1} `;
+  }
+  d += `L ${x0},${y1} `;
+
+  if (edges.left === "tab") {
+    d += `L ${x0},${my + TR} A ${TD} ${TR} 0 0 0 ${x0},${my - TR} `;
+  } else if (edges.left === "slot") {
+    d += `L ${x0},${my + TR} A ${TD} ${TR} 0 0 1 ${x0},${my - TR} `;
+  }
+  d += `L ${x0},${y0} Z`;
+
+  return d;
+}
+
 export const EcosystemMap = () => {
   const [selected, setSelected] = useState<PieceData | null>(null);
 
@@ -258,58 +298,84 @@ export const EcosystemMap = () => {
             {/* Backdrop */}
             <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
 
-            {/* Card */}
+            {/* Piece-shaped card */}
             <motion.div
-              className="relative w-full max-w-3xl aspect-square rounded-2xl overflow-hidden flex flex-col items-center justify-center p-10 text-center"
-              style={{
-                background: selected.fill,
-                boxShadow: "0 25px 60px rgba(0,0,0,0.6)",
-              }}
+              className="relative w-full max-w-3xl aspect-square"
               initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.85, opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close button */}
-              <button
-                onClick={() => setSelected(null)}
-                className="absolute top-5 right-5 text-white/60 hover:text-white transition-colors text-2xl leading-none"
+              <svg
+                viewBox="-80 -80 760 760"
+                className="w-full h-full"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                ✕
-              </button>
+                <defs>
+                  <clipPath id="expanded-piece-clip">
+                    <path d={buildExpandedPath(selected.edges)} />
+                  </clipPath>
+                </defs>
 
-              <span className="text-5xl mb-6">{selected.icon}</span>
+                {/* Piece shape with shadow */}
+                <path
+                  d={buildExpandedPath(selected.edges)}
+                  fill={selected.fill}
+                  stroke="hsl(222, 47%, 12%)"
+                  strokeWidth="4"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  style={{ filter: "drop-shadow(0 12px 40px rgba(0,0,0,0.6))" }}
+                />
 
-              {selected.number === 0 ? (
-                <h3
-                  className="text-5xl md:text-6xl font-bold font-display"
-                  style={{ color: selected.textColor }}
-                >
-                  MCP
-                </h3>
-              ) : (
-                <>
-                  <h3
-                    className="text-3xl md:text-4xl font-bold font-display mb-2"
-                    style={{ color: selected.textColor }}
-                  >
-                    {selected.number}. {selected.name}
-                  </h3>
-                  <p
-                    className="text-xl md:text-2xl font-semibold italic mb-4"
-                    style={{ color: selected.textColor, opacity: 0.85 }}
-                  >
-                    {selected.title}
-                  </p>
-                  <p
-                    className="text-base md:text-lg max-w-md leading-relaxed"
-                    style={{ color: "hsl(210, 30%, 80%)" }}
-                  >
-                    {selected.description}
-                  </p>
-                </>
-              )}
+                {/* Content via foreignObject clipped to piece shape */}
+                <g clipPath="url(#expanded-piece-clip)">
+                  <foreignObject x="0" y="0" width="600" height="600">
+                    <div className="flex flex-col items-center justify-center h-full w-full text-center px-16">
+                      {/* Close button */}
+                      <button
+                        onClick={() => setSelected(null)}
+                        className="absolute top-24 right-24 text-white/60 hover:text-white transition-colors text-3xl leading-none z-10"
+                      >
+                        ✕
+                      </button>
+
+                      <span className="text-6xl mb-6">{selected.icon}</span>
+
+                      {selected.number === 0 ? (
+                        <h3
+                          className="text-6xl font-bold font-display"
+                          style={{ color: selected.textColor }}
+                        >
+                          MCP
+                        </h3>
+                      ) : (
+                        <>
+                          <h3
+                            className="text-4xl font-bold font-display mb-3"
+                            style={{ color: selected.textColor }}
+                          >
+                            {selected.number}. {selected.name}
+                          </h3>
+                          <p
+                            className="text-2xl font-semibold italic mb-4"
+                            style={{ color: selected.textColor, opacity: 0.85 }}
+                          >
+                            {selected.title}
+                          </p>
+                          <p
+                            className="text-lg leading-relaxed max-w-sm"
+                            style={{ color: "hsl(210, 30%, 80%)" }}
+                          >
+                            {selected.description}
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  </foreignObject>
+                </g>
+              </svg>
             </motion.div>
           </motion.div>
         )}
