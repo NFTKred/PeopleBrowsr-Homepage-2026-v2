@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { ViewToggle } from "@/components/ViewToggle";
 import { Hero } from "@/components/Hero";
+import { EcosystemMap } from "@/components/EcosystemMap";
 import { Manifesto } from "@/components/Manifesto";
 import { FourPillars } from "@/components/FourPillars";
 import { Footer } from "@/components/Footer";
@@ -32,6 +33,7 @@ const Index = () => {
       {/* Main content */}
       <main className="relative z-10">
         <Hero isAgent={isAgent} />
+        <EcosystemMap />
         <Manifesto isAgent={isAgent} />
         <FourPillars isAgent={isAgent} />
       </main>
