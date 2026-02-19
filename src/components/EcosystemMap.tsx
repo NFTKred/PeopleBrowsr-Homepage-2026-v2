@@ -482,7 +482,7 @@ export const EcosystemMap = () => {
                                 <img
                                   src={detail.image}
                                   alt={`${selected.name} detail`}
-                                  className="max-w-[80%] rounded-lg opacity-90"
+                                  className="max-w-[50%] rounded-lg opacity-90"
                                 />
                               </div>
                             )}
