@@ -394,7 +394,7 @@ export const EcosystemMap = () => {
                                 className="text-xs font-bold uppercase tracking-wider mb-2"
                                 style={{ color: selected.textColor }}
                               >
-                                Examples
+                                Use Cases
                               </h4>
                               <ul className="space-y-1.5" style={{ color: "hsl(210, 30%, 80%)" }}>
                                 {["Domains.Kred", "Agent-only Reseller", "Voight.Kred"].map((item) => (
