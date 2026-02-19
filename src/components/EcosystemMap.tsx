@@ -197,7 +197,7 @@ export const EcosystemMap = () => {
                 >
                   <div
                     style={{ fontFamily: "var(--font-display)" }}
-                    className="flex flex-col h-full"
+                    className="flex flex-col justify-center h-full"
                   >
                     <div className="flex items-start justify-between mb-1">
                       <span
