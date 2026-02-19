@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import accessNftImage from "@/assets/access-nft-domain-tokens-v1.png";
+import accessNftImage from "@/assets/agent-domain-token.png";
 
 interface TileDetail {
   subAgents: string[];
