@@ -45,11 +45,13 @@ export const Hero = ({ isAgent }: HeroProps) => {
               </>
             ) : (
               <>
-                <span className="text-foreground">The Social Fabric for</span>
+                <span className="text-foreground">Identity. Memory. Reputation.</span>
                 <br />
+                <span className="text-foreground">For </span>
                 <span className="text-gradient-primary">Humans</span>
-                <span className="text-foreground"> and </span>
+                <span className="text-foreground"> and their </span>
                 <span className="text-gradient-human">AI</span>
+                <span className="text-foreground">.</span>
               </>
             )}
           </motion.h1>
