@@ -311,7 +311,7 @@ export const EcosystemMap = () => {
                         className="text-[10px] sm:text-xs font-bold leading-tight mb-0.5"
                         style={{ color: p.textColor }}
                       >
-                        {p.number}. {p.name}
+                        {p.name}
                       </span>
                       <p
                         className="text-[9px] sm:text-[11px] font-semibold italic leading-tight mb-0.5"
@@ -411,7 +411,7 @@ export const EcosystemMap = () => {
                                 className="text-2xl font-bold font-display"
                                 style={{ color: selected.textColor }}
                               >
-                                {selected.number}. {selected.name}
+                                {selected.name}
                               </h3>
                             </div>
                             <p
