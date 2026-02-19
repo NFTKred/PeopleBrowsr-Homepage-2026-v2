@@ -146,7 +146,9 @@ export const EcosystemMap = () => {
             The Ecosystem
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold font-display mb-4">
-            The Kred Puzzle
+            Where Agents are People,
+            <br />
+            and People are Agentic
           </h3>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Nine interlocking products that form the complete infrastructure for the Agentic Web.
