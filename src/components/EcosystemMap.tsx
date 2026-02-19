@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import kredEcosystem from "@/assets/kred-ecosystem.png";
 
 export const EcosystemMap = () => {
   return (
@@ -30,7 +31,7 @@ export const EcosystemMap = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <img
-            src="/images/kred-ecosystem.png"
+            src={kredEcosystem}
             alt="The Kred Ecosystem — 9 interlocking products: Domains.Kred, Link.Kred, Score.Kred, SocialOS.io, Grab.Kred, Empire.Kred, OneHub.Kred, NFT.Kred, and NFT.NYC"
             className="w-full max-w-4xl rounded-2xl"
             loading="lazy"
