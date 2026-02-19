@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const CELL = 200;
 const TAB_R = 22;
@@ -132,6 +133,8 @@ function buildPath(col: number, row: number, edges: PieceData["edges"]): string 
 }
 
 export const EcosystemMap = () => {
+  const [selected, setSelected] = useState<PieceData | null>(null);
+
   return (
     <section className="relative py-24 px-6">
       <div className="max-w-5xl mx-auto">
@@ -156,7 +159,7 @@ export const EcosystemMap = () => {
         </motion.div>
 
         <motion.div
-          className="flex justify-center"
+          className="flex justify-center relative"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -168,7 +171,7 @@ export const EcosystemMap = () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             {pieces.map((p) => (
-              <g key={p.number} className="group">
+              <g key={p.number} className="group" onClick={() => setSelected(p)} style={{ cursor: "pointer" }}>
                 {/* Piece shape */}
                 <path
                   d={buildPath(p.col, p.row, p.edges)}
@@ -240,6 +243,77 @@ export const EcosystemMap = () => {
           </svg>
         </motion.div>
       </div>
+
+      {/* Shadowbox overlay */}
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={() => setSelected(null)}
+          >
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+
+            {/* Card */}
+            <motion.div
+              className="relative w-full max-w-3xl aspect-square rounded-2xl overflow-hidden flex flex-col items-center justify-center p-10 text-center"
+              style={{
+                background: selected.fill,
+                boxShadow: "0 25px 60px rgba(0,0,0,0.6)",
+              }}
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute top-5 right-5 text-white/60 hover:text-white transition-colors text-2xl leading-none"
+              >
+                ✕
+              </button>
+
+              <span className="text-5xl mb-6">{selected.icon}</span>
+
+              {selected.number === 0 ? (
+                <h3
+                  className="text-5xl md:text-6xl font-bold font-display"
+                  style={{ color: selected.textColor }}
+                >
+                  MCP
+                </h3>
+              ) : (
+                <>
+                  <h3
+                    className="text-3xl md:text-4xl font-bold font-display mb-2"
+                    style={{ color: selected.textColor }}
+                  >
+                    {selected.number}. {selected.name}
+                  </h3>
+                  <p
+                    className="text-xl md:text-2xl font-semibold italic mb-4"
+                    style={{ color: selected.textColor, opacity: 0.85 }}
+                  >
+                    {selected.title}
+                  </p>
+                  <p
+                    className="text-base md:text-lg max-w-md leading-relaxed"
+                    style={{ color: "hsl(210, 30%, 80%)" }}
+                  >
+                    {selected.description}
+                  </p>
+                </>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
