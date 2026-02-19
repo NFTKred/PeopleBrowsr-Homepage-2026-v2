@@ -71,14 +71,14 @@ const pieces: PieceData[] = [
     edges: { top: "tab", right: "tab", bottom: "flat", left: "flat" },
   },
   {
-    number: 8, name: "AgenticGiving", title: "Gift Studio mini App",
+    number: 9, name: "AgenticGiving", title: "Gift Studio mini App",
     description: "Specialized gifting experience for brands.",
     icon: "🎁", fill: "hsl(270, 30%, 28%)", fillHover: "hsl(270, 35%, 34%)",
     textColor: "hsl(270, 55%, 75%)", col: 1, row: 2,
     edges: { top: "slot", right: "tab", bottom: "flat", left: "slot" },
   },
   {
-    number: 9, name: "NFT.NYC", title: "HUMANS ONLY",
+    number: 8, name: "NFT.NYC", title: "HUMANS ONLY",
     description: "The gathering — live human event experience on stage.",
     icon: "🎤", fill: "hsl(210, 40%, 24%)", fillHover: "hsl(210, 45%, 30%)",
     textColor: "hsl(210, 60%, 72%)", col: 2, row: 2,
