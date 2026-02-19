@@ -252,19 +252,17 @@ export const EcosystemMap = () => {
                   ) : (
                     <div
                       style={{ fontFamily: "var(--font-display)" }}
-                      className="flex flex-col justify-center h-full"
+                      className="flex flex-col items-center justify-center h-full text-center"
                     >
-                      <div className="flex items-start justify-between mb-1">
-                        <span
-                          className="text-[10px] sm:text-xs font-bold leading-tight"
-                          style={{ color: p.textColor }}
-                        >
-                          {p.number}. {p.name}:
-                        </span>
-                        <span className="text-sm sm:text-base ml-1 flex-shrink-0">{p.icon}</span>
-                      </div>
+                      <span className="text-base sm:text-lg mb-1">{p.icon}</span>
+                      <span
+                        className="text-[10px] sm:text-xs font-bold leading-tight mb-0.5"
+                        style={{ color: p.textColor }}
+                      >
+                        {p.number}. {p.name}
+                      </span>
                       <p
-                        className="text-[9px] sm:text-[11px] font-semibold italic leading-tight mb-1"
+                        className="text-[9px] sm:text-[11px] font-semibold italic leading-tight mb-0.5"
                         style={{ color: p.textColor, opacity: 0.85 }}
                       >
                         {p.title}
