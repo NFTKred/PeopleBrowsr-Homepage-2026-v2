@@ -385,8 +385,8 @@ export const EcosystemMap = () => {
                     <div className="flex flex-col items-center justify-center h-full w-full text-center px-12">
                       {/* Close button */}
                       <button
-                        onClick={() => setSelected(null)}
-                        className="absolute top-24 right-24 text-white/60 hover:text-white transition-colors text-3xl leading-none z-10"
+                                  onClick={() => setSelected(null)}
+                                  className="absolute top-4 right-4 text-white/60 hover:text-white transition-colors text-3xl leading-none z-10"
                       >
                         ✕
                       </button>
