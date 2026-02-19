@@ -406,13 +406,13 @@ export const EcosystemMap = () => {
                               </ul>
                             </div>
 
-                            {/* Monetization */}
+                            {/* Monetize With */}
                             <div>
                               <h4
                                 className="text-xs font-bold uppercase tracking-wider mb-2"
                                 style={{ color: selected.textColor }}
                               >
-                                Monetization
+                                Monetize With
                               </h4>
                               <ul className="space-y-1.5" style={{ color: "hsl(210, 30%, 80%)" }}>
                                 {["String Length", "Premium Names", "Term"].map((item) => (
