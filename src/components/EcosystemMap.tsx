@@ -50,8 +50,8 @@ const pieces: PieceData[] = [
     edges: { top: "slot", right: "tab", bottom: "slot", left: "flat" },
   },
   {
-    number: 5, name: "SocialOS.io", title: "Social Layer",
-    description: "Your social layer — feeds, forums, communities.",
+    number: 5, name: "MCP", title: "",
+    description: "",
     icon: "💬", fill: "hsl(45, 50%, 28%)", fillHover: "hsl(45, 55%, 34%)",
     textColor: "hsl(45, 80%, 72%)", col: 1, row: 1,
     edges: { top: "tab", right: "tab", bottom: "tab", left: "slot" },
@@ -197,32 +197,43 @@ export const EcosystemMap = () => {
                   height={CELL - 28}
                   className="pointer-events-none"
                 >
-                  <div
-                    style={{ fontFamily: "var(--font-display)" }}
-                    className="flex flex-col justify-center h-full"
-                  >
-                    <div className="flex items-start justify-between mb-1">
+                  {p.number === 5 ? (
+                    <div className="flex items-center justify-center h-full">
                       <span
-                        className="text-[10px] sm:text-xs font-bold leading-tight"
-                        style={{ color: p.textColor }}
+                        className="text-lg sm:text-2xl font-bold"
+                        style={{ color: p.textColor, fontFamily: "var(--font-display)" }}
                       >
-                        {p.number}. {p.name}:
+                        MCP
                       </span>
-                      <span className="text-sm sm:text-base ml-1 flex-shrink-0">{p.icon}</span>
                     </div>
-                    <p
-                      className="text-[9px] sm:text-[11px] font-semibold italic leading-tight mb-1"
-                      style={{ color: p.textColor, opacity: 0.85 }}
+                  ) : (
+                    <div
+                      style={{ fontFamily: "var(--font-display)" }}
+                      className="flex flex-col justify-center h-full"
                     >
-                      {p.title}
-                    </p>
-                    <p
-                      className="text-[8px] sm:text-[10px] leading-snug"
-                      style={{ color: "hsl(210, 30%, 75%)", fontFamily: "var(--font-body)" }}
-                    >
-                      {p.description}
-                    </p>
-                  </div>
+                      <div className="flex items-start justify-between mb-1">
+                        <span
+                          className="text-[10px] sm:text-xs font-bold leading-tight"
+                          style={{ color: p.textColor }}
+                        >
+                          {p.number}. {p.name}:
+                        </span>
+                        <span className="text-sm sm:text-base ml-1 flex-shrink-0">{p.icon}</span>
+                      </div>
+                      <p
+                        className="text-[9px] sm:text-[11px] font-semibold italic leading-tight mb-1"
+                        style={{ color: p.textColor, opacity: 0.85 }}
+                      >
+                        {p.title}
+                      </p>
+                      <p
+                        className="text-[8px] sm:text-[10px] leading-snug"
+                        style={{ color: "hsl(210, 30%, 75%)", fontFamily: "var(--font-body)" }}
+                      >
+                        {p.description}
+                      </p>
+                    </div>
+                  )}
                 </foreignObject>
               </g>
             ))}
