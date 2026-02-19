@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import accessNftImage from "@/assets/access-nft-domain-tokens-v1.png";
 
 const CELL = 200;
 const TAB_R = 22;
@@ -422,6 +423,14 @@ export const EcosystemMap = () => {
                                 ))}
                               </ul>
                             </div>
+                          </div>
+
+                          <div className="mt-4 flex justify-center">
+                            <img
+                              src={accessNftImage}
+                              alt="NFT Domain Tokens"
+                              className="max-w-[80%] rounded-lg opacity-90"
+                            />
                           </div>
                         </div>
                       ) : (
