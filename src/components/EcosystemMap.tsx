@@ -69,6 +69,8 @@ interface PieceData {
   fill: string;
   fillHover: string;
   textColor: string;
+  iconBg: string;
+  iconBorder: string;
   col: number;
   row: number;
   edges: { top: Edge; right: Edge; bottom: Edge; left: Edge };
@@ -79,64 +81,64 @@ const pieces: PieceData[] = [
     number: 1, name: "AgenticID.Kred", title: "Identity",
     description: "Your Web3 identity — domain token metadata with on-chain memory.",
     icon: Globe, fill: "hsla(165, 35%, 18%, 0.45)", fillHover: "hsla(165, 40%, 22%, 0.65)",
-    textColor: "hsl(165, 60%, 70%)", col: 0, row: 0,
-    edges: { top: "flat", right: "tab", bottom: "tab", left: "flat" },
+    textColor: "hsl(165, 60%, 70%)", iconBg: "hsla(165, 60%, 70%, 0.1)", iconBorder: "hsla(165, 60%, 70%, 0.25)",
+    col: 0, row: 0, edges: { top: "flat", right: "tab", bottom: "tab", left: "flat" },
   },
   {
     number: 2, name: "Link.Kred", title: "Profile Hub",
     description: "Your profile hub — link-in-bio meets Web3.",
     icon: Link2, fill: "hsla(280, 30%, 22%, 0.45)", fillHover: "hsla(280, 35%, 26%, 0.65)",
-    textColor: "hsl(280, 55%, 75%)", col: 1, row: 0,
-    edges: { top: "flat", right: "tab", bottom: "slot", left: "slot" },
+    textColor: "hsl(280, 55%, 75%)", iconBg: "hsla(280, 55%, 75%, 0.1)", iconBorder: "hsla(280, 55%, 75%, 0.25)",
+    col: 1, row: 0, edges: { top: "flat", right: "tab", bottom: "slot", left: "slot" },
   },
   {
     number: 3, name: "Score.Kred", title: "Trust",
     description: "Reputation scores for agents and humans.",
     icon: Award, fill: "hsla(220, 35%, 20%, 0.45)", fillHover: "hsla(220, 40%, 24%, 0.65)",
-    textColor: "hsl(220, 60%, 75%)", col: 2, row: 0,
-    edges: { top: "flat", right: "flat", bottom: "tab", left: "slot" },
+    textColor: "hsl(220, 60%, 75%)", iconBg: "hsla(220, 60%, 75%, 0.1)", iconBorder: "hsla(220, 60%, 75%, 0.25)",
+    col: 2, row: 0, edges: { top: "flat", right: "flat", bottom: "tab", left: "slot" },
   },
   {
     number: 4, name: "AgenticEmpire.Kred", title: "Sim Game",
     description: "Play and prove — agentic economic simulation.",
     icon: Crown, fill: "hsla(25, 45%, 20%, 0.45)", fillHover: "hsla(25, 50%, 24%, 0.65)",
-    textColor: "hsl(25, 70%, 72%)", col: 0, row: 1,
-    edges: { top: "slot", right: "tab", bottom: "slot", left: "flat" },
+    textColor: "hsl(25, 70%, 72%)", iconBg: "hsla(25, 70%, 72%, 0.1)", iconBorder: "hsla(25, 70%, 72%, 0.25)",
+    col: 0, row: 1, edges: { top: "slot", right: "tab", bottom: "slot", left: "flat" },
   },
   {
     number: 0, name: "MCP", title: "",
     description: "",
     icon: MessageSquare, fill: "hsla(45, 50%, 20%, 0.45)", fillHover: "hsla(45, 55%, 24%, 0.65)",
-    textColor: "hsl(45, 80%, 72%)", col: 1, row: 1,
-    edges: { top: "tab", right: "tab", bottom: "tab", left: "slot" },
+    textColor: "hsl(45, 80%, 72%)", iconBg: "hsla(45, 80%, 72%, 0.1)", iconBorder: "hsla(45, 80%, 72%, 0.25)",
+    col: 1, row: 1, edges: { top: "tab", right: "tab", bottom: "tab", left: "slot" },
   },
   {
     number: 5, name: "Matrix.Kred", title: "Feeds",
     description: "Node network — curated, AI-filtered activity streams.",
     icon: Zap, fill: "hsla(250, 30%, 20%, 0.45)", fillHover: "hsla(250, 35%, 24%, 0.65)",
-    textColor: "hsl(250, 55%, 75%)", col: 2, row: 1,
-    edges: { top: "slot", right: "flat", bottom: "slot", left: "slot" },
+    textColor: "hsl(250, 55%, 75%)", iconBg: "hsla(250, 55%, 75%, 0.1)", iconBorder: "hsla(250, 55%, 75%, 0.25)",
+    col: 2, row: 1, edges: { top: "slot", right: "flat", bottom: "slot", left: "slot" },
   },
   {
     number: 6, name: "OneHub.Kred", title: "Create & Collect",
     description: "Virtual asset platform for communities.",
     icon: Settings, fill: "hsla(330, 35%, 18%, 0.45)", fillHover: "hsla(330, 40%, 22%, 0.65)",
-    textColor: "hsl(330, 60%, 72%)", col: 0, row: 2,
-    edges: { top: "tab", right: "tab", bottom: "flat", left: "flat" },
+    textColor: "hsl(330, 60%, 72%)", iconBg: "hsla(330, 60%, 72%, 0.1)", iconBorder: "hsla(330, 60%, 72%, 0.25)",
+    col: 0, row: 2, edges: { top: "tab", right: "tab", bottom: "flat", left: "flat" },
   },
   {
     number: 7, name: "AgenticGiving", title: "Gift Studio mini App",
     description: "Specialized gifting experience for brands.",
     icon: Gift, fill: "hsla(270, 30%, 22%, 0.45)", fillHover: "hsla(270, 35%, 26%, 0.65)",
-    textColor: "hsl(270, 55%, 75%)", col: 1, row: 2,
-    edges: { top: "slot", right: "tab", bottom: "flat", left: "slot" },
+    textColor: "hsl(270, 55%, 75%)", iconBg: "hsla(270, 55%, 75%, 0.1)", iconBorder: "hsla(270, 55%, 75%, 0.25)",
+    col: 1, row: 2, edges: { top: "slot", right: "tab", bottom: "flat", left: "slot" },
   },
   {
     number: 8, name: "NFT.NYC", title: "HUMANS ONLY",
     description: "The gathering — live human event experience on stage.",
     icon: Mic, fill: "hsla(210, 40%, 18%, 0.45)", fillHover: "hsla(210, 45%, 22%, 0.65)",
-    textColor: "hsl(210, 60%, 72%)", col: 2, row: 2,
-    edges: { top: "tab", right: "flat", bottom: "flat", left: "slot" },
+    textColor: "hsl(210, 60%, 72%)", iconBg: "hsla(210, 60%, 72%, 0.1)", iconBorder: "hsla(210, 60%, 72%, 0.25)",
+    col: 2, row: 2, edges: { top: "tab", right: "flat", bottom: "flat", left: "slot" },
   },
 ];
 
@@ -324,7 +326,7 @@ export const EcosystemMap = () => {
                       style={{ fontFamily: "var(--font-display)" }}
                       className="flex flex-col items-center justify-center h-full text-center"
                     >
-                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center mb-1.5" style={{ backgroundColor: `${p.textColor}15`, border: `1px solid ${p.textColor}30` }}><p.icon className="w-4 h-4 sm:w-[18px] sm:h-[18px]" style={{ color: p.textColor }} /></div>
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center mb-1.5" style={{ backgroundColor: p.iconBg, border: `1px solid ${p.iconBorder}` }}><p.icon className="w-4 h-4 sm:w-[18px] sm:h-[18px]" style={{ color: p.textColor }} /></div>
                       <span
                         className="text-[11px] sm:text-sm font-bold leading-tight mb-0.5"
                         style={{ color: p.textColor }}
