@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Globe, Link2, Award, Crown, MessageSquare, Zap, Settings, Gift, Mic } from "lucide-react";
 import accessNftImage from "@/assets/agent-domain-token.png";
 
 interface TileDetail {
@@ -64,7 +65,7 @@ interface PieceData {
   name: string;
   title: string;
   description: string;
-  icon: string;
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
   fill: string;
   fillHover: string;
   textColor: string;
@@ -77,63 +78,63 @@ const pieces: PieceData[] = [
   {
     number: 1, name: "AgenticID.Kred", title: "Identity",
     description: "Your Web3 identity — domain token metadata with on-chain memory.",
-    icon: "🌐", fill: "hsla(165, 35%, 18%, 0.45)", fillHover: "hsla(165, 40%, 22%, 0.65)",
+    icon: Globe, fill: "hsla(165, 35%, 18%, 0.45)", fillHover: "hsla(165, 40%, 22%, 0.65)",
     textColor: "hsl(165, 60%, 70%)", col: 0, row: 0,
     edges: { top: "flat", right: "tab", bottom: "tab", left: "flat" },
   },
   {
     number: 2, name: "Link.Kred", title: "Profile Hub",
     description: "Your profile hub — link-in-bio meets Web3.",
-    icon: "🔗", fill: "hsla(280, 30%, 22%, 0.45)", fillHover: "hsla(280, 35%, 26%, 0.65)",
+    icon: Link2, fill: "hsla(280, 30%, 22%, 0.45)", fillHover: "hsla(280, 35%, 26%, 0.65)",
     textColor: "hsl(280, 55%, 75%)", col: 1, row: 0,
     edges: { top: "flat", right: "tab", bottom: "slot", left: "slot" },
   },
   {
     number: 3, name: "Score.Kred", title: "Trust",
     description: "Reputation scores for agents and humans.",
-    icon: "🏅", fill: "hsla(220, 35%, 20%, 0.45)", fillHover: "hsla(220, 40%, 24%, 0.65)",
+    icon: Award, fill: "hsla(220, 35%, 20%, 0.45)", fillHover: "hsla(220, 40%, 24%, 0.65)",
     textColor: "hsl(220, 60%, 75%)", col: 2, row: 0,
     edges: { top: "flat", right: "flat", bottom: "tab", left: "slot" },
   },
   {
     number: 4, name: "AgenticEmpire.Kred", title: "Sim Game",
     description: "Play and prove — agentic economic simulation.",
-    icon: "👑", fill: "hsla(25, 45%, 20%, 0.45)", fillHover: "hsla(25, 50%, 24%, 0.65)",
+    icon: Crown, fill: "hsla(25, 45%, 20%, 0.45)", fillHover: "hsla(25, 50%, 24%, 0.65)",
     textColor: "hsl(25, 70%, 72%)", col: 0, row: 1,
     edges: { top: "slot", right: "tab", bottom: "slot", left: "flat" },
   },
   {
     number: 0, name: "MCP", title: "",
     description: "",
-    icon: "💬", fill: "hsla(45, 50%, 20%, 0.45)", fillHover: "hsla(45, 55%, 24%, 0.65)",
+    icon: MessageSquare, fill: "hsla(45, 50%, 20%, 0.45)", fillHover: "hsla(45, 55%, 24%, 0.65)",
     textColor: "hsl(45, 80%, 72%)", col: 1, row: 1,
     edges: { top: "tab", right: "tab", bottom: "tab", left: "slot" },
   },
   {
     number: 5, name: "Matrix.Kred", title: "Feeds",
     description: "Node network — curated, AI-filtered activity streams.",
-    icon: "⚡", fill: "hsla(250, 30%, 20%, 0.45)", fillHover: "hsla(250, 35%, 24%, 0.65)",
+    icon: Zap, fill: "hsla(250, 30%, 20%, 0.45)", fillHover: "hsla(250, 35%, 24%, 0.65)",
     textColor: "hsl(250, 55%, 75%)", col: 2, row: 1,
     edges: { top: "slot", right: "flat", bottom: "slot", left: "slot" },
   },
   {
     number: 6, name: "OneHub.Kred", title: "Create & Collect",
     description: "Virtual asset platform for communities.",
-    icon: "⚙️", fill: "hsla(330, 35%, 18%, 0.45)", fillHover: "hsla(330, 40%, 22%, 0.65)",
+    icon: Settings, fill: "hsla(330, 35%, 18%, 0.45)", fillHover: "hsla(330, 40%, 22%, 0.65)",
     textColor: "hsl(330, 60%, 72%)", col: 0, row: 2,
     edges: { top: "tab", right: "tab", bottom: "flat", left: "flat" },
   },
   {
     number: 7, name: "AgenticGiving", title: "Gift Studio mini App",
     description: "Specialized gifting experience for brands.",
-    icon: "🎁", fill: "hsla(270, 30%, 22%, 0.45)", fillHover: "hsla(270, 35%, 26%, 0.65)",
+    icon: Gift, fill: "hsla(270, 30%, 22%, 0.45)", fillHover: "hsla(270, 35%, 26%, 0.65)",
     textColor: "hsl(270, 55%, 75%)", col: 1, row: 2,
     edges: { top: "slot", right: "tab", bottom: "flat", left: "slot" },
   },
   {
     number: 8, name: "NFT.NYC", title: "HUMANS ONLY",
     description: "The gathering — live human event experience on stage.",
-    icon: "🎤", fill: "hsla(210, 40%, 18%, 0.45)", fillHover: "hsla(210, 45%, 22%, 0.65)",
+    icon: Mic, fill: "hsla(210, 40%, 18%, 0.45)", fillHover: "hsla(210, 45%, 22%, 0.65)",
     textColor: "hsl(210, 60%, 72%)", col: 2, row: 2,
     edges: { top: "tab", right: "flat", bottom: "flat", left: "slot" },
   },
@@ -323,7 +324,7 @@ export const EcosystemMap = () => {
                       style={{ fontFamily: "var(--font-display)" }}
                       className="flex flex-col items-center justify-center h-full text-center"
                     >
-                      <span className="text-base sm:text-lg mb-1">{p.icon}</span>
+                      <div className="mb-1"><p.icon className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: p.textColor }} /></div>
                       <span
                         className="text-[11px] sm:text-sm font-bold leading-tight mb-0.5"
                         style={{ color: p.textColor }}
@@ -411,7 +412,7 @@ export const EcosystemMap = () => {
 
                       {selected.number === 0 ? (
                         <>
-                          <span className="text-6xl mb-6">{selected.icon}</span>
+                          <div className="mb-6"><selected.icon className="w-16 h-16" style={{ color: selected.textColor }} /></div>
                           <h3
                             className="text-6xl font-bold font-display"
                             style={{ color: selected.textColor }}
@@ -424,7 +425,7 @@ export const EcosystemMap = () => {
                         return (
                           <div className="flex flex-col h-full w-full justify-center">
                             <div className="flex items-center justify-center gap-3 mb-4">
-                              <span className="text-4xl">{selected.icon}</span>
+                              <selected.icon className="w-10 h-10" style={{ color: selected.textColor }} />
                               <h3
                                 className="text-2xl font-bold font-display"
                                 style={{ color: selected.textColor }}
