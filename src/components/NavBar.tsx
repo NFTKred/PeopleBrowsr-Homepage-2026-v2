@@ -21,24 +21,24 @@ export const NavBar = () => {
       <nav
         className={`pointer-events-auto flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
           scrolled
-            ? "mt-3 h-11 px-4 rounded-full border border-border/30 bg-card/60 backdrop-blur-2xl shadow-lg shadow-black/25 w-auto gap-6"
-            : "mt-0 h-14 px-6 rounded-none border-b border-transparent bg-background/80 backdrop-blur-xl w-full max-w-7xl gap-8"
+            ? "mt-3 h-10 px-4 rounded-full border border-border/30 bg-card/60 backdrop-blur-2xl shadow-lg shadow-black/25 w-auto gap-5"
+            : "mt-0 h-12 px-6 rounded-none border-b border-transparent bg-background/80 backdrop-blur-xl w-full max-w-[1200px] gap-8"
         }`}
       >
         {/* Logo */}
         <a href="/" className="flex items-center flex-shrink-0">
-          <span className="font-display font-semibold text-foreground text-sm tracking-tight whitespace-nowrap">
+          <span className="font-display font-semibold text-foreground text-[15px] tracking-tight whitespace-nowrap">
             PeopleBrowsr
           </span>
         </a>
 
         {/* Nav links */}
-        <div className="hidden md:flex items-center gap-5">
+        <div className="hidden md:flex items-center gap-4">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
+              className="text-[14px] text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
             >
               {link.label}
             </a>
@@ -48,7 +48,7 @@ export const NavBar = () => {
         {/* CTA */}
         <Button
           size="sm"
-          className="bg-transparent border border-primary/80 text-primary hover:bg-primary/10 font-medium rounded-md text-sm px-5 h-9 flex-shrink-0"
+          className="bg-transparent border border-primary/80 text-primary hover:bg-primary/10 font-medium rounded-md text-[14px] px-5 h-8 flex-shrink-0"
         >
           Get Started
         </Button>
