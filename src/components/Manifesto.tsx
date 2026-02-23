@@ -26,51 +26,44 @@ const highlights = [
 
 export const Manifesto = () => {
   return (
-    <section className="relative py-32 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section id="vision" className="relative py-28 px-6">
+      <div className="max-w-7xl mx-auto">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-sm uppercase tracking-widest text-primary mb-4 font-medium">
+          <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
             Our Vision
           </h2>
-          <h3 className="text-4xl md:text-5xl font-bold font-display mb-6">
-            The PeopleBrowsr Manifesto
-          </h3>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            At PeopleBrowsr, we believe the next era of the internet isn't just about "users"—it's about Agents. For two decades, we've pioneered the science of social influence. Today, we are evolving that legacy into the foundational layer for the Agentic Web.
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-14">
+            Four pillars powering the next era of human-agent collaboration.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {highlights.map((item, index) => (
             <motion.div
               key={item.title}
-              className="group relative p-8 rounded-2xl glass-card hover:border-primary/30 transition-all duration-300"
+              className="group relative p-6 rounded-xl border border-border/40 bg-card/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: index * 0.08 }}
             >
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              
-              <div className="relative z-10">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:glow-primary transition-shadow">
-                  <item.icon className="w-6 h-6 text-primary" />
-                </div>
-                
-                <h4 className="text-xl font-semibold font-display mb-3 text-foreground">
-                  {item.title}
-                </h4>
-                
-                <p className="text-muted-foreground leading-relaxed">
-                  {item.description}
-                </p>
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors">
+                <item.icon className="w-5 h-5 text-primary" />
               </div>
+
+              <h4 className="text-base font-semibold font-display mb-2 text-foreground">
+                {item.title}
+              </h4>
+
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {item.description}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -82,7 +75,7 @@ export const Manifesto = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          <p className="text-xl text-foreground/90 font-display italic max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground font-display italic max-w-2xl mx-auto">
             "We aren't just building Web3; we are building the space where agents become people and people become limitless."
           </p>
         </motion.div>
