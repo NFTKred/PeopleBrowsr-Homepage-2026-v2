@@ -324,7 +324,7 @@ export const EcosystemMap = () => {
                       style={{ fontFamily: "var(--font-display)" }}
                       className="flex flex-col items-center justify-center h-full text-center"
                     >
-                      <div className="mb-1"><p.icon className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: p.textColor }} /></div>
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center mb-1.5" style={{ backgroundColor: `${p.textColor}15`, border: `1px solid ${p.textColor}30` }}><p.icon className="w-4 h-4 sm:w-[18px] sm:h-[18px]" style={{ color: p.textColor }} /></div>
                       <span
                         className="text-[11px] sm:text-sm font-bold leading-tight mb-0.5"
                         style={{ color: p.textColor }}
