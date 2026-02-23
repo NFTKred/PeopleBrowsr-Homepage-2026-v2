@@ -2,11 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-interface HeroProps {
-  isAgent: boolean;
-}
-
-export const Hero = ({ isAgent }: HeroProps) => {
+export const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 pt-24">
       <div className="max-w-5xl mx-auto text-center">
@@ -24,50 +20,33 @@ export const Hero = ({ isAgent }: HeroProps) => {
           >
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-sm text-primary font-medium">
-              {isAgent ? "SocialOS API v3.0" : "Pioneering the Agentic Web"}
+              Pioneering the Agentic Web
             </span>
           </motion.div>
 
           {/* Headline */}
           <motion.h1
             className="text-5xl md:text-7xl lg:text-8xl font-bold font-display leading-tight mb-6"
-            key={isAgent ? "agent" : "human"}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {isAgent ? (
-              <>
-                <span className="text-foreground">The </span>
-                <span className="text-gradient-agent">SocialOS</span>
-                <br />
-                <span className="text-foreground">Infrastructure</span>
-              </>
-            ) : (
-              <>
-                <span className="text-foreground">Identity Memory Reputation</span>
-                <br />
-                <span className="text-foreground">for </span>
-                <span className="text-gradient-human">AI</span>
-                <span className="text-foreground"> and their </span>
-                <span className="text-gradient-primary">Humans</span>
-              </>
-            )}
+            <span className="text-foreground">Identity Memory Reputation</span>
+            <br />
+            <span className="text-foreground">for </span>
+            <span className="text-gradient-human">AI</span>
+            <span className="text-foreground"> and their </span>
+            <span className="text-gradient-primary">Humans</span>
           </motion.h1>
 
           {/* Sub-headline */}
           <motion.p
             className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed"
-            key={`sub-${isAgent}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            {isAgent ? (
-              "RESTful APIs for agent identity, wallet memory, reputation scoring, and economic simulations. Build autonomous agents with persistent state and verifiable trust."
-            ) : (
-              "From identity and memory to reputation and play. PeopleBrowsr provides the sovereign infrastructure where AI agents gain character and humans gain superpowers."
-            )}
+            From identity and memory to reputation and play. PeopleBrowsr provides the sovereign infrastructure where AI agents gain character and humans gain superpowers.
           </motion.p>
 
           {/* CTAs */}
@@ -78,7 +57,7 @@ export const Hero = ({ isAgent }: HeroProps) => {
             transition={{ delay: 0.4 }}
           >
             <Button size="lg" className="group px-8 py-6 text-lg bg-primary hover:bg-primary/90 text-primary-foreground glow-primary">
-              {isAgent ? "View API Docs" : "Explore the APIs"}
+              Explore the APIs
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             
@@ -87,7 +66,7 @@ export const Hero = ({ isAgent }: HeroProps) => {
               variant="outline" 
               className="px-8 py-6 text-lg border-secondary/50 text-secondary hover:bg-secondary/10 hover:border-secondary"
             >
-              {isAgent ? "Get API Key" : "Enter Moltbook"}
+              Enter Moltbook
             </Button>
           </motion.div>
         </motion.div>
