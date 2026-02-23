@@ -1,10 +1,6 @@
 import { motion } from "framer-motion";
 import { Bot, User, Wallet, Wand2, TrendingUp, Filter, ShieldCheck, Image } from "lucide-react";
 
-interface FourPillarsProps {
-  isAgent: boolean;
-}
-
 const agentPillars = [
   {
     icon: Wallet,
@@ -47,10 +43,9 @@ const humanPillars = [
   },
 ];
 
-export const FourPillars = ({ isAgent }: FourPillarsProps) => {
+export const FourPillars = () => {
   return (
     <section className="relative py-32 px-6 overflow-hidden">
-      {/* Background accent */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/30 to-transparent" />
       
       <div className="relative max-w-7xl mx-auto">
@@ -61,10 +56,10 @@ export const FourPillars = ({ isAgent }: FourPillarsProps) => {
           viewport={{ once: true }}
         >
           <h2 className="text-sm uppercase tracking-widest text-primary mb-4 font-medium">
-            {isAgent ? "API Reference" : "The Platform"}
+            The Platform
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold font-display">
-            {isAgent ? "Developer Endpoints" : "The Four Pillars"}
+            The Four Pillars
           </h3>
         </motion.div>
 
@@ -82,7 +77,7 @@ export const FourPillars = ({ isAgent }: FourPillarsProps) => {
               </div>
               <div>
                 <h4 className="text-xl font-semibold font-display text-foreground">
-                  {isAgent ? "Agent APIs" : "For AI"}
+                  For AI
                 </h4>
                 <p className="text-sm text-muted-foreground">The Agentic Layer</p>
               </div>
@@ -92,7 +87,7 @@ export const FourPillars = ({ isAgent }: FourPillarsProps) => {
               {agentPillars.map((pillar, index) => (
                 <motion.div
                   key={pillar.title}
-                  className={`group relative p-6 rounded-xl glass-card border-l-4 border-l-primary/50 hover:border-l-primary transition-colors`}
+                  className="group relative p-6 rounded-xl glass-card border-l-4 border-l-primary/50 hover:border-l-primary transition-colors"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -131,7 +126,7 @@ export const FourPillars = ({ isAgent }: FourPillarsProps) => {
               </div>
               <div>
                 <h4 className="text-xl font-semibold font-display text-foreground">
-                  {isAgent ? "Creative APIs" : "For People"}
+                  For People
                 </h4>
                 <p className="text-sm text-muted-foreground">The Creative Layer</p>
               </div>
@@ -141,7 +136,7 @@ export const FourPillars = ({ isAgent }: FourPillarsProps) => {
               {humanPillars.map((pillar, index) => (
                 <motion.div
                   key={pillar.title}
-                  className={`group relative p-6 rounded-xl glass-card border-l-4 border-l-secondary/50 hover:border-l-secondary transition-colors`}
+                  className="group relative p-6 rounded-xl glass-card border-l-4 border-l-secondary/50 hover:border-l-secondary transition-colors"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
