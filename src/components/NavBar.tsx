@@ -34,8 +34,7 @@ export const NavBar = () => {
 
             <Button
               size="sm"
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-medium px-5 rounded-full transition-colors"
+              className="bg-transparent border border-primary/80 text-primary hover:bg-primary/10 font-medium px-5 h-9 rounded-md text-sm"
             >
               Get Started
             </Button>
