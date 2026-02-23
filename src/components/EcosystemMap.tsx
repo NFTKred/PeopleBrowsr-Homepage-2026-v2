@@ -77,63 +77,63 @@ const pieces: PieceData[] = [
   {
     number: 1, name: "AgenticID.Kred", title: "Identity",
     description: "Your Web3 identity — domain token metadata with on-chain memory.",
-    icon: "🌐", fill: "hsl(165, 35%, 22%)", fillHover: "hsl(165, 40%, 28%)",
+    icon: "🌐", fill: "hsla(165, 35%, 18%, 0.45)", fillHover: "hsla(165, 40%, 22%, 0.65)",
     textColor: "hsl(165, 60%, 70%)", col: 0, row: 0,
     edges: { top: "flat", right: "tab", bottom: "tab", left: "flat" },
   },
   {
     number: 2, name: "Link.Kred", title: "Profile Hub",
     description: "Your profile hub — link-in-bio meets Web3.",
-    icon: "🔗", fill: "hsl(280, 30%, 28%)", fillHover: "hsl(280, 35%, 34%)",
+    icon: "🔗", fill: "hsla(280, 30%, 22%, 0.45)", fillHover: "hsla(280, 35%, 26%, 0.65)",
     textColor: "hsl(280, 55%, 75%)", col: 1, row: 0,
     edges: { top: "flat", right: "tab", bottom: "slot", left: "slot" },
   },
   {
     number: 3, name: "Score.Kred", title: "Trust",
     description: "Reputation scores for agents and humans.",
-    icon: "🏅", fill: "hsl(220, 35%, 27%)", fillHover: "hsl(220, 40%, 33%)",
+    icon: "🏅", fill: "hsla(220, 35%, 20%, 0.45)", fillHover: "hsla(220, 40%, 24%, 0.65)",
     textColor: "hsl(220, 60%, 75%)", col: 2, row: 0,
     edges: { top: "flat", right: "flat", bottom: "tab", left: "slot" },
   },
   {
     number: 4, name: "AgenticEmpire.Kred", title: "Sim Game",
     description: "Play and prove — agentic economic simulation.",
-    icon: "👑", fill: "hsl(25, 45%, 26%)", fillHover: "hsl(25, 50%, 32%)",
+    icon: "👑", fill: "hsla(25, 45%, 20%, 0.45)", fillHover: "hsla(25, 50%, 24%, 0.65)",
     textColor: "hsl(25, 70%, 72%)", col: 0, row: 1,
     edges: { top: "slot", right: "tab", bottom: "slot", left: "flat" },
   },
   {
     number: 0, name: "MCP", title: "",
     description: "",
-    icon: "💬", fill: "hsl(45, 50%, 28%)", fillHover: "hsl(45, 55%, 34%)",
+    icon: "💬", fill: "hsla(45, 50%, 20%, 0.45)", fillHover: "hsla(45, 55%, 24%, 0.65)",
     textColor: "hsl(45, 80%, 72%)", col: 1, row: 1,
     edges: { top: "tab", right: "tab", bottom: "tab", left: "slot" },
   },
   {
     number: 5, name: "Matrix.Kred", title: "Feeds",
     description: "Node network — curated, AI-filtered activity streams.",
-    icon: "⚡", fill: "hsl(250, 30%, 26%)", fillHover: "hsl(250, 35%, 32%)",
+    icon: "⚡", fill: "hsla(250, 30%, 20%, 0.45)", fillHover: "hsla(250, 35%, 24%, 0.65)",
     textColor: "hsl(250, 55%, 75%)", col: 2, row: 1,
     edges: { top: "slot", right: "flat", bottom: "slot", left: "slot" },
   },
   {
     number: 6, name: "OneHub.Kred", title: "Create & Collect",
     description: "Virtual asset platform for communities.",
-    icon: "⚙️", fill: "hsl(330, 35%, 25%)", fillHover: "hsl(330, 40%, 31%)",
+    icon: "⚙️", fill: "hsla(330, 35%, 18%, 0.45)", fillHover: "hsla(330, 40%, 22%, 0.65)",
     textColor: "hsl(330, 60%, 72%)", col: 0, row: 2,
     edges: { top: "tab", right: "tab", bottom: "flat", left: "flat" },
   },
   {
     number: 7, name: "AgenticGiving", title: "Gift Studio mini App",
     description: "Specialized gifting experience for brands.",
-    icon: "🎁", fill: "hsl(270, 30%, 28%)", fillHover: "hsl(270, 35%, 34%)",
+    icon: "🎁", fill: "hsla(270, 30%, 22%, 0.45)", fillHover: "hsla(270, 35%, 26%, 0.65)",
     textColor: "hsl(270, 55%, 75%)", col: 1, row: 2,
     edges: { top: "slot", right: "tab", bottom: "flat", left: "slot" },
   },
   {
     number: 8, name: "NFT.NYC", title: "HUMANS ONLY",
     description: "The gathering — live human event experience on stage.",
-    icon: "🎤", fill: "hsl(210, 40%, 24%)", fillHover: "hsl(210, 45%, 30%)",
+    icon: "🎤", fill: "hsla(210, 40%, 18%, 0.45)", fillHover: "hsla(210, 45%, 22%, 0.65)",
     textColor: "hsl(210, 60%, 72%)", col: 2, row: 2,
     edges: { top: "tab", right: "flat", bottom: "flat", left: "slot" },
   },
@@ -259,23 +259,45 @@ export const EcosystemMap = () => {
           >
             {pieces.map((p) => (
               <g key={p.number} className="group" onClick={() => setSelected(p)} style={{ cursor: "pointer" }}>
+                {/* Glow layer behind piece */}
+                <path
+                  d={buildPath(p.col, p.row, p.edges)}
+                  fill="none"
+                  stroke={p.textColor}
+                  strokeWidth="6"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  opacity="0"
+                  className="transition-opacity duration-300"
+                  style={{ filter: `blur(8px)` }}
+                  id={`glow-${p.number}`}
+                />
                 {/* Piece shape */}
                 <path
                   d={buildPath(p.col, p.row, p.edges)}
                   fill={p.fill}
-                  stroke="hsl(222, 47%, 8%)"
-                  strokeWidth="3"
+                  stroke={p.textColor}
+                  strokeWidth="1"
                   strokeLinejoin="round"
                   strokeLinecap="round"
+                  strokeOpacity="0.3"
                   className="transition-all duration-300 cursor-pointer"
-                  style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.3))" }}
+                  style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.4))" }}
                   onMouseEnter={(e) => {
-                    (e.target as SVGPathElement).style.fill = p.fillHover;
-                    (e.target as SVGPathElement).style.filter = "drop-shadow(0 4px 12px rgba(0,0,0,0.5))";
+                    const el = e.target as SVGPathElement;
+                    el.style.fill = p.fillHover;
+                    el.setAttribute("stroke-opacity", "0.7");
+                    el.style.filter = "drop-shadow(0 4px 16px rgba(0,0,0,0.5))";
+                    const glow = document.getElementById(`glow-${p.number}`);
+                    if (glow) glow.setAttribute("opacity", "0.4");
                   }}
                   onMouseLeave={(e) => {
-                    (e.target as SVGPathElement).style.fill = p.fill;
-                    (e.target as SVGPathElement).style.filter = "drop-shadow(0 2px 4px rgba(0,0,0,0.3))";
+                    const el = e.target as SVGPathElement;
+                    el.style.fill = p.fill;
+                    el.setAttribute("stroke-opacity", "0.3");
+                    el.style.filter = "drop-shadow(0 2px 8px rgba(0,0,0,0.4))";
+                    const glow = document.getElementById(`glow-${p.number}`);
+                    if (glow) glow.setAttribute("opacity", "0");
                   }}
                 />
 
@@ -367,11 +389,12 @@ export const EcosystemMap = () => {
                 <path
                   d={buildExpandedPath(selected.edges)}
                   fill={selected.fill}
-                  stroke="hsl(222, 47%, 12%)"
-                  strokeWidth="4"
+                  stroke={selected.textColor}
+                  strokeWidth="2"
                   strokeLinejoin="round"
                   strokeLinecap="round"
-                  style={{ filter: "drop-shadow(0 12px 40px rgba(0,0,0,0.6))" }}
+                  strokeOpacity="0.4"
+                  style={{ filter: `drop-shadow(0 12px 40px rgba(0,0,0,0.6)) drop-shadow(0 0 30px ${selected.textColor}33)` }}
                 />
 
                 {/* Content via foreignObject clipped to piece shape */}
