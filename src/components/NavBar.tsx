@@ -12,10 +12,7 @@ export const NavBar = () => {
       <div className="backdrop-blur-xl bg-background/70">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 h-16">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">P</span>
-            </div>
+          <a href="/" className="flex items-center">
             <span className="font-display font-semibold text-foreground text-sm tracking-tight">
               PeopleBrowsr
             </span>
