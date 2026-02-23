@@ -55,8 +55,9 @@ const tileDetails: Record<number, TileDetail> = {
 };
 
 const CELL = 200;
-const TAB_R = 22;
-const TAB_D = 24;
+const NECK = 12;
+const HEAD = 20;
+const DEPTH = 26;
 
 type Edge = "flat" | "tab" | "slot";
 
@@ -142,6 +143,35 @@ const pieces: PieceData[] = [
   },
 ];
 
+// Build a jigsaw tab/slot using cubic beziers for a narrow-neck knob shape
+function tabRight(mx: number, y: number, neck: number, head: number, depth: number): string {
+  // Tab protrudes to the right (+y direction becomes outward for horizontal edges)
+  return `L ${mx - neck},${y} C ${mx - neck},${y} ${mx - head},${y - depth} ${mx},${y - depth} C ${mx + head},${y - depth} ${mx + neck},${y} ${mx + neck},${y} `;
+}
+function slotRight(mx: number, y: number, neck: number, head: number, depth: number): string {
+  return `L ${mx - neck},${y} C ${mx - neck},${y} ${mx - head},${y + depth} ${mx},${y + depth} C ${mx + head},${y + depth} ${mx + neck},${y} ${mx + neck},${y} `;
+}
+function tabDown(x: number, my: number, neck: number, head: number, depth: number): string {
+  return `L ${x},${my - neck} C ${x},${my - neck} ${x + depth},${my - head} ${x + depth},${my} C ${x + depth},${my + head} ${x},${my + neck} ${x},${my + neck} `;
+}
+function slotDown(x: number, my: number, neck: number, head: number, depth: number): string {
+  return `L ${x},${my - neck} C ${x},${my - neck} ${x - depth},${my - head} ${x - depth},${my} C ${x - depth},${my + head} ${x},${my + neck} ${x},${my + neck} `;
+}
+// Bottom edge goes ← so tab goes down, slot goes up
+function tabLeft(mx: number, y: number, neck: number, head: number, depth: number): string {
+  return `L ${mx + neck},${y} C ${mx + neck},${y} ${mx + head},${y + depth} ${mx},${y + depth} C ${mx - head},${y + depth} ${mx - neck},${y} ${mx - neck},${y} `;
+}
+function slotLeft(mx: number, y: number, neck: number, head: number, depth: number): string {
+  return `L ${mx + neck},${y} C ${mx + neck},${y} ${mx + head},${y - depth} ${mx},${y - depth} C ${mx - head},${y - depth} ${mx - neck},${y} ${mx - neck},${y} `;
+}
+// Left edge goes ↑ so tab goes left, slot goes right
+function tabUp(x: number, my: number, neck: number, head: number, depth: number): string {
+  return `L ${x},${my + neck} C ${x},${my + neck} ${x - depth},${my + head} ${x - depth},${my} C ${x - depth},${my - head} ${x},${my - neck} ${x},${my - neck} `;
+}
+function slotUp(x: number, my: number, neck: number, head: number, depth: number): string {
+  return `L ${x},${my + neck} C ${x},${my + neck} ${x + depth},${my + head} ${x + depth},${my} C ${x + depth},${my - head} ${x},${my - neck} ${x},${my - neck} `;
+}
+
 function buildPath(col: number, row: number, edges: PieceData["edges"]): string {
   const x0 = col * CELL;
   const y0 = row * CELL;
@@ -152,76 +182,52 @@ function buildPath(col: number, row: number, edges: PieceData["edges"]): string 
 
   let d = `M ${x0},${y0} `;
 
-  // Top edge (→)
-  if (edges.top === "tab") {
-    d += `L ${mx - TAB_R},${y0} A ${TAB_R} ${TAB_D} 0 0 0 ${mx + TAB_R},${y0} `;
-  } else if (edges.top === "slot") {
-    d += `L ${mx - TAB_R},${y0} A ${TAB_R} ${TAB_D} 0 0 1 ${mx + TAB_R},${y0} `;
-  }
+  // Top edge (→): tab goes up (outward), slot goes down (inward)
+  if (edges.top === "tab") d += tabRight(mx, y0, NECK, HEAD, DEPTH);
+  else if (edges.top === "slot") d += slotRight(mx, y0, NECK, HEAD, DEPTH);
   d += `L ${x1},${y0} `;
 
-  // Right edge (↓)
-  if (edges.right === "tab") {
-    d += `L ${x1},${my - TAB_R} A ${TAB_D} ${TAB_R} 0 0 1 ${x1},${my + TAB_R} `;
-  } else if (edges.right === "slot") {
-    d += `L ${x1},${my - TAB_R} A ${TAB_D} ${TAB_R} 0 0 0 ${x1},${my + TAB_R} `;
-  }
+  // Right edge (↓): tab goes right (outward), slot goes left (inward)
+  if (edges.right === "tab") d += tabDown(x1, my, NECK, HEAD, DEPTH);
+  else if (edges.right === "slot") d += slotDown(x1, my, NECK, HEAD, DEPTH);
   d += `L ${x1},${y1} `;
 
-  // Bottom edge (←)
-  if (edges.bottom === "tab") {
-    d += `L ${mx + TAB_R},${y1} A ${TAB_R} ${TAB_D} 0 0 0 ${mx - TAB_R},${y1} `;
-  } else if (edges.bottom === "slot") {
-    d += `L ${mx + TAB_R},${y1} A ${TAB_R} ${TAB_D} 0 0 1 ${mx - TAB_R},${y1} `;
-  }
+  // Bottom edge (←): tab goes down (outward), slot goes up (inward)
+  if (edges.bottom === "tab") d += tabLeft(mx, y1, NECK, HEAD, DEPTH);
+  else if (edges.bottom === "slot") d += slotLeft(mx, y1, NECK, HEAD, DEPTH);
   d += `L ${x0},${y1} `;
 
-  // Left edge (↑)
-  if (edges.left === "tab") {
-    d += `L ${x0},${my + TAB_R} A ${TAB_D} ${TAB_R} 0 0 0 ${x0},${my - TAB_R} `;
-  } else if (edges.left === "slot") {
-    d += `L ${x0},${my + TAB_R} A ${TAB_D} ${TAB_R} 0 0 1 ${x0},${my - TAB_R} `;
-  }
+  // Left edge (↑): tab goes left (outward), slot goes right (inward)
+  if (edges.left === "tab") d += tabUp(x0, my, NECK, HEAD, DEPTH);
+  else if (edges.left === "slot") d += slotUp(x0, my, NECK, HEAD, DEPTH);
   d += `L ${x0},${y0} Z`;
 
   return d;
 }
 
 function buildExpandedPath(edges: PieceData["edges"]): string {
-  const S = 600; // full puzzle size
-  const TR = TAB_R * 3; // scale tab proportionally
-  const TD = TAB_D * 3;
+  const S = 600;
+  const sc = 3; // scale factor
+  const n = NECK * sc, h = HEAD * sc, dp = DEPTH * sc;
   const x0 = 0, y0 = 0, x1 = S, y1 = S;
   const mx = S / 2, my = S / 2;
 
   let d = `M ${x0},${y0} `;
 
-  if (edges.top === "tab") {
-    d += `L ${mx - TR},${y0} A ${TR} ${TD} 0 0 0 ${mx + TR},${y0} `;
-  } else if (edges.top === "slot") {
-    d += `L ${mx - TR},${y0} A ${TR} ${TD} 0 0 1 ${mx + TR},${y0} `;
-  }
+  if (edges.top === "tab") d += tabRight(mx, y0, n, h, dp);
+  else if (edges.top === "slot") d += slotRight(mx, y0, n, h, dp);
   d += `L ${x1},${y0} `;
 
-  if (edges.right === "tab") {
-    d += `L ${x1},${my - TR} A ${TD} ${TR} 0 0 1 ${x1},${my + TR} `;
-  } else if (edges.right === "slot") {
-    d += `L ${x1},${my - TR} A ${TD} ${TR} 0 0 0 ${x1},${my + TR} `;
-  }
+  if (edges.right === "tab") d += tabDown(x1, my, n, h, dp);
+  else if (edges.right === "slot") d += slotDown(x1, my, n, h, dp);
   d += `L ${x1},${y1} `;
 
-  if (edges.bottom === "tab") {
-    d += `L ${mx + TR},${y1} A ${TR} ${TD} 0 0 0 ${mx - TR},${y1} `;
-  } else if (edges.bottom === "slot") {
-    d += `L ${mx + TR},${y1} A ${TR} ${TD} 0 0 1 ${mx - TR},${y1} `;
-  }
+  if (edges.bottom === "tab") d += tabLeft(mx, y1, n, h, dp);
+  else if (edges.bottom === "slot") d += slotLeft(mx, y1, n, h, dp);
   d += `L ${x0},${y1} `;
 
-  if (edges.left === "tab") {
-    d += `L ${x0},${my + TR} A ${TD} ${TR} 0 0 0 ${x0},${my - TR} `;
-  } else if (edges.left === "slot") {
-    d += `L ${x0},${my + TR} A ${TD} ${TR} 0 0 1 ${x0},${my - TR} `;
-  }
+  if (edges.left === "tab") d += tabUp(x0, my, n, h, dp);
+  else if (edges.left === "slot") d += slotUp(x0, my, n, h, dp);
   d += `L ${x0},${y0} Z`;
 
   return d;
