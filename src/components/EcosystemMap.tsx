@@ -432,18 +432,26 @@ export const EcosystemMap = () => {
                         const detail = tileDetails[selected.number];
                         return (
                           <div className="flex flex-col h-full w-full justify-center">
-                            <div className="flex items-center justify-center gap-3 mb-4">
-                              <selected.icon className="w-10 h-10" style={{ color: selected.textColor }} />
+                            <div className="flex flex-col items-center mb-4">
+                              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: selected.iconBg }}>
+                                <selected.icon className="w-6 h-6" style={{ color: selected.textColor }} />
+                              </div>
                               <h3
                                 className="text-2xl font-bold font-display"
                                 style={{ color: selected.textColor }}
                               >
-                                {selected.name}
+                                {selected.title}
                               </h3>
+                              <p
+                                className="text-sm font-medium mt-0.5"
+                                style={{ color: selected.textColor, opacity: 0.7 }}
+                              >
+                                {selected.name}
+                              </p>
                             </div>
                             <p
-                              className="text-sm italic mb-5 text-center"
-                              style={{ color: selected.textColor, opacity: 0.85 }}
+                              className="text-sm mb-5 text-center"
+                              style={{ color: "hsl(210, 30%, 75%)" }}
                             >
                               {selected.description}
                             </p>
