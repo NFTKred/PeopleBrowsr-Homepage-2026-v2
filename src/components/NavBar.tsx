@@ -17,7 +17,7 @@ export const NavBar = () => {
               <span className="text-primary-foreground font-bold text-sm">P</span>
             </div>
             <span className="font-display font-semibold text-foreground text-sm tracking-tight">
-              PeopleBrowsr<span className="text-primary">.Kred</span>
+              PeopleBrowsr
             </span>
           </a>
 
