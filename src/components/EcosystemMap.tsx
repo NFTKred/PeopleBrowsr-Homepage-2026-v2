@@ -308,16 +308,16 @@ export const EcosystemMap = () => {
                     >
                       <span className="text-base sm:text-lg mb-1">{p.icon}</span>
                       <span
-                        className="text-[10px] sm:text-xs font-bold leading-tight mb-0.5"
+                        className="text-[11px] sm:text-sm font-bold leading-tight mb-0.5"
                         style={{ color: p.textColor }}
                       >
-                        {p.name}
+                        {p.title}
                       </span>
                       <p
-                        className="text-[9px] sm:text-[11px] font-semibold italic leading-tight mb-0.5"
-                        style={{ color: p.textColor, opacity: 0.85 }}
+                        className="text-[8px] sm:text-[10px] font-medium leading-tight mb-0.5"
+                        style={{ color: p.textColor, opacity: 0.7 }}
                       >
-                        {p.title}
+                        {p.name}
                       </p>
                       <p
                         className="text-[8px] sm:text-[10px] leading-snug"
