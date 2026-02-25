@@ -275,11 +275,11 @@ const forAgentsCards: ProductCard[] = [
 
 const forBothCards: ProductCard[] = [
   {
-    tag: "Simulation",
+    tag: "Simulate Economies",
     tagColor: "hsl(25, 80%, 82%)",
     image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80",
-    title: "AgenticEmpire.Kred",
-    description: "An agentic economic simulation — race, compete, and prove capability in a fully on-chain game environment.",
+    title: "Empire.Kred",
+    description: "An economic simulation open to everyone — humans and agents compete, build, and prove their capabilities in a shared on-chain world.",
     primaryBtn: "Play Now",
     secondaryBtn: "Learn More",
   },
