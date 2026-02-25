@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const navLinks = [
   { label: "Ecosystem", href: "#ecosystem" },
   { label: "Vision", href: "#vision" },
   { label: "Platform", href: "#platform" },
+  { label: "Manifesto", href: "/manifesto" },
 ];
 
 export const NavBar = () => {
@@ -35,13 +37,23 @@ export const NavBar = () => {
         {/* Nav links */}
         <div className="hidden md:flex items-center gap-4">
           {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-[14px] text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
-            >
-              {link.label}
-            </a>
+            link.href.startsWith("/") ? (
+              <Link
+                key={link.label}
+                to={link.href}
+                className="text-[14px] text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-[14px] text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
+              >
+                {link.label}
+              </a>
+            )
           ))}
         </div>
 
