@@ -2,6 +2,95 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+
+function NeonTextTrace({ text }: { text: string }) {
+  const anchorRef = useRef<HTMLSpanElement>(null);
+  const [fontSize, setFontSize] = useState(0);
+
+  useEffect(() => {
+    const measure = () => {
+      if (anchorRef.current) {
+        const fs = parseFloat(window.getComputedStyle(anchorRef.current).fontSize);
+        setFontSize(fs);
+      }
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    if (anchorRef.current) ro.observe(anchorRef.current);
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <span className="relative inline-block">
+      {/* Real visible text */}
+      <span ref={anchorRef} className="text-foreground">{text}</span>
+
+      {/* SVG neon trace — sized to match rendered font */}
+      {fontSize > 0 && (
+        <svg
+          className="absolute inset-0 w-full h-full overflow-visible pointer-events-none"
+          aria-hidden="true"
+        >
+          <defs>
+            <filter id="neon-letter-glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="2" result="blur1" />
+              <feGaussianBlur stdDeviation="5" result="blur2" />
+              <feMerge>
+                <feMergeNode in="blur2" />
+                <feMergeNode in="blur1" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          {/* Dim base stroke so the trace pops */}
+          <text
+            x="50%"
+            y="82%"
+            textAnchor="middle"
+            fill="none"
+            stroke="hsl(195 100% 70% / 0.15)"
+            strokeWidth="1"
+            fontFamily="'Space Grotesk', sans-serif"
+            fontWeight="700"
+            fontSize={fontSize}
+          >
+            {text}
+          </text>
+
+          {/* Animated tracing stroke */}
+          <motion.text
+            x="50%"
+            y="82%"
+            textAnchor="middle"
+            fill="none"
+            stroke="hsl(195 100% 72%)"
+            strokeWidth="1.8"
+            fontFamily="'Space Grotesk', sans-serif"
+            fontWeight="700"
+            fontSize={fontSize}
+            filter="url(#neon-letter-glow)"
+            strokeDasharray="3200"
+            animate={{
+              strokeDashoffset: [3200, 0, 0, -3200],
+              opacity: [0, 1, 1, 0],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatDelay: 1,
+              ease: "easeInOut",
+              times: [0, 0.38, 0.72, 1],
+            }}
+          >
+            {text}
+          </motion.text>
+        </svg>
+      )}
+    </span>
+  );
+}
 
 export const Hero = () => {
   return (
@@ -32,24 +121,7 @@ export const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="relative inline-block">
-              <span className="text-foreground">Superpowers</span>
-              {/* Neon stroke trace layered on top */}
-              <motion.span
-                aria-hidden="true"
-                className="absolute inset-0 select-none neon-trace-text"
-                animate={{ opacity: [0, 1, 1, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  repeatDelay: 1.5,
-                  ease: "easeInOut",
-                  times: [0, 0.2, 0.75, 1],
-                }}
-              >
-                Superpowers
-              </motion.span>
-            </span>
+            <NeonTextTrace text="Superpowers" />
             <span className="text-foreground"> for </span>
             <span className="text-gradient-primary">Agents</span>
           </motion.h1>
