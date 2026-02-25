@@ -394,9 +394,244 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
   );
 }
 
-export const EcosystemMap = () => {
+function PuzzleAccordion() {
+  const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<PieceData | null>(null);
 
+  return (
+    <div className="mt-4">
+      {/* Toggle button */}
+      <div className="flex justify-center mb-6">
+        <button
+          onClick={() => setOpen((v) => !v)}
+          className="group flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm text-sm font-medium text-muted-foreground hover:text-foreground hover:border-white/30 hover:bg-white/10 transition-all duration-200"
+        >
+          <motion.span
+            animate={{ rotate: open ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+            className="text-primary"
+          >
+            ↓
+          </motion.span>
+          {open ? "Hide the ecosystem" : "Show the ecosystem"}
+        </button>
+      </div>
+
+      {/* Collapsible content */}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="puzzle-panel"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.45, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <motion.div
+              className="text-center mb-14"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
+                The Ecosystem
+              </h2>
+              <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+                Nine interlocking products that form the complete infrastructure for the Agentic Web.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="flex justify-center relative"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.15 }}
+            >
+              <svg
+                viewBox="-4 -4 608 608"
+                className="w-full max-w-3xl"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {pieces.map((p) => (
+                  <g key={p.number} className="group" onClick={() => setSelected(p)} style={{ cursor: "pointer" }}>
+                    <path
+                      d={buildPath(p.col, p.row, p.edges)}
+                      fill="none"
+                      stroke={p.textColor}
+                      strokeWidth="6"
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                      opacity="0"
+                      className="transition-opacity duration-300"
+                      style={{ filter: `blur(8px)` }}
+                      id={`glow-${p.number}`}
+                    />
+                    <path
+                      d={buildPath(p.col, p.row, p.edges)}
+                      fill={p.fill}
+                      stroke={p.textColor}
+                      strokeWidth="1.5"
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                      strokeOpacity="0.55"
+                      className="transition-all duration-300 cursor-pointer"
+                      style={{ filter: `drop-shadow(0 2px 12px rgba(0,0,0,0.5)) drop-shadow(0 0 6px ${p.textColor}33)` }}
+                      onMouseEnter={(e) => {
+                        const el = e.target as SVGPathElement;
+                        el.style.fill = p.fillHover;
+                        el.setAttribute("stroke-opacity", "1");
+                        el.style.filter = `drop-shadow(0 4px 20px rgba(0,0,0,0.6)) drop-shadow(0 0 16px ${p.textColor}88)`;
+                        const glow = document.getElementById(`glow-${p.number}`);
+                        if (glow) glow.setAttribute("opacity", "0.5");
+                      }}
+                      onMouseLeave={(e) => {
+                        const el = e.target as SVGPathElement;
+                        el.style.fill = p.fill;
+                        el.setAttribute("stroke-opacity", "0.55");
+                        el.style.filter = `drop-shadow(0 2px 12px rgba(0,0,0,0.5)) drop-shadow(0 0 6px ${p.textColor}33)`;
+                        const glow = document.getElementById(`glow-${p.number}`);
+                        if (glow) glow.setAttribute("opacity", "0");
+                      }}
+                    />
+                    <foreignObject
+                      x={p.col * CELL + 16}
+                      y={p.row * CELL + 14}
+                      width={CELL - 32}
+                      height={CELL - 28}
+                      className="pointer-events-none"
+                    >
+                      {p.number === 0 ? (
+                        <div className="flex items-center justify-center h-full">
+                          <span className="text-lg sm:text-2xl font-bold" style={{ color: p.textColor, fontFamily: "var(--font-display)" }}>MCP</span>
+                        </div>
+                      ) : (
+                        <div style={{ fontFamily: "var(--font-display)" }} className="flex flex-col items-center justify-center h-full text-center">
+                          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center mb-1.5" style={{ backgroundColor: p.iconBg }}><p.icon className="w-4 h-4 sm:w-[18px] sm:h-[18px]" style={{ color: p.textColor }} /></div>
+                          <span className="text-[11px] sm:text-sm font-bold leading-tight mb-0.5" style={{ color: p.textColor }}>{p.title}</span>
+                          <p className="text-[8px] sm:text-[10px] font-medium leading-tight mb-0.5" style={{ color: p.textColor, opacity: 0.7 }}>{p.name}</p>
+                          <p className="text-[8px] sm:text-[10px] leading-snug" style={{ color: "hsl(210, 30%, 75%)", fontFamily: "var(--font-body)" }}>{p.description}</p>
+                        </div>
+                      )}
+                    </foreignObject>
+                  </g>
+                ))}
+              </svg>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Shadowbox overlay */}
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={() => setSelected(null)}
+          >
+            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+            <motion.div
+              className="relative w-full max-w-3xl aspect-square"
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <svg viewBox="-80 -80 760 760" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <clipPath id="expanded-piece-clip">
+                    <path d={buildExpandedPath(selected.edges)} />
+                  </clipPath>
+                </defs>
+                <path
+                  d={buildExpandedPath(selected.edges)}
+                  fill={selected.fill}
+                  stroke={selected.textColor}
+                  strokeWidth="2"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeOpacity="0.4"
+                  style={{ filter: `drop-shadow(0 12px 40px rgba(0,0,0,0.6)) drop-shadow(0 0 30px ${selected.textColor}33)` }}
+                />
+                <g clipPath="url(#expanded-piece-clip)">
+                  <foreignObject x="0" y="0" width="600" height="600">
+                    <div className="flex flex-col items-center justify-center h-full w-full text-center px-12">
+                      <button onClick={() => setSelected(null)} className="absolute top-4 right-4 text-white/60 hover:text-white transition-colors text-3xl leading-none z-10">✕</button>
+                      {selected.number === 0 ? (
+                        <>
+                          <div className="mb-6"><selected.icon className="w-16 h-16" style={{ color: selected.textColor }} /></div>
+                          <h3 className="text-6xl font-bold font-display" style={{ color: selected.textColor }}>MCP</h3>
+                        </>
+                      ) : (() => {
+                        const detail = tileDetails[selected.number];
+                        return (
+                          <div className="flex flex-col h-full w-full justify-center">
+                            <div className="flex flex-col items-center mb-4">
+                              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: selected.iconBg }}>
+                                <selected.icon className="w-6 h-6" style={{ color: selected.textColor }} />
+                              </div>
+                              <h3 className="text-2xl font-bold font-display" style={{ color: selected.textColor }}>{selected.title}</h3>
+                              <p className="text-sm font-medium mt-0.5" style={{ color: selected.textColor, opacity: 0.7 }}>{selected.name}</p>
+                            </div>
+                            <p className="text-sm mb-5 text-center" style={{ color: "hsl(210, 30%, 75%)" }}>{selected.description}</p>
+                            <div className="grid grid-cols-3 gap-4 text-left px-2">
+                              <div>
+                                <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: selected.textColor }}>SubAgents</h4>
+                                <ul className="space-y-1.5" style={{ color: "hsl(210, 30%, 80%)" }}>
+                                  {detail.subAgents.map((item) => (
+                                    <li key={item} className="text-[11px] leading-tight flex items-start gap-1">
+                                      <span className="text-[9px] mt-0.5" style={{ color: selected.textColor }}>▸</span>{item}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                              <div>
+                                <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: selected.textColor }}>Use Cases</h4>
+                                <ul className="space-y-1.5" style={{ color: "hsl(210, 30%, 80%)" }}>
+                                  {detail.useCases.map((item) => (
+                                    <li key={item} className="text-[11px] leading-tight flex items-start gap-1">
+                                      <span className="text-[9px] mt-0.5" style={{ color: selected.textColor }}>▸</span>{item}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                              <div>
+                                <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: selected.textColor }}>Monetize With</h4>
+                                <ul className="space-y-1.5" style={{ color: "hsl(210, 30%, 80%)" }}>
+                                  {detail.monetizeWith.map((item) => (
+                                    <li key={item} className="text-[11px] leading-tight flex items-start gap-1">
+                                      <span className="text-[9px] mt-0.5" style={{ color: selected.textColor }}>▸</span>{item}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                            {detail.image && (
+                              <div className="mt-4 flex justify-center">
+                                <img src={detail.image} alt={`${selected.name} detail`} className="max-w-[50%] rounded-lg opacity-90" />
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  </foreignObject>
+                </g>
+              </svg>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+export const EcosystemMap = () => {
   return (
     <section id="ecosystem" className="relative py-28 px-6">
       <div className="max-w-5xl mx-auto">
@@ -414,299 +649,10 @@ export const EcosystemMap = () => {
           delay={0.2}
         />
 
-        <motion.div
-          className="text-center mb-14"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
-            The Ecosystem
-          </h2>
-          <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-            Nine interlocking products that form the complete infrastructure for the Agentic Web.
-          </p>
-        </motion.div>
+        {/* Accordion toggle for puzzle section */}
+        <PuzzleAccordion />
 
-        <motion.div
-          className="flex justify-center relative"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <svg
-            viewBox="-4 -4 608 608"
-            className="w-full max-w-3xl"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {pieces.map((p) => (
-              <g key={p.number} className="group" onClick={() => setSelected(p)} style={{ cursor: "pointer" }}>
-                {/* Glow layer behind piece */}
-                <path
-                  d={buildPath(p.col, p.row, p.edges)}
-                  fill="none"
-                  stroke={p.textColor}
-                  strokeWidth="6"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  opacity="0"
-                  className="transition-opacity duration-300"
-                  style={{ filter: `blur(8px)` }}
-                  id={`glow-${p.number}`}
-                />
-                {/* Piece shape */}
-                <path
-                  d={buildPath(p.col, p.row, p.edges)}
-                  fill={p.fill}
-                  stroke={p.textColor}
-                  strokeWidth="1.5"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeOpacity="0.55"
-                  className="transition-all duration-300 cursor-pointer"
-                  style={{ filter: `drop-shadow(0 2px 12px rgba(0,0,0,0.5)) drop-shadow(0 0 6px ${p.textColor}33)` }}
-                  onMouseEnter={(e) => {
-                    const el = e.target as SVGPathElement;
-                    el.style.fill = p.fillHover;
-                    el.setAttribute("stroke-opacity", "1");
-                    el.style.filter = `drop-shadow(0 4px 20px rgba(0,0,0,0.6)) drop-shadow(0 0 16px ${p.textColor}88)`;
-                    const glow = document.getElementById(`glow-${p.number}`);
-                    if (glow) glow.setAttribute("opacity", "0.5");
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.target as SVGPathElement;
-                    el.style.fill = p.fill;
-                    el.setAttribute("stroke-opacity", "0.55");
-                    el.style.filter = `drop-shadow(0 2px 12px rgba(0,0,0,0.5)) drop-shadow(0 0 6px ${p.textColor}33)`;
-                    const glow = document.getElementById(`glow-${p.number}`);
-                    if (glow) glow.setAttribute("opacity", "0");
-                  }}
-                />
-
-                {/* Text content */}
-                <foreignObject
-                  x={p.col * CELL + 16}
-                  y={p.row * CELL + 14}
-                  width={CELL - 32}
-                  height={CELL - 28}
-                  className="pointer-events-none"
-                >
-                  {p.number === 0 ? (
-                    <div className="flex items-center justify-center h-full">
-                      <span
-                        className="text-lg sm:text-2xl font-bold"
-                        style={{ color: p.textColor, fontFamily: "var(--font-display)" }}
-                      >
-                        MCP
-                      </span>
-                    </div>
-                  ) : (
-                    <div
-                      style={{ fontFamily: "var(--font-display)" }}
-                      className="flex flex-col items-center justify-center h-full text-center"
-                    >
-                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center mb-1.5" style={{ backgroundColor: p.iconBg }}><p.icon className="w-4 h-4 sm:w-[18px] sm:h-[18px]" style={{ color: p.textColor }} /></div>
-                      <span
-                        className="text-[11px] sm:text-sm font-bold leading-tight mb-0.5"
-                        style={{ color: p.textColor }}
-                      >
-                        {p.title}
-                      </span>
-                      <p
-                        className="text-[8px] sm:text-[10px] font-medium leading-tight mb-0.5"
-                        style={{ color: p.textColor, opacity: 0.7 }}
-                      >
-                        {p.name}
-                      </p>
-                      <p
-                        className="text-[8px] sm:text-[10px] leading-snug"
-                        style={{ color: "hsl(210, 30%, 75%)", fontFamily: "var(--font-body)" }}
-                      >
-                        {p.description}
-                      </p>
-                    </div>
-                  )}
-                </foreignObject>
-              </g>
-            ))}
-          </svg>
-        </motion.div>
       </div>
-
-      {/* Shadowbox overlay */}
-      <AnimatePresence>
-        {selected && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            onClick={() => setSelected(null)}
-          >
-            {/* Backdrop */}
-            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
-
-            {/* Piece-shaped card */}
-            <motion.div
-              className="relative w-full max-w-3xl aspect-square"
-              initial={{ scale: 0.85, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.85, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <svg
-                viewBox="-80 -80 760 760"
-                className="w-full h-full"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <clipPath id="expanded-piece-clip">
-                    <path d={buildExpandedPath(selected.edges)} />
-                  </clipPath>
-                </defs>
-
-                {/* Piece shape with shadow */}
-                <path
-                  d={buildExpandedPath(selected.edges)}
-                  fill={selected.fill}
-                  stroke={selected.textColor}
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeOpacity="0.4"
-                  style={{ filter: `drop-shadow(0 12px 40px rgba(0,0,0,0.6)) drop-shadow(0 0 30px ${selected.textColor}33)` }}
-                />
-
-                {/* Content via foreignObject clipped to piece shape */}
-                <g clipPath="url(#expanded-piece-clip)">
-                  <foreignObject x="0" y="0" width="600" height="600">
-                    <div className="flex flex-col items-center justify-center h-full w-full text-center px-12">
-                      {/* Close button */}
-                      <button
-                                  onClick={() => setSelected(null)}
-                                  className="absolute top-4 right-4 text-white/60 hover:text-white transition-colors text-3xl leading-none z-10"
-                      >
-                        ✕
-                      </button>
-
-                      {selected.number === 0 ? (
-                        <>
-                          <div className="mb-6"><selected.icon className="w-16 h-16" style={{ color: selected.textColor }} /></div>
-                          <h3
-                            className="text-6xl font-bold font-display"
-                            style={{ color: selected.textColor }}
-                          >
-                            MCP
-                          </h3>
-                        </>
-                      ) : (() => {
-                        const detail = tileDetails[selected.number];
-                        return (
-                          <div className="flex flex-col h-full w-full justify-center">
-                            <div className="flex flex-col items-center mb-4">
-                              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: selected.iconBg }}>
-                                <selected.icon className="w-6 h-6" style={{ color: selected.textColor }} />
-                              </div>
-                              <h3
-                                className="text-2xl font-bold font-display"
-                                style={{ color: selected.textColor }}
-                              >
-                                {selected.title}
-                              </h3>
-                              <p
-                                className="text-sm font-medium mt-0.5"
-                                style={{ color: selected.textColor, opacity: 0.7 }}
-                              >
-                                {selected.name}
-                              </p>
-                            </div>
-                            <p
-                              className="text-sm mb-5 text-center"
-                              style={{ color: "hsl(210, 30%, 75%)" }}
-                            >
-                              {selected.description}
-                            </p>
-
-                            <div className="grid grid-cols-3 gap-4 text-left px-2">
-                              {/* SubAgents */}
-                              <div>
-                                <h4
-                                  className="text-xs font-bold uppercase tracking-wider mb-2"
-                                  style={{ color: selected.textColor }}
-                                >
-                                  SubAgents
-                                </h4>
-                                <ul className="space-y-1.5" style={{ color: "hsl(210, 30%, 80%)" }}>
-                                  {detail.subAgents.map((item) => (
-                                    <li key={item} className="text-[11px] leading-tight flex items-start gap-1">
-                                      <span className="text-[9px] mt-0.5" style={{ color: selected.textColor }}>▸</span>
-                                      {item}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-
-                              {/* Use Cases */}
-                              <div>
-                                <h4
-                                  className="text-xs font-bold uppercase tracking-wider mb-2"
-                                  style={{ color: selected.textColor }}
-                                >
-                                  Use Cases
-                                </h4>
-                                <ul className="space-y-1.5" style={{ color: "hsl(210, 30%, 80%)" }}>
-                                  {detail.useCases.map((item) => (
-                                    <li key={item} className="text-[11px] leading-tight flex items-start gap-1">
-                                      <span className="text-[9px] mt-0.5" style={{ color: selected.textColor }}>▸</span>
-                                      {item}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-
-                              {/* Monetize With */}
-                              <div>
-                                <h4
-                                  className="text-xs font-bold uppercase tracking-wider mb-2"
-                                  style={{ color: selected.textColor }}
-                                >
-                                  Monetize With
-                                </h4>
-                                <ul className="space-y-1.5" style={{ color: "hsl(210, 30%, 80%)" }}>
-                                  {detail.monetizeWith.map((item) => (
-                                    <li key={item} className="text-[11px] leading-tight flex items-start gap-1">
-                                      <span className="text-[9px] mt-0.5" style={{ color: selected.textColor }}>▸</span>
-                                      {item}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            </div>
-
-                            {detail.image && (
-                              <div className="mt-4 flex justify-center">
-                                <img
-                                  src={detail.image}
-                                  alt={`${selected.name} detail`}
-                                  className="max-w-[50%] rounded-lg opacity-90"
-                                />
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })()}
-                    </div>
-                  </foreignObject>
-                </g>
-              </svg>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
