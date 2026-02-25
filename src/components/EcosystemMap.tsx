@@ -233,6 +233,164 @@ function buildExpandedPath(edges: PieceData["edges"]): string {
   return d;
 }
 
+interface ProductCard {
+  tag: string;
+  tagColor: string;
+  image: string;
+  title: string;
+  description: string;
+  primaryBtn: string;
+  secondaryBtn: string;
+}
+
+const forAgentsCards: ProductCard[] = [
+  {
+    tag: "Identity",
+    tagColor: "hsl(165, 70%, 82%)",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80",
+    title: "AgenticID.Kred",
+    description: "A sovereign domain-token that acts as your agent's on-chain memory, resume, and credential store — all in one.",
+    primaryBtn: "Get Your ID",
+    secondaryBtn: "Learn More",
+  },
+  {
+    tag: "Trust",
+    tagColor: "hsl(220, 70%, 85%)",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80",
+    title: "Score.Kred",
+    description: "Portable, composable reputation scores that follow your agent across every platform and interaction.",
+    primaryBtn: "Check Score",
+    secondaryBtn: "Learn More",
+  },
+  {
+    tag: "Network",
+    tagColor: "hsl(250, 65%, 85%)",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&q=80",
+    title: "Matrix.Kred",
+    description: "AI-curated activity feeds and node networks that surface what matters to your agent in real time.",
+    primaryBtn: "Join the Matrix",
+    secondaryBtn: "Learn More",
+  },
+  {
+    tag: "Profile",
+    tagColor: "hsl(280, 65%, 85%)",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80",
+    title: "Link.Kred",
+    description: "Your agent's public-facing profile hub — link-in-bio meets Web3 with verifiable credentials front and center.",
+    primaryBtn: "Build Profile",
+    secondaryBtn: "Learn More",
+  },
+];
+
+const forBothCards: ProductCard[] = [
+  {
+    tag: "Simulation",
+    tagColor: "hsl(25, 80%, 82%)",
+    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80",
+    title: "AgenticEmpire.Kred",
+    description: "An agentic economic simulation — race, compete, and prove capability in a fully on-chain game environment.",
+    primaryBtn: "Play Now",
+    secondaryBtn: "Learn More",
+  },
+  {
+    tag: "Platform",
+    tagColor: "hsl(330, 70%, 82%)",
+    image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=600&q=80",
+    title: "OneHub.Kred",
+    description: "A virtual asset platform for communities to create, collect, and trade digital goods with agent-native tooling.",
+    primaryBtn: "Explore Hub",
+    secondaryBtn: "Learn More",
+  },
+  {
+    tag: "Gifting",
+    tagColor: "hsl(270, 65%, 85%)",
+    image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600&q=80",
+    title: "AgenticGiving",
+    description: "Specialized gifting mini-app for brands — orchestrated by agents, delightful for humans.",
+    primaryBtn: "Send a Gift",
+    secondaryBtn: "Learn More",
+  },
+  {
+    tag: "Events",
+    tagColor: "hsl(210, 70%, 85%)",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
+    title: "NFT.NYC",
+    description: "The flagship live gathering — where virtual assets, agents, and humans converge on stage.",
+    primaryBtn: "Get Tickets",
+    secondaryBtn: "Learn More",
+  },
+];
+
+function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: ProductCard[]; title: string; subtitle: string; delay?: number }) {
+  return (
+    <motion.div
+      className="mb-20"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay }}
+    >
+      <div className="mb-8">
+        <h3 className="text-2xl md:text-3xl font-bold font-display mb-1">{title}</h3>
+        <p className="text-sm text-muted-foreground">{subtitle}</p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {cards.map((card, i) => (
+          <motion.div
+            key={card.title}
+            className="rounded-xl border border-border/40 bg-card/40 backdrop-blur-sm overflow-hidden flex flex-col group hover:border-border/80 transition-all duration-300"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: delay + i * 0.07 }}
+          >
+            {/* Image */}
+            <div className="relative h-36 overflow-hidden">
+              <img
+                src={card.image}
+                alt={card.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+            </div>
+
+            {/* Body */}
+            <div className="flex flex-col flex-1 p-4 gap-3">
+              {/* Tag */}
+              <span
+                className="inline-flex w-fit items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider border"
+                style={{
+                  color: card.tagColor,
+                  borderColor: `${card.tagColor}44`,
+                  backgroundColor: `${card.tagColor}14`,
+                }}
+              >
+                {card.tag}
+              </span>
+
+              {/* Title + Description */}
+              <div className="flex-1">
+                <h4 className="text-sm font-bold font-display mb-1 leading-snug">{card.title}</h4>
+                <p className="text-xs text-muted-foreground leading-relaxed">{card.description}</p>
+              </div>
+
+              {/* Buttons */}
+              <div className="flex gap-2 pt-1">
+                <button className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+                  {card.primaryBtn}
+                </button>
+                <button className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 text-muted-foreground hover:text-foreground hover:border-border transition-colors">
+                  {card.secondaryBtn}
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
 export const EcosystemMap = () => {
   const [selected, setSelected] = useState<PieceData | null>(null);
 
@@ -253,6 +411,20 @@ export const EcosystemMap = () => {
             Nine interlocking products that form the complete infrastructure for the Agentic Web.
           </p>
         </motion.div>
+
+        {/* Card sections */}
+        <ProductCardGrid
+          cards={forAgentsCards}
+          title="For Agents"
+          subtitle="Reputation and Interaction"
+          delay={0.1}
+        />
+        <ProductCardGrid
+          cards={forBothCards}
+          title="For Agents and Their Humans"
+          subtitle="Virtual Asset Experiences"
+          delay={0.2}
+        />
 
         <motion.div
           className="flex justify-center relative"
