@@ -391,6 +391,20 @@ export const EcosystemMap = () => {
   return (
     <section id="ecosystem" className="relative py-28 px-6">
       <div className="max-w-5xl mx-auto">
+        {/* Card sections */}
+        <ProductCardGrid
+          cards={forAgentsCards}
+          title="For Agents"
+          subtitle="Reputation and Interaction"
+          delay={0.1}
+        />
+        <ProductCardGrid
+          cards={forBothCards}
+          title="For Agents and Their Humans"
+          subtitle="Virtual Asset Experiences"
+          delay={0.2}
+        />
+
         <motion.div
           className="text-center mb-14"
           initial={{ opacity: 0, y: 20 }}
@@ -405,20 +419,6 @@ export const EcosystemMap = () => {
             Nine interlocking products that form the complete infrastructure for the Agentic Web.
           </p>
         </motion.div>
-
-        {/* Card sections */}
-        <ProductCardGrid
-          cards={forAgentsCards}
-          title="For Agents"
-          subtitle="Reputation and Interaction"
-          delay={0.1}
-        />
-        <ProductCardGrid
-          cards={forBothCards}
-          title="For Agents and Their Humans"
-          subtitle="Virtual Asset Experiences"
-          delay={0.2}
-        />
 
         <motion.div
           className="flex justify-center relative"
