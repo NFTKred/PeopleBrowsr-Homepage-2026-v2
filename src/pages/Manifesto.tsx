@@ -112,41 +112,38 @@ const OL = ({ items }: { items: React.ReactNode[] }) => (
 function StickySidebar() {
   const active = useActiveSection(navItems.map((n) => n.id));
   return (
-    <aside className="hidden xl:block w-56 flex-shrink-0">
-      <div className="sticky top-32">
-        <p className="text-[10px] font-mono text-primary/50 uppercase tracking-widest mb-4">On this page</p>
-        <nav className="space-y-1">
-          {navItems.map((item) => {
-            const isActive = active === item.id;
-            return (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className={`group flex items-start gap-2.5 py-1.5 px-2 rounded-lg text-xs transition-all duration-200 ${
-                  isActive
-                    ? "text-primary bg-primary/8"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+    <aside className="hidden xl:block w-56 flex-shrink-0 self-start sticky top-32">
+      <p className="text-[10px] font-mono text-primary/50 uppercase tracking-widest mb-4">On this page</p>
+      <nav className="space-y-1">
+        {navItems.map((item) => {
+          const isActive = active === item.id;
+          return (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className={`group flex items-start gap-2.5 py-1.5 px-2 rounded-lg text-xs transition-all duration-200 ${
+                isActive
+                  ? "text-primary bg-primary/8"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+              }`}
+            >
+              <span
+                className={`font-mono tabular-nums flex-shrink-0 mt-px transition-colors ${
+                  isActive ? "text-primary" : "text-muted-foreground/40 group-hover:text-muted-foreground"
                 }`}
               >
-                <span
-                  className={`font-mono tabular-nums flex-shrink-0 mt-px transition-colors ${
-                    isActive ? "text-primary" : "text-muted-foreground/40 group-hover:text-muted-foreground"
-                  }`}
-                >
-                  {item.number}
-                </span>
-                <span className="leading-tight">{item.label}</span>
-              </a>
-            );
-          })}
-        </nav>
-        {/* Progress line */}
-        <div className="mt-6 h-px bg-border/40" />
-      </div>
+                {item.number}
+              </span>
+              <span className="leading-tight">{item.label}</span>
+            </a>
+          );
+        })}
+      </nav>
+      <div className="mt-6 h-px bg-border/40" />
     </aside>
   );
 }
