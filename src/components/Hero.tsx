@@ -47,8 +47,9 @@ function NeonTextTrace({ text }: { text: string }) {
           {/* Dim base stroke so the trace pops */}
           <text
             x="50%"
-            y="82%"
+            y={fontSize * 0.88}
             textAnchor="middle"
+            dominantBaseline="auto"
             fill="none"
             stroke="hsl(195 100% 70% / 0.15)"
             strokeWidth="1"
@@ -62,8 +63,9 @@ function NeonTextTrace({ text }: { text: string }) {
           {/* Animated tracing stroke */}
           <motion.text
             x="50%"
-            y="82%"
+            y={fontSize * 0.88}
             textAnchor="middle"
+            dominantBaseline="auto"
             fill="none"
             stroke="hsl(195 100% 72%)"
             strokeWidth="1.8"
@@ -77,11 +79,11 @@ function NeonTextTrace({ text }: { text: string }) {
               opacity: [0, 1, 1, 0],
             }}
             transition={{
-              duration: 12,
+              duration: 22,
               repeat: Infinity,
-              repeatDelay: 2,
-              ease: "easeInOut",
-              times: [0, 0.42, 0.72, 1],
+              repeatDelay: 3,
+              ease: "linear",
+              times: [0, 0.45, 0.72, 1],
             }}
           >
             {text}
