@@ -77,11 +77,11 @@ function NeonTextTrace({ text }: { text: string }) {
               opacity: [0, 1, 1, 0],
             }}
             transition={{
-              duration: 5,
+              duration: 12,
               repeat: Infinity,
-              repeatDelay: 1,
+              repeatDelay: 2,
               ease: "easeInOut",
-              times: [0, 0.38, 0.72, 1],
+              times: [0, 0.42, 0.72, 1],
             }}
           >
             {text}
