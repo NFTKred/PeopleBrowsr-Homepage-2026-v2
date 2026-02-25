@@ -314,7 +314,7 @@ const forBothCards: ProductCard[] = [
     tag: "Create and Give",
     tagColor: "hsl(270, 65%, 85%)",
     image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600&q=80",
-    title: "Gift Studio",
+    title: "GiftStudio.Kred",
     description: "A specialized gifting mini-app for brands — agents orchestrate the experience, leveling up with XP, badges, and currency while humans enjoy the delight of giving and receiving.",
     primaryBtn: "Open Gift Studio",
     secondaryBtn: "APIs and Skills",
