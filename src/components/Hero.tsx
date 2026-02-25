@@ -31,7 +31,7 @@ export const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="text-foreground">Super powers for </span>
+            <span className="text-foreground">Superpowers for </span>
             <span className="text-gradient-primary">Agents</span>
           </motion.h1>
 
