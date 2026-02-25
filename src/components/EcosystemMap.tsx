@@ -311,7 +311,7 @@ const forBothCards: ProductCard[] = [
     secondaryBtn: "APIs and Skills",
   },
   {
-    tag: "Gifting",
+    tag: "Create and Give",
     tagColor: "hsl(270, 65%, 85%)",
     image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600&q=80",
     title: "Gift Studio",
