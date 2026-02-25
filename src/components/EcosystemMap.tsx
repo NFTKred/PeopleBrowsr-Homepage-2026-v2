@@ -329,7 +329,7 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
         {cards.map((card, i) => (
           <motion.div
             key={card.title}
-            className="rounded-xl border border-border/40 bg-card/40 backdrop-blur-sm overflow-hidden flex flex-col group hover:border-border/80 transition-all duration-300"
+            className="rounded-xl border border-white/10 bg-card/40 backdrop-blur-sm overflow-hidden flex flex-col group hover:border-white/25 transition-all duration-300"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
