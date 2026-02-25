@@ -33,65 +33,22 @@ export const Hero = () => {
             transition={{ duration: 0.5 }}
           >
             <span className="relative inline-block">
-              {/* Hidden text to reserve space */}
-              <span className="invisible">Superpowers</span>
-
-              {/* SVG neon character-trace overlay */}
-              <svg
-                className="absolute inset-0 w-full h-full overflow-visible pointer-events-none"
+              <span className="text-foreground">Superpowers</span>
+              {/* Neon stroke trace layered on top */}
+              <motion.span
                 aria-hidden="true"
+                className="absolute inset-0 select-none neon-trace-text"
+                animate={{ opacity: [0, 1, 1, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  repeatDelay: 1.5,
+                  ease: "easeInOut",
+                  times: [0, 0.2, 0.75, 1],
+                }}
               >
-                <defs>
-                  <filter id="neon-glow">
-                    <feGaussianBlur stdDeviation="3" result="blur1" />
-                    <feGaussianBlur stdDeviation="6" result="blur2" />
-                    <feMerge>
-                      <feMergeNode in="blur2" />
-                      <feMergeNode in="blur1" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
-
-                {/* Solid fill text — always visible */}
-                <text
-                  x="50%"
-                  y="85%"
-                  textAnchor="middle"
-                  fill="hsl(210 40% 96%)"
-                  fontFamily="'Space Grotesk', sans-serif"
-                  fontWeight="700"
-                  fontSize="1em"
-                >
-                  Superpowers
-                </text>
-
-                {/* Neon stroke trace — animated dashoffset */}
-                <motion.text
-                  x="50%"
-                  y="85%"
-                  textAnchor="middle"
-                  fill="none"
-                  stroke="hsl(195 100% 70%)"
-                  strokeWidth="1.5"
-                  fontFamily="'Space Grotesk', sans-serif"
-                  fontWeight="700"
-                  fontSize="1em"
-                  filter="url(#neon-glow)"
-                  strokeDasharray="2000"
-                  animate={{
-                    strokeDashoffset: [2000, 0, 0, -2000],
-                    opacity: [0, 1, 1, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    repeatDelay: 1.5,
-                    ease: "easeInOut",
-                    times: [0, 0.35, 0.7, 1],
-                  }}
-                />
-              </svg>
+                Superpowers
+              </motion.span>
             </span>
             <span className="text-foreground"> for </span>
             <span className="text-gradient-primary">Agents</span>
