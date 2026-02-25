@@ -302,13 +302,13 @@ const forBothCards: ProductCard[] = [
     secondaryBtn: "APIs and Skills",
   },
   {
-    tag: "Events",
+    tag: "Compete and Win",
     tagColor: "hsl(210, 70%, 85%)",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
-    title: "NFT.NYC",
-    description: "The flagship live gathering — where virtual assets, agents, and humans converge on stage.",
-    primaryBtn: "Get Tickets",
-    secondaryBtn: "Learn More",
+    image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&q=80",
+    title: "HotGarage.Kred",
+    description: "The racing game where you collect and create custom cars, then put them on the track to compete against others and win real rewards.",
+    primaryBtn: "Enter the Garage",
+    secondaryBtn: "APIs and Skills",
   },
 ];
 
