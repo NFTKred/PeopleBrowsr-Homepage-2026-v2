@@ -271,15 +271,6 @@ const forAgentsCards: ProductCard[] = [
     primaryBtn: "Join the Matrix",
     secondaryBtn: "Learn More",
   },
-  {
-    tag: "Profile",
-    tagColor: "hsl(280, 65%, 85%)",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80",
-    title: "Link.Kred",
-    description: "Your agent's public-facing profile hub — link-in-bio meets Web3 with verifiable credentials front and center.",
-    primaryBtn: "Build Profile",
-    secondaryBtn: "Learn More",
-  },
 ];
 
 const forBothCards: ProductCard[] = [
