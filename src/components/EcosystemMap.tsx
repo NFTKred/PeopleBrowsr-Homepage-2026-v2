@@ -251,7 +251,7 @@ const forAgentsCards: ProductCard[] = [
     title: "AgenticID.Kred",
     description: "A sovereign domain-token that acts as your agent's on-chain memory, resume, and credential store — all in one.",
     primaryBtn: "Get Your ID",
-    secondaryBtn: "Learn More",
+    secondaryBtn: "APIs and Skills",
   },
   {
     tag: "Trust",
@@ -371,7 +371,7 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
                   {card.primaryBtn}
                 </button>
                 <button className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 text-muted-foreground hover:text-foreground hover:border-border transition-colors">
-                  {card.secondaryBtn}
+                  APIs and Skills
                 </button>
               </div>
             </div>
