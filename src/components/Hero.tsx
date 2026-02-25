@@ -5,37 +5,67 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
 function NeonTextTrace({ text }: { text: string }) {
-  const anchorRef = useRef<HTMLSpanElement>(null);
+  const containerRef = useRef<HTMLSpanElement>(null);
+  const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const [fontSize, setFontSize] = useState(0);
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+  const [letterPositions, setLetterPositions] = useState<{ x: number; y: number }[]>([]);
+
+  const letters = text.split("");
+  const perLetter = 3; // seconds each letter takes to trace
+  const pause = 5;     // seconds gap before the cycle repeats
+  const n = letters.length;
+  const repeatDelay = (n - 1) * perLetter + pause;
 
   useEffect(() => {
     const measure = () => {
-      if (anchorRef.current) {
-        const fs = parseFloat(window.getComputedStyle(anchorRef.current).fontSize);
-        setFontSize(fs);
-      }
+      if (!containerRef.current) return;
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const fs = parseFloat(window.getComputedStyle(containerRef.current).fontSize);
+      setFontSize(fs);
+      setContainerSize({ width: containerRect.width, height: containerRect.height });
+      const positions = letterRefs.current.map((ref) => {
+        if (!ref) return { x: 0, y: fs * 0.88 };
+        const r = ref.getBoundingClientRect();
+        return {
+          x: r.left - containerRect.left + r.width / 2,
+          y: fs * 0.88,
+        };
+      });
+      setLetterPositions(positions);
     };
     measure();
     const ro = new ResizeObserver(measure);
-    if (anchorRef.current) ro.observe(anchorRef.current);
+    if (containerRef.current) ro.observe(containerRef.current);
     return () => ro.disconnect();
-  }, []);
+  }, [text]);
 
   return (
-    <span className="relative inline-block">
-      {/* Real visible text */}
-      <span ref={anchorRef} className="text-foreground">{text}</span>
+    <span ref={containerRef} className="relative inline-block">
+      {/* Real visible text — each letter gets a ref for position measurement */}
+      <span className="text-foreground">
+        {letters.map((char, i) => (
+          <span
+            key={i}
+            ref={(el) => { letterRefs.current[i] = el; }}
+            className="inline-block"
+          >
+            {char}
+          </span>
+        ))}
+      </span>
 
-      {/* SVG neon trace — sized to match rendered font */}
-      {fontSize > 0 && (
+      {/* SVG neon overlay — one animated text per letter */}
+      {fontSize > 0 && letterPositions.length === n && (
         <svg
-          className="absolute inset-0 w-full h-full overflow-visible pointer-events-none"
+          className="absolute inset-0 overflow-visible pointer-events-none"
+          style={{ width: containerSize.width, height: containerSize.height }}
           aria-hidden="true"
         >
           <defs>
-            <filter id="neon-letter-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <filter id="neon-letter-glow" x="-30%" y="-30%" width="160%" height="160%">
               <feGaussianBlur stdDeviation="2" result="blur1" />
-              <feGaussianBlur stdDeviation="5" result="blur2" />
+              <feGaussianBlur stdDeviation="6" result="blur2" />
               <feMerge>
                 <feMergeNode in="blur2" />
                 <feMergeNode in="blur1" />
@@ -44,50 +74,55 @@ function NeonTextTrace({ text }: { text: string }) {
             </filter>
           </defs>
 
-          {/* Dim base stroke so the trace pops */}
-          <text
-            x="50%"
-            y={fontSize * 0.88}
-            textAnchor="middle"
-            dominantBaseline="auto"
-            fill="none"
-            stroke="hsl(195 100% 70% / 0.15)"
-            strokeWidth="1"
-            fontFamily="'Space Grotesk', sans-serif"
-            fontWeight="700"
-            fontSize={fontSize}
-          >
-            {text}
-          </text>
+          {/* Dim ghost strokes so you can see the outline before the trace hits */}
+          {letters.map((char, i) => (
+            <text
+              key={`ghost-${i}`}
+              x={letterPositions[i]?.x}
+              y={letterPositions[i]?.y}
+              textAnchor="middle"
+              fill="none"
+              stroke="hsl(195 100% 70% / 0.12)"
+              strokeWidth="1"
+              fontFamily="'Space Grotesk', sans-serif"
+              fontWeight="700"
+              fontSize={fontSize}
+            >
+              {char}
+            </text>
+          ))}
 
-          {/* Animated tracing stroke */}
-          <motion.text
-            x="50%"
-            y={fontSize * 0.88}
-            textAnchor="middle"
-            dominantBaseline="auto"
-            fill="none"
-            stroke="hsl(195 100% 72%)"
-            strokeWidth="1.8"
-            fontFamily="'Space Grotesk', sans-serif"
-            fontWeight="700"
-            fontSize={fontSize}
-            filter="url(#neon-letter-glow)"
-            strokeDasharray="3200"
-            animate={{
-              strokeDashoffset: [3200, 0, 0, -3200],
-              opacity: [0, 1, 1, 0],
-            }}
-            transition={{
-              duration: 22,
-              repeat: Infinity,
-              repeatDelay: 3,
-              ease: "linear",
-              times: [0, 0.45, 0.72, 1],
-            }}
-          >
-            {text}
-          </motion.text>
+          {/* Animated tracing stroke — staggered per letter */}
+          {letters.map((char, i) => (
+            <motion.text
+              key={`trace-${i}`}
+              x={letterPositions[i]?.x}
+              y={letterPositions[i]?.y}
+              textAnchor="middle"
+              fill="none"
+              stroke="hsl(195 100% 72%)"
+              strokeWidth="2"
+              fontFamily="'Space Grotesk', sans-serif"
+              fontWeight="700"
+              fontSize={fontSize}
+              filter="url(#neon-letter-glow)"
+              strokeDasharray="600"
+              animate={{
+                strokeDashoffset: [600, 0, 0, -600],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: perLetter,
+                delay: i * perLetter,
+                repeat: Infinity,
+                repeatDelay,
+                ease: "easeInOut",
+                times: [0, 0.38, 0.68, 1],
+              }}
+            >
+              {char}
+            </motion.text>
+          ))}
         </svg>
       )}
     </span>
