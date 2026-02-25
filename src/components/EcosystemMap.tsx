@@ -284,7 +284,7 @@ const forBothCards: ProductCard[] = [
     secondaryBtn: "Learn More",
   },
   {
-    tag: "Platform",
+    tag: "Build Collections",
     tagColor: "hsl(330, 70%, 82%)",
     image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=600&q=80",
     title: "OneHub.Kred",
