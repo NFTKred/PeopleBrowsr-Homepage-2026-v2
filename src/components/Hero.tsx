@@ -31,12 +31,8 @@ export const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="text-foreground">Identity Memory Reputation</span>
-            <br />
-            <span className="text-foreground">for </span>
-            <span className="text-gradient-human">AI</span>
-            <span className="text-foreground"> and their </span>
-            <span className="text-gradient-primary">Humans</span>
+            <span className="text-foreground">Super powers for </span>
+            <span className="text-gradient-primary">Agents</span>
           </motion.h1>
 
           {/* Sub-headline */}
