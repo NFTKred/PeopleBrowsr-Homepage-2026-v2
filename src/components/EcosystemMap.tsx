@@ -81,64 +81,64 @@ const pieces: PieceData[] = [
   {
     number: 1, name: "AgenticID.Kred", title: "Identity",
     description: "Your Web3 identity — domain token metadata with on-chain memory.",
-    icon: Globe, fill: "hsla(165, 35%, 18%, 0.45)", fillHover: "hsla(165, 40%, 22%, 0.65)",
-    textColor: "hsl(165, 60%, 70%)", iconBg: "hsla(165, 40%, 28%, 0.5)", iconBorder: "none",
+    icon: Globe, fill: "hsla(165, 50%, 26%, 0.75)", fillHover: "hsla(165, 55%, 32%, 0.9)",
+    textColor: "hsl(165, 70%, 82%)", iconBg: "hsla(165, 55%, 38%, 0.7)", iconBorder: "none",
     col: 0, row: 0, edges: { top: "flat", right: "tab", bottom: "tab", left: "flat" },
   },
   {
     number: 2, name: "Link.Kred", title: "Profile Hub",
     description: "Your profile hub — link-in-bio meets Web3.",
-    icon: Link2, fill: "hsla(280, 30%, 22%, 0.45)", fillHover: "hsla(280, 35%, 26%, 0.65)",
-    textColor: "hsl(280, 55%, 75%)", iconBg: "hsla(280, 35%, 32%, 0.5)", iconBorder: "none",
+    icon: Link2, fill: "hsla(280, 40%, 30%, 0.75)", fillHover: "hsla(280, 45%, 36%, 0.9)",
+    textColor: "hsl(280, 65%, 85%)", iconBg: "hsla(280, 45%, 42%, 0.7)", iconBorder: "none",
     col: 1, row: 0, edges: { top: "flat", right: "tab", bottom: "slot", left: "slot" },
   },
   {
     number: 3, name: "Score.Kred", title: "Trust",
     description: "Reputation scores for agents and humans.",
-    icon: Award, fill: "hsla(220, 35%, 20%, 0.45)", fillHover: "hsla(220, 40%, 24%, 0.65)",
-    textColor: "hsl(220, 60%, 75%)", iconBg: "hsla(220, 40%, 30%, 0.5)", iconBorder: "none",
+    icon: Award, fill: "hsla(220, 45%, 28%, 0.75)", fillHover: "hsla(220, 50%, 34%, 0.9)",
+    textColor: "hsl(220, 70%, 85%)", iconBg: "hsla(220, 50%, 40%, 0.7)", iconBorder: "none",
     col: 2, row: 0, edges: { top: "flat", right: "flat", bottom: "tab", left: "slot" },
   },
   {
     number: 4, name: "AgenticEmpire.Kred", title: "Sim Game",
     description: "Play and prove — agentic economic simulation.",
-    icon: Crown, fill: "hsla(25, 45%, 20%, 0.45)", fillHover: "hsla(25, 50%, 24%, 0.65)",
-    textColor: "hsl(25, 70%, 72%)", iconBg: "hsla(25, 50%, 30%, 0.5)", iconBorder: "none",
+    icon: Crown, fill: "hsla(25, 55%, 28%, 0.75)", fillHover: "hsla(25, 60%, 34%, 0.9)",
+    textColor: "hsl(25, 80%, 82%)", iconBg: "hsla(25, 60%, 40%, 0.7)", iconBorder: "none",
     col: 0, row: 1, edges: { top: "slot", right: "tab", bottom: "slot", left: "flat" },
   },
   {
     number: 0, name: "MCP", title: "",
     description: "",
-    icon: MessageSquare, fill: "hsla(45, 50%, 20%, 0.45)", fillHover: "hsla(45, 55%, 24%, 0.65)",
-    textColor: "hsl(45, 80%, 72%)", iconBg: "hsla(45, 55%, 30%, 0.5)", iconBorder: "none",
+    icon: MessageSquare, fill: "hsla(45, 60%, 28%, 0.75)", fillHover: "hsla(45, 65%, 34%, 0.9)",
+    textColor: "hsl(45, 90%, 82%)", iconBg: "hsla(45, 65%, 40%, 0.7)", iconBorder: "none",
     col: 1, row: 1, edges: { top: "tab", right: "tab", bottom: "tab", left: "slot" },
   },
   {
     number: 5, name: "Matrix.Kred", title: "Feeds",
     description: "Node network — curated, AI-filtered activity streams.",
-    icon: Zap, fill: "hsla(250, 30%, 20%, 0.45)", fillHover: "hsla(250, 35%, 24%, 0.65)",
-    textColor: "hsl(250, 55%, 75%)", iconBg: "hsla(250, 35%, 30%, 0.5)", iconBorder: "none",
+    icon: Zap, fill: "hsla(250, 40%, 28%, 0.75)", fillHover: "hsla(250, 45%, 34%, 0.9)",
+    textColor: "hsl(250, 65%, 85%)", iconBg: "hsla(250, 45%, 40%, 0.7)", iconBorder: "none",
     col: 2, row: 1, edges: { top: "slot", right: "flat", bottom: "slot", left: "slot" },
   },
   {
     number: 6, name: "OneHub.Kred", title: "Create & Collect",
     description: "Virtual asset platform for communities.",
-    icon: Settings, fill: "hsla(330, 35%, 18%, 0.45)", fillHover: "hsla(330, 40%, 22%, 0.65)",
-    textColor: "hsl(330, 60%, 72%)", iconBg: "hsla(330, 40%, 28%, 0.5)", iconBorder: "none",
+    icon: Settings, fill: "hsla(330, 45%, 26%, 0.75)", fillHover: "hsla(330, 50%, 32%, 0.9)",
+    textColor: "hsl(330, 70%, 82%)", iconBg: "hsla(330, 50%, 38%, 0.7)", iconBorder: "none",
     col: 0, row: 2, edges: { top: "tab", right: "tab", bottom: "flat", left: "flat" },
   },
   {
     number: 7, name: "AgenticGiving", title: "Gift Studio mini App",
     description: "Specialized gifting experience for brands.",
-    icon: Gift, fill: "hsla(270, 30%, 22%, 0.45)", fillHover: "hsla(270, 35%, 26%, 0.65)",
-    textColor: "hsl(270, 55%, 75%)", iconBg: "hsla(270, 35%, 32%, 0.5)", iconBorder: "none",
+    icon: Gift, fill: "hsla(270, 40%, 30%, 0.75)", fillHover: "hsla(270, 45%, 36%, 0.9)",
+    textColor: "hsl(270, 65%, 85%)", iconBg: "hsla(270, 45%, 42%, 0.7)", iconBorder: "none",
     col: 1, row: 2, edges: { top: "slot", right: "tab", bottom: "flat", left: "slot" },
   },
   {
     number: 8, name: "NFT.NYC", title: "HUMANS ONLY",
     description: "The gathering — live human event experience on stage.",
-    icon: Mic, fill: "hsla(210, 40%, 18%, 0.45)", fillHover: "hsla(210, 45%, 22%, 0.65)",
-    textColor: "hsl(210, 60%, 72%)", iconBg: "hsla(210, 45%, 28%, 0.5)", iconBorder: "none",
+    icon: Mic, fill: "hsla(210, 50%, 26%, 0.75)", fillHover: "hsla(210, 55%, 32%, 0.9)",
+    textColor: "hsl(210, 70%, 85%)", iconBg: "hsla(210, 55%, 38%, 0.7)", iconBorder: "none",
     col: 2, row: 2, edges: { top: "tab", right: "flat", bottom: "flat", left: "slot" },
   },
 ];
@@ -286,25 +286,25 @@ export const EcosystemMap = () => {
                   d={buildPath(p.col, p.row, p.edges)}
                   fill={p.fill}
                   stroke={p.textColor}
-                  strokeWidth="1"
+                  strokeWidth="1.5"
                   strokeLinejoin="round"
                   strokeLinecap="round"
-                  strokeOpacity="0.3"
+                  strokeOpacity="0.55"
                   className="transition-all duration-300 cursor-pointer"
-                  style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.4))" }}
+                  style={{ filter: `drop-shadow(0 2px 12px rgba(0,0,0,0.5)) drop-shadow(0 0 6px ${p.textColor}33)` }}
                   onMouseEnter={(e) => {
                     const el = e.target as SVGPathElement;
                     el.style.fill = p.fillHover;
-                    el.setAttribute("stroke-opacity", "0.7");
-                    el.style.filter = "drop-shadow(0 4px 16px rgba(0,0,0,0.5))";
+                    el.setAttribute("stroke-opacity", "1");
+                    el.style.filter = `drop-shadow(0 4px 20px rgba(0,0,0,0.6)) drop-shadow(0 0 16px ${p.textColor}88)`;
                     const glow = document.getElementById(`glow-${p.number}`);
-                    if (glow) glow.setAttribute("opacity", "0.4");
+                    if (glow) glow.setAttribute("opacity", "0.5");
                   }}
                   onMouseLeave={(e) => {
                     const el = e.target as SVGPathElement;
                     el.style.fill = p.fill;
-                    el.setAttribute("stroke-opacity", "0.3");
-                    el.style.filter = "drop-shadow(0 2px 8px rgba(0,0,0,0.4))";
+                    el.setAttribute("stroke-opacity", "0.55");
+                    el.style.filter = `drop-shadow(0 2px 12px rgba(0,0,0,0.5)) drop-shadow(0 0 6px ${p.textColor}33)`;
                     const glow = document.getElementById(`glow-${p.number}`);
                     if (glow) glow.setAttribute("opacity", "0");
                   }}
