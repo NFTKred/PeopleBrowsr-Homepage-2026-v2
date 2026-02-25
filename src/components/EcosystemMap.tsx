@@ -310,6 +310,15 @@ const forBothCards: ProductCard[] = [
     primaryBtn: "Enter the Garage",
     secondaryBtn: "APIs and Skills",
   },
+  {
+    tag: "Gifting",
+    tagColor: "hsl(270, 65%, 85%)",
+    image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600&q=80",
+    title: "Gift Studio",
+    description: "A specialized gifting mini-app for brands — agents orchestrate the experience, leveling up with XP, badges, and currency while humans enjoy the delight of giving and receiving.",
+    primaryBtn: "Open Gift Studio",
+    secondaryBtn: "APIs and Skills",
+  },
 ];
 
 function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: ProductCard[]; title: string; subtitle: string; delay?: number }) {
@@ -325,7 +334,7 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
         <h3 className="text-2xl md:text-3xl font-bold font-display mb-1">{title}</h3>
         <p className="text-sm text-muted-foreground">{subtitle}</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {cards.map((card, i) => (
           <motion.div
             key={card.title}
