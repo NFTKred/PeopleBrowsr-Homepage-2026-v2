@@ -64,7 +64,7 @@ export const Hero = () => {
               variant="outline"
               className="px-8 py-6 text-lg border-secondary/50 text-secondary hover:bg-secondary/10 hover:border-secondary"
             >
-              Enter Moltbook
+              Read the Manifesto
             </Button>
           </motion.div>
         </motion.div>
