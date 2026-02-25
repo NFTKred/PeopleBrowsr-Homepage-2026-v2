@@ -33,48 +33,65 @@ export const Hero = () => {
             transition={{ duration: 0.5 }}
           >
             <span className="relative inline-block">
-              {/* Neon traced outline on "Superpowers" */}
+              {/* Hidden text to reserve space */}
+              <span className="invisible">Superpowers</span>
+
+              {/* SVG neon character-trace overlay */}
               <svg
-                className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
+                className="absolute inset-0 w-full h-full overflow-visible pointer-events-none"
                 aria-hidden="true"
               >
                 <defs>
-                  <linearGradient id="neon-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="hsl(210, 100%, 65%)" stopOpacity="0" />
-                    <stop offset="40%" stopColor="hsl(210, 100%, 72%)" stopOpacity="1" />
-                    <stop offset="60%" stopColor="hsl(195, 100%, 78%)" stopOpacity="1" />
-                    <stop offset="100%" stopColor="hsl(195, 100%, 65%)" stopOpacity="0" />
-                  </linearGradient>
-                  <filter id="neon-blur">
-                    <feGaussianBlur stdDeviation="2.5" result="blur" />
+                  <filter id="neon-glow">
+                    <feGaussianBlur stdDeviation="3" result="blur1" />
+                    <feGaussianBlur stdDeviation="6" result="blur2" />
                     <feMerge>
-                      <feMergeNode in="blur" />
+                      <feMergeNode in="blur2" />
+                      <feMergeNode in="blur1" />
                       <feMergeNode in="SourceGraphic" />
                     </feMerge>
                   </filter>
                 </defs>
-                {/* Bottom neon line */}
-                <motion.rect
-                  x="0" y="100%" width="100%" height="2.5"
-                  fill="url(#neon-grad)"
-                  filter="url(#neon-blur)"
-                  initial={{ scaleX: 0, originX: "0%" }}
-                  animate={{ scaleX: [0, 1, 1, 0] }}
-                  transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 1.5, ease: "easeInOut", times: [0, 0.4, 0.7, 1] }}
-                  style={{ transformOrigin: "left center" }}
-                />
-                {/* Top neon line */}
-                <motion.rect
-                  x="0" y="-4" width="100%" height="2"
-                  fill="url(#neon-grad)"
-                  filter="url(#neon-blur)"
-                  initial={{ scaleX: 0, originX: "100%" }}
-                  animate={{ scaleX: [0, 1, 1, 0] }}
-                  transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 1.5, ease: "easeInOut", delay: 0.4, times: [0, 0.4, 0.7, 1] }}
-                  style={{ transformOrigin: "right center" }}
+
+                {/* Solid fill text — always visible */}
+                <text
+                  x="50%"
+                  y="85%"
+                  textAnchor="middle"
+                  fill="hsl(210 40% 96%)"
+                  fontFamily="'Space Grotesk', sans-serif"
+                  fontWeight="700"
+                  fontSize="1em"
+                >
+                  Superpowers
+                </text>
+
+                {/* Neon stroke trace — animated dashoffset */}
+                <motion.text
+                  x="50%"
+                  y="85%"
+                  textAnchor="middle"
+                  fill="none"
+                  stroke="hsl(195 100% 70%)"
+                  strokeWidth="1.5"
+                  fontFamily="'Space Grotesk', sans-serif"
+                  fontWeight="700"
+                  fontSize="1em"
+                  filter="url(#neon-glow)"
+                  strokeDasharray="2000"
+                  animate={{
+                    strokeDashoffset: [2000, 0, 0, -2000],
+                    opacity: [0, 1, 1, 0],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    repeatDelay: 1.5,
+                    ease: "easeInOut",
+                    times: [0, 0.35, 0.7, 1],
+                  }}
                 />
               </svg>
-              <span className="text-foreground">Superpowers</span>
             </span>
             <span className="text-foreground"> for </span>
             <span className="text-gradient-primary">Agents</span>
