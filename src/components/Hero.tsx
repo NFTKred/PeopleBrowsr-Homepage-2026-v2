@@ -14,7 +14,7 @@ function NeonTextTrace({ text }: { text: string }) {
   const letters = text.split("");
   const perLetter = 3; // seconds each letter takes to trace
   const letterDelay = 0.1; // seconds between each letter starting
-  const pause = 5;     // seconds gap before the cycle repeats
+  const pause = 3;     // seconds gap before the cycle repeats
   const n = letters.length;
   const repeatDelay = (n - 1) * letterDelay + perLetter + pause;
 
