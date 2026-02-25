@@ -26,11 +26,11 @@ function NeonTextTrace({ text }: { text: string }) {
       setFontSize(fs);
       setContainerSize({ width: containerRect.width, height: containerRect.height });
       const positions = letterRefs.current.map((ref) => {
-        if (!ref) return { x: 0, y: fs * 0.75 };
+        if (!ref) return { x: 0, y: fs * 0.85 };
         const r = ref.getBoundingClientRect();
         return {
           x: r.left - containerRect.left + r.width / 2,
-          y: fs * 0.75,
+          y: fs * 0.85,
         };
       });
       setLetterPositions(positions);
