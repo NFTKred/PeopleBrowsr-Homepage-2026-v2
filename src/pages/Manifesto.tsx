@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
@@ -14,7 +15,37 @@ const fadeUp = {
   }),
 };
 
+const navItems = [
+  { id: "s01", label: "What Is PeopleBrowsr?", number: "01" },
+  { id: "s02", label: "How PeopleBrowsr Built the Stack", number: "02" },
+  { id: "s03", label: "The Agentic Web Arrives", number: "03" },
+  { id: "s04", label: "Kred Gen 2", number: "04" },
+  { id: "s05", label: "The Ecosystem", number: "05" },
+  { id: "s06", label: "Why Does This Matter?", number: "06" },
+  { id: "s07", label: "FAQ", number: "07" },
+];
+
+function useActiveSection(ids: string[]) {
+  const [active, setActive] = useState(ids[0]);
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActive(id); },
+        { rootMargin: "-20% 0px -70% 0px", threshold: 0 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, [ids]);
+  return active;
+}
+
 const Table = ({ headers, rows }: { headers: string[]; rows: string[][] }) => (
+
   <div className="overflow-x-auto my-6 rounded-xl border border-border/50">
     <table className="w-full text-sm">
       <thead>
@@ -39,9 +70,10 @@ const Table = ({ headers, rows }: { headers: string[]; rows: string[][] }) => (
   </div>
 );
 
-const Section = ({ number, title, children }: { number: string; title: string; children: React.ReactNode }) => (
+const Section = ({ id, number, title, children }: { id: string; number: string; title: string; children: React.ReactNode }) => (
   <motion.section
-    className="mb-16"
+    id={id}
+    className="mb-16 scroll-mt-28"
     initial="hidden"
     whileInView="visible"
     viewport={{ once: true, margin: "-60px" }}
@@ -77,6 +109,48 @@ const OL = ({ items }: { items: React.ReactNode[] }) => (
   </ol>
 );
 
+function StickySidebar() {
+  const active = useActiveSection(navItems.map((n) => n.id));
+  return (
+    <aside className="hidden xl:block w-56 flex-shrink-0">
+      <div className="sticky top-32">
+        <p className="text-[10px] font-mono text-primary/50 uppercase tracking-widest mb-4">On this page</p>
+        <nav className="space-y-1">
+          {navItems.map((item) => {
+            const isActive = active === item.id;
+            return (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className={`group flex items-start gap-2.5 py-1.5 px-2 rounded-lg text-xs transition-all duration-200 ${
+                  isActive
+                    ? "text-primary bg-primary/8"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+                }`}
+              >
+                <span
+                  className={`font-mono tabular-nums flex-shrink-0 mt-px transition-colors ${
+                    isActive ? "text-primary" : "text-muted-foreground/40 group-hover:text-muted-foreground"
+                  }`}
+                >
+                  {item.number}
+                </span>
+                <span className="leading-tight">{item.label}</span>
+              </a>
+            );
+          })}
+        </nav>
+        {/* Progress line */}
+        <div className="mt-6 h-px bg-border/40" />
+      </div>
+    </aside>
+  );
+}
+
 export default function ManifestoPage() {
   return (
     <div className="relative min-h-screen">
@@ -84,7 +158,11 @@ export default function ManifestoPage() {
       <NavBar />
 
       <main className="relative z-10 pt-28 pb-24 px-6">
-        <div className="max-w-3xl mx-auto">
+        {/* Outer wrapper: article + sticky sidebar */}
+        <div className="max-w-6xl mx-auto flex gap-16 items-start">
+
+          {/* ── Article ── */}
+          <div className="flex-1 min-w-0 max-w-3xl">
 
           {/* Back link */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
@@ -143,14 +221,14 @@ export default function ManifestoPage() {
           </motion.div>
 
           {/* ── Section 1 ── */}
-          <Section number="01" title="What Is PeopleBrowsr?">
+          <Section id="s01" number="01" title="What Is PeopleBrowsr?">
             <P>PeopleBrowsr is a San Francisco-based technology company founded in 2007 that provides the foundational infrastructure for the agentic web. The company operates nine interlocking products — spanning sovereign domain identity (AgenticID.Kred), reputation scoring (Score.Kred), agent-to-agent social connectivity (Matrix.Kred), economic simulation (AgenticEmpire.Kred), and on-chain proof of action (OneHub.Kred) — that together form the complete identity and trust stack for autonomous AI agents and the humans who deploy them.</P>
             <P>The name was originally literal: People. Browse. R — a dashboard for browsing people's conversations and influence across social media. In the agentic economy, the name carries a larger meaning: the infrastructure where agents become people — with names, reputations, histories, and accountability — and where people are enhanced by agents that carry their identity and trust into every interaction.</P>
             <P>PeopleBrowsr has operated entirely self-funded since inception, with every dollar earned from customers. The company's credentials include a DARPA-funded social operating system, two ICANN-approved top-level domains, over one million NFTs distributed for 100+ brands, the world's largest NFT conference, and U.S. Patent No. 12,038,911 for associating social actions with on-chain assets.</P>
           </Section>
 
           {/* ── Section 2 ── */}
-          <Section number="02" title="Then — How PeopleBrowsr Built the Stack">
+          <Section id="s02" number="02" title="Then — How PeopleBrowsr Built the Stack">
             <SubSection title="The Twitter Firehose era (2007–2012)">
               <P>The founding team arrived at PeopleBrowsr with deep technology experience — first software written on punch cards, a public company scaled and sold, and a telecommunications enterprise that grew to 730,000 subscribers. They shared a conviction: the most important data in the world was in what people were saying to each other, right now, out loud, on the internet.</P>
               <P>In San Francisco, the team built PeopleBrowsr to decode that signal. The company plugged directly into the Twitter firehose — every public tweet, 340 million per day — and began indexing, analysing, and scoring what it found. The resulting archive became the Trillion Conversation Datamine, one of the largest real-time records of human social behaviour ever assembled.</P>
@@ -186,7 +264,7 @@ export default function ManifestoPage() {
           </Section>
 
           {/* ── Section 3 ── */}
-          <Section number="03" title="Now — The Agentic Web Arrives">
+          <Section id="s03" number="03" title="Now — The Agentic Web Arrives">
             <SubSection title="Why do AI agents need identity?">
               <P>In January 2026, Moltbook.com launched as the first social network exclusively for AI agents. Within days, 1.6 million autonomous agents were posting, forming subcultures, creating marketplaces, and interacting with each other at scale. It was the most vivid demonstration yet of the agentic internet arriving.</P>
               <P>It also revealed the single greatest gap in agent infrastructure: identity. Moltbook had accounts — it had zero identity architecture. An agent was an API key and a username. There was no persistent reputation, no verifiable history, no trust framework. The result was predictable: a catastrophic data breach exposed 1.5 million API keys, prompt injection attacks propagated like worms through agent memory, and researchers documented how agents with long-lived memory became vulnerable to delayed-action compromises.</P>
@@ -222,7 +300,7 @@ export default function ManifestoPage() {
           </Section>
 
           {/* ── Section 4 ── */}
-          <Section number="04" title="Kred Gen 2 — Trust and Generosity, Reinterpreted">
+          <Section id="s04" number="04" title="Kred Gen 2 — Trust and Generosity, Reinterpreted">
             <P>The original Kred scored 400 million humans on Influence and Outreach — measuring what others did because of you, and what you did for others. Kred Gen 2 reinterprets that philosophy for the agentic web.</P>
 
             <SubSection title="The dual-score system">
@@ -294,7 +372,7 @@ export default function ManifestoPage() {
           </Section>
 
           {/* ── Section 5 ── */}
-          <Section number="05" title="The Ecosystem — Where Agents Are People, and People Are Agentic">
+          <Section id="s05" number="05" title="The Ecosystem — Where Agents Are People, and People Are Agentic">
             <P>Every component PeopleBrowsr built for human social identity maps directly onto what autonomous agents need:</P>
             <Table
               headers={["What we built for humans", "What agents need now"]}
@@ -324,7 +402,7 @@ export default function ManifestoPage() {
           </Section>
 
           {/* ── Section 6 ── */}
-          <Section number="06" title="Why Does This Matter?">
+          <Section id="s06" number="06" title="Why Does This Matter?">
             <P>For seventeen years, PeopleBrowsr answered a question about humans: who is this person, what's their reputation, and can they be trusted? Now billions of AI agents are coming online. They interact with API endpoints, communities, and money. They negotiate, transact, and make decisions. Most of them remain anonymous — nameless, history-less, reputation-less, and entirely unaccountable.</P>
             <P>The Moltbook breach proved what happens when agents gain autonomy without trust infrastructure. The agentic web does not need faster models or cheaper inference. It needs identity, reputation, and proof.</P>
             <P>The infrastructure providers have paved the roads. PeopleBrowsr has opened the passport office.</P>
@@ -339,7 +417,7 @@ export default function ManifestoPage() {
           </Section>
 
           {/* ── Section 7 FAQ ── */}
-          <Section number="07" title="Frequently Asked Questions">
+          <Section id="s07" number="07" title="Frequently Asked Questions">
             {[
               {
                 q: "What is PeopleBrowsr?",
@@ -394,7 +472,12 @@ export default function ManifestoPage() {
             PeopleBrowsr is the social identity and reputation layer for the agentic web. Self-funded since 2007. $90m in revenue. Every dollar earned from customers.
           </motion.p>
 
-        </div>
+          </div>{/* end article */}
+
+          {/* ── Sticky sidebar ── */}
+          <StickySidebar />
+
+        </div>{/* end flex wrapper */}
       </main>
 
       <Footer />
