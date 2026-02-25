@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export const Hero = () => {
   return (
@@ -63,8 +64,9 @@ export const Hero = () => {
               size="lg"
               variant="outline"
               className="px-8 py-6 text-lg border-secondary/50 text-secondary hover:bg-secondary/10 hover:border-secondary"
+              asChild
             >
-              Read the Manifesto
+              <Link to="/manifesto">Read the Manifesto</Link>
             </Button>
           </motion.div>
         </motion.div>
