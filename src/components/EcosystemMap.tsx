@@ -341,8 +341,11 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
                 src={card.image}
                 alt={card.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                style={{ filter: "grayscale(60%) brightness(0.6) contrast(1.1) saturate(0.7)" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+              {/* Tint overlay to push toward site's blue-teal palette */}
+              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(220, 60%, 20%, 0.55) 0%, hsla(165, 50%, 15%, 0.45) 100%)", mixBlendMode: "multiply" }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
             </div>
 
             {/* Body */}
