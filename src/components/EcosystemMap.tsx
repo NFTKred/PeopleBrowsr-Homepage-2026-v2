@@ -52,7 +52,76 @@ function MatrixFeedAnimation() {
   );
 }
 
-// --- AgenticID Node Map ---
+// --- Score.Kred Progress Animation ---
+function ScoreAnimation() {
+  const [score, setScore] = useState(712);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let raf: number;
+    let start: number | null = null;
+    const duration = 4000; // ms per fill cycle
+
+    function tick(ts: number) {
+      if (!start) start = ts;
+      const elapsed = ts - start;
+      const pct = Math.min((elapsed / duration) * 100, 100);
+      setProgress(pct);
+      if (pct < 100) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        // increment score then restart
+        setTimeout(() => {
+          setScore(s => Math.min(s + Math.floor(Math.random() * 8) + 3, 999));
+          setProgress(0);
+          start = null;
+          raf = requestAnimationFrame(tick);
+        }, 600);
+      }
+    }
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  const tier = score >= 900 ? { label: "Elite", color: "hsl(45,90%,60%)" }
+    : score >= 800 ? { label: "High Trust", color: "hsl(165,60%,55%)" }
+    : score >= 700 ? { label: "Trusted", color: "hsl(220,65%,70%)" }
+    : { label: "Building", color: "hsl(280,55%,70%)" };
+
+  return (
+    <div className="w-full h-full bg-[hsl(220,25%,9%)] flex flex-col items-center justify-center px-6 gap-3 relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse at 50% 80%, ${tier.color}22 0%, transparent 70%)` }} />
+
+      {/* Score display */}
+      <div className="flex items-end gap-2">
+        <span className="text-4xl font-bold tabular-nums" style={{ color: tier.color, textShadow: `0 0 20px ${tier.color}88`, fontFamily: "monospace" }}>
+          {score}
+        </span>
+        <span className="text-[10px] font-semibold uppercase tracking-widest mb-1.5" style={{ color: tier.color, opacity: 0.75 }}>
+          {tier.label}
+        </span>
+      </div>
+
+      {/* Progress bar */}
+      <div className="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+        <div
+          className="h-full rounded-full transition-none"
+          style={{
+            width: `${progress}%`,
+            background: `linear-gradient(90deg, ${tier.color}88, ${tier.color})`,
+            boxShadow: `0 0 8px ${tier.color}`,
+          }}
+        />
+      </div>
+
+      <span className="text-[9px] text-white/30 tracking-widest uppercase">next level</span>
+    </div>
+  );
+}
+
+
 const nodeMapNodes = [
   { id: "reputation", label: "Reputation", angle: 0,   r: 52, color: "hsl(165,60%,55%)" },
   { id: "memory1",    label: "Memory",     angle: 60,  r: 50, color: "hsl(220,65%,70%)" },
@@ -525,6 +594,8 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
                 <MatrixFeedAnimation />
               ) : card.title === "AgenticID.Kred" ? (
                 <AgenticIDNodeMap />
+              ) : card.title === "Score.Kred" ? (
+                <ScoreAnimation />
               ) : (
                 <img
                   src={card.image}
