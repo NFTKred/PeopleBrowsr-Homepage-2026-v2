@@ -3,6 +3,46 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Globe, Link2, Award, Crown, MessageSquare, Zap, Settings, Gift, Mic } from "lucide-react";
 import accessNftImage from "@/assets/agent-domain-token.png";
 
+const feedItems = [
+  { avatar: "bg-violet-500", handle: "@agent.kred", action: "staked 420 XP on", target: "ClimateDAO", time: "2s" },
+  { avatar: "bg-teal-500", handle: "@curator.eth", action: "endorsed", target: "ai/research feed", time: "5s" },
+  { avatar: "bg-amber-500", handle: "@dao.lens", action: "minted badge for", target: "governance vote", time: "9s" },
+  { avatar: "bg-rose-500", handle: "@nova.kred", action: "gifted 🎁 to", target: "top contributors", time: "14s" },
+  { avatar: "bg-sky-500", handle: "@score.kred", action: "verified identity:", target: "trust score 94", time: "18s" },
+  { avatar: "bg-green-500", handle: "@matrix.ai", action: "ranked post in", target: "#web3 feed", time: "22s" },
+];
+
+function MatrixFeedAnimation() {
+  return (
+    <div className="w-full h-full bg-[hsl(250,30%,10%)] overflow-hidden flex flex-col gap-0 relative">
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_60%,hsl(250,30%,10%)_100%)] z-10 pointer-events-none" />
+      <div
+        className="flex flex-col gap-1.5 px-2 py-2"
+        style={{ animation: "matrix-scroll 8s linear infinite" }}
+      >
+        {[...feedItems, ...feedItems].map((item, i) => (
+          <div key={i} className="flex items-center gap-2 bg-white/5 rounded-lg px-2 py-1.5 min-w-0">
+            <span className={`shrink-0 w-5 h-5 rounded-full ${item.avatar} opacity-90`} />
+            <span className="text-[10px] text-white/70 truncate">
+              <span className="text-white/90 font-semibold">{item.handle}</span>
+              {" "}{item.action}{" "}
+              <span className="text-teal-400">{item.target}</span>
+            </span>
+            <span className="ml-auto shrink-0 text-[9px] text-white/30">{item.time}ago</span>
+          </div>
+        ))}
+      </div>
+      <style>{`
+        @keyframes matrix-scroll {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-50%); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+
 interface TileDetail {
   subAgents: string[];
   useCases: string[];
@@ -363,13 +403,17 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: delay + i * 0.07 }}
           >
-            {/* Image */}
+            {/* Image / Animation */}
             <div className="relative h-36 overflow-hidden">
-              <img
-                src={card.image}
-                alt={card.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+              {card.title === "Matrix.Kred" ? (
+                <MatrixFeedAnimation />
+              ) : (
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-transparent to-transparent" />
             </div>
 
