@@ -430,6 +430,223 @@ function DomainsScroll() {
   );
 }
 
+// --- HotGarage.Kred Vector Truck ---
+function HotGarageVehicle() {
+  return (
+    <div className="w-full h-full bg-[hsl(222,47%,6%)] overflow-hidden relative">
+      <svg viewBox="0 0 320 180" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="fog" cx="50%" cy="100%" r="60%">
+            <stop offset="0%" stopColor="hsl(195,80%,45%)" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="wheel-glow-r" cx="50%" cy="50%" r="50%">
+            <stop offset="60%" stopColor="transparent" stopOpacity="0" />
+            <stop offset="85%" stopColor="hsl(174,100%,55%)" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="hsl(174,100%,55%)" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="wheel-glow-f" cx="50%" cy="50%" r="50%">
+            <stop offset="60%" stopColor="transparent" stopOpacity="0" />
+            <stop offset="85%" stopColor="hsl(174,100%,55%)" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="hsl(174,100%,55%)" stopOpacity="0" />
+          </radialGradient>
+          <filter id="neon-blur">
+            <feGaussianBlur stdDeviation="2" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="soft-glow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        {/* === CITY BACKGROUND === */}
+        {/* Sky */}
+        <rect width="320" height="180" fill="hsl(222,55%,7%)" />
+
+        {/* City buildings — distant */}
+        {[
+          [10,  90, 18, 90], [30,  70, 14, 110], [46,  80, 20, 100],
+          [68,  55, 16, 125], [86,  75, 22, 105], [110, 60, 18, 120],
+          [130, 45, 14, 135], [146, 65, 20, 115], [168, 50, 16, 130],
+          [186, 70, 24, 110], [212, 55, 18, 125], [232, 40, 14, 140],
+          [248, 65, 20, 115], [270, 75, 16, 105], [288, 50, 22, 130],
+        ].map(([x, y, w, h], i) => (
+          <rect key={i} x={x} y={y} width={w} height={h}
+            fill={`hsl(222,${30 + (i % 3) * 5}%,${10 + (i % 4) * 2}%)`} />
+        ))}
+
+        {/* Neon signs on buildings */}
+        {[
+          [22, 82, 10, 3, "hsl(330,100%,65%)"],
+          [70, 60, 8, 2.5, "hsl(270,100%,70%)"],
+          [132, 50, 10, 3, "hsl(38,100%,65%)"],
+          [252, 70, 8, 2.5, "hsl(174,100%,55%)"],
+          [290, 55, 9, 3, "hsl(199,100%,60%)"],
+        ].map(([x, y, w, h, color], i) => (
+          <g key={i} filter="url(#soft-glow)">
+            <rect x={x} y={y} width={w} height={h} rx="0.5" fill={color as string} fillOpacity="0.9" />
+          </g>
+        ))}
+
+        {/* Ground / wet street */}
+        <rect x="0" y="148" width="320" height="32" fill="hsl(220,40%,9%)" />
+        {/* Street reflection glow */}
+        <ellipse cx="160" cy="158" rx="120" ry="10" fill="hsl(174,100%,55%)" fillOpacity="0.06" />
+
+        {/* Fog on ground */}
+        <rect x="0" y="130" width="320" height="50" fill="url(#fog)" />
+
+        {/* === TRUCK BODY === */}
+        {/* Shadow on ground */}
+        <ellipse cx="160" cy="154" rx="90" ry="7" fill="hsl(222,47%,4%)" fillOpacity="0.8" />
+
+        {/* Truck bed (rear) */}
+        <rect x="58" y="95" width="52" height="38" rx="2" fill="hsl(220,15%,25%)" />
+        <rect x="60" y="97" width="48" height="10" rx="1" fill="hsl(220,15%,20%)" />
+
+        {/* Cab body — main white/grey shape */}
+        <path d="M108 133 L108 88 Q110 80 120 78 L175 74 Q188 73 198 80 L218 95 L224 100 L224 133 Z"
+          fill="hsl(220,10%,72%)" />
+
+        {/* Cab roof */}
+        <path d="M118 88 Q120 80 128 78 L175 74 Q185 73 195 79 L210 88 Z"
+          fill="hsl(220,10%,80%)" />
+
+        {/* Light bar on roof */}
+        <rect x="148" y="71" width="46" height="5" rx="2.5" fill="hsl(220,15%,30%)" />
+        {/* Light bar LEDs */}
+        {Array.from({ length: 10 }).map((_, i) => (
+          <rect key={i} x={150 + i * 4.2} y={72.5} width="2.5" height="2" rx="0.5"
+            fill="hsl(60,100%,95%)" fillOpacity="0.9" />
+        ))}
+        <rect x="148" y="71" width="46" height="5" rx="2.5"
+          fill="none" stroke="hsl(60,100%,90%)" strokeWidth="0.3" strokeOpacity="0.5"
+          filter="url(#soft-glow)" />
+
+        {/* Windshield */}
+        <path d="M172 77 L196 80 L213 94 L188 93 Z"
+          fill="hsl(210,50%,35%)" fillOpacity="0.7"
+          stroke="hsl(220,10%,50%)" strokeWidth="1" />
+
+        {/* Rear window */}
+        <path d="M128 79 L170 75 L170 90 L128 90 Z"
+          fill="hsl(210,50%,28%)" fillOpacity="0.7"
+          stroke="hsl(220,10%,50%)" strokeWidth="1" />
+
+        {/* Door panel line */}
+        <line x1="152" y1="78" x2="152" y2="132" stroke="hsl(220,10%,55%)" strokeWidth="0.8" strokeOpacity="0.6" />
+
+        {/* Door handle (front) */}
+        <rect x="178" y="106" width="12" height="3" rx="1.5" fill="hsl(220,10%,55%)" />
+        {/* Door handle (rear) */}
+        <rect x="133" y="106" width="12" height="3" rx="1.5" fill="hsl(220,10%,55%)" />
+
+        {/* Front bull bar */}
+        <rect x="215" y="95" width="8" height="32" rx="2" fill="hsl(220,15%,22%)" />
+        <line x1="216" y1="100" x2="222" y2="100" stroke="hsl(220,15%,35%)" strokeWidth="1.5" />
+        <line x1="216" y1="108" x2="222" y2="108" stroke="hsl(220,15%,35%)" strokeWidth="1.5" />
+        <line x1="216" y1="116" x2="222" y2="116" stroke="hsl(220,15%,35%)" strokeWidth="1.5" />
+
+        {/* Front headlight — neon teal rectangle */}
+        <rect x="205" y="96" width="14" height="9" rx="1.5" fill="hsl(174,100%,55%)" fillOpacity="0.2"
+          stroke="hsl(174,100%,55%)" strokeWidth="1.2" filter="url(#neon-blur)" />
+        <rect x="207" y="97.5" width="10" height="6" rx="1"
+          fill="hsl(174,100%,55%)" fillOpacity="0.6" />
+
+        {/* Rear tail light */}
+        <rect x="58" y="102" width="5" height="10" rx="1" fill="hsl(0,90%,55%)" fillOpacity="0.8"
+          filter="url(#soft-glow)" />
+
+        {/* Neon underglow line */}
+        <line x1="80" y1="133" x2="222" y2="133"
+          stroke="hsl(174,100%,55%)" strokeWidth="1.5" strokeOpacity="0.7"
+          filter="url(#neon-blur)" />
+
+        {/* === REAR WHEEL === */}
+        <circle cx="100" cy="140" r="28" fill="url(#wheel-glow-r)" />
+        {/* Tyre */}
+        <circle cx="100" cy="140" r="24" fill="hsl(220,10%,12%)" />
+        <circle cx="100" cy="140" r="18" fill="hsl(220,10%,9%)" />
+        {/* Neon ring outer */}
+        <circle cx="100" cy="140" r="23" fill="none"
+          stroke="hsl(174,100%,55%)" strokeWidth="2.5" strokeOpacity="0.9"
+          filter="url(#neon-blur)" />
+        {/* Neon ring inner */}
+        <circle cx="100" cy="140" r="16" fill="none"
+          stroke="hsl(174,100%,55%)" strokeWidth="1.5" strokeOpacity="0.7"
+          filter="url(#neon-blur)" />
+        {/* Hub */}
+        <circle cx="100" cy="140" r="5" fill="hsl(220,15%,22%)" stroke="hsl(174,100%,55%)" strokeWidth="0.8" />
+        {/* Spokes */}
+        {[0,60,120,180,240,300].map(a => (
+          <line key={a}
+            x1={100 + 5.5 * Math.cos(a * Math.PI/180)}
+            y1={140 + 5.5 * Math.sin(a * Math.PI/180)}
+            x2={100 + 15 * Math.cos(a * Math.PI/180)}
+            y2={140 + 15 * Math.sin(a * Math.PI/180)}
+            stroke="hsl(220,15%,30%)" strokeWidth="1.2" />
+        ))}
+
+        {/* === FRONT WHEEL === */}
+        <circle cx="202" cy="140" r="28" fill="url(#wheel-glow-f)" />
+        <circle cx="202" cy="140" r="24" fill="hsl(220,10%,12%)" />
+        <circle cx="202" cy="140" r="18" fill="hsl(220,10%,9%)" />
+        <circle cx="202" cy="140" r="23" fill="none"
+          stroke="hsl(174,100%,55%)" strokeWidth="2.5" strokeOpacity="0.9"
+          filter="url(#neon-blur)" />
+        <circle cx="202" cy="140" r="16" fill="none"
+          stroke="hsl(174,100%,55%)" strokeWidth="1.5" strokeOpacity="0.7"
+          filter="url(#neon-blur)" />
+        <circle cx="202" cy="140" r="5" fill="hsl(220,15%,22%)" stroke="hsl(174,100%,55%)" strokeWidth="0.8" />
+        {[0,60,120,180,240,300].map(a => (
+          <line key={a}
+            x1={202 + 5.5 * Math.cos(a * Math.PI/180)}
+            y1={140 + 5.5 * Math.sin(a * Math.PI/180)}
+            x2={202 + 15 * Math.cos(a * Math.PI/180)}
+            y2={140 + 15 * Math.sin(a * Math.PI/180)}
+            stroke="hsl(220,15%,30%)" strokeWidth="1.2" />
+        ))}
+
+        {/* Wheel spin animation overlay — subtle rotation illusion */}
+        <g style={{ transformOrigin: "100px 140px" }}>
+          <animateTransform attributeName="transform" type="rotate"
+            values="0 100 140;360 100 140" dur="3s" repeatCount="indefinite" />
+          {[30,90,150,210,270,330].map(a => (
+            <line key={a}
+              x1={100 + 6 * Math.cos(a * Math.PI/180)}
+              y1={140 + 6 * Math.sin(a * Math.PI/180)}
+              x2={100 + 14 * Math.cos(a * Math.PI/180)}
+              y2={140 + 14 * Math.sin(a * Math.PI/180)}
+              stroke="hsl(174,100%,55%)" strokeWidth="0.4" strokeOpacity="0.4" />
+          ))}
+        </g>
+        <g style={{ transformOrigin: "202px 140px" }}>
+          <animateTransform attributeName="transform" type="rotate"
+            values="0 202 140;360 202 140" dur="3s" repeatCount="indefinite" />
+          {[30,90,150,210,270,330].map(a => (
+            <line key={a}
+              x1={202 + 6 * Math.cos(a * Math.PI/180)}
+              y1={140 + 6 * Math.sin(a * Math.PI/180)}
+              x2={202 + 14 * Math.cos(a * Math.PI/180)}
+              y2={140 + 14 * Math.sin(a * Math.PI/180)}
+              stroke="hsl(174,100%,55%)" strokeWidth="0.4" strokeOpacity="0.4" />
+          ))}
+        </g>
+
+        {/* Wheel neon pulse */}
+        {[100, 202].map(cx => (
+          <circle key={cx} cx={cx} cy="140" r="23" fill="none"
+            stroke="hsl(174,100%,55%)" strokeWidth="1" strokeOpacity="0.4"
+            filter="url(#neon-blur)">
+            <animate attributeName="strokeOpacity" values="0.4;0.9;0.4" dur="2s" repeatCount="indefinite" />
+          </circle>
+        ))}
+      </svg>
+    </div>
+  );
+}
+
 
 const nodeMapNodes = [
   { id: "reputation", label: "Reputation", angle: 0,   r: 52, color: "hsl(180,60%,55%)" },
@@ -911,6 +1128,8 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
                 <OneHubCarousel />
               ) : card.title === "Domains.Kred" ? (
                 <DomainsScroll />
+              ) : card.title === "HotGarage.Kred" ? (
+                <HotGarageVehicle />
               ) : (
                 <img
                   src={card.image}
