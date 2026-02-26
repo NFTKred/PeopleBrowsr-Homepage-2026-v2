@@ -430,6 +430,111 @@ function DomainsScroll() {
   );
 }
 
+// --- GiftStudio.Kred Level Progression ---
+const giftStudioLevels = [
+  { num: 1, title: "Gift Giver",       subtitle: "Send your first gift",       desc: "Send 1 gift to a friend",                  xp: "50 XP",   color: "hsl(270,70%,65%)" },
+  { num: 2, title: "Generous Soul",    subtitle: "Build momentum",             desc: "Send 5 gifts to 5 different people",        xp: "150 XP",  color: "hsl(280,65%,62%)" },
+  { num: 3, title: "Gift Curator",     subtitle: "Unlock custom gifts",        desc: "Curate 10 gifts from the studio",           xp: "300 XP",  color: "hsl(290,60%,60%)" },
+  { num: 4, title: "Brand Ambassador", subtitle: "Go beyond giving",          desc: "Run a gifting campaign for a brand",        xp: "600 XP",  color: "hsl(300,60%,58%)" },
+  { num: 5, title: "Studio Master",    subtitle: "Unlock premium tools",       desc: "Create 50 custom branded gift experiences", xp: "1000 XP", color: "hsl(320,65%,65%)" },
+];
+
+function GiftStudioLevels() {
+  const [activeLevel, setActiveLevel] = useState(2);
+  const [animating, setAnimating] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimating(true);
+      setTimeout(() => {
+        setActiveLevel(prev => (prev % 5) + 1);
+        setAnimating(false);
+      }, 300);
+    }, 2600);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="w-full h-full overflow-hidden relative flex flex-col px-2.5 py-2 gap-1"
+      style={{ background: "hsl(270,30%,5%)" }}>
+      {/* Header */}
+      <div className="flex items-center gap-2 mb-0.5">
+        {[{ label: "Gifts Sent", val: "43" }, { label: "Brands", val: "7" }, { label: "XP", val: "820" }].map(s => (
+          <div key={s.label} className="flex items-center gap-1">
+            <span style={{ color: "hsl(270,50%,55%)", fontSize: 8 }}>{s.label}</span>
+            <span style={{ color: "hsl(280,100%,80%)", fontSize: 9, fontWeight: 700 }}>{s.val}</span>
+          </div>
+        ))}
+        <div className="ml-auto">
+          <span style={{ color: "hsl(290,80%,70%)", fontSize: 7, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>Level Up Your Studio</span>
+        </div>
+      </div>
+      <div style={{ height: 1, background: "linear-gradient(90deg, hsl(280,80%,55%) 0%, transparent 100%)", opacity: 0.4, marginBottom: 2 }} />
+
+      {giftStudioLevels.map(level => {
+        const isActive = level.num === activeLevel;
+        const isUnlocked = level.num <= activeLevel;
+        const c = level.color;
+        return (
+          <motion.div
+            key={level.num}
+            animate={{
+              backgroundColor: isActive ? "hsl(270,35%,10%)" : "hsl(270,20%,7%)",
+              borderColor: isActive ? c : "hsl(260,15%,18%)",
+              opacity: animating && isActive ? 0.5 : 1,
+            }}
+            transition={{ duration: 0.3 }}
+            style={{ border: "1px solid", borderRadius: 6, padding: "4px 6px", position: "relative", overflow: "hidden" }}
+            className="flex items-center gap-2"
+          >
+            {isActive && (
+              <div style={{ position: "absolute", inset: 0, borderRadius: 6, background: `linear-gradient(90deg, ${c}18 0%, transparent 60%)`, pointerEvents: "none" }} />
+            )}
+            {/* Level badge */}
+            <div style={{
+              width: 18, height: 18, borderRadius: "50%", flexShrink: 0,
+              background: isActive ? c : "hsl(260,15%,18%)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 8, fontWeight: 800,
+              color: isActive ? "hsl(270,30%,5%)" : "hsl(260,15%,45%)",
+              border: `1px solid ${isActive ? c : "hsl(260,15%,28%)"}`,
+              boxShadow: isActive ? `0 0 8px ${c}66` : "none",
+            }}>
+              {level.num}
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", minWidth: 0, flex: 1 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                <span style={{ fontSize: 8, fontWeight: 800, letterSpacing: "0.05em", textTransform: "uppercase", color: isActive ? c : "hsl(260,15%,45%)", whiteSpace: "nowrap" }}>
+                  {level.title}
+                </span>
+                {isActive && <span style={{ fontSize: 7, color: c, fontStyle: "italic", opacity: 0.8 }}>← current</span>}
+              </div>
+              <span style={{ fontSize: 7, color: isActive ? "hsl(270,50%,60%)" : "hsl(260,15%,35%)" }}>
+                {level.desc}
+              </span>
+            </div>
+            <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 1 }}>
+              <span style={{ fontSize: 7, fontWeight: 700, color: isActive ? c : "hsl(260,15%,35%)", fontFamily: "monospace" }}>{level.xp}</span>
+              {isUnlocked ? (
+                <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
+                  <rect x="1" y="5" width="10" height="7" rx="1.5" fill={isActive ? c : "hsl(260,15%,30%)"} />
+                  <path d="M3.5 5V3.5a2.5 2.5 0 0 1 5 0V5" stroke={isActive ? "hsl(280,100%,85%)" : "hsl(260,15%,40%)"} strokeWidth="1.5" fill="none" />
+                </svg>
+              ) : (
+                <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
+                  <rect x="1" y="5" width="10" height="7" rx="1.5" fill="hsl(260,15%,18%)" />
+                  <path d="M3.5 5V3.5a2.5 2.5 0 0 1 5 0V5" stroke="hsl(260,15%,35%)" strokeWidth="1.5" fill="none" />
+                  <circle cx="6" cy="8" r="1" fill="hsl(260,15%,35%)" />
+                </svg>
+              )}
+            </div>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
+
 // --- HotGarage.Kred Level Progression ---
 const garagelevels = [
   { num: 1, title: "Apprentice", subtitle: "Start your Garage", desc: "Collect rides & earn 10 XP per car" },
@@ -1014,6 +1119,8 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
                 <DomainsScroll />
               ) : card.title === "HotGarage.Kred" ? (
                 <HotGarageVehicle />
+              ) : card.title === "GiftStudio.Kred" ? (
+                <GiftStudioLevels />
               ) : (
                 <img
                   src={card.image}
