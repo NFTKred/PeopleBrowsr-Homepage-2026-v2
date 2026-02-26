@@ -138,6 +138,105 @@ function ScoreAnimation() {
 }
 
 
+// --- OneHub.Kred NFT Carousel ---
+const nftItems = [
+  { id: 1, bg: "hsl(222,47%,12%)", accent: "hsl(180,60%,50%)", title: "Aether Pass #042", sub: "Limited Edition · 1 of 100", action: "CLAIM", bright: true },
+  { id: 2, bg: "hsl(222,47%,12%)", accent: "hsl(195,80%,45%)", title: "Neo Cred Badge", sub: "Community Reward", action: "View", bright: false },
+  { id: 3, bg: "hsl(222,47%,12%)", accent: "hsl(38,92%,55%)", title: "Empire Token #7", sub: "Floor: 0.08 ETH", action: "BUY", bright: true },
+  { id: 4, bg: "hsl(222,47%,12%)", accent: "hsl(180,60%,50%)", title: "Guild Sigil", sub: "Member-only drop", action: "View", bright: false },
+  { id: 5, bg: "hsl(222,47%,12%)", accent: "hsl(330,70%,65%)", title: "Score Crystal #19", sub: "Trust Score · Tier 3", action: "CLAIM", bright: true },
+  { id: 6, bg: "hsl(222,47%,12%)", accent: "hsl(195,80%,45%)", title: "Matrix Node Key", sub: "Unlocks premium feed", action: "BUY", bright: true },
+  { id: 7, bg: "hsl(222,47%,12%)", accent: "hsl(38,92%,55%)", title: "Heritage Badge", sub: "OG Collector · Series 1", action: "View", bright: false },
+];
+
+// Geometric SVG patterns per card (pseudo-unique art)
+function NftArt({ accent, seed }: { accent: string; seed: number }) {
+  const shapes = Array.from({ length: 5 }, (_, i) => ({
+    cx: 20 + ((seed * 13 + i * 17) % 60),
+    cy: 20 + ((seed * 7 + i * 23) % 60),
+    r: 6 + ((seed + i * 5) % 14),
+  }));
+  return (
+    <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100" height="100" fill="hsl(222,47%,9%)" />
+      {shapes.map((s, i) => (
+        <circle key={i} cx={s.cx} cy={s.cy} r={s.r}
+          fill={accent} fillOpacity={0.08 + i * 0.04}
+          stroke={accent} strokeWidth="0.8" strokeOpacity={0.3 + i * 0.1} />
+      ))}
+      {/* diagonal accent line */}
+      <line x1={10 + (seed % 20)} y1="10" x2={90 - (seed % 15)} y2="90"
+        stroke={accent} strokeWidth="0.6" strokeOpacity="0.4" />
+      <circle cx="50" cy="50" r="18" fill={accent} fillOpacity="0.07"
+        stroke={accent} strokeWidth="1" strokeOpacity="0.5" />
+      <circle cx="50" cy="50" r="6" fill={accent} fillOpacity="0.5" />
+    </svg>
+  );
+}
+
+function OneHubCarousel() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  // Duplicate for seamless loop
+  const items = [...nftItems, ...nftItems];
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    let pos = 0;
+    let raf: number;
+    const speed = 0.4; // px per frame
+    const singleWidth = track.scrollWidth / 2;
+
+    function step() {
+      pos += speed;
+      if (pos >= singleWidth) pos = 0;
+      track.style.transform = `translateX(-${pos}px)`;
+      raf = requestAnimationFrame(step);
+    }
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  return (
+    <div className="w-full h-full bg-[hsl(222,47%,6%)] overflow-hidden flex items-center relative">
+      {/* edge fades */}
+      <div className="absolute left-0 top-0 bottom-0 w-6 z-10 pointer-events-none" style={{ background: "linear-gradient(90deg,hsl(222,47%,6%),transparent)" }} />
+      <div className="absolute right-0 top-0 bottom-0 w-6 z-10 pointer-events-none" style={{ background: "linear-gradient(270deg,hsl(222,47%,6%),transparent)" }} />
+
+      <div ref={trackRef} className="flex gap-2.5 px-3 will-change-transform" style={{ width: "max-content" }}>
+        {items.map((item, idx) => (
+          <div key={idx} className="flex-shrink-0 w-[88px] rounded-lg overflow-hidden border border-white/10 bg-[hsl(222,47%,9%)] flex flex-col">
+            {/* Square art */}
+            <div className="w-full aspect-square">
+              <NftArt accent={item.accent} seed={item.id * 3 + idx} />
+            </div>
+            {/* Text lines */}
+            <div className="px-1.5 py-1.5 flex flex-col gap-1 flex-1">
+              <div className="h-[7px] rounded-sm w-full" style={{ background: "hsl(222,30%,22%)" }} />
+              <div className="h-[5px] rounded-sm w-3/4" style={{ background: "hsl(222,30%,18%)" }} />
+              {/* Button */}
+              <button
+                className="mt-1 w-full rounded text-[8px] font-bold tracking-wide py-[3px] transition-none"
+                style={item.bright ? {
+                  background: item.accent,
+                  color: "hsl(222,47%,6%)",
+                  boxShadow: `0 0 8px ${item.accent}88`,
+                } : {
+                  background: "hsl(222,30%,18%)",
+                  color: "hsl(215,20%,50%)",
+                }}
+              >
+                {item.action}
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
 const nodeMapNodes = [
   { id: "reputation", label: "Reputation", angle: 0,   r: 52, color: "hsl(180,60%,55%)" },
   { id: "memory1",    label: "Memory",     angle: 60,  r: 50, color: "hsl(38,92%,60%)" },
@@ -612,6 +711,8 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
                 <AgenticIDNodeMap />
               ) : card.title === "Score.Kred" ? (
                 <ScoreAnimation />
+              ) : card.title === "OneHub.Kred" ? (
+                <OneHubCarousel />
               ) : (
                 <img
                   src={card.image}
