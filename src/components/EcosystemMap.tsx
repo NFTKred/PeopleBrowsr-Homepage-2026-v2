@@ -52,6 +52,112 @@ function MatrixFeedAnimation() {
   );
 }
 
+// --- AgenticID Node Map ---
+const nodeMapNodes = [
+  { id: "cred",    label: "Credentials", angle: 0,    r: 52, color: "hsl(165,60%,55%)" },
+  { id: "score",   label: "Score",       angle: 60,   r: 50, color: "hsl(220,65%,70%)" },
+  { id: "ens",     label: "ENS",         angle: 120,  r: 54, color: "hsl(280,55%,70%)" },
+  { id: "history", label: "History",     angle: 180,  r: 50, color: "hsl(25,70%,65%)"  },
+  { id: "links",   label: "Links",       angle: 240,  r: 52, color: "hsl(330,60%,70%)" },
+  { id: "badges",  label: "Badges",      angle: 300,  r: 50, color: "hsl(45,70%,65%)"  },
+];
+
+function AgenticIDNodeMap() {
+  const cx = 50; // % center
+  const cy = 50;
+  const toXY = (angleDeg: number, r: number) => ({
+    x: cx + r * Math.cos((angleDeg * Math.PI) / 180),
+    y: cy + r * Math.sin((angleDeg * Math.PI) / 180),
+  });
+
+  return (
+    <div className="w-full h-full bg-[hsl(165,20%,8%)] relative overflow-hidden">
+      <svg
+        viewBox="0 0 100 100"
+        className="w-full h-full"
+        style={{ position: "absolute", inset: 0 }}
+      >
+        <defs>
+          <radialGradient id="agid-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="hsl(165,60%,55%)" stopOpacity="0.18" />
+            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <circle cx="50" cy="50" r="48" fill="url(#agid-glow)" />
+
+        {nodeMapNodes.map((node) => {
+          const pos = toXY(node.angle, node.r);
+          return (
+            <line
+              key={node.id + "-line"}
+              x1="50" y1="50"
+              x2={pos.x} y2={pos.y}
+              stroke={node.color}
+              strokeWidth="0.4"
+              strokeOpacity="0.45"
+            />
+          );
+        })}
+
+        {nodeMapNodes.map((node, i) => {
+          const pos = toXY(node.angle, node.r);
+          return (
+            <g key={node.id}>
+              <circle
+                cx={pos.x}
+                cy={pos.y}
+                r="6.5"
+                fill={node.color}
+                fillOpacity="0.15"
+                stroke={node.color}
+                strokeWidth="0.6"
+                strokeOpacity="0.7"
+              >
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  values={`0 0; ${Math.sin(i) * 1.4} ${Math.cos(i) * 1.2}; 0 0`}
+                  dur={`${3.5 + i * 0.5}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <text
+                x={pos.x}
+                y={pos.y + 0.5}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fontSize="3.2"
+                fill={node.color}
+                fillOpacity="0.9"
+                style={{ fontFamily: "monospace" }}
+              >
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  values={`0 0; ${Math.sin(i) * 1.4} ${Math.cos(i) * 1.2}; 0 0`}
+                  dur={`${3.5 + i * 0.5}s`}
+                  repeatCount="indefinite"
+                />
+                {node.label}
+              </text>
+            </g>
+          );
+        })}
+
+        {/* Centre node */}
+        <circle cx="50" cy="50" r="11" fill="hsl(165,50%,12%)" stroke="hsl(165,60%,55%)" strokeWidth="0.8" strokeOpacity="0.9" />
+        <circle cx="50" cy="50" r="9" fill="hsl(165,50%,18%)" fillOpacity="0.6">
+          <animate attributeName="r" values="9;10.5;9" dur="3s" repeatCount="indefinite" />
+          <animate attributeName="fillOpacity" values="0.6;0.9;0.6" dur="3s" repeatCount="indefinite" />
+        </circle>
+        <text x="50" y="48.5" textAnchor="middle" dominantBaseline="middle" fontSize="3.2" fill="hsl(165,70%,80%)" fontWeight="bold" style={{ fontFamily: "monospace" }}>agent</text>
+        <text x="50" y="52.5" textAnchor="middle" dominantBaseline="middle" fontSize="2.6" fill="hsl(165,50%,65%)" style={{ fontFamily: "monospace" }}>.kred</text>
+      </svg>
+      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(165,20%,8%)/85%] via-transparent to-transparent pointer-events-none" />
+    </div>
+  );
+}
+
 
 interface TileDetail {
   subAgents: string[];
@@ -417,6 +523,8 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
             <div className="relative h-36 overflow-hidden">
               {card.title === "Matrix.Kred" ? (
                 <MatrixFeedAnimation />
+              ) : card.title === "AgenticID.Kred" ? (
+                <AgenticIDNodeMap />
               ) : (
                 <img
                   src={card.image}
