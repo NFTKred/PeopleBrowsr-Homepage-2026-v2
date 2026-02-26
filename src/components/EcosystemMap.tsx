@@ -942,15 +942,15 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
               </div>
 
               {/* Buttons */}
-              <div className="flex gap-2 pt-1">
-                <button className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+              <div className="flex items-center gap-3 pt-1">
+                <button className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 bg-muted/40 text-foreground hover:bg-muted hover:border-border transition-colors">
                   {card.primaryBtn}
                 </button>
                 <button
-                  className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+                  className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-2 hover:underline shrink-0"
                   onClick={() => card.apiId && scrollToApiSkills(card.apiId)}
                 >
-                  APIs and Skills
+                  {card.secondaryBtn}
                 </button>
               </div>
             </div>
