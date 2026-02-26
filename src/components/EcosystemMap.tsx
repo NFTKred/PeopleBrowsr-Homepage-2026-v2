@@ -54,12 +54,12 @@ function MatrixFeedAnimation() {
 
 // --- AgenticID Node Map ---
 const nodeMapNodes = [
-  { id: "cred",    label: "Credentials", angle: 0,    r: 52, color: "hsl(165,60%,55%)" },
-  { id: "score",   label: "Score",       angle: 60,   r: 50, color: "hsl(220,65%,70%)" },
-  { id: "ens",     label: "ENS",         angle: 120,  r: 54, color: "hsl(280,55%,70%)" },
-  { id: "history", label: "History",     angle: 180,  r: 50, color: "hsl(25,70%,65%)"  },
-  { id: "links",   label: "Links",       angle: 240,  r: 52, color: "hsl(330,60%,70%)" },
-  { id: "badges",  label: "Badges",      angle: 300,  r: 50, color: "hsl(45,70%,65%)"  },
+  { id: "reputation", label: "Reputation", angle: 0,   r: 52, color: "hsl(165,60%,55%)" },
+  { id: "memory1",    label: "Memory",     angle: 60,  r: 50, color: "hsl(220,65%,70%)" },
+  { id: "score1",     label: "Score",      angle: 120, r: 54, color: "hsl(280,55%,70%)" },
+  { id: "reputation2",label: "Reputation", angle: 180, r: 50, color: "hsl(165,60%,55%)" },
+  { id: "memory2",    label: "Memory",     angle: 240, r: 52, color: "hsl(220,65%,70%)" },
+  { id: "score2",     label: "Score",      angle: 300, r: 50, color: "hsl(280,55%,70%)" },
 ];
 
 function AgenticIDNodeMap() {
