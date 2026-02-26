@@ -237,6 +237,71 @@ function OneHubCarousel() {
 }
 
 
+// --- Domains.Kred Scrolling List ---
+const kredDomains = [
+  { name: "Voight.Kred",       type: "Analyst Agent" },
+  { name: "Nexus.Kred",        type: "Research Agent" },
+  { name: "Aria.Kred",         type: "Creative Agent" },
+  { name: "Oracle.Kred",       type: "Prediction Agent" },
+  { name: "Cipher.Kred",       type: "Security Agent" },
+  { name: "Lyra.Kred",         type: "Music Agent" },
+  { name: "Atlas.Kred",        type: "Navigation Agent" },
+  { name: "Meridian.Kred",     type: "Coordination Agent" },
+  { name: "Sable.Kred",        type: "Trading Agent" },
+  { name: "Vega.Kred",         type: "Astronomy Agent" },
+  { name: "Clio.Kred",         type: "Memory Agent" },
+  { name: "Phantom.Kred",      type: "Stealth Agent" },
+  { name: "Solace.Kred",       type: "Wellness Agent" },
+  { name: "Quill.Kred",        type: "Writing Agent" },
+  { name: "Flux.Kred",         type: "Adaptive Agent" },
+  { name: "Halo.Kred",         type: "Trust Agent" },
+];
+
+function DomainsScroll() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const items = [...kredDomains, ...kredDomains];
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    let pos = 0;
+    let raf: number;
+    const speed = 0.35;
+    const singleHeight = track.scrollHeight / 2;
+
+    function step() {
+      pos += speed;
+      if (pos >= singleHeight) pos = 0;
+      track.style.transform = `translateY(-${pos}px)`;
+      raf = requestAnimationFrame(step);
+    }
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  return (
+    <div className="w-full h-full bg-[hsl(222,47%,6%)] overflow-hidden relative">
+      {/* top/bottom fades */}
+      <div className="absolute top-0 left-0 right-0 h-6 z-10 pointer-events-none" style={{ background: "linear-gradient(180deg,hsl(222,47%,6%),transparent)" }} />
+      <div className="absolute bottom-0 left-0 right-0 h-6 z-10 pointer-events-none" style={{ background: "linear-gradient(0deg,hsl(222,47%,6%),transparent)" }} />
+
+      <div ref={trackRef} className="flex flex-col gap-1.5 px-3 pt-2 will-change-transform" style={{ width: "100%" }}>
+        {items.map((domain, idx) => (
+          <div key={idx} className="flex items-center justify-between rounded-lg px-2.5 py-1.5 bg-white/[0.04] border border-white/[0.07]">
+            <span className="text-[11px] font-semibold tracking-wide" style={{ color: "hsl(180,60%,65%)", fontFamily: "monospace" }}>
+              {domain.name}
+            </span>
+            <span className="text-[9px] tracking-wide" style={{ color: "hsl(215,20%,45%)" }}>
+              {domain.type}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
 const nodeMapNodes = [
   { id: "reputation", label: "Reputation", angle: 0,   r: 52, color: "hsl(180,60%,55%)" },
   { id: "memory1",    label: "Memory",     angle: 60,  r: 50, color: "hsl(38,92%,60%)" },
@@ -713,6 +778,8 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
                 <ScoreAnimation />
               ) : card.title === "OneHub.Kred" ? (
                 <OneHubCarousel />
+              ) : card.title === "Domains.Kred" ? (
+                <DomainsScroll />
               ) : (
                 <img
                   src={card.image}
