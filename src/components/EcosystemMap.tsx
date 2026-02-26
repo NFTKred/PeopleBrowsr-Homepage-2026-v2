@@ -54,13 +54,14 @@ function MatrixFeedAnimation() {
 
 // --- Score.Kred Progress Animation ---
 function ScoreAnimation() {
-  const [score, setScore] = useState(712);
+  const [humanScore, setHumanScore] = useState(74);
+  const [agentScore, setAgentScore] = useState(712);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     let raf: number;
     let start: number | null = null;
-    const duration = 4000; // ms per fill cycle
+    const duration = 4000;
 
     function tick(ts: number) {
       if (!start) start = ts;
@@ -70,9 +71,9 @@ function ScoreAnimation() {
       if (pct < 100) {
         raf = requestAnimationFrame(tick);
       } else {
-        // increment score then restart
         setTimeout(() => {
-          setScore(s => Math.min(s + Math.floor(Math.random() * 8) + 3, 999));
+          setAgentScore(s => Math.min(s + Math.floor(Math.random() * 8) + 3, 999));
+          setHumanScore(s => Math.min(s + (Math.random() > 0.5 ? 1 : 0), 99));
           setProgress(0);
           start = null;
           raf = requestAnimationFrame(tick);
@@ -84,38 +85,53 @@ function ScoreAnimation() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  const tier = score >= 900 ? { label: "Elite", color: "hsl(38,92%,60%)" }
-    : score >= 800 ? { label: "High Trust", color: "hsl(180,60%,55%)" }
-    : score >= 700 ? { label: "Trusted", color: "hsl(195,80%,55%)" }
-    : { label: "Building", color: "hsl(195,60%,45%)" };
+  const agentColor = agentScore >= 900 ? "hsl(38,92%,60%)"
+    : agentScore >= 800 ? "hsl(180,60%,55%)"
+    : agentScore >= 700 ? "hsl(195,80%,55%)"
+    : "hsl(195,60%,45%)";
 
   return (
-    <div className="w-full h-full bg-[hsl(222,47%,6%)] flex flex-col items-center justify-center px-6 gap-3 relative overflow-hidden">
+    <div className="w-full h-full bg-[hsl(222,47%,6%)] flex flex-col items-center justify-center gap-3 relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse at 50% 80%, ${tier.color}22 0%, transparent 70%)` }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse at 50% 60%, ${agentColor}18 0%, transparent 70%)` }} />
 
-      {/* Score display */}
-      <div className="flex items-end gap-2">
-        <span className="text-4xl font-bold tabular-nums" style={{ color: tier.color, textShadow: `0 0 20px ${tier.color}88`, fontFamily: "monospace" }}>
-          {score}
-        </span>
-        <span className="text-[10px] font-semibold uppercase tracking-widest mb-1.5" style={{ color: tier.color, opacity: 0.75 }}>
-          {tier.label}
-        </span>
+      {/* Badge SVG with overlaid scores */}
+      <div className="relative" style={{ width: 110, height: 102 }}>
+        <svg viewBox="0 0 77.8 71.8" width="110" height="102" xmlns="http://www.w3.org/2000/svg">
+          {/* Blue lower-right */}
+          <path fill="#39C2E7" d="M12.7,53.1l1.7,1.3c3.9,2.9,10.4,7.9,20,15.2c1.6,1.2,3.4,2.2,4.5,2.2s2.9-1,4.5-2.2c9.6-7.3,16.1-12.3,20-15.2l3.1-2.4l0,0l0.4-0.3c2.6-2,4.7-3.8,6.4-5.5c1.7-1.3,2.9-3.1,3.7-5.1c0.2-0.4,0.3-0.8,0.4-1.3c0.3-1,0.4-2.1,0.4-3.2V13.5l-42,5.2L12.7,53.1z"/>
+          {/* Green upper-left */}
+          <path fill="#7CD646" d="M77.7,12.2C77.7,5.5,72.2,0,65.6,0H38.8H12.1C5.4,0,0,5.5,0,12.2v24.4c0,1.1,0.1,2.2,0.4,3.2c0.1,0.4,0.2,0.8,0.4,1.3c0.8,2,2.1,3.7,3.7,5.1c1.6,1.7,3.8,3.5,6.4,5.5l0.4,0.3l0,0l1.4,1.1l64.9-39.6L77.7,12.2L77.7,12.2z"/>
+        </svg>
+
+        {/* Human score — green upper-left zone */}
+        <div
+          className="absolute top-[8px] left-[10px] tabular-nums font-bold leading-none"
+          style={{ fontSize: 22, color: "#fff", textShadow: "0 1px 6px rgba(0,0,0,0.5)", fontFamily: "monospace" }}
+        >
+          {humanScore}
+        </div>
+
+        {/* Agent score — blue lower-right zone */}
+        <div
+          className="absolute bottom-[10px] right-[8px] tabular-nums font-bold leading-none"
+          style={{ fontSize: 17, color: "#fff", textShadow: "0 1px 6px rgba(0,0,0,0.5)", fontFamily: "monospace" }}
+        >
+          {agentScore}
+        </div>
       </div>
 
       {/* Progress bar */}
-      <div className="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+      <div className="w-4/5 h-1.5 rounded-full bg-white/10 overflow-hidden">
         <div
           className="h-full rounded-full transition-none"
           style={{
             width: `${progress}%`,
-            background: `linear-gradient(90deg, ${tier.color}88, ${tier.color})`,
-            boxShadow: `0 0 8px ${tier.color}`,
+            background: `linear-gradient(90deg, ${agentColor}88, ${agentColor})`,
+            boxShadow: `0 0 8px ${agentColor}`,
           }}
         />
       </div>
-
       <span className="text-[9px] text-white/30 tracking-widest uppercase">next level</span>
     </div>
   );
