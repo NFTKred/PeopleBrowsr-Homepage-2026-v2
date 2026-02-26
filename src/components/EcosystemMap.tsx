@@ -28,8 +28,8 @@ function MatrixFeedAnimation() {
   }, []);
 
   return (
-    <div className="w-full h-full bg-[hsl(250,30%,10%)] overflow-hidden relative flex flex-col justify-start px-2 py-2 gap-1.5">
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,hsl(250,30%,10%)_100%)] z-10 pointer-events-none" />
+    <div className="w-full h-full bg-[hsl(222,47%,6%)] overflow-hidden relative flex flex-col justify-start px-2 py-2 gap-1.5">
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,hsl(222,47%,6%)_100%)] z-10 pointer-events-none" />
       <AnimatePresence initial={false}>
         {posts.map((item, i) => (
           <motion.div
@@ -43,7 +43,7 @@ function MatrixFeedAnimation() {
             <span className="text-[10px] text-white/70 truncate">
               <span className="text-white/90 font-semibold">{item.handle}</span>
               {" "}{item.action}{" "}
-              <span className="text-teal-400">{item.target}</span>
+              <span style={{ color: "hsl(180,60%,55%)" }}>{item.target}</span>
             </span>
           </motion.div>
         ))}
@@ -84,13 +84,13 @@ function ScoreAnimation() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  const tier = score >= 900 ? { label: "Elite", color: "hsl(45,90%,60%)" }
-    : score >= 800 ? { label: "High Trust", color: "hsl(165,60%,55%)" }
-    : score >= 700 ? { label: "Trusted", color: "hsl(220,65%,70%)" }
-    : { label: "Building", color: "hsl(280,55%,70%)" };
+  const tier = score >= 900 ? { label: "Elite", color: "hsl(38,92%,60%)" }
+    : score >= 800 ? { label: "High Trust", color: "hsl(180,60%,55%)" }
+    : score >= 700 ? { label: "Trusted", color: "hsl(195,80%,55%)" }
+    : { label: "Building", color: "hsl(195,60%,45%)" };
 
   return (
-    <div className="w-full h-full bg-[hsl(220,25%,9%)] flex flex-col items-center justify-center px-6 gap-3 relative overflow-hidden">
+    <div className="w-full h-full bg-[hsl(222,47%,6%)] flex flex-col items-center justify-center px-6 gap-3 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse at 50% 80%, ${tier.color}22 0%, transparent 70%)` }} />
 
@@ -123,12 +123,12 @@ function ScoreAnimation() {
 
 
 const nodeMapNodes = [
-  { id: "reputation", label: "Reputation", angle: 0,   r: 52, color: "hsl(165,60%,55%)" },
-  { id: "memory1",    label: "Memory",     angle: 60,  r: 50, color: "hsl(220,65%,70%)" },
-  { id: "score1",     label: "Score",      angle: 120, r: 54, color: "hsl(280,55%,70%)" },
-  { id: "reputation2",label: "Reputation", angle: 180, r: 50, color: "hsl(165,60%,55%)" },
-  { id: "memory2",    label: "Memory",     angle: 240, r: 52, color: "hsl(220,65%,70%)" },
-  { id: "score2",     label: "Score",      angle: 300, r: 50, color: "hsl(280,55%,70%)" },
+  { id: "reputation", label: "Reputation", angle: 0,   r: 52, color: "hsl(180,60%,55%)" },
+  { id: "memory1",    label: "Memory",     angle: 60,  r: 50, color: "hsl(38,92%,60%)" },
+  { id: "score1",     label: "Score",      angle: 120, r: 54, color: "hsl(195,80%,55%)" },
+  { id: "reputation2",label: "Reputation", angle: 180, r: 50, color: "hsl(180,60%,55%)" },
+  { id: "memory2",    label: "Memory",     angle: 240, r: 52, color: "hsl(38,92%,60%)" },
+  { id: "score2",     label: "Score",      angle: 300, r: 50, color: "hsl(195,80%,55%)" },
 ];
 
 function AgenticIDNodeMap() {
@@ -140,7 +140,7 @@ function AgenticIDNodeMap() {
   });
 
   return (
-    <div className="w-full h-full bg-[hsl(165,20%,8%)] relative overflow-hidden">
+    <div className="w-full h-full bg-[hsl(222,47%,6%)] relative overflow-hidden">
       <svg
         viewBox="0 0 100 100"
         className="w-full h-full"
@@ -148,7 +148,7 @@ function AgenticIDNodeMap() {
       >
         <defs>
           <radialGradient id="agid-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="hsl(165,60%,55%)" stopOpacity="0.18" />
+            <stop offset="0%" stopColor="hsl(180,60%,50%)" stopOpacity="0.18" />
             <stop offset="100%" stopColor="transparent" stopOpacity="0" />
           </radialGradient>
         </defs>
@@ -214,12 +214,12 @@ function AgenticIDNodeMap() {
         })}
 
         {/* Centre node */}
-        <circle cx="50" cy="50" r="11" fill="hsl(165,50%,12%)" stroke="hsl(165,60%,55%)" strokeWidth="0.8" strokeOpacity="0.9" />
-        <circle cx="50" cy="50" r="9" fill="hsl(165,50%,18%)" fillOpacity="0.6">
+        <circle cx="50" cy="50" r="11" fill="hsl(180,50%,10%)" stroke="hsl(180,60%,55%)" strokeWidth="0.8" strokeOpacity="0.9" />
+        <circle cx="50" cy="50" r="9" fill="hsl(180,50%,18%)" fillOpacity="0.6">
           <animate attributeName="r" values="9;10.5;9" dur="3s" repeatCount="indefinite" />
           <animate attributeName="fillOpacity" values="0.6;0.9;0.6" dur="3s" repeatCount="indefinite" />
         </circle>
-        <text x="50" y="48.5" textAnchor="middle" dominantBaseline="middle" fontSize="3.2" fill="hsl(165,70%,80%)" fontWeight="bold" style={{ fontFamily: "monospace" }}>agent</text>
+        <text x="50" y="48.5" textAnchor="middle" dominantBaseline="middle" fontSize="3.2" fill="hsl(180,70%,80%)" fontWeight="bold" style={{ fontFamily: "monospace" }}>agent</text>
         <text x="50" y="52.5" textAnchor="middle" dominantBaseline="middle" fontSize="2.6" fill="hsl(165,50%,65%)" style={{ fontFamily: "monospace" }}>.kred</text>
       </svg>
       <div className="absolute inset-0 bg-gradient-to-t from-[hsl(165,20%,8%)/85%] via-transparent to-transparent pointer-events-none" />
