@@ -140,13 +140,13 @@ function ScoreAnimation() {
 
 // --- OneHub.Kred NFT Carousel ---
 const nftItems = [
-  { id: 1, bg: "hsl(222,47%,12%)", accent: "hsl(180,60%,50%)", title: "Aether Pass #042", sub: "Limited Edition · 1 of 100", action: "CLAIM", bright: true },
-  { id: 2, bg: "hsl(222,47%,12%)", accent: "hsl(195,80%,45%)", title: "Neo Cred Badge", sub: "Community Reward", action: "View", bright: false },
-  { id: 3, bg: "hsl(222,47%,12%)", accent: "hsl(38,92%,55%)", title: "Empire Token #7", sub: "Floor: 0.08 ETH", action: "BUY", bright: true },
-  { id: 4, bg: "hsl(222,47%,12%)", accent: "hsl(180,60%,50%)", title: "Guild Sigil", sub: "Member-only drop", action: "View", bright: false },
-  { id: 5, bg: "hsl(222,47%,12%)", accent: "hsl(330,70%,65%)", title: "Score Crystal #19", sub: "Trust Score · Tier 3", action: "CLAIM", bright: true },
-  { id: 6, bg: "hsl(222,47%,12%)", accent: "hsl(195,80%,45%)", title: "Matrix Node Key", sub: "Unlocks premium feed", action: "BUY", bright: true },
-  { id: 7, bg: "hsl(222,47%,12%)", accent: "hsl(38,92%,55%)", title: "Heritage Badge", sub: "OG Collector · Series 1", action: "View", bright: false },
+  { id: 1, bg: "hsl(222,47%,12%)", accent: "hsl(174,100%,55%)", title: "Aether Pass #042", sub: "Limited Edition · 1 of 100", action: "CLAIM", bright: true },
+  { id: 2, bg: "hsl(222,47%,12%)", accent: "hsl(199,100%,60%)", title: "Neo Cred Badge", sub: "Community Reward", action: "View", bright: false },
+  { id: 3, bg: "hsl(222,47%,12%)", accent: "hsl(38,100%,65%)", title: "Empire Token #7", sub: "Floor: 0.08 ETH", action: "BUY", bright: true },
+  { id: 4, bg: "hsl(222,47%,12%)", accent: "hsl(270,100%,75%)", title: "Guild Sigil", sub: "Member-only drop", action: "View", bright: false },
+  { id: 5, bg: "hsl(222,47%,12%)", accent: "hsl(330,100%,72%)", title: "Score Crystal #19", sub: "Trust Score · Tier 3", action: "CLAIM", bright: true },
+  { id: 6, bg: "hsl(222,47%,12%)", accent: "hsl(88,100%,60%)", title: "Matrix Node Key", sub: "Unlocks premium feed", action: "BUY", bright: true },
+  { id: 7, bg: "hsl(222,47%,12%)", accent: "hsl(38,100%,65%)", title: "Heritage Badge", sub: "OG Collector · Series 1", action: "View", bright: false },
 ];
 
 // Geometric SVG patterns per card (pseudo-unique art)
