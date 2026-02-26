@@ -430,222 +430,106 @@ function DomainsScroll() {
   );
 }
 
-// --- HotGarage.Kred Vector Truck ---
+// --- HotGarage.Kred Level Progression ---
+const garagelevels = [
+  { num: 1, title: "Apprentice", subtitle: "Start your Garage", desc: "Collect rides & earn 10 XP per car" },
+  { num: 2, title: "Grease Monkey", subtitle: "Unlock the Chop Shop", desc: "Send 5 Custom Rides to friends" },
+  { num: 3, title: "Wrench Turner", subtitle: "Advanced Upgrades", desc: "Send 10 Custom Rides to friends" },
+  { num: 4, title: "Master Mechanic", subtitle: "List Custom Rides", desc: "Collect 20 Custom Rides from friends" },
+  { num: 5, title: "Garage Legend", subtitle: "Premium Listings", desc: "Sell 100 Custom Rides to others" },
+];
+
 function HotGarageVehicle() {
+  const [activeLevel, setActiveLevel] = useState(3);
+  const [animating, setAnimating] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimating(true);
+      setTimeout(() => {
+        setActiveLevel(prev => (prev % 5) + 1);
+        setAnimating(false);
+      }, 300);
+    }, 2800);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="w-full h-full bg-[hsl(222,47%,6%)] overflow-hidden relative">
-      <svg viewBox="0 0 320 180" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="fog" cx="50%" cy="100%" r="60%">
-            <stop offset="0%" stopColor="hsl(195,80%,45%)" stopOpacity="0.12" />
-            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
-          </radialGradient>
-          <radialGradient id="wheel-glow-r" cx="50%" cy="50%" r="50%">
-            <stop offset="60%" stopColor="transparent" stopOpacity="0" />
-            <stop offset="85%" stopColor="hsl(174,100%,55%)" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="hsl(174,100%,55%)" stopOpacity="0" />
-          </radialGradient>
-          <radialGradient id="wheel-glow-f" cx="50%" cy="50%" r="50%">
-            <stop offset="60%" stopColor="transparent" stopOpacity="0" />
-            <stop offset="85%" stopColor="hsl(174,100%,55%)" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="hsl(174,100%,55%)" stopOpacity="0" />
-          </radialGradient>
-          <filter id="neon-blur">
-            <feGaussianBlur stdDeviation="2" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="soft-glow">
-            <feGaussianBlur stdDeviation="3" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-
-        {/* === CITY BACKGROUND === */}
-        {/* Sky */}
-        <rect width="320" height="180" fill="hsl(222,55%,7%)" />
-
-        {/* City buildings — distant */}
-        {[
-          [10,  90, 18, 90], [30,  70, 14, 110], [46,  80, 20, 100],
-          [68,  55, 16, 125], [86,  75, 22, 105], [110, 60, 18, 120],
-          [130, 45, 14, 135], [146, 65, 20, 115], [168, 50, 16, 130],
-          [186, 70, 24, 110], [212, 55, 18, 125], [232, 40, 14, 140],
-          [248, 65, 20, 115], [270, 75, 16, 105], [288, 50, 22, 130],
-        ].map(([x, y, w, h], i) => (
-          <rect key={i} x={x} y={y} width={w} height={h}
-            fill={`hsl(222,${30 + (i % 3) * 5}%,${10 + (i % 4) * 2}%)`} />
+    <div className="w-full h-full bg-[hsl(18,30%,5%)] overflow-hidden relative flex flex-col px-2.5 py-2 gap-1">
+      {/* Header stats */}
+      <div className="flex items-center gap-2 mb-0.5">
+        {[{ label: "Gifted", val: "26" }, { label: "Sold", val: "178" }, { label: "Built", val: "4" }].map(s => (
+          <div key={s.label} className="flex items-center gap-1">
+            <span style={{ color: "hsl(25,60%,55%)", fontSize: 8 }}>{s.label}</span>
+            <span style={{ color: "hsl(25,100%,70%)", fontSize: 9, fontWeight: 700 }}>{s.val}</span>
+          </div>
         ))}
+        <div className="ml-auto">
+          <span style={{ color: "hsl(25,100%,55%)", fontSize: 7, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>Level Up Your Garage</span>
+        </div>
+      </div>
+      <div style={{ height: 1, background: "linear-gradient(90deg, hsl(25,100%,45%) 0%, transparent 100%)", opacity: 0.4, marginBottom: 2 }} />
 
-        {/* Neon signs on buildings */}
-        {[
-          [22, 82, 10, 3, "hsl(330,100%,65%)"],
-          [70, 60, 8, 2.5, "hsl(270,100%,70%)"],
-          [132, 50, 10, 3, "hsl(38,100%,65%)"],
-          [252, 70, 8, 2.5, "hsl(174,100%,55%)"],
-          [290, 55, 9, 3, "hsl(199,100%,60%)"],
-        ].map(([x, y, w, h, color], i) => (
-          <g key={i} filter="url(#soft-glow)">
-            <rect x={x} y={y} width={w} height={h} rx="0.5" fill={color as string} fillOpacity="0.9" />
-          </g>
-        ))}
-
-        {/* Ground / wet street */}
-        <rect x="0" y="148" width="320" height="32" fill="hsl(220,40%,9%)" />
-        {/* Street reflection glow */}
-        <ellipse cx="160" cy="158" rx="120" ry="10" fill="hsl(174,100%,55%)" fillOpacity="0.06" />
-
-        {/* Fog on ground */}
-        <rect x="0" y="130" width="320" height="50" fill="url(#fog)" />
-
-        {/* === TRUCK BODY === */}
-        {/* Shadow on ground */}
-        <ellipse cx="160" cy="154" rx="90" ry="7" fill="hsl(222,47%,4%)" fillOpacity="0.8" />
-
-        {/* Truck bed (rear) */}
-        <rect x="58" y="95" width="52" height="38" rx="2" fill="hsl(220,15%,25%)" />
-        <rect x="60" y="97" width="48" height="10" rx="1" fill="hsl(220,15%,20%)" />
-
-        {/* Cab body — main white/grey shape */}
-        <path d="M108 133 L108 88 Q110 80 120 78 L175 74 Q188 73 198 80 L218 95 L224 100 L224 133 Z"
-          fill="hsl(220,10%,72%)" />
-
-        {/* Cab roof */}
-        <path d="M118 88 Q120 80 128 78 L175 74 Q185 73 195 79 L210 88 Z"
-          fill="hsl(220,10%,80%)" />
-
-        {/* Light bar on roof */}
-        <rect x="148" y="71" width="46" height="5" rx="2.5" fill="hsl(220,15%,30%)" />
-        {/* Light bar LEDs */}
-        {Array.from({ length: 10 }).map((_, i) => (
-          <rect key={i} x={150 + i * 4.2} y={72.5} width="2.5" height="2" rx="0.5"
-            fill="hsl(60,100%,95%)" fillOpacity="0.9" />
-        ))}
-        <rect x="148" y="71" width="46" height="5" rx="2.5"
-          fill="none" stroke="hsl(60,100%,90%)" strokeWidth="0.3" strokeOpacity="0.5"
-          filter="url(#soft-glow)" />
-
-        {/* Windshield */}
-        <path d="M172 77 L196 80 L213 94 L188 93 Z"
-          fill="hsl(210,50%,35%)" fillOpacity="0.7"
-          stroke="hsl(220,10%,50%)" strokeWidth="1" />
-
-        {/* Rear window */}
-        <path d="M128 79 L170 75 L170 90 L128 90 Z"
-          fill="hsl(210,50%,28%)" fillOpacity="0.7"
-          stroke="hsl(220,10%,50%)" strokeWidth="1" />
-
-        {/* Door panel line */}
-        <line x1="152" y1="78" x2="152" y2="132" stroke="hsl(220,10%,55%)" strokeWidth="0.8" strokeOpacity="0.6" />
-
-        {/* Door handle (front) */}
-        <rect x="178" y="106" width="12" height="3" rx="1.5" fill="hsl(220,10%,55%)" />
-        {/* Door handle (rear) */}
-        <rect x="133" y="106" width="12" height="3" rx="1.5" fill="hsl(220,10%,55%)" />
-
-        {/* Front bull bar */}
-        <rect x="215" y="95" width="8" height="32" rx="2" fill="hsl(220,15%,22%)" />
-        <line x1="216" y1="100" x2="222" y2="100" stroke="hsl(220,15%,35%)" strokeWidth="1.5" />
-        <line x1="216" y1="108" x2="222" y2="108" stroke="hsl(220,15%,35%)" strokeWidth="1.5" />
-        <line x1="216" y1="116" x2="222" y2="116" stroke="hsl(220,15%,35%)" strokeWidth="1.5" />
-
-        {/* Front headlight — neon teal rectangle */}
-        <rect x="205" y="96" width="14" height="9" rx="1.5" fill="hsl(174,100%,55%)" fillOpacity="0.2"
-          stroke="hsl(174,100%,55%)" strokeWidth="1.2" filter="url(#neon-blur)" />
-        <rect x="207" y="97.5" width="10" height="6" rx="1"
-          fill="hsl(174,100%,55%)" fillOpacity="0.6" />
-
-        {/* Rear tail light */}
-        <rect x="58" y="102" width="5" height="10" rx="1" fill="hsl(0,90%,55%)" fillOpacity="0.8"
-          filter="url(#soft-glow)" />
-
-        {/* Neon underglow line */}
-        <line x1="80" y1="133" x2="222" y2="133"
-          stroke="hsl(174,100%,55%)" strokeWidth="1.5" strokeOpacity="0.7"
-          filter="url(#neon-blur)" />
-
-        {/* === REAR WHEEL === */}
-        <circle cx="100" cy="140" r="28" fill="url(#wheel-glow-r)" />
-        {/* Tyre */}
-        <circle cx="100" cy="140" r="24" fill="hsl(220,10%,12%)" />
-        <circle cx="100" cy="140" r="18" fill="hsl(220,10%,9%)" />
-        {/* Neon ring outer */}
-        <circle cx="100" cy="140" r="23" fill="none"
-          stroke="hsl(174,100%,55%)" strokeWidth="2.5" strokeOpacity="0.9"
-          filter="url(#neon-blur)" />
-        {/* Neon ring inner */}
-        <circle cx="100" cy="140" r="16" fill="none"
-          stroke="hsl(174,100%,55%)" strokeWidth="1.5" strokeOpacity="0.7"
-          filter="url(#neon-blur)" />
-        {/* Hub */}
-        <circle cx="100" cy="140" r="5" fill="hsl(220,15%,22%)" stroke="hsl(174,100%,55%)" strokeWidth="0.8" />
-        {/* Spokes */}
-        {[0,60,120,180,240,300].map(a => (
-          <line key={a}
-            x1={100 + 5.5 * Math.cos(a * Math.PI/180)}
-            y1={140 + 5.5 * Math.sin(a * Math.PI/180)}
-            x2={100 + 15 * Math.cos(a * Math.PI/180)}
-            y2={140 + 15 * Math.sin(a * Math.PI/180)}
-            stroke="hsl(220,15%,30%)" strokeWidth="1.2" />
-        ))}
-
-        {/* === FRONT WHEEL === */}
-        <circle cx="202" cy="140" r="28" fill="url(#wheel-glow-f)" />
-        <circle cx="202" cy="140" r="24" fill="hsl(220,10%,12%)" />
-        <circle cx="202" cy="140" r="18" fill="hsl(220,10%,9%)" />
-        <circle cx="202" cy="140" r="23" fill="none"
-          stroke="hsl(174,100%,55%)" strokeWidth="2.5" strokeOpacity="0.9"
-          filter="url(#neon-blur)" />
-        <circle cx="202" cy="140" r="16" fill="none"
-          stroke="hsl(174,100%,55%)" strokeWidth="1.5" strokeOpacity="0.7"
-          filter="url(#neon-blur)" />
-        <circle cx="202" cy="140" r="5" fill="hsl(220,15%,22%)" stroke="hsl(174,100%,55%)" strokeWidth="0.8" />
-        {[0,60,120,180,240,300].map(a => (
-          <line key={a}
-            x1={202 + 5.5 * Math.cos(a * Math.PI/180)}
-            y1={140 + 5.5 * Math.sin(a * Math.PI/180)}
-            x2={202 + 15 * Math.cos(a * Math.PI/180)}
-            y2={140 + 15 * Math.sin(a * Math.PI/180)}
-            stroke="hsl(220,15%,30%)" strokeWidth="1.2" />
-        ))}
-
-        {/* Wheel spin animation overlay — subtle rotation illusion */}
-        <g style={{ transformOrigin: "100px 140px" }}>
-          <animateTransform attributeName="transform" type="rotate"
-            values="0 100 140;360 100 140" dur="3s" repeatCount="indefinite" />
-          {[30,90,150,210,270,330].map(a => (
-            <line key={a}
-              x1={100 + 6 * Math.cos(a * Math.PI/180)}
-              y1={140 + 6 * Math.sin(a * Math.PI/180)}
-              x2={100 + 14 * Math.cos(a * Math.PI/180)}
-              y2={140 + 14 * Math.sin(a * Math.PI/180)}
-              stroke="hsl(174,100%,55%)" strokeWidth="0.4" strokeOpacity="0.4" />
-          ))}
-        </g>
-        <g style={{ transformOrigin: "202px 140px" }}>
-          <animateTransform attributeName="transform" type="rotate"
-            values="0 202 140;360 202 140" dur="3s" repeatCount="indefinite" />
-          {[30,90,150,210,270,330].map(a => (
-            <line key={a}
-              x1={202 + 6 * Math.cos(a * Math.PI/180)}
-              y1={140 + 6 * Math.sin(a * Math.PI/180)}
-              x2={202 + 14 * Math.cos(a * Math.PI/180)}
-              y2={140 + 14 * Math.sin(a * Math.PI/180)}
-              stroke="hsl(174,100%,55%)" strokeWidth="0.4" strokeOpacity="0.4" />
-          ))}
-        </g>
-
-        {/* Wheel neon pulse */}
-        {[100, 202].map(cx => (
-          <circle key={cx} cx={cx} cy="140" r="23" fill="none"
-            stroke="hsl(174,100%,55%)" strokeWidth="1" strokeOpacity="0.4"
-            filter="url(#neon-blur)">
-            <animate attributeName="strokeOpacity" values="0.4;0.9;0.4" dur="2s" repeatCount="indefinite" />
-          </circle>
-        ))}
-      </svg>
+      {garagelevels.map(level => {
+        const isActive = level.num === activeLevel;
+        const isUnlocked = level.num <= activeLevel;
+        return (
+          <motion.div
+            key={level.num}
+            animate={{
+              backgroundColor: isActive ? "hsl(18,40%,10%)" : "hsl(18,25%,7%)",
+              borderColor: isActive ? "hsl(25,100%,45%)" : "hsl(220,15%,18%)",
+              opacity: animating && isActive ? 0.5 : 1,
+            }}
+            transition={{ duration: 0.3 }}
+            style={{ border: "1px solid", borderRadius: 6, padding: "4px 6px", position: "relative", overflow: "hidden" }}
+            className="flex items-center gap-2"
+          >
+            {isActive && (
+              <div style={{ position: "absolute", inset: 0, borderRadius: 6, background: "linear-gradient(90deg, hsla(25,100%,45%,0.1) 0%, transparent 60%)", pointerEvents: "none" }} />
+            )}
+            <div style={{
+              width: 18, height: 18, borderRadius: "50%", flexShrink: 0,
+              background: isActive ? "hsl(25,100%,45%)" : "hsl(220,15%,18%)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 8, fontWeight: 800,
+              color: isActive ? "hsl(0,0%,100%)" : "hsl(220,15%,45%)",
+              border: `1px solid ${isActive ? "hsl(25,100%,55%)" : "hsl(220,15%,28%)"}`,
+            }}>
+              {level.num}
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", minWidth: 0, flex: 1 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                <span style={{ fontSize: 8, fontWeight: 800, letterSpacing: "0.05em", textTransform: "uppercase", color: isActive ? "hsl(25,100%,75%)" : "hsl(220,15%,55%)", whiteSpace: "nowrap" }}>
+                  {level.title}
+                </span>
+                {isActive && <span style={{ fontSize: 7, color: "hsl(25,80%,60%)", fontStyle: "italic" }}>← current</span>}
+              </div>
+              <span style={{ fontSize: 7, color: isActive ? "hsl(25,60%,60%)" : "hsl(220,15%,38%)" }}>
+                {level.desc}
+              </span>
+            </div>
+            <div style={{ flexShrink: 0 }}>
+              {isUnlocked ? (
+                <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
+                  <rect x="1" y="5" width="10" height="7" rx="1.5" fill={isActive ? "hsl(25,100%,55%)" : "hsl(220,15%,30%)"} />
+                  <path d="M3.5 5V3.5a2.5 2.5 0 0 1 5 0V5" stroke={isActive ? "hsl(25,100%,70%)" : "hsl(220,15%,40%)"} strokeWidth="1.5" fill="none" />
+                </svg>
+              ) : (
+                <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
+                  <rect x="1" y="5" width="10" height="7" rx="1.5" fill="hsl(220,15%,18%)" />
+                  <path d="M3.5 5V3.5a2.5 2.5 0 0 1 5 0V5" stroke="hsl(220,15%,35%)" strokeWidth="1.5" fill="none" />
+                  <circle cx="6" cy="8" r="1" fill="hsl(220,15%,35%)" />
+                </svg>
+              )}
+            </div>
+          </motion.div>
+        );
+      })}
     </div>
   );
 }
+
 
 
 const nodeMapNodes = [
