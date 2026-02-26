@@ -138,6 +138,135 @@ function ScoreAnimation() {
 }
 
 
+// --- Empire.Kred Stock Chart ---
+const empireStocks = [
+  { sym: "AGENT", price: 142.80, change: +2.4 },
+  { sym: "KRED",  price: 38.15,  change: +5.1 },
+  { sym: "GUILD", price: 91.60,  change: -1.2 },
+  { sym: "SCORE", price: 57.30,  change: +0.8 },
+  { sym: "VAULT", price: 210.45, change: -3.6 },
+  { sym: "NEXUS", price: 74.90,  change: +7.3 },
+  { sym: "FLUX",  price: 19.55,  change: -0.5 },
+  { sym: "EMPIRE",price: 305.20, change: +1.9 },
+];
+
+function EmpireChart() {
+  const [points, setPoints] = useState<number[]>(() => {
+    // seed a plausible-looking chart
+    const base = [60, 65, 58, 70, 68, 75, 72, 80, 78, 85, 82, 90, 87, 93, 89, 97, 95, 100];
+    return base;
+  });
+  const [prices, setPrices] = useState(empireStocks.map(s => s.price));
+  const tickerRef = useRef<HTMLDivElement>(null);
+
+  // Animate chart line — add new point every 1.2s
+  useEffect(() => {
+    const id = setInterval(() => {
+      setPoints(prev => {
+        const last = prev[prev.length - 1];
+        const delta = (Math.random() - 0.44) * 8; // slight upward bias
+        const next = Math.max(10, Math.min(98, last + delta));
+        return [...prev.slice(-30), next];
+      });
+      setPrices(prev => prev.map((p, i) => {
+        const pct = (Math.random() - 0.48) * 0.012;
+        return Math.max(1, +(p * (1 + pct)).toFixed(2));
+      }));
+    }, 1200);
+    return () => clearInterval(id);
+  }, []);
+
+  // Infinite ticker scroll
+  useEffect(() => {
+    const el = tickerRef.current;
+    if (!el) return;
+    let pos = 0;
+    let raf: number;
+    const speed = 0.6;
+    const half = el.scrollWidth / 2;
+    function step() {
+      pos += speed;
+      if (pos >= half) pos = 0;
+      el.style.transform = `translateX(-${pos}px)`;
+      raf = requestAnimationFrame(step);
+    }
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  // Build SVG polyline
+  const W = 200, H = 72;
+  const xs = points.map((_, i) => (i / (points.length - 1)) * W);
+  const ys = points.map(v => H - (v / 100) * H * 0.85 - H * 0.05);
+  const polyline = xs.map((x, i) => `${x},${ys[i]}`).join(" ");
+  const areaPath = `M${xs[0]},${ys[0]} ` + xs.map((x, i) => `L${x},${ys[i]}`).join(" ") + ` L${W},${H} L0,${H} Z`;
+  const lastY = ys[ys.length - 1];
+  const lastX = xs[xs.length - 1];
+  const isUp = points[points.length - 1] >= points[points.length - 2];
+  const lineColor = isUp ? "hsl(174,100%,55%)" : "hsl(0,90%,60%)";
+
+  return (
+    <div className="w-full h-full bg-[hsl(222,47%,6%)] flex flex-col overflow-hidden relative">
+      {/* Chart area */}
+      <div className="flex-1 relative px-1 pt-2">
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-full" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="area-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={lineColor} stopOpacity="0.25" />
+              <stop offset="100%" stopColor={lineColor} stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          {/* Grid lines */}
+          {[0.25, 0.5, 0.75].map(f => (
+            <line key={f} x1="0" y1={H * f} x2={W} y2={H * f}
+              stroke="hsl(222,30%,18%)" strokeWidth="0.5" />
+          ))}
+          {/* Area fill */}
+          <path d={areaPath} fill="url(#area-grad)" />
+          {/* Line */}
+          <polyline points={polyline} fill="none" stroke={lineColor} strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
+          {/* Live dot */}
+          <circle cx={lastX} cy={lastY} r="2.5" fill={lineColor}>
+            <animate attributeName="r" values="2.5;4;2.5" dur="1.2s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="1;0.5;1" dur="1.2s" repeatCount="indefinite" />
+          </circle>
+        </svg>
+        {/* Price label top-right */}
+        <div className="absolute top-2 right-2 text-right">
+          <div className="text-[13px] font-bold tabular-nums" style={{ color: lineColor, fontFamily: "monospace" }}>
+            {prices[7].toFixed(2)}
+          </div>
+          <div className="text-[8px] tracking-widest" style={{ color: lineColor, opacity: 0.7 }}>EMPIRE</div>
+        </div>
+      </div>
+
+      {/* Ticker strip */}
+      <div className="h-7 border-t border-white/[0.07] overflow-hidden flex items-center relative bg-[hsl(222,47%,4%)]">
+        <div className="absolute left-0 top-0 bottom-0 w-4 z-10" style={{ background: "linear-gradient(90deg,hsl(222,47%,4%),transparent)" }} />
+        <div className="absolute right-0 top-0 bottom-0 w-4 z-10" style={{ background: "linear-gradient(270deg,hsl(222,47%,4%),transparent)" }} />
+        <div ref={tickerRef} className="flex items-center gap-5 px-2 will-change-transform" style={{ width: "max-content" }}>
+          {[...empireStocks, ...empireStocks].map((s, i) => {
+            const p = prices[i % prices.length];
+            const up = s.change >= 0;
+            return (
+              <div key={i} className="flex items-center gap-1.5 shrink-0">
+                <span className="text-[9px] font-bold tracking-widest text-white/70">{s.sym}</span>
+                <span className="text-[9px] tabular-nums font-semibold" style={{ color: up ? "hsl(174,100%,55%)" : "hsl(0,85%,60%)", fontFamily: "monospace" }}>
+                  {p.toFixed(2)}
+                </span>
+                <span className="text-[8px]" style={{ color: up ? "hsl(174,100%,55%)" : "hsl(0,85%,60%)" }}>
+                  {up ? "▲" : "▼"}{Math.abs(s.change)}%
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 // --- OneHub.Kred NFT Carousel ---
 const nftItems = [
   { id: 1, bg: "hsl(222,47%,12%)", accent: "hsl(174,100%,55%)", title: "Aether Pass #042", sub: "Limited Edition · 1 of 100", action: "CLAIM", bright: true },
@@ -776,6 +905,8 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
                 <AgenticIDNodeMap />
               ) : card.title === "Score.Kred" ? (
                 <ScoreAnimation />
+              ) : card.title === "Empire.Kred" ? (
+                <EmpireChart />
               ) : card.title === "OneHub.Kred" ? (
                 <OneHubCarousel />
               ) : card.title === "Domains.Kred" ? (
