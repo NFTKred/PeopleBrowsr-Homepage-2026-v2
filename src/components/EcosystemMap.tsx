@@ -369,10 +369,7 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
                 src={card.image}
                 alt={card.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                style={{ filter: "grayscale(1) brightness(0.9) contrast(1.1)" }}
               />
-              {/* Duotone: shadows → deep navy, highlights → teal */}
-              <div className="absolute inset-0" style={{ background: "linear-gradient(160deg, hsl(165, 70%, 58%) 0%, hsl(220, 65%, 18%) 100%)", mixBlendMode: "color", opacity: 0.92 }} />
               <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-transparent to-transparent" />
             </div>
 
