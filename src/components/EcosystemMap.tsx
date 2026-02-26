@@ -96,26 +96,26 @@ function ScoreAnimation() {
       <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse at 50% 60%, ${agentColor}18 0%, transparent 70%)` }} />
 
       {/* Badge SVG with overlaid scores */}
-      <div className="relative" style={{ width: 110, height: 102 }}>
-        <svg viewBox="0 0 77.8 71.8" width="110" height="102" xmlns="http://www.w3.org/2000/svg">
-          {/* Blue lower-right */}
-          <path fill="#39C2E7" d="M12.7,53.1l1.7,1.3c3.9,2.9,10.4,7.9,20,15.2c1.6,1.2,3.4,2.2,4.5,2.2s2.9-1,4.5-2.2c9.6-7.3,16.1-12.3,20-15.2l3.1-2.4l0,0l0.4-0.3c2.6-2,4.7-3.8,6.4-5.5c1.7-1.3,2.9-3.1,3.7-5.1c0.2-0.4,0.3-0.8,0.4-1.3c0.3-1,0.4-2.1,0.4-3.2V13.5l-42,5.2L12.7,53.1z"/>
-          {/* Green upper-left */}
-          <path fill="#7CD646" d="M77.7,12.2C77.7,5.5,72.2,0,65.6,0H38.8H12.1C5.4,0,0,5.5,0,12.2v24.4c0,1.1,0.1,2.2,0.4,3.2c0.1,0.4,0.2,0.8,0.4,1.3c0.8,2,2.1,3.7,3.7,5.1c1.6,1.7,3.8,3.5,6.4,5.5l0.4,0.3l0,0l1.4,1.1l64.9-39.6L77.7,12.2L77.7,12.2z"/>
+      <div className="relative" style={{ width: 72, height: 66 }}>
+        <svg viewBox="0 0 77.8 71.8" width="72" height="66" xmlns="http://www.w3.org/2000/svg">
+          {/* Teal lower-right — matches primary */}
+          <path fill="hsl(180,60%,45%)" d="M12.7,53.1l1.7,1.3c3.9,2.9,10.4,7.9,20,15.2c1.6,1.2,3.4,2.2,4.5,2.2s2.9-1,4.5-2.2c9.6-7.3,16.1-12.3,20-15.2l3.1-2.4l0,0l0.4-0.3c2.6-2,4.7-3.8,6.4-5.5c1.7-1.3,2.9-3.1,3.7-5.1c0.2-0.4,0.3-0.8,0.4-1.3c0.3-1,0.4-2.1,0.4-3.2V13.5l-42,5.2L12.7,53.1z"/>
+          {/* Amber upper-left — matches secondary */}
+          <path fill="hsl(38,92%,55%)" d="M77.7,12.2C77.7,5.5,72.2,0,65.6,0H38.8H12.1C5.4,0,0,5.5,0,12.2v24.4c0,1.1,0.1,2.2,0.4,3.2c0.1,0.4,0.2,0.8,0.4,1.3c0.8,2,2.1,3.7,3.7,5.1c1.6,1.7,3.8,3.5,6.4,5.5l0.4,0.3l0,0l1.4,1.1l64.9-39.6L77.7,12.2L77.7,12.2z"/>
         </svg>
 
-        {/* Human score — green upper-left zone */}
+        {/* Human score — amber upper-left zone */}
         <div
-          className="absolute top-[8px] left-[10px] tabular-nums font-bold leading-none"
-          style={{ fontSize: 22, color: "#fff", textShadow: "0 1px 6px rgba(0,0,0,0.5)", fontFamily: "monospace" }}
+          className="absolute top-[5px] left-[6px] tabular-nums font-bold leading-none"
+          style={{ fontSize: 15, color: "hsl(222,47%,6%)", fontFamily: "monospace" }}
         >
           {humanScore}
         </div>
 
-        {/* Agent score — blue lower-right zone */}
+        {/* Agent score — teal lower-right zone */}
         <div
-          className="absolute bottom-[10px] right-[8px] tabular-nums font-bold leading-none"
-          style={{ fontSize: 17, color: "#fff", textShadow: "0 1px 6px rgba(0,0,0,0.5)", fontFamily: "monospace" }}
+          className="absolute bottom-[7px] right-[5px] tabular-nums font-bold leading-none"
+          style={{ fontSize: 12, color: "hsl(222,47%,6%)", fontFamily: "monospace" }}
         >
           {agentScore}
         </div>
