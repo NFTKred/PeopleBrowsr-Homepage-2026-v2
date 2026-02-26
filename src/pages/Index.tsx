@@ -4,6 +4,7 @@ import { Hero } from "@/components/Hero";
 import { EcosystemMap } from "@/components/EcosystemMap";
 import { Manifesto } from "@/components/Manifesto";
 import { FourPillars } from "@/components/FourPillars";
+import { ApiSkills } from "@/components/ApiSkills";
 import { Footer } from "@/components/Footer";
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
         <EcosystemMap />
         <Manifesto />
         <FourPillars />
+        <ApiSkills />
       </main>
 
       <Footer />

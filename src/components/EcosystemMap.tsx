@@ -241,6 +241,7 @@ interface ProductCard {
   description: string;
   primaryBtn: string;
   secondaryBtn: string;
+  apiId?: string;
 }
 
 const forAgentsCards: ProductCard[] = [
@@ -252,6 +253,7 @@ const forAgentsCards: ProductCard[] = [
     description: "A sovereign domain-token that acts as your agent's on-chain memory, resume, and credential store — all in one.",
     primaryBtn: "Get Your ID",
     secondaryBtn: "APIs and Skills",
+    apiId: "agenticid",
   },
   {
     tag: "Trust",
@@ -261,6 +263,7 @@ const forAgentsCards: ProductCard[] = [
     description: "Portable, composable reputation scores that follow your agent across every platform and interaction.",
     primaryBtn: "Check Score",
     secondaryBtn: "Learn More",
+    apiId: "scorekred",
   },
   {
     tag: "Network",
@@ -270,6 +273,7 @@ const forAgentsCards: ProductCard[] = [
     description: "AI-curated activity feeds and node networks that surface what matters to your agent in real time.",
     primaryBtn: "Join the Matrix",
     secondaryBtn: "Learn More",
+    apiId: "matrixkred",
   },
 ];
 
@@ -282,6 +286,7 @@ const forBothCards: ProductCard[] = [
     description: "An economic simulation open to everyone — humans and agents compete, build, and prove their capabilities in a shared on-chain world.",
     primaryBtn: "Play Now",
     secondaryBtn: "Learn More",
+    apiId: "empirekred",
   },
   {
     tag: "Build Collections",
@@ -291,6 +296,7 @@ const forBothCards: ProductCard[] = [
     description: "A virtual asset platform for communities to create, collect, and trade digital goods with agent-native tooling.",
     primaryBtn: "Explore Hub",
     secondaryBtn: "Learn More",
+    apiId: "onehub",
   },
   {
     tag: "Sell Domains",
@@ -300,6 +306,7 @@ const forBothCards: ProductCard[] = [
     description: "Claim and trade premium .Kred domain names — human-readable addresses that double as identity tokens for agents and their owners.",
     primaryBtn: "Find a Domain",
     secondaryBtn: "APIs and Skills",
+    apiId: "domains",
   },
   {
     tag: "Compete and Win",
@@ -309,6 +316,7 @@ const forBothCards: ProductCard[] = [
     description: "The racing game where you collect and create custom cars, then put them on the track to compete against others and win real rewards.",
     primaryBtn: "Enter the Garage",
     secondaryBtn: "APIs and Skills",
+    apiId: "hotgarage",
   },
   {
     tag: "Create and Give",
@@ -318,10 +326,21 @@ const forBothCards: ProductCard[] = [
     description: "A specialized gifting mini-app for brands — agents orchestrate the experience, leveling up with XP, badges, and currency while humans enjoy the delight of giving and receiving.",
     primaryBtn: "Open Gift Studio",
     secondaryBtn: "APIs and Skills",
+    apiId: "giftstudio",
   },
 ];
 
 function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: ProductCard[]; title: string; subtitle: string; delay?: number }) {
+  function scrollToApiSkills(apiId: string) {
+    const el = document.getElementById("apis-and-skills");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      // dispatch a custom event so the ApiSkills section can select the project
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent("select-api-project", { detail: apiId }));
+      }, 400);
+    }
+  }
   return (
     <motion.div
       className="mb-20"
@@ -382,7 +401,10 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
                 <button className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
                   {card.primaryBtn}
                 </button>
-                <button className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 text-muted-foreground hover:text-foreground hover:border-border transition-colors">
+                <button
+                  className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+                  onClick={() => card.apiId && scrollToApiSkills(card.apiId)}
+                >
                   APIs and Skills
                 </button>
               </div>
