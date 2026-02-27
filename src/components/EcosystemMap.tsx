@@ -455,7 +455,7 @@ function GiftStudioLevels() {
   }, []);
 
   return (
-    <div className="w-full h-full overflow-hidden relative flex flex-col px-2.5 py-2 gap-1"
+    <div className="w-full h-full overflow-hidden relative flex flex-col px-2.5 py-2 gap-1.5"
       style={{ background: "hsl(270,30%,5%)" }}>
       {/* Header */}
       <div className="flex items-center gap-2 mb-0.5">
@@ -484,7 +484,7 @@ function GiftStudioLevels() {
               opacity: animating && isActive ? 0.5 : 1,
             }}
             transition={{ duration: 0.3 }}
-            style={{ border: "1px solid", borderRadius: 6, padding: "4px 6px", position: "relative", overflow: "hidden" }}
+            style={{ border: "1px solid", borderRadius: 6, padding: "7px 8px", position: "relative", overflow: "hidden" }}
             className="flex items-center gap-2"
           >
             {isActive && (
@@ -504,12 +504,12 @@ function GiftStudioLevels() {
             </div>
             <div style={{ display: "flex", flexDirection: "column", minWidth: 0, flex: 1 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                <span style={{ fontSize: 8, fontWeight: 800, letterSpacing: "0.05em", textTransform: "uppercase", color: isActive ? c : "hsl(260,15%,45%)", whiteSpace: "nowrap" }}>
+                <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: "0.05em", textTransform: "uppercase", color: isActive ? c : "hsl(260,15%,45%)", whiteSpace: "nowrap" }}>
                   {level.title}
                 </span>
-                {isActive && <span style={{ fontSize: 7, color: c, fontStyle: "italic", opacity: 0.8 }}>← current</span>}
+                {isActive && <span style={{ fontSize: 8, color: c, fontStyle: "italic", opacity: 0.8 }}>← current</span>}
               </div>
-              <span style={{ fontSize: 7, color: isActive ? "hsl(270,50%,60%)" : "hsl(260,15%,35%)" }}>
+              <span style={{ fontSize: 8, color: isActive ? "hsl(270,50%,60%)" : "hsl(260,15%,35%)" }}>
                 {level.desc}
               </span>
             </div>
