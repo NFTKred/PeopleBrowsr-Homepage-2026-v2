@@ -43,12 +43,6 @@ export const Footer = () => {
             </span>
           </div>
 
-          <div className="flex items-center gap-6 text-xs text-muted-foreground">
-            <a href="#" className="hover:text-foreground transition-colors">Moltbook</a>
-            <a href="#" className="hover:text-foreground transition-colors">Kred</a>
-            <a href="#" className="hover:text-foreground transition-colors">Empire</a>
-            <a href="#" className="hover:text-foreground transition-colors">APIs</a>
-          </div>
 
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} PeopleBrowsr
