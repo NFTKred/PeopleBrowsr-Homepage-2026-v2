@@ -1181,6 +1181,7 @@ interface ProductCard {
   title: string;
   description: string;
   primaryBtn: string;
+  primaryBtnUrl?: string;
   secondaryBtn: string;
   apiId?: string;
 }
@@ -1275,6 +1276,7 @@ const forBothCards: ProductCard[] = [
     title: "NFT.NYC",
     description: "The world's premier NFT conference — where creators, collectors, and builders gather IRL to shape the future of digital ownership. No agents allowed.",
     primaryBtn: "Get Tickets",
+    primaryBtnUrl: "https://www.nft.nyc",
     secondaryBtn: "Learn More",
   },
 ];
@@ -1364,9 +1366,20 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
 
               {/* Buttons */}
               <div className="flex items-center gap-3 pt-1">
-                <button className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 bg-muted/40 text-foreground hover:bg-muted hover:border-border transition-colors">
-                  {card.primaryBtn}
-                </button>
+                {card.primaryBtnUrl ? (
+                  <a
+                    href={card.primaryBtnUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 text-center text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 bg-muted/40 text-foreground hover:bg-muted hover:border-border transition-colors"
+                  >
+                    {card.primaryBtn}
+                  </a>
+                ) : (
+                  <button className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 bg-muted/40 text-foreground hover:bg-muted hover:border-border transition-colors">
+                    {card.primaryBtn}
+                  </button>
+                )}
                 <button
                   className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-2 hover:underline shrink-0"
                   onClick={() => card.apiId && scrollToApiSkills(card.apiId)}
