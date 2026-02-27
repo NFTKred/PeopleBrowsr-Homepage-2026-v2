@@ -1472,11 +1472,11 @@ function PuzzleAccordion() {
                     <path
                       d={buildPath(p.col, p.row, p.edges)}
                       fill={p.fill}
-                      stroke={p.textColor}
+                      stroke="hsl(var(--background))"
                       strokeWidth="1.5"
                       strokeLinejoin="round"
                       strokeLinecap="round"
-                      strokeOpacity="0.55"
+                      strokeOpacity="1"
                       className="transition-all duration-300 cursor-pointer"
                       style={{ filter: `drop-shadow(0 2px 12px rgba(0,0,0,0.5)) drop-shadow(0 0 6px ${p.textColor}33)` }}
                       onMouseEnter={(e) => {
