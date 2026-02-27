@@ -439,6 +439,134 @@ const giftStudioLevels = [
   { num: 5, title: "Studio Master",    subtitle: "Unlock premium tools",       desc: "Create 50 custom branded gift experiences", xp: "1000 XP", color: "hsl(320,65%,65%)" },
 ];
 
+function NftNycAnimation() {
+  const frameRef = useRef(0);
+  const canvasRef = useRef<SVGSVGElement>(null);
+  const [tick, setTick] = useState(0);
+
+  useEffect(() => {
+    let raf: number;
+    let last = 0;
+    function loop(ts: number) {
+      if (ts - last > 50) {
+        last = ts;
+        frameRef.current += 1;
+        setTick(t => t + 1);
+      }
+      raf = requestAnimationFrame(loop);
+    }
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  const f = frameRef.current;
+  const W = 320, H = 144;
+
+  // Spotlight beams
+  const beams = [
+    { x: 60,  angle: -18 + Math.sin(f * 0.04) * 14 },
+    { x: 160, angle:   0 + Math.cos(f * 0.03) * 18 },
+    { x: 260, angle:  16 + Math.sin(f * 0.035 + 1) * 14 },
+  ];
+
+  // Crowd silhouettes (static x positions, slight bob)
+  const crowd = Array.from({ length: 28 }, (_, i) => ({
+    x: 6 + i * 11.2,
+    y: H - 24 + Math.sin(f * 0.07 + i * 0.9) * 2,
+    h: 18 + (i % 3) * 4,
+  }));
+
+  // Floating particles
+  const particles = Array.from({ length: 18 }, (_, i) => {
+    const speed = 0.3 + (i % 4) * 0.15;
+    const x = ((i * 53 + f * speed * 0.7) % W);
+    const y = H * 0.1 + ((i * 31 + f * speed) % (H * 0.65));
+    return { x, y, r: 1 + (i % 3) * 0.8, op: 0.3 + Math.sin(f * 0.1 + i) * 0.2 };
+  });
+
+  return (
+    <div className="w-full h-full overflow-hidden" style={{ background: "hsl(45,10%,4%)" }}>
+      <svg ref={canvasRef} viewBox={`0 0 ${W} ${H}`} width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          {beams.map((b, i) => (
+            <radialGradient key={i} id={`sg${i}`} cx="50%" cy="0%" r="100%">
+              <stop offset="0%" stopColor="hsl(45,100%,75%)" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="hsl(45,100%,75%)" stopOpacity="0" />
+            </radialGradient>
+          ))}
+          <linearGradient id="stageGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="hsl(45,80%,22%)" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="hsl(45,60%,10%)" stopOpacity="1" />
+          </linearGradient>
+        </defs>
+
+        {/* Sky */}
+        <rect width={W} height={H} fill="hsl(240,20%,5%)" />
+
+        {/* Spotlight beams */}
+        {beams.map((b, i) => {
+          const rad = (b.angle * Math.PI) / 180;
+          const len = H * 1.1;
+          const tx = b.x + Math.sin(rad) * len;
+          const ty = len;
+          return (
+            <polygon
+              key={i}
+              points={`${b.x - 3},0 ${b.x + 3},0 ${tx + 22},${ty} ${tx - 22},${ty}`}
+              fill={`url(#sg${i})`}
+            />
+          );
+        })}
+
+        {/* Stage floor */}
+        <rect x="0" y={H - 28} width={W} height={28} fill="url(#stageGrad)" />
+        {/* Stage edge glow */}
+        <rect x="0" y={H - 29} width={W} height="2" fill="hsl(45,100%,65%)" opacity="0.5" />
+
+        {/* Floating gold particles */}
+        {particles.map((p, i) => (
+          <circle key={i} cx={p.x} cy={p.y} r={p.r} fill="hsl(45,100%,70%)" opacity={p.op} />
+        ))}
+
+        {/* Crowd silhouettes */}
+        {crowd.map((c, i) => (
+          <rect
+            key={i}
+            x={c.x - 3}
+            y={c.y - c.h}
+            width={6}
+            height={c.h}
+            rx="2"
+            fill="hsl(240,15%,12%)"
+            stroke="hsl(45,60%,25%)"
+            strokeWidth="0.4"
+          />
+        ))}
+
+        {/* "NFT.NYC" text on stage */}
+        <text
+          x={W / 2}
+          y={H - 8}
+          textAnchor="middle"
+          fontSize="11"
+          fontWeight="bold"
+          fontFamily="monospace"
+          letterSpacing="3"
+          fill="hsl(45,100%,70%)"
+          opacity="0.9"
+        >
+          NFT.NYC
+        </text>
+
+        {/* Spotlight source dots */}
+        {beams.map((b, i) => (
+          <circle key={i} cx={b.x} cy={2} r={3} fill="hsl(45,100%,85%)" opacity="0.8" />
+        ))}
+      </svg>
+    </div>
+  );
+}
+
 function GiftStudioLevels() {
   const [activeLevel, setActiveLevel] = useState(2);
   const [animating, setAnimating] = useState(false);
@@ -1049,7 +1177,7 @@ function buildExpandedPath(edges: PieceData["edges"]): string {
 interface ProductCard {
   tag: string;
   tagColor: string;
-  image: string;
+  image?: string;
   title: string;
   description: string;
   primaryBtn: string;
@@ -1141,6 +1269,14 @@ const forBothCards: ProductCard[] = [
     secondaryBtn: "APIs and Skills",
     apiId: "giftstudio",
   },
+  {
+    tag: "Humans Only Event",
+    tagColor: "hsl(45, 100%, 70%)",
+    title: "NFT.NYC",
+    description: "The world's premier NFT conference — where creators, collectors, and builders gather IRL to shape the future of digital ownership. No agents allowed.",
+    primaryBtn: "Get Tickets",
+    secondaryBtn: "Learn More",
+  },
 ];
 
 function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: ProductCard[]; title: string; subtitle: string; delay?: number }) {
@@ -1194,13 +1330,15 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
                 <HotGarageVehicle />
               ) : card.title === "GiftStudio.Kred" ? (
                 <GiftStudioLevels />
-              ) : (
+              ) : card.title === "NFT.NYC" ? (
+                <NftNycAnimation />
+              ) : card.image ? (
                 <img
                   src={card.image}
                   alt={card.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-              )}
+              ) : null}
               <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-transparent to-transparent" />
             </div>
 
