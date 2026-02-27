@@ -535,102 +535,299 @@ function GiftStudioLevels() {
   );
 }
 
-// --- HotGarage.Kred Level Progression ---
-const garagelevels = [
-  { num: 1, title: "Apprentice", subtitle: "Start your Garage", desc: "Collect rides & earn 10 XP per car" },
-  { num: 2, title: "Grease Monkey", subtitle: "Unlock the Chop Shop", desc: "Send 5 Custom Rides to friends" },
-  { num: 3, title: "Wrench Turner", subtitle: "Advanced Upgrades", desc: "Send 10 Custom Rides to friends" },
-  { num: 4, title: "Master Mechanic", subtitle: "List Custom Rides", desc: "Collect 20 Custom Rides from friends" },
-  { num: 5, title: "Garage Legend", subtitle: "Premium Listings", desc: "Sell 100 Custom Rides to others" },
-];
-
+// --- HotGarage.Kred Retro Racing Game ---
 function HotGarageVehicle() {
-  const [activeLevel, setActiveLevel] = useState(3);
-  const [animating, setAnimating] = useState(false);
+  const frameRef = useRef(0);
+  const rafRef = useRef<number>(0);
+  const [tick, setTick] = useState(0);
+
+  // Road segment offsets for perspective scrolling
+  const segmentCount = 12;
+  const offsetRef = useRef(0);
+  const [segments, setSegments] = useState(() =>
+    Array.from({ length: segmentCount }, (_, i) => ({ id: i, curve: (Math.random() - 0.5) * 0.18 }))
+  );
+  const curveRef = useRef(0);
+  const steerRef = useRef(0);
+  const speedRef = useRef(0.7);
+
+  // Opponent cars: {lane, z, color}
+  const opponentsRef = useRef([
+    { lane: -0.35, z: 0.55, color: "hsl(200,90%,55%)" },
+    { lane: 0.28,  z: 0.32, color: "hsl(0,85%,55%)" },
+    { lane: -0.1,  z: 0.18, color: "hsl(48,100%,55%)" },
+  ]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimating(true);
-      setTimeout(() => {
-        setActiveLevel(prev => (prev % 5) + 1);
-        setAnimating(false);
-      }, 300);
-    }, 2800);
-    return () => clearInterval(interval);
+    let last = performance.now();
+    function loop(now: number) {
+      const dt = Math.min((now - last) / 16, 3);
+      last = now;
+      frameRef.current += dt;
+      offsetRef.current = (offsetRef.current + speedRef.current * dt) % segmentCount;
+
+      // Gentle road curve oscillation
+      curveRef.current = Math.sin(frameRef.current * 0.018) * 0.15;
+      steerRef.current = Math.sin(frameRef.current * 0.012) * 12;
+
+      // Move opponents closer, reset when passed
+      opponentsRef.current = opponentsRef.current.map(o => {
+        let nz = o.z - 0.007 * dt;
+        if (nz < 0.04) nz = 0.5 + Math.random() * 0.4;
+        return { ...o, z: nz };
+      });
+
+      setTick(t => t + 1);
+      rafRef.current = requestAnimationFrame(loop);
+    }
+    rafRef.current = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
-  return (
-    <div className="w-full h-full bg-[hsl(18,30%,5%)] overflow-hidden relative flex flex-col px-2.5 py-2 gap-1">
-      {/* Header stats */}
-      <div className="flex items-center gap-2 mb-0.5">
-        {[{ label: "Gifted", val: "26" }, { label: "Sold", val: "178" }, { label: "Built", val: "4" }].map(s => (
-          <div key={s.label} className="flex items-center gap-1">
-            <span style={{ color: "hsl(25,60%,55%)", fontSize: 8 }}>{s.label}</span>
-            <span style={{ color: "hsl(25,100%,70%)", fontSize: 9, fontWeight: 700 }}>{s.val}</span>
-          </div>
-        ))}
-        <div className="ml-auto">
-          <span style={{ color: "hsl(25,100%,55%)", fontSize: 7, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>Level Up Your Garage</span>
-        </div>
-      </div>
-      <div style={{ height: 1, background: "linear-gradient(90deg, hsl(25,100%,45%) 0%, transparent 100%)", opacity: 0.4, marginBottom: 2 }} />
+  const W = 320, H = 180;
+  const horizon = 72;
+  const roadW = 130; // half-width at horizon
+  const roadWBot = 320; // half-width at bottom
 
-      {garagelevels.map(level => {
-        const isActive = level.num === activeLevel;
-        const isUnlocked = level.num <= activeLevel;
-        return (
-          <motion.div
-            key={level.num}
-            animate={{
-              backgroundColor: isActive ? "hsl(18,40%,10%)" : "hsl(18,25%,7%)",
-              borderColor: isActive ? "hsl(25,100%,45%)" : "hsl(220,15%,18%)",
-              opacity: animating && isActive ? 0.5 : 1,
-            }}
-            transition={{ duration: 0.3 }}
-            style={{ border: "1px solid", borderRadius: 6, padding: "4px 6px", position: "relative", overflow: "hidden" }}
-            className="flex items-center gap-2"
-          >
-            {isActive && (
-              <div style={{ position: "absolute", inset: 0, borderRadius: 6, background: "linear-gradient(90deg, hsla(25,100%,45%,0.1) 0%, transparent 60%)", pointerEvents: "none" }} />
-            )}
-            <div style={{
-              width: 18, height: 18, borderRadius: "50%", flexShrink: 0,
-              background: isActive ? "hsl(25,100%,45%)" : "hsl(220,15%,18%)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 8, fontWeight: 800,
-              color: isActive ? "hsl(0,0%,100%)" : "hsl(220,15%,45%)",
-              border: `1px solid ${isActive ? "hsl(25,100%,55%)" : "hsl(220,15%,28%)"}`,
-            }}>
-              {level.num}
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", minWidth: 0, flex: 1 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                <span style={{ fontSize: 8, fontWeight: 800, letterSpacing: "0.05em", textTransform: "uppercase", color: isActive ? "hsl(25,100%,75%)" : "hsl(220,15%,55%)", whiteSpace: "nowrap" }}>
-                  {level.title}
-                </span>
-                {isActive && <span style={{ fontSize: 7, color: "hsl(25,80%,60%)", fontStyle: "italic" }}>← current</span>}
-              </div>
-              <span style={{ fontSize: 7, color: isActive ? "hsl(25,60%,60%)" : "hsl(220,15%,38%)" }}>
-                {level.desc}
-              </span>
-            </div>
-            <div style={{ flexShrink: 0 }}>
-              {isUnlocked ? (
-                <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
-                  <rect x="1" y="5" width="10" height="7" rx="1.5" fill={isActive ? "hsl(25,100%,55%)" : "hsl(220,15%,30%)"} />
-                  <path d="M3.5 5V3.5a2.5 2.5 0 0 1 5 0V5" stroke={isActive ? "hsl(25,100%,70%)" : "hsl(220,15%,40%)"} strokeWidth="1.5" fill="none" />
-                </svg>
-              ) : (
-                <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
-                  <rect x="1" y="5" width="10" height="7" rx="1.5" fill="hsl(220,15%,18%)" />
-                  <path d="M3.5 5V3.5a2.5 2.5 0 0 1 5 0V5" stroke="hsl(220,15%,35%)" strokeWidth="1.5" fill="none" />
-                  <circle cx="6" cy="8" r="1" fill="hsl(220,15%,35%)" />
-                </svg>
-              )}
-            </div>
-          </motion.div>
-        );
-      })}
+  // Perspective road strips
+  const stripCount = 14;
+  const roadStrips: JSX.Element[] = [];
+  for (let i = 0; i < stripCount; i++) {
+    const t0 = i / stripCount;
+    const t1 = (i + 1) / stripCount;
+    const y0 = horizon + (H - horizon) * t0;
+    const y1 = horizon + (H - horizon) * t1;
+    const hw0 = roadW + (roadWBot - roadW) * t0;
+    const hw1 = roadW + (roadWBot - roadW) * t1;
+    const cx = W / 2;
+    // curve offset grows with perspective
+    const cOff0 = curveRef.current * (t0 * t0) * 80;
+    const cOff1 = curveRef.current * (t1 * t1) * 80;
+    const isAlt = Math.floor((i + Math.floor(offsetRef.current)) % 2) === 0;
+    roadStrips.push(
+      <polygon
+        key={i}
+        points={`${cx - hw0 + cOff0},${y0} ${cx + hw0 + cOff0},${y0} ${cx + hw1 + cOff1},${y1} ${cx - hw1 + cOff1},${y1}`}
+        fill={isAlt ? "hsl(20,15%,14%)" : "hsl(20,12%,10%)"}
+      />
+    );
+  }
+
+  // Road edge stripes (rumble strips)
+  const rumbleStrips: JSX.Element[] = [];
+  for (let i = 0; i < stripCount; i++) {
+    const t0 = i / stripCount;
+    const t1 = (i + 1) / stripCount;
+    const y0 = horizon + (H - horizon) * t0;
+    const y1 = horizon + (H - horizon) * t1;
+    const hw0 = roadW + (roadWBot - roadW) * t0;
+    const hw1 = roadW + (roadWBot - roadW) * t1;
+    const cx = W / 2;
+    const cOff0 = curveRef.current * (t0 * t0) * 80;
+    const cOff1 = curveRef.current * (t1 * t1) * 80;
+    const edgeW0 = hw0 * 0.065;
+    const edgeW1 = hw1 * 0.065;
+    const isAlt = Math.floor((i + Math.floor(offsetRef.current)) % 2) === 0;
+    const rumbleColor = isAlt ? "hsl(25,100%,45%)" : "hsl(0,0%,88%)";
+    // Left rumble
+    rumbleStrips.push(
+      <polygon key={`rl${i}`}
+        points={`${cx - hw0 + cOff0},${y0} ${cx - hw0 + edgeW0 + cOff0},${y0} ${cx - hw1 + edgeW1 + cOff1},${y1} ${cx - hw1 + cOff1},${y1}`}
+        fill={rumbleColor} opacity="0.85"
+      />,
+      <polygon key={`rr${i}`}
+        points={`${cx + hw0 - edgeW0 + cOff0},${y0} ${cx + hw0 + cOff0},${y0} ${cx + hw1 + cOff1},${y1} ${cx + hw1 - edgeW1 + cOff1},${y1}`}
+        fill={rumbleColor} opacity="0.85"
+      />
+    );
+  }
+
+  // Center dashes
+  const dashLines: JSX.Element[] = [];
+  for (let i = 0; i < stripCount; i++) {
+    const t0 = i / stripCount;
+    const t1 = (i + 0.5) / stripCount;
+    const y0 = horizon + (H - horizon) * t0;
+    const y1 = horizon + (H - horizon) * t1;
+    const cx = W / 2;
+    const cOff0 = curveRef.current * (t0 * t0) * 80;
+    const cOff1 = curveRef.current * (t1 * t1) * 80;
+    const w0 = 2.5 + t0 * 3;
+    const w1 = 2.5 + t1 * 3;
+    const dashOn = Math.floor((i + Math.floor(offsetRef.current)) % 2) === 0;
+    if (dashOn) {
+      dashLines.push(
+        <polygon key={`d${i}`}
+          points={`${cx - w0 + cOff0},${y0} ${cx + w0 + cOff0},${y0} ${cx + w1 + cOff1},${y1} ${cx - w1 + cOff1},${y1}`}
+          fill="hsl(38,80%,70%)" opacity="0.7"
+        />
+      );
+    }
+  }
+
+  // Opponent car renderer
+  function renderOpponent(lane: number, z: number, color: string, idx: number) {
+    const t = z; // 0=horizon, 1=bottom
+    const scale = 0.15 + t * 0.6;
+    const cx = W / 2 + lane * (roadW + (roadWBot - roadW) * t) + curveRef.current * t * t * 80;
+    const cy = horizon + (H - horizon) * t;
+    const cw = 28 * scale;
+    const ch = 18 * scale;
+    return (
+      <g key={idx} transform={`translate(${cx},${cy})`}>
+        {/* Body */}
+        <rect x={-cw / 2} y={-ch} width={cw} height={ch * 0.65} rx={2 * scale}
+          fill={color} />
+        {/* Cabin */}
+        <rect x={-cw * 0.28} y={-ch} width={cw * 0.56} height={ch * 0.45} rx={1.5 * scale}
+          fill="hsl(200,30%,15%)" opacity="0.9" />
+        {/* Headlights */}
+        <rect x={-cw * 0.42} y={-ch * 0.3} width={cw * 0.14} height={ch * 0.18} rx={1}
+          fill="hsl(50,100%,85%)" opacity="0.9" />
+        <rect x={cw * 0.28} y={-ch * 0.3} width={cw * 0.14} height={ch * 0.18} rx={1}
+          fill="hsl(50,100%,85%)" opacity="0.9" />
+        {/* Shadow */}
+        <ellipse cx="0" cy={ch * 0.05} rx={cw * 0.45} ry={ch * 0.12}
+          fill="hsl(0,0%,0%)" opacity="0.3" />
+      </g>
+    );
+  }
+
+  // Player car (fixed center bottom)
+  const pW = 52, pH = 36;
+  const px = W / 2 + steerRef.current;
+  const py = H - 8;
+
+  // Speed counter
+  const speedKmh = Math.round(180 + Math.sin(frameRef.current * 0.04) * 22);
+  const lapTime = `${Math.floor(frameRef.current / 360).toString().padStart(2, "0")}:${Math.floor((frameRef.current % 360) / 6).toString().padStart(2, "0")}`;
+
+  return (
+    <div className="w-full h-full overflow-hidden relative" style={{ background: "hsl(18,30%,4%)", imageRendering: "pixelated" }}>
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-full" style={{ imageRendering: "pixelated" }}>
+        <defs>
+          <linearGradient id="hg-sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="hsl(20,40%,6%)" />
+            <stop offset="100%" stopColor="hsl(18,35%,12%)" />
+          </linearGradient>
+          <linearGradient id="hg-sun" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="hsl(28,100%,62%)" />
+            <stop offset="100%" stopColor="hsl(18,100%,40%)" />
+          </linearGradient>
+          <filter id="hg-glow">
+            <feGaussianBlur stdDeviation="2" result="b" />
+            <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          <filter id="hg-sun-glow">
+            <feGaussianBlur stdDeviation="4" result="b" />
+            <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          <clipPath id="hg-clip"><rect width={W} height={H} /></clipPath>
+        </defs>
+        <g clipPath="url(#hg-clip)">
+
+        {/* Sky */}
+        <rect width={W} height={horizon} fill="url(#hg-sky)" />
+
+        {/* Setting sun */}
+        <ellipse cx={W / 2} cy={horizon - 2} rx="28" ry="14" fill="hsl(25,100%,35%)" opacity="0.35" filter="url(#hg-sun-glow)" />
+        <ellipse cx={W / 2} cy={horizon - 2} rx="16" ry="9" fill="url(#hg-sun)" filter="url(#hg-sun-glow)" />
+        <ellipse cx={W / 2} cy={horizon - 2} rx="10" ry="5.5" fill="hsl(38,100%,78%)" />
+
+        {/* Horizon glow */}
+        <rect x="0" y={horizon - 6} width={W} height="12"
+          fill="hsl(25,100%,40%)" opacity="0.18" />
+
+        {/* Mountains silhouette */}
+        {[
+          [0, horizon, 55, horizon - 22, 110, horizon],
+          [70, horizon, 130, horizon - 28, 200, horizon],
+          [155, horizon, 210, horizon - 18, 265, horizon],
+          [220, horizon, 275, horizon - 24, 320, horizon],
+        ].map(([x1, y1, x2, y2, x3, y3], i) => (
+          <polygon key={i}
+            points={`${x1},${y1} ${x2},${y2} ${x3},${y3}`}
+            fill="hsl(20,25%,8%)" opacity="0.9" />
+        ))}
+
+        {/* Ground (off-road) */}
+        <rect x="0" y={horizon} width={W} height={H - horizon} fill="hsl(20,18%,9%)" />
+
+        {/* Road */}
+        {roadStrips}
+        {rumbleStrips}
+        {dashLines}
+
+        {/* Opponents (sorted back to front) */}
+        {[...opponentsRef.current]
+          .sort((a, b) => a.z - b.z)
+          .map((o, i) => renderOpponent(o.lane, o.z, o.color, i))}
+
+        {/* Player car */}
+        <g transform={`translate(${px},${py})`} filter="url(#hg-glow)">
+          {/* Shadow */}
+          <ellipse cx="0" cy="0" rx="28" ry="7" fill="hsl(0,0%,0%)" opacity="0.5" />
+          {/* Body */}
+          <rect x={-pW / 2} y={-pH} width={pW} height={pH * 0.68} rx="4"
+            fill="hsl(22,90%,42%)" />
+          {/* Roof stripe */}
+          <rect x={-pW * 0.18} y={-pH * 0.95} width={pW * 0.36} height={pH * 0.45} rx="3"
+            fill="hsl(22,80%,28%)" />
+          {/* Hood */}
+          <rect x={-pW * 0.4} y={-pH * 0.28} width={pW * 0.8} height={pH * 0.28} rx="2"
+            fill="hsl(22,85%,35%)" />
+          {/* Orange stripe */}
+          <rect x={-pW / 2} y={-pH * 0.5} width={pW} height={pH * 0.08}
+            fill="hsl(35,100%,55%)" opacity="0.9" />
+          {/* Headlights */}
+          <rect x={-pW * 0.42} y={-pH * 0.26} width={pW * 0.16} height={pH * 0.14} rx="1.5"
+            fill="hsl(50,100%,90%)" opacity="0.95" />
+          <rect x={pW * 0.26} y={-pH * 0.26} width={pW * 0.16} height={pH * 0.14} rx="1.5"
+            fill="hsl(50,100%,90%)" opacity="0.95" />
+          {/* Headlight glow */}
+          <ellipse cx={-pW * 0.34} cy={-pH * 0.19} rx="5" ry="3"
+            fill="hsl(50,100%,85%)" opacity="0.4" />
+          <ellipse cx={pW * 0.34} cy={-pH * 0.19} rx="5" ry="3"
+            fill="hsl(50,100%,85%)" opacity="0.4" />
+          {/* Wheels */}
+          {[-pW * 0.4, pW * 0.27].map((wx, wi) => (
+            <g key={wi}>
+              <rect x={wx} y={-pH * 0.18} width={pW * 0.14} height={pH * 0.22} rx="2"
+                fill="hsl(0,0%,8%)" />
+              <rect x={wx + pW * 0.025} y={-pH * 0.14} width={pW * 0.09} height={pH * 0.15} rx="1"
+                fill="hsl(25,30%,35%)" />
+            </g>
+          ))}
+        </g>
+
+        {/* HUD overlay */}
+        {/* Speed gauge */}
+        <rect x="6" y={H - 28} width="52" height="22" rx="3" fill="hsl(0,0%,0%)" opacity="0.65" />
+        <text x="32" y={H - 14} textAnchor="middle" fontSize="11" fontWeight="800"
+          fontFamily="monospace" fill="hsl(25,100%,60%)">{speedKmh}</text>
+        <text x="32" y={H - 7} textAnchor="middle" fontSize="6"
+          fontFamily="monospace" fill="hsl(25,60%,50%)">KM/H</text>
+
+        {/* Lap timer */}
+        <rect x={W - 58} y={H - 28} width="52" height="22" rx="3" fill="hsl(0,0%,0%)" opacity="0.65" />
+        <text x={W - 32} y={H - 15} textAnchor="middle" fontSize="7"
+          fontFamily="monospace" fill="hsl(38,80%,65%)">LAP TIME</text>
+        <text x={W - 32} y={H - 7} textAnchor="middle" fontSize="9" fontWeight="700"
+          fontFamily="monospace" fill="hsl(25,100%,70%)">{lapTime}</text>
+
+        {/* Position indicator */}
+        <rect x={W / 2 - 18} y="5" width="36" height="15" rx="3" fill="hsl(0,0%,0%)" opacity="0.65" />
+        <text x={W / 2} y="15" textAnchor="middle" fontSize="8" fontWeight="800"
+          fontFamily="monospace" fill="hsl(38,100%,65%)">2ND</text>
+
+        {/* Scanlines CRT effect */}
+        {Array.from({ length: 22 }).map((_, i) => (
+          <rect key={i} x="0" y={i * 8.5} width={W} height="1"
+            fill="hsl(0,0%,0%)" opacity="0.1" />
+        ))}
+
+        </g>
+      </svg>
     </div>
   );
 }
