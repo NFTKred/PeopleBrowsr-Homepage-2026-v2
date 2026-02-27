@@ -1510,7 +1510,7 @@ function PuzzleAccordion() {
                         <div style={{ fontFamily: "var(--font-display)" }} className="flex flex-col items-center justify-center h-full text-center">
                           <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center mb-1.5" style={{ backgroundColor: p.iconBg }}><p.icon className="w-4 h-4 sm:w-[18px] sm:h-[18px]" style={{ color: p.textColor }} /></div>
                           <span className="text-[11px] sm:text-sm font-bold leading-tight mb-0.5" style={{ color: p.textColor }}>{p.title}</span>
-                          <p className="text-[8px] sm:text-[10px] font-medium leading-tight mb-0.5" style={{ color: p.textColor, opacity: 0.7 }}>{p.name}</p>
+                          
                           <p className="text-[8px] sm:text-[10px] leading-snug" style={{ color: "hsl(210, 30%, 75%)", fontFamily: "var(--font-body)" }}>{p.description}</p>
                         </div>
                       )}
@@ -1577,7 +1577,7 @@ function PuzzleAccordion() {
                                 <selected.icon className="w-6 h-6" style={{ color: selected.textColor }} />
                               </div>
                               <h3 className="text-2xl font-bold font-display" style={{ color: selected.textColor }}>{selected.title}</h3>
-                              <p className="text-sm font-medium mt-0.5" style={{ color: selected.textColor, opacity: 0.7 }}>{selected.name}</p>
+                              
                             </div>
                             <p className="text-sm mb-5 text-center" style={{ color: "hsl(210, 30%, 75%)" }}>{selected.description}</p>
                             <div className="grid grid-cols-3 gap-4 text-left px-2">
