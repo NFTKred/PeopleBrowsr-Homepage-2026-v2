@@ -1415,7 +1415,7 @@ function PuzzleAccordion() {
           >
             ↓
           </motion.span>
-          {open ? "Hide the ecosystem" : "Show the ecosystem"}
+          {open ? "Hide the Agentic API Ecosystem" : "Show the Agentic API Ecosystem"}
         </button>
       </div>
 
