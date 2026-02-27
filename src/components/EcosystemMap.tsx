@@ -1007,6 +1007,7 @@ interface PieceData {
   name: string;
   title: string;
   description: string;
+  apiStub?: string;
   icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
   fill: string;
   fillHover: string;
@@ -1020,28 +1021,28 @@ interface PieceData {
 
 const pieces: PieceData[] = [
   {
-    number: 1, name: "AgenticID.Kred", title: "Identity",
+    number: 1, name: "AgenticID.Kred", title: "Identity", apiStub: "/agenticid",
     description: "Your Web3 identity — domain token metadata with on-chain memory.",
     icon: Globe, fill: "hsla(165, 50%, 26%, 0.75)", fillHover: "hsla(165, 55%, 32%, 0.9)",
     textColor: "hsl(165, 70%, 82%)", iconBg: "hsla(165, 55%, 38%, 0.7)", iconBorder: "none",
     col: 0, row: 0, edges: { top: "flat", right: "tab", bottom: "tab", left: "flat" },
   },
   {
-    number: 2, name: "Link.Kred", title: "Profile Hub",
+    number: 2, name: "Link.Kred", title: "Profile Hub", apiStub: "/link",
     description: "Your profile hub — link-in-bio meets Web3.",
     icon: Link2, fill: "hsla(280, 40%, 30%, 0.75)", fillHover: "hsla(280, 45%, 36%, 0.9)",
     textColor: "hsl(280, 65%, 85%)", iconBg: "hsla(280, 45%, 42%, 0.7)", iconBorder: "none",
     col: 1, row: 0, edges: { top: "flat", right: "tab", bottom: "slot", left: "slot" },
   },
   {
-    number: 3, name: "Score.Kred", title: "Trust",
+    number: 3, name: "Score.Kred", title: "Trust", apiStub: "/score",
     description: "Reputation scores for agents and humans.",
     icon: Award, fill: "hsla(220, 45%, 28%, 0.75)", fillHover: "hsla(220, 50%, 34%, 0.9)",
     textColor: "hsl(220, 70%, 85%)", iconBg: "hsla(220, 50%, 40%, 0.7)", iconBorder: "none",
     col: 2, row: 0, edges: { top: "flat", right: "flat", bottom: "tab", left: "slot" },
   },
   {
-    number: 4, name: "AgenticEmpire.Kred", title: "Sim Game",
+    number: 4, name: "AgenticEmpire.Kred", title: "Sim Game", apiStub: "/empire",
     description: "Play and prove — agentic economic simulation.",
     icon: Crown, fill: "hsla(25, 55%, 28%, 0.75)", fillHover: "hsla(25, 60%, 34%, 0.9)",
     textColor: "hsl(25, 80%, 82%)", iconBg: "hsla(25, 60%, 40%, 0.7)", iconBorder: "none",
@@ -1055,28 +1056,28 @@ const pieces: PieceData[] = [
     col: 1, row: 1, edges: { top: "tab", right: "tab", bottom: "tab", left: "slot" },
   },
   {
-    number: 5, name: "Matrix.Kred", title: "Feeds",
+    number: 5, name: "Matrix.Kred", title: "Feeds", apiStub: "/matrix",
     description: "Node network — curated, AI-filtered activity streams.",
     icon: Zap, fill: "hsla(250, 40%, 28%, 0.75)", fillHover: "hsla(250, 45%, 34%, 0.9)",
     textColor: "hsl(250, 65%, 85%)", iconBg: "hsla(250, 45%, 40%, 0.7)", iconBorder: "none",
     col: 2, row: 1, edges: { top: "slot", right: "flat", bottom: "slot", left: "slot" },
   },
   {
-    number: 6, name: "OneHub.Kred", title: "Create & Collect",
+    number: 6, name: "OneHub.Kred", title: "Create & Collect", apiStub: "/onehub",
     description: "Virtual asset platform for communities.",
     icon: Settings, fill: "hsla(330, 45%, 26%, 0.75)", fillHover: "hsla(330, 50%, 32%, 0.9)",
     textColor: "hsl(330, 70%, 82%)", iconBg: "hsla(330, 50%, 38%, 0.7)", iconBorder: "none",
     col: 0, row: 2, edges: { top: "tab", right: "tab", bottom: "flat", left: "flat" },
   },
   {
-    number: 7, name: "AgenticGiving", title: "Gift Studio mini App",
+    number: 7, name: "AgenticGiving", title: "Gift Studio mini App", apiStub: "/giftstudio",
     description: "Specialized gifting experience for brands.",
     icon: Gift, fill: "hsla(270, 40%, 30%, 0.75)", fillHover: "hsla(270, 45%, 36%, 0.9)",
     textColor: "hsl(270, 65%, 85%)", iconBg: "hsla(270, 45%, 42%, 0.7)", iconBorder: "none",
     col: 1, row: 2, edges: { top: "slot", right: "tab", bottom: "flat", left: "slot" },
   },
   {
-    number: 8, name: "NFT.NYC", title: "HUMANS ONLY",
+    number: 8, name: "NFT.NYC", title: "HUMANS ONLY", apiStub: "/nft-nyc",
     description: "The gathering — live human event experience on stage.",
     icon: Mic, fill: "hsla(210, 50%, 26%, 0.75)", fillHover: "hsla(210, 55%, 32%, 0.9)",
     textColor: "hsl(210, 70%, 85%)", iconBg: "hsla(210, 55%, 38%, 0.7)", iconBorder: "none",
@@ -1509,8 +1510,8 @@ function PuzzleAccordion() {
                       ) : (
                         <div style={{ fontFamily: "var(--font-display)" }} className="flex flex-col items-center justify-center h-full text-center">
                           <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center mb-1.5" style={{ backgroundColor: p.iconBg }}><p.icon className="w-4 h-4 sm:w-[18px] sm:h-[18px]" style={{ color: p.textColor }} /></div>
-                          <span className="text-[11px] sm:text-sm font-bold leading-tight mb-0.5" style={{ color: p.textColor }}>{p.title}</span>
-                          
+                           <span className="text-[11px] sm:text-sm font-bold leading-tight mb-0.5" style={{ color: p.textColor }}>{p.title}</span>
+                           {p.apiStub && <span className="text-[7px] sm:text-[9px] font-mono mb-0.5" style={{ color: p.textColor, opacity: 0.6 }}>{p.apiStub}</span>}
                           <p className="text-[8px] sm:text-[10px] leading-snug" style={{ color: "hsl(210, 30%, 75%)", fontFamily: "var(--font-body)" }}>{p.description}</p>
                         </div>
                       )}
@@ -1577,7 +1578,7 @@ function PuzzleAccordion() {
                                 <selected.icon className="w-6 h-6" style={{ color: selected.textColor }} />
                               </div>
                               <h3 className="text-2xl font-bold font-display" style={{ color: selected.textColor }}>{selected.title}</h3>
-                              
+                              {selected.apiStub && <span className="text-xs font-mono mt-0.5" style={{ color: selected.textColor, opacity: 0.6 }}>{selected.apiStub}</span>}
                             </div>
                             <p className="text-sm mb-5 text-center" style={{ color: "hsl(210, 30%, 75%)" }}>{selected.description}</p>
                             <div className="grid grid-cols-3 gap-4 text-left px-2">
