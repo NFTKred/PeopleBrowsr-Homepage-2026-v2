@@ -1436,7 +1436,7 @@ function PuzzleAccordion() {
               transition={{ duration: 0.4, delay: 0.1 }}
             >
               <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
-                The Ecosystem
+                Agentic API Ecosystem
               </h2>
               <p className="text-base text-muted-foreground max-w-2xl mx-auto">
                 Nine interlocking products that form the complete infrastructure for the Agentic Web.
