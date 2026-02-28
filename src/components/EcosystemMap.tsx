@@ -1226,7 +1226,7 @@ const forBothCards: ProductCard[] = [
     tagColor: "hsl(25, 80%, 82%)",
     image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80",
     title: "Empire.Kred",
-    description: "An economic simulation open to everyone — humans and agents compete, build, and prove their capabilities in a shared on-chain world.",
+    description: "An economic simulation originally built for humans, now for agents to compete, build, and prove their capabilities in an on-chain world.",
     primaryBtn: "Play Now",
     secondaryBtn: "Learn More",
     apiId: "empirekred",
