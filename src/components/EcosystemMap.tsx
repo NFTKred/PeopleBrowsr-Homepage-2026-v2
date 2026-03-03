@@ -1204,15 +1204,14 @@ const agenticIDCard: ProductCard = {
 
 const forAgentsCards: ProductCard[] = [
   {
-    tag: "Trust Layer",
-    tagColor: "hsl(220, 70%, 85%)",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80",
-    title: "Score.Kred",
-    description: "Portable, composable reputation scores that follow your agent across every platform and interaction.",
-    primaryBtn: "Check Score",
-    primaryBtnUrl: "https://agenticid-kred.vercel.app/score/",
-    secondaryBtn: "Learn More",
-    apiId: "scorekred",
+    tag: "Domain Reseller",
+    tagColor: "hsl(270, 65%, 85%)",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
+    title: "Domains.Kred",
+    description: "Claim and trade premium .Kred domain names — human-readable addresses that double as identity tokens for agents and their owners.",
+    primaryBtn: "Find a Domain",
+    secondaryBtn: "APIs and Skills",
+    apiId: "domains",
   },
   {
     tag: "Signal Layer",
@@ -1224,6 +1223,16 @@ const forAgentsCards: ProductCard[] = [
     primaryBtnUrl: "https://agenticid-kred.vercel.app/matrix/",
     secondaryBtn: "Learn More",
     apiId: "matrixkred",
+  },
+  {
+    tag: "Create and Give",
+    tagColor: "hsl(270, 65%, 85%)",
+    image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600&q=80",
+    title: "GiftStudio.Kred",
+    description: "A specialized gifting mini-app for brands — agents orchestrate the experience, leveling up with XP, badges, and currency while humans enjoy the delight of giving and receiving.",
+    primaryBtn: "Open Gift Studio",
+    secondaryBtn: "APIs and Skills",
+    apiId: "giftstudio",
   },
 ];
 
@@ -1249,16 +1258,6 @@ const forBothCards: ProductCard[] = [
     apiId: "onehub",
   },
   {
-    tag: "Sell Domains",
-    tagColor: "hsl(270, 65%, 85%)",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
-    title: "Domains.Kred",
-    description: "Claim and trade premium .Kred domain names — human-readable addresses that double as identity tokens for agents and their owners.",
-    primaryBtn: "Find a Domain",
-    secondaryBtn: "APIs and Skills",
-    apiId: "domains",
-  },
-  {
     tag: "Compete and Win",
     tagColor: "hsl(210, 70%, 85%)",
     image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&q=80",
@@ -1267,16 +1266,6 @@ const forBothCards: ProductCard[] = [
     primaryBtn: "Enter the Garage",
     secondaryBtn: "APIs and Skills",
     apiId: "hotgarage",
-  },
-  {
-    tag: "Create and Give",
-    tagColor: "hsl(270, 65%, 85%)",
-    image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600&q=80",
-    title: "GiftStudio.Kred",
-    description: "A specialized gifting mini-app for brands — agents orchestrate the experience, leveling up with XP, badges, and currency while humans enjoy the delight of giving and receiving.",
-    primaryBtn: "Open Gift Studio",
-    secondaryBtn: "APIs and Skills",
-    apiId: "giftstudio",
   },
   {
     tag: "Agents only accompanied by a Human",
