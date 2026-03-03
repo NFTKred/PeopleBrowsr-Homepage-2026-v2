@@ -169,6 +169,79 @@ const projects: ProjectData[] = [
     ],
   },
   {
+    id: "matrixkred-nodes",
+    name: "Matrix.Kred Nodes",
+    tag: "Build Networks",
+    tagColor: "hsl(160, 60%, 78%)",
+    apis: [
+      {
+        name: "Create Node",
+        endpoint: "POST /v1/matrix/nodes",
+        description: "Provisions a new Matrix community node with configurable membership rules, governance model, and content policies. Returns a live node ready for members to join.",
+        response: `{ "node_id": "defi-dao.kred", "type": "open", "governance": "token-weighted", "members": 0, "status": "live" }`,
+      },
+      {
+        name: "Node Hierarchy",
+        endpoint: "GET /v1/matrix/nodes/{nodeId}/hierarchy",
+        description: "Returns the full 3-level social graph rooted at a node — members, sub-nodes, and their relationships. Designed for agents that need to map knowledge-sharing networks.",
+        response: `{ "root": "defi-dao.kred", "depth": 3, "nodes": 14, "members": 420, "edges": [{ "from": "defi-dao.kred", "to": "research.kred", "type": "child" }] }`,
+      },
+      {
+        name: "Member Permissions",
+        endpoint: "PUT /v1/matrix/nodes/{nodeId}/members/{memberId}",
+        description: "Sets or updates a member's role and permissions within a node. Supports role-based access control — contributors, moderators, governors — configurable per node.",
+        response: `{ "member": "alice.kred", "role": "moderator", "permissions": ["post", "moderate", "propose"], "effective_from": "now" }`,
+      },
+      {
+        name: "Knowledge Sharing Feed",
+        endpoint: "GET /v1/matrix/nodes/{nodeId}/knowledge",
+        description: "Returns curated knowledge artefacts shared across the node hierarchy — posts, proposals, research briefs — ranked by propagation depth and author trust score.",
+        response: `{ "items": [{ "id": "...", "propagated_from": "research.kred", "depth": 2, "author_score": 810, "content": "..." }] }`,
+      },
+    ],
+    agents: [
+      {
+        name: "Node Architect Agent",
+        description: "Given a community brief, designs and deploys a full 3-level node hierarchy — root, sub-nodes, and working groups — with appropriate governance and membership rules for each level.",
+        example: `"Build a DeFi research DAO with a core council, regional chapters, and open working groups for each protocol."`,
+      },
+      {
+        name: "Knowledge Router Agent",
+        description: "Monitors content across node hierarchies and routes high-signal knowledge artefacts to the nodes most likely to benefit from them. Reduces information silos across large networks.",
+        example: "Detected a research brief on restaking published in a sub-node and propagated it to 4 parent nodes. Engagement: 3x the original post.",
+      },
+      {
+        name: "Membership Growth Agent",
+        description: "Identifies potential members across the Kred ecosystem that match a node's focus, sends personalised invitations, and onboards them with contextual introductions.",
+        example: "Invited 80 verified DeFi researchers. 52 joined within 7 days with an average trust score of 790.",
+      },
+    ],
+    skills: [
+      {
+        name: "spawn_node_hierarchy",
+        description: "Creates a complete multi-level node structure from a single configuration object. Handles parent–child linking, role setup, and initial governance configuration in one call.",
+        example: `spawn_node_hierarchy({ root: "dao.kred", levels: 3, governance: "token-weighted" }) → { nodes_created: 7, members_invited: 0, live: true }`,
+      },
+      {
+        name: "propagate_knowledge",
+        description: "Takes a content item and propagates it up or down a node hierarchy based on relevance scoring. Agents use this to ensure important research reaches the right communities automatically.",
+        example: `propagate_knowledge("post_42", direction="up", threshold=0.8) → { propagated_to: ["parent.kred", "grandparent.kred"], reach: 340 }`,
+      },
+    ],
+    mcp: [
+      {
+        name: "inject-node-hierarchy",
+        description: "Injects the full node hierarchy — structure, member counts, governance state, recent activity — into context so the model can reason about network topology without separate lookups.",
+        example: "A governance agent injects the hierarchy before drafting a proposal to ensure it targets the correct node level and membership scope.",
+      },
+      {
+        name: "node-spawn-tool",
+        description: "Lets the model create sub-nodes mid-conversation as a native tool call. When a community decides to form a working group, the model can provision it inline without leaving the discussion.",
+        example: "Community discussion identifies a new research focus. Model calls node-spawn-tool to create a dedicated sub-node and invites the relevant members in the same response.",
+      },
+    ],
+  },
+  {
     id: "matrixkred",
     name: "Matrix.Kred",
     tag: "Feeds",
@@ -656,7 +729,7 @@ export const ApiSkills = () => {
             },
             {
               label: "Build",
-              ids: ["domains", "giftstudio", "onehub"],
+              ids: ["domains", "matrixkred-nodes", "giftstudio", "onehub"],
             },
             {
               label: "Interact",
