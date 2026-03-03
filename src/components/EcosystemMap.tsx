@@ -837,95 +837,124 @@ function HotGarageVehicle() {
 }
 
 // --- Matrix.Kred Node Creation Animation ---
-function NodeCreationAnimation() {
-  const [visibleCount, setVisibleCount] = useState(1);
-  const [pulseEdge, setPulseEdge] = useState<number | null>(null);
+// 3 levels: hub (L0) → 4 tier-1 nodes (L1) → 8 tier-2 leaf nodes (L2)
+type NCNode = { id: string; label: string; x: number; y: number; r: number; color: string; parentId: string };
 
-  const hubNodes = [
-    { id: "hub",     label: "Your Node",   x: 50, y: 50, r: 9, color: "hsl(250,80%,70%)", isHub: true },
-    { id: "n1",      label: "Follower",    x: 50, y: 18, r: 5.5, color: "hsl(174,100%,55%)" },
-    { id: "n2",      label: "Curator",     x: 76, y: 30, r: 5.5, color: "hsl(38,92%,60%)" },
-    { id: "n3",      label: "Publisher",   x: 82, y: 60, r: 5.5, color: "hsl(330,80%,65%)" },
-    { id: "n4",      label: "Subscriber",  x: 62, y: 80, r: 5.5, color: "hsl(174,100%,55%)" },
-    { id: "n5",      label: "Contributor", x: 32, y: 78, r: 5.5, color: "hsl(195,80%,60%)" },
-    { id: "n6",      label: "Moderator",   x: 18, y: 58, r: 5.5, color: "hsl(280,70%,70%)" },
-    { id: "n7",      label: "Analyst",     x: 20, y: 28, r: 5.5, color: "hsl(38,92%,60%)" },
-  ];
+const NC_HUB: NCNode = { id: "hub", label: "Your Node", x: 50, y: 50, r: 8, color: "hsl(250,80%,70%)", parentId: "" };
+
+const NC_NODES: NCNode[] = [
+  // L1 — ring at r≈26
+  { id: "l1a", label: "Curator",     x: 50,   y: 24,   r: 4.8, color: "hsl(174,100%,55%)", parentId: "hub" },
+  { id: "l1b", label: "Publisher",   x: 76,   y: 50,   r: 4.8, color: "hsl(38,92%,60%)",   parentId: "hub" },
+  { id: "l1c", label: "Analyst",     x: 50,   y: 76,   r: 4.8, color: "hsl(330,80%,65%)",  parentId: "hub" },
+  { id: "l1d", label: "Moderator",   x: 24,   y: 50,   r: 4.8, color: "hsl(280,70%,70%)",  parentId: "hub" },
+  // L2 — 2 leaves per L1 node
+  { id: "l2a1", label: "Reader",     x: 34,   y: 10,   r: 3.2, color: "hsl(174,80%,45%)",  parentId: "l1a" },
+  { id: "l2a2", label: "Sharer",     x: 66,   y: 10,   r: 3.2, color: "hsl(174,80%,45%)",  parentId: "l1a" },
+  { id: "l2b1", label: "Writer",     x: 90,   y: 34,   r: 3.2, color: "hsl(38,80%,50%)",   parentId: "l1b" },
+  { id: "l2b2", label: "Voter",      x: 90,   y: 66,   r: 3.2, color: "hsl(38,80%,50%)",   parentId: "l1b" },
+  { id: "l2c1", label: "Collector",  x: 66,   y: 90,   r: 3.2, color: "hsl(330,70%,55%)",  parentId: "l1c" },
+  { id: "l2c2", label: "Reviewer",   x: 34,   y: 90,   r: 3.2, color: "hsl(330,70%,55%)",  parentId: "l1c" },
+  { id: "l2d1", label: "Listener",   x: 10,   y: 66,   r: 3.2, color: "hsl(280,60%,60%)",  parentId: "l1d" },
+  { id: "l2d2", label: "Commenter",  x: 10,   y: 34,   r: 3.2, color: "hsl(280,60%,60%)",  parentId: "l1d" },
+];
+
+const ALL_NC = [NC_HUB, ...NC_NODES]; // index 0 = hub
+
+function NodeCreationAnimation() {
+  const [step, setStep] = useState(0);
+  const [newIdx, setNewIdx] = useState<number | null>(null);
+
+  const total = ALL_NC.length;
 
   useEffect(() => {
     const id = setInterval(() => {
-      setVisibleCount(prev => {
-        const next = prev < hubNodes.length ? prev + 1 : 1;
-        setPulseEdge(next - 1);
-        setTimeout(() => setPulseEdge(null), 700);
+      setStep(prev => {
+        const next = prev < total - 1 ? prev + 1 : 0;
+        setNewIdx(next);
+        setTimeout(() => setNewIdx(null), 600);
         return next;
       });
-    }, 900);
+    }, 700);
     return () => clearInterval(id);
   }, []);
 
-  const hub = hubNodes[0];
-  const peers = hubNodes.slice(1, visibleCount);
+  const visibleNodes = ALL_NC.slice(0, step + 1);
+  const visibleIds = new Set(visibleNodes.map(n => n.id));
 
   return (
     <div className="w-full h-full relative overflow-hidden" style={{ background: "hsl(240,30%,5%)" }}>
       <svg viewBox="0 0 100 100" className="w-full h-full" style={{ position: "absolute", inset: 0 }}>
         <defs>
-          <radialGradient id="node-hub-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="hsl(250,80%,60%)" stopOpacity="0.35" />
+          <radialGradient id="nc-hub-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="hsl(250,80%,60%)" stopOpacity="0.3" />
             <stop offset="100%" stopColor="transparent" stopOpacity="0" />
           </radialGradient>
-          <filter id="node-glow-f" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="1.2" result="blur" />
+          <filter id="nc-glow" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="1.0" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
         </defs>
 
-        {/* Ambient hub glow */}
-        <circle cx={hub.x} cy={hub.y} r="28" fill="url(#node-hub-glow)" />
+        <circle cx="50" cy="50" r="30" fill="url(#nc-hub-glow)" />
 
-        {/* Edges */}
-        {peers.map((n, i) => (
-          <line
-            key={n.id + "-edge"}
-            x1={hub.x} y1={hub.y} x2={n.x} y2={n.y}
-            stroke={n.color}
-            strokeWidth={pulseEdge === i + 1 ? "1.2" : "0.5"}
-            strokeOpacity={pulseEdge === i + 1 ? "1" : "0.45"}
-            style={{ transition: "stroke-width 0.3s, stroke-opacity 0.3s" }}
-          />
-        ))}
+        {/* Edges — only between visible nodes */}
+        {visibleNodes.map(n => {
+          if (!n.parentId || !visibleIds.has(n.parentId)) return null;
+          const parent = ALL_NC.find(p => p.id === n.parentId)!;
+          const isNew = newIdx !== null && ALL_NC[newIdx]?.id === n.id;
+          return (
+            <line
+              key={n.id + "-e"}
+              x1={parent.x} y1={parent.y} x2={n.x} y2={n.y}
+              stroke={n.color}
+              strokeWidth={isNew ? "1.0" : "0.4"}
+              strokeOpacity={isNew ? "1" : "0.4"}
+              style={{ transition: "stroke-width 0.4s, stroke-opacity 0.4s" }}
+            />
+          );
+        })}
 
-        {/* Peer nodes */}
-        {peers.map((n, i) => (
-          <g key={n.id} filter="url(#node-glow-f)">
-            <circle cx={n.x} cy={n.y} r={n.r} fill={n.color} fillOpacity="0.25" stroke={n.color} strokeWidth="0.8" strokeOpacity="0.9">
-              {pulseEdge === i + 1 && (
-                <animate attributeName="r" values={`${n.r};${n.r + 2};${n.r}`} dur="0.6s" />
+        {/* Nodes */}
+        {visibleNodes.map((n, i) => {
+          const isHub = n.id === "hub";
+          const isNew = newIdx !== null && ALL_NC[newIdx]?.id === n.id;
+          return (
+            <g key={n.id} filter="url(#nc-glow)">
+              <circle
+                cx={n.x} cy={n.y} r={n.r}
+                fill={isHub ? "hsl(250,60%,18%)" : n.color}
+                fillOpacity={isHub ? 1 : 0.22}
+                stroke={n.color}
+                strokeWidth={isHub ? "1.2" : "0.7"}
+                strokeOpacity="0.95"
+              >
+                {isNew && <animate attributeName="r" values={`${n.r * 0.4};${n.r * 1.3};${n.r}`} dur="0.5s" />}
+                {isHub && <animate attributeName="r" values="8;9;8" dur="3s" repeatCount="indefinite" />}
+              </circle>
+              {(isHub || n.r >= 4.5) && (
+                <text
+                  x={n.x} y={n.y + (isHub ? -1 : 0.3)}
+                  textAnchor="middle" dominantBaseline="middle"
+                  fontSize={isHub ? "2.8" : n.r >= 4.5 ? "2.4" : "1.9"}
+                  fontWeight={isHub ? "bold" : "normal"}
+                  fill={isHub ? "hsl(250,90%,88%)" : n.color}
+                  style={{ fontFamily: "monospace" }}
+                >
+                  {isHub ? "Your" : n.label}
+                </text>
               )}
-            </circle>
-            <text x={n.x} y={n.y + 0.4} textAnchor="middle" dominantBaseline="middle" fontSize="2.8" fill={n.color} style={{ fontFamily: "monospace" }}>
-              {n.label}
-            </text>
-          </g>
-        ))}
+              {isHub && (
+                <text x={n.x} y={n.y + 2.8} textAnchor="middle" dominantBaseline="middle" fontSize="2.3" fill="hsl(250,80%,70%)" style={{ fontFamily: "monospace" }}>Node</text>
+              )}
+            </g>
+          );
+        })}
 
-        {/* Hub node */}
-        <g filter="url(#node-glow-f)">
-          <circle cx={hub.x} cy={hub.y} r={hub.r} fill="hsl(250,60%,18%)" stroke="hsl(250,80%,70%)" strokeWidth="1.2">
-            <animate attributeName="r" values="9;10.2;9" dur="2.8s" repeatCount="indefinite" />
-          </circle>
-          <text x={hub.x} y={hub.y - 1} textAnchor="middle" dominantBaseline="middle" fontSize="3.0" fontWeight="bold" fill="hsl(250,90%,85%)" style={{ fontFamily: "monospace" }}>Your</text>
-          <text x={hub.x} y={hub.y + 3} textAnchor="middle" dominantBaseline="middle" fontSize="2.6" fill="hsl(250,80%,70%)" style={{ fontFamily: "monospace" }}>Node</text>
-        </g>
-
-        {/* "+ adding" indicator in corner */}
-        {visibleCount < hubNodes.length && (
-          <text x="96" y="6" textAnchor="end" fontSize="2.8" fill="hsl(174,100%,55%)" style={{ fontFamily: "monospace" }}>+ adding…</text>
-        )}
-        {visibleCount >= hubNodes.length && (
-          <text x="96" y="6" textAnchor="end" fontSize="2.8" fill="hsl(174,100%,55%)" style={{ fontFamily: "monospace" }}>✓ node live</text>
-        )}
+        {/* Status */}
+        <text x="97" y="5.5" textAnchor="end" fontSize="2.4" fill="hsl(174,100%,55%)" style={{ fontFamily: "monospace" }}>
+          {step < total - 1 ? `+ growing…` : "✓ network live"}
+        </text>
       </svg>
     </div>
   );
