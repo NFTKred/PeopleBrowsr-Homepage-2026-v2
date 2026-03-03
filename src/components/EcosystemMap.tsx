@@ -1191,18 +1191,18 @@ interface ProductCard {
   apiId?: string;
 }
 
+const agenticIDCard: ProductCard = {
+  tag: "Identity",
+  tagColor: "hsl(165, 70%, 82%)",
+  title: "AgenticID.Kred",
+  description: "A sovereign domain-token that acts as your agent's on-chain memory, resume, and credential store — all in one.",
+  primaryBtn: "Get Your ID",
+  primaryBtnUrl: "https://agenticid-kred.vercel.app/",
+  secondaryBtn: "APIs and Skills",
+  apiId: "agenticid",
+};
+
 const forAgentsCards: ProductCard[] = [
-  {
-    tag: "Identity",
-    tagColor: "hsl(165, 70%, 82%)",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80",
-    title: "AgenticID.Kred",
-    description: "A sovereign domain-token that acts as your agent's on-chain memory, resume, and credential store — all in one.",
-    primaryBtn: "Get Your ID",
-    primaryBtnUrl: "https://agenticid-kred.vercel.app/",
-    secondaryBtn: "APIs and Skills",
-    apiId: "agenticid",
-  },
   {
     tag: "Trust Layer",
     tagColor: "hsl(220, 70%, 85%)",
@@ -1288,6 +1288,90 @@ const forBothCards: ProductCard[] = [
     secondaryBtn: "Learn More",
   },
 ];
+
+function AgenticIDHero() {
+  function scrollToApiSkills(apiId: string) {
+    const el = document.getElementById("apis-and-skills");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent("select-api-project", { detail: apiId }));
+      }, 400);
+    }
+  }
+
+  const card = agenticIDCard;
+
+  return (
+    <motion.div
+      className="mb-20"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.05 }}
+    >
+      <div className="mb-8">
+        <h3 className="text-2xl md:text-3xl font-bold font-display mb-1">The Foundation of Agentic Identity</h3>
+        <p className="text-sm text-muted-foreground">Every agent starts here — a sovereign on-chain identity</p>
+      </div>
+
+      <div className="rounded-2xl border border-white/10 bg-card/40 backdrop-blur-sm overflow-hidden group hover:border-white/25 transition-all duration-300">
+        <div className="grid md:grid-cols-2 gap-0">
+          {/* Animation pane */}
+          <div className="relative h-64 md:h-auto md:min-h-[280px] overflow-hidden">
+            <AgenticIDNodeMap />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/60 hidden md:block pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-transparent to-transparent md:hidden pointer-events-none" />
+          </div>
+
+          {/* Content pane */}
+          <div className="flex flex-col justify-center p-8 gap-4">
+            <span
+              className="inline-flex w-fit items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider border"
+              style={{
+                color: card.tagColor,
+                borderColor: `${card.tagColor}44`,
+                backgroundColor: `${card.tagColor}14`,
+              }}
+            >
+              {card.tag}
+            </span>
+
+            <div>
+              <h4 className="text-2xl font-bold font-display mb-2 leading-snug">{card.title}</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">{card.description}</p>
+            </div>
+
+            <ul className="space-y-1.5 text-xs text-muted-foreground">
+              {["On-chain memory & credential store", "Portable reputation across platforms", "Domain token with agent-native metadata"].map(f => (
+                <li key={f} className="flex items-center gap-2">
+                  <span style={{ color: card.tagColor }}>▸</span> {f}
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex items-center gap-3 pt-1">
+              <a
+                href={card.primaryBtnUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 text-center text-xs font-semibold py-2 px-4 rounded-lg border border-border/60 bg-muted/40 text-foreground hover:bg-muted hover:border-border transition-colors"
+              >
+                {card.primaryBtn}
+              </a>
+              <button
+                className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-2 hover:underline shrink-0"
+                onClick={() => card.apiId && scrollToApiSkills(card.apiId)}
+              >
+                {card.secondaryBtn}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: ProductCard[]; title: string; subtitle: string; delay?: number }) {
   function scrollToApiSkills(apiId: string) {
@@ -1644,6 +1728,9 @@ export const EcosystemMap = () => {
   return (
     <section id="ecosystem" className="relative py-28 px-6">
       <div className="max-w-5xl mx-auto">
+        {/* AgenticID featured section */}
+        <AgenticIDHero />
+
         {/* Card sections */}
         <ProductCardGrid
           cards={forAgentsCards}
