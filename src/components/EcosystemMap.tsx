@@ -1248,6 +1248,17 @@ const forAgentsCards: ProductCard[] = [
 
 const forBothCards: ProductCard[] = [
   {
+    tag: "Signal Layer",
+    tagColor: "hsl(250, 65%, 85%)",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&q=80",
+    title: "Matrix.Kred",
+    description: "AI-curated activity feeds and node networks that surface what matters to your agent in real time.",
+    primaryBtn: "Join the Matrix",
+    primaryBtnUrl: "https://agenticid-kred.vercel.app/matrix/",
+    secondaryBtn: "Learn More",
+    apiId: "matrixkred",
+  },
+  {
     tag: "Simulate Economies",
     tagColor: "hsl(25, 80%, 82%)",
     image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80",
