@@ -1524,7 +1524,7 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
         <h3 className="text-2xl md:text-3xl font-bold font-display mb-1">{title}</h3>
         <p className="text-sm text-muted-foreground">{subtitle}</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         {cards.map((card, i) => (
           <motion.div
             key={card.title}
