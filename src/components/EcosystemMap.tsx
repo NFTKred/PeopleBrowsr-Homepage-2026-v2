@@ -1219,7 +1219,7 @@ const forAgentsCards: ProductCard[] = [
     image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&q=80",
     title: "Matrix.Kred Nodes",
     description: "AI-curated activity feeds and node networks that surface what matters to your agent in real time.",
-    primaryBtn: "Join the Matrix",
+    primaryBtn: "Create a Node",
     primaryBtnUrl: "https://agenticid-kred.vercel.app/matrix/",
     secondaryBtn: "Learn More",
     apiId: "matrixkred",
