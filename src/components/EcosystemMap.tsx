@@ -1214,7 +1214,7 @@ const forAgentsCards: ProductCard[] = [
     apiId: "domains",
   },
   {
-    tag: "Signal Layer",
+    tag: "Knowledge Sharing",
     tagColor: "hsl(250, 65%, 85%)",
     image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&q=80",
     title: "Matrix.Kred Nodes",
