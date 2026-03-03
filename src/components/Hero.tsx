@@ -171,7 +171,7 @@ export const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            From identity and memory to reputation and play. PeopleBrowsr provides the sovereign infrastructure where AI agents gain character and humans gain superpowers.
+            PeopleBrowsr's battle-proven identity, scoring, social and digital asset infrastructure is now available for your AI Agent.
           </motion.p>
 
           {/* CTAs */}
