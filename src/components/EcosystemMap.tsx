@@ -836,6 +836,101 @@ function HotGarageVehicle() {
   );
 }
 
+// --- Matrix.Kred Node Creation Animation ---
+function NodeCreationAnimation() {
+  const [visibleCount, setVisibleCount] = useState(1);
+  const [pulseEdge, setPulseEdge] = useState<number | null>(null);
+
+  const hubNodes = [
+    { id: "hub",     label: "Your Node",   x: 50, y: 50, r: 9, color: "hsl(250,80%,70%)", isHub: true },
+    { id: "n1",      label: "Follower",    x: 50, y: 18, r: 5.5, color: "hsl(174,100%,55%)" },
+    { id: "n2",      label: "Curator",     x: 76, y: 30, r: 5.5, color: "hsl(38,92%,60%)" },
+    { id: "n3",      label: "Publisher",   x: 82, y: 60, r: 5.5, color: "hsl(330,80%,65%)" },
+    { id: "n4",      label: "Subscriber",  x: 62, y: 80, r: 5.5, color: "hsl(174,100%,55%)" },
+    { id: "n5",      label: "Contributor", x: 32, y: 78, r: 5.5, color: "hsl(195,80%,60%)" },
+    { id: "n6",      label: "Moderator",   x: 18, y: 58, r: 5.5, color: "hsl(280,70%,70%)" },
+    { id: "n7",      label: "Analyst",     x: 20, y: 28, r: 5.5, color: "hsl(38,92%,60%)" },
+  ];
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setVisibleCount(prev => {
+        const next = prev < hubNodes.length ? prev + 1 : 1;
+        setPulseEdge(next - 1);
+        setTimeout(() => setPulseEdge(null), 700);
+        return next;
+      });
+    }, 900);
+    return () => clearInterval(id);
+  }, []);
+
+  const hub = hubNodes[0];
+  const peers = hubNodes.slice(1, visibleCount);
+
+  return (
+    <div className="w-full h-full relative overflow-hidden" style={{ background: "hsl(240,30%,5%)" }}>
+      <svg viewBox="0 0 100 100" className="w-full h-full" style={{ position: "absolute", inset: 0 }}>
+        <defs>
+          <radialGradient id="node-hub-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="hsl(250,80%,60%)" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+          </radialGradient>
+          <filter id="node-glow-f" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="1.2" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </defs>
+
+        {/* Ambient hub glow */}
+        <circle cx={hub.x} cy={hub.y} r="28" fill="url(#node-hub-glow)" />
+
+        {/* Edges */}
+        {peers.map((n, i) => (
+          <line
+            key={n.id + "-edge"}
+            x1={hub.x} y1={hub.y} x2={n.x} y2={n.y}
+            stroke={n.color}
+            strokeWidth={pulseEdge === i + 1 ? "1.2" : "0.5"}
+            strokeOpacity={pulseEdge === i + 1 ? "1" : "0.45"}
+            style={{ transition: "stroke-width 0.3s, stroke-opacity 0.3s" }}
+          />
+        ))}
+
+        {/* Peer nodes */}
+        {peers.map((n, i) => (
+          <g key={n.id} filter="url(#node-glow-f)">
+            <circle cx={n.x} cy={n.y} r={n.r} fill={n.color} fillOpacity="0.25" stroke={n.color} strokeWidth="0.8" strokeOpacity="0.9">
+              {pulseEdge === i + 1 && (
+                <animate attributeName="r" values={`${n.r};${n.r + 2};${n.r}`} dur="0.6s" />
+              )}
+            </circle>
+            <text x={n.x} y={n.y + 0.4} textAnchor="middle" dominantBaseline="middle" fontSize="2.8" fill={n.color} style={{ fontFamily: "monospace" }}>
+              {n.label}
+            </text>
+          </g>
+        ))}
+
+        {/* Hub node */}
+        <g filter="url(#node-glow-f)">
+          <circle cx={hub.x} cy={hub.y} r={hub.r} fill="hsl(250,60%,18%)" stroke="hsl(250,80%,70%)" strokeWidth="1.2">
+            <animate attributeName="r" values="9;10.2;9" dur="2.8s" repeatCount="indefinite" />
+          </circle>
+          <text x={hub.x} y={hub.y - 1} textAnchor="middle" dominantBaseline="middle" fontSize="3.0" fontWeight="bold" fill="hsl(250,90%,85%)" style={{ fontFamily: "monospace" }}>Your</text>
+          <text x={hub.x} y={hub.y + 3} textAnchor="middle" dominantBaseline="middle" fontSize="2.6" fill="hsl(250,80%,70%)" style={{ fontFamily: "monospace" }}>Node</text>
+        </g>
+
+        {/* "+ adding" indicator in corner */}
+        {visibleCount < hubNodes.length && (
+          <text x="96" y="6" textAnchor="end" fontSize="2.8" fill="hsl(174,100%,55%)" style={{ fontFamily: "monospace" }}>+ adding…</text>
+        )}
+        {visibleCount >= hubNodes.length && (
+          <text x="96" y="6" textAnchor="end" fontSize="2.8" fill="hsl(174,100%,55%)" style={{ fontFamily: "monospace" }}>✓ node live</text>
+        )}
+      </svg>
+    </div>
+  );
+}
+
 
 
 const nodeMapNodes = [
@@ -1412,7 +1507,9 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
           >
             {/* Image / Animation */}
             <div className="relative h-36 overflow-hidden">
-              {card.title === "Matrix.Kred" ? (
+              {card.title === "Matrix.Kred Nodes" ? (
+                <NodeCreationAnimation />
+              ) : card.title === "Matrix.Kred" ? (
                 <MatrixFeedAnimation />
               ) : card.title === "AgenticID.Kred" ? (
                 <AgenticIDNodeMap />
