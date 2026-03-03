@@ -201,19 +201,44 @@ const projects: ProjectData[] = [
     ],
     agents: [
       {
-        name: "Node Architect Agent",
-        description: "Given a community brief, designs and deploys a full 3-level node hierarchy — root, sub-nodes, and working groups — with appropriate governance and membership rules for each level.",
-        example: `"Build a DeFi research DAO with a core council, regional chapters, and open working groups for each protocol."`,
+        name: "Architect.Matrix.Kred",
+        description: "Designs and instantiates new matrix variants. Deploys full node hierarchies from a community brief — root nodes, sub-nodes, working groups — with governance and membership rules configured per level.",
+        example: `"Instantiate a 3-tier DeFi research matrix with token-weighted governance at the root and open contribution at leaf nodes."`,
       },
       {
-        name: "Knowledge Router Agent",
-        description: "Monitors content across node hierarchies and routes high-signal knowledge artefacts to the nodes most likely to benefit from them. Reduces information silos across large networks.",
-        example: "Detected a research brief on restaking published in a sub-node and propagated it to 4 parent nodes. Engagement: 3x the original post.",
+        name: "Curator.Matrix.Kred",
+        description: "Manages the content pipeline using rule-based filters. Screens incoming posts, surfaces high-signal knowledge artefacts, and routes content to the nodes most likely to benefit.",
+        example: "Applied 12 quality filters to 840 weekly posts. Surfaced 34 high-signal artefacts and routed them to 6 relevant sub-nodes.",
       },
       {
-        name: "Membership Growth Agent",
-        description: "Identifies potential members across the Kred ecosystem that match a node's focus, sends personalised invitations, and onboards them with contextual introductions.",
-        example: "Invited 80 verified DeFi researchers. 52 joined within 7 days with an average trust score of 790.",
+        name: "Community.Matrix.Kred",
+        description: "Grows the community through subscriptions and onboarding. Identifies potential members, sends personalised invitations, and guides new members through contextual introductions.",
+        example: "Invited 80 verified DeFi researchers via targeted outreach. 52 joined within 7 days with an average trust score of 790.",
+      },
+      {
+        name: "Analyst.Matrix.Kred",
+        description: "Monitors platform health and computes influence scores. Tracks engagement velocity, member churn, content quality trends, and contributor reputation across the node hierarchy.",
+        example: `Reported: "Node health score 78 (+6 WoW). Top contributor: alice.kred (influence: 0.91). Alert: governance participation below threshold."`,
+      },
+      {
+        name: "Guardian.Matrix.Kred",
+        description: "Manages node isolation and enforces rate limits. Prevents spam, detects coordinated manipulation, and quarantines bad actors without disrupting legitimate community activity.",
+        example: "Detected a sybil cluster of 9 accounts inflating governance votes. Isolated all 9 before the proposal deadline.",
+      },
+      {
+        name: "Governance.Matrix.Kred",
+        description: "Manages community governance rules and dispute resolution. Drafts proposals, tracks voting, enforces quorum requirements, and mediates member conflicts against the node's constitution.",
+        example: `"Proposal P42 passed quorum (73%). Drafted rationale, notified members, and scheduled rule update for next epoch."`,
+      },
+      {
+        name: "Integrator.Matrix.Kred",
+        description: "Manages data flow with external systems including Slack, WordPress, and other platforms. Syncs content, membership events, and governance outcomes across the Matrix and connected channels.",
+        example: "Bridged a 1,200-member Slack workspace to a Matrix node. All governance proposals now mirror to Slack with one-click voting links.",
+      },
+      {
+        name: "Vault.Matrix.Kred",
+        description: "Manages encryption, self-destruct messages, and access controls. Ensures sensitive node communications are end-to-end encrypted and that access permissions are enforced at every layer.",
+        example: "Configured a private council sub-node with E2E encryption, 24h self-destruct on sensitive proposals, and role-gated read access.",
       },
     ],
     skills: [
