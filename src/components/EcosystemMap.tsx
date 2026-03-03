@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe, Link2, Award, Crown, MessageSquare, Zap, Settings, Gift, Mic } from "lucide-react";
 import accessNftImage from "@/assets/agent-domain-token.png";
@@ -1343,12 +1343,12 @@ function AgenticIDHero() {
             </div>
 
             <ul className="space-y-1.5 text-xs text-muted-foreground">
-              {[
+              {([
                 "On-chain memory & credential store",
-                "Paired with Score.Kred — your identity earns a verifiable trust score across every platform",
+                <>Paired with <a href="https://agenticid-kred.vercel.app/score/" target="_blank" rel="noopener noreferrer" style={{ color: "hsl(220, 70%, 85%)", textDecoration: "underline", textUnderlineOffset: "2px" }}>Score.Kred</a> — your identity earns a verifiable trust score across every platform</>,
                 "Domain token with agent-native metadata",
-              ].map(f => (
-                <li key={f} className="flex items-start gap-2">
+              ] as React.ReactNode[]).map((f, i) => (
+                <li key={i} className="flex items-start gap-2">
                   <span style={{ color: card.tagColor }} className="mt-0.5 shrink-0">▸</span> {f}
                 </li>
               ))}
