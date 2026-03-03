@@ -641,7 +641,7 @@ export const ApiSkills = () => {
           </p>
         </motion.div>
 
-        {/* Project selector */}
+        {/* Project selector — grouped */}
         <motion.div
           className="mb-8"
           initial={{ opacity: 0, y: 12 }}
@@ -649,30 +649,54 @@ export const ApiSkills = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
         >
-          <div className="flex flex-wrap gap-2 justify-center">
-            {projects.map((p) => (
-              <button
-                key={p.id}
-                onClick={() => setActiveProject(p.id)}
-                className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 border ${
-                  activeProject === p.id
-                    ? "border-transparent"
-                    : "border-border/40 text-muted-foreground hover:text-foreground hover:border-border/70"
-                }`}
-                style={
-                  activeProject === p.id
-                    ? {
-                        color: p.tagColor,
-                        backgroundColor: `${p.tagColor}18`,
-                        borderColor: `${p.tagColor}50`,
-                      }
-                    : {}
-                }
-              >
-                {p.name}
-              </button>
-            ))}
-          </div>
+          {[
+            {
+              label: "Identity",
+              ids: ["agenticid"],
+            },
+            {
+              label: "Build",
+              ids: ["domains", "giftstudio", "onehub"],
+            },
+            {
+              label: "Interact",
+              ids: ["matrixkred", "empirekred", "hotgarage"],
+            },
+          ].map((group) => {
+            const groupProjects = group.ids
+              .map((id) => projects.find((p) => p.id === id))
+              .filter(Boolean) as typeof projects;
+            return (
+              <div key={group.label} className="flex flex-wrap items-center gap-2 justify-center mb-3">
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/50 w-14 text-right flex-shrink-0">
+                  {group.label}
+                </span>
+                <div className="w-px h-4 bg-border/40 flex-shrink-0" />
+                {groupProjects.map((p) => (
+                  <button
+                    key={p.id}
+                    onClick={() => setActiveProject(p.id)}
+                    className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 border ${
+                      activeProject === p.id
+                        ? "border-transparent"
+                        : "border-border/40 text-muted-foreground hover:text-foreground hover:border-border/70"
+                    }`}
+                    style={
+                      activeProject === p.id
+                        ? {
+                            color: p.tagColor,
+                            backgroundColor: `${p.tagColor}18`,
+                            borderColor: `${p.tagColor}50`,
+                          }
+                        : {}
+                    }
+                  >
+                    {p.name}
+                  </button>
+                ))}
+              </div>
+            );
+          })}
         </motion.div>
 
         {/* Content card */}
