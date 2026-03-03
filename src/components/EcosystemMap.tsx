@@ -1343,9 +1343,13 @@ function AgenticIDHero() {
             </div>
 
             <ul className="space-y-1.5 text-xs text-muted-foreground">
-              {["On-chain memory & credential store", "Portable reputation across platforms", "Domain token with agent-native metadata"].map(f => (
-                <li key={f} className="flex items-center gap-2">
-                  <span style={{ color: card.tagColor }}>▸</span> {f}
+              {[
+                "On-chain memory & credential store",
+                "Paired with Score.Kred — your identity earns a verifiable trust score across every platform",
+                "Domain token with agent-native metadata",
+              ].map(f => (
+                <li key={f} className="flex items-start gap-2">
+                  <span style={{ color: card.tagColor }} className="mt-0.5 shrink-0">▸</span> {f}
                 </li>
               ))}
             </ul>
