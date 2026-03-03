@@ -126,6 +126,34 @@ function NeonTextTrace({ text }: { text: string }) {
           ))}
         </svg>
       )}
+
+      {/* Vertical bar sweeping left → right, timed with the neon glow */}
+      {fontSize > 0 && containerSize.width > 0 && (
+        <motion.span
+          aria-hidden="true"
+          className="absolute top-0 pointer-events-none"
+          style={{
+            left: 0,
+            width: 2,
+            height: "100%",
+            background: "hsl(195 100% 72%)",
+            boxShadow: "0 0 8px 3px hsl(195 100% 72% / 0.8), 0 0 20px 6px hsl(195 100% 72% / 0.4)",
+            borderRadius: 1,
+          }}
+          animate={{
+            x: [0, containerSize.width, containerSize.width],
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: (n - 1) * letterDelay + perLetter,
+            delay: 0,
+            repeat: Infinity,
+            repeatDelay,
+            ease: "easeInOut",
+            times: [0, 0.85, 1],
+          }}
+        />
+      )}
     </span>
   );
 }
