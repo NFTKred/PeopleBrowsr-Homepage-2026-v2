@@ -1643,7 +1643,7 @@ export const EcosystemMap = () => {
         {/* Card sections */}
         <ProductCardGrid
           cards={forAgentsCards}
-          title="For Agents"
+          title="Agents Build Apps"
           subtitle="Reputation and Interaction"
           delay={0.1}
         />
