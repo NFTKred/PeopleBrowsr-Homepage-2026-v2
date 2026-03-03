@@ -106,16 +106,16 @@ function ScoreAnimation() {
 
         {/* Human score — amber upper-left zone */}
         <div
-          className="absolute top-[5px] left-[6px] tabular-nums font-bold leading-none"
-          style={{ fontSize: 15, color: "hsl(222,47%,6%)", fontFamily: "monospace" }}
+          className="absolute tabular-nums font-bold leading-none"
+          style={{ fontSize: 14, color: "hsl(222,47%,6%)", fontFamily: "monospace", top: 8, left: 10 }}
         >
           {humanScore}
         </div>
 
         {/* Agent score — teal lower-right zone */}
         <div
-          className="absolute bottom-[7px] right-[5px] tabular-nums font-bold leading-none"
-          style={{ fontSize: 12, color: "hsl(222,47%,6%)", fontFamily: "monospace" }}
+          className="absolute tabular-nums font-bold leading-none"
+          style={{ fontSize: 12, color: "hsl(222,47%,6%)", fontFamily: "monospace", bottom: 12, right: 10 }}
         >
           {agentScore}
         </div>
