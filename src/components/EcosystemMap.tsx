@@ -864,9 +864,13 @@ function AgenticIDNodeMap() {
       >
         <defs>
           <radialGradient id="agid-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="hsl(180,60%,50%)" stopOpacity="0.18" />
+            <stop offset="0%" stopColor="hsl(180,80%,55%)" stopOpacity="0.38" />
             <stop offset="100%" stopColor="transparent" stopOpacity="0" />
           </radialGradient>
+          <filter id="agid-node-glow" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
         </defs>
         <circle cx="50" cy="50" r="48" fill="url(#agid-glow)" />
 
@@ -878,8 +882,8 @@ function AgenticIDNodeMap() {
               x1="50" y1="50"
               x2={pos.x} y2={pos.y}
               stroke={node.color}
-              strokeWidth="0.4"
-              strokeOpacity="0.45"
+              strokeWidth="0.6"
+              strokeOpacity="0.7"
             />
           );
         })}
@@ -887,16 +891,16 @@ function AgenticIDNodeMap() {
         {nodeMapNodes.map((node, i) => {
           const pos = toXY(node.angle, node.r);
           return (
-            <g key={node.id}>
+            <g key={node.id} filter="url(#agid-node-glow)">
               <circle
                 cx={pos.x}
                 cy={pos.y}
                 r="6.5"
                 fill={node.color}
-                fillOpacity="0.15"
+                fillOpacity="0.35"
                 stroke={node.color}
-                strokeWidth="0.6"
-                strokeOpacity="0.7"
+                strokeWidth="1"
+                strokeOpacity="1"
               >
                 <animateTransform
                   attributeName="transform"
@@ -913,7 +917,7 @@ function AgenticIDNodeMap() {
                 dominantBaseline="middle"
                 fontSize="3.2"
                 fill={node.color}
-                fillOpacity="0.9"
+                fillOpacity="1"
                 style={{ fontFamily: "monospace" }}
               >
                 <animateTransform
@@ -930,15 +934,15 @@ function AgenticIDNodeMap() {
         })}
 
         {/* Centre node */}
-        <circle cx="50" cy="50" r="11" fill="hsl(180,50%,10%)" stroke="hsl(180,60%,55%)" strokeWidth="0.8" strokeOpacity="0.9" />
-        <circle cx="50" cy="50" r="9" fill="hsl(180,50%,18%)" fillOpacity="0.6">
+        <circle cx="50" cy="50" r="11" fill="hsl(180,60%,14%)" stroke="hsl(180,80%,65%)" strokeWidth="1.2" strokeOpacity="1" filter="url(#agid-node-glow)" />
+        <circle cx="50" cy="50" r="9" fill="hsl(180,70%,30%)" fillOpacity="0.7">
           <animate attributeName="r" values="9;10.5;9" dur="3s" repeatCount="indefinite" />
-          <animate attributeName="fillOpacity" values="0.6;0.9;0.6" dur="3s" repeatCount="indefinite" />
+          <animate attributeName="fillOpacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite" />
         </circle>
-        <text x="50" y="48.5" textAnchor="middle" dominantBaseline="middle" fontSize="3.2" fill="hsl(180,70%,80%)" fontWeight="bold" style={{ fontFamily: "monospace" }}>agent</text>
-        <text x="50" y="52.5" textAnchor="middle" dominantBaseline="middle" fontSize="2.6" fill="hsl(165,50%,65%)" style={{ fontFamily: "monospace" }}>.kred</text>
+        <text x="50" y="48.5" textAnchor="middle" dominantBaseline="middle" fontSize="3.2" fill="hsl(180,90%,88%)" fontWeight="bold" style={{ fontFamily: "monospace" }}>agent</text>
+        <text x="50" y="52.5" textAnchor="middle" dominantBaseline="middle" fontSize="2.6" fill="hsl(165,80%,75%)" style={{ fontFamily: "monospace" }}>.kred</text>
       </svg>
-      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(165,20%,8%)/85%] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(165,30%,6%)/80%] via-transparent to-transparent pointer-events-none" />
     </div>
   );
 }
