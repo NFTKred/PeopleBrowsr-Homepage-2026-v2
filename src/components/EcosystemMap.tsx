@@ -115,7 +115,7 @@ function ScoreAnimation() {
         {/* Agent score — teal lower-right zone */}
         <div
           className="absolute tabular-nums font-bold leading-none"
-          style={{ fontSize: 12, color: "hsl(222,47%,6%)", fontFamily: "monospace", bottom: 12, right: 10 }}
+          style={{ fontSize: 12, color: "hsl(222,47%,6%)", fontFamily: "monospace", bottom: 18, right: 16 }}
         >
           {agentScore}
         </div>
