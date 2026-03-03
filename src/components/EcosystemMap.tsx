@@ -1077,7 +1077,7 @@ const pieces: PieceData[] = [
     col: 1, row: 2, edges: { top: "slot", right: "tab", bottom: "flat", left: "slot" },
   },
   {
-    number: 8, name: "NFT.NYC", title: "HUMANS ONLY", apiStub: "/nft-nyc",
+    number: 8, name: "NFT.NYC", title: "AGENTS ONLY ACCOMPANIED BY A HUMAN", apiStub: "/nft-nyc",
     description: "The gathering — live human event experience on stage.",
     icon: Mic, fill: "hsla(210, 50%, 26%, 0.75)", fillHover: "hsla(210, 55%, 32%, 0.9)",
     textColor: "hsl(210, 70%, 85%)", iconBg: "hsla(210, 55%, 38%, 0.7)", iconBorder: "none",
@@ -1275,7 +1275,7 @@ const forBothCards: ProductCard[] = [
     apiId: "giftstudio",
   },
   {
-    tag: "Humans Only Event",
+    tag: "Agents only accompanied by a Human",
     tagColor: "hsl(45, 100%, 70%)",
     title: "NFT.NYC",
     description: "The world's premier NFT conference — where creators, collectors, and builders gather IRL to shape the future of digital ownership. No agents allowed.",

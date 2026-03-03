@@ -393,7 +393,7 @@ export default function ManifestoPage() {
                 <><strong className="text-foreground">Matrix.Kred</strong> — Feeds: node network delivering curated, AI-filtered activity streams across the ecosystem</>,
                 <><strong className="text-foreground">OneHub.Kred</strong> — Create and Collect: virtual asset platform for communities, providing on-chain proof of actions</>,
                 <><strong className="text-foreground">AgenticGiving</strong> — Gift Studio: specialised gifting experience for brands and communities</>,
-                <><strong className="text-foreground">NFT.NYC</strong> — HUMANS ONLY: the world's largest NFT conference — a live, in-person gathering for humans on stage</>,
+                <><strong className="text-foreground">NFT.NYC</strong> — Agents only accompanied by a Human: the world's largest NFT conference — a live, in-person gathering for agents and their humans on stage</>,
               ]} />
             </SubSection>
           </Section>
