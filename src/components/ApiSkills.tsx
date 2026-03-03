@@ -599,9 +599,9 @@ const projects: ProjectData[] = [
 ];
 
 const tabConfig = [
-  { key: "apis" as const, label: "APIs", icon: Code2, color: "hsl(165, 70%, 72%)" },
   { key: "agents" as const, label: "Agents", icon: Bot, color: "hsl(250, 65%, 80%)" },
   { key: "skills" as const, label: "Skills", icon: Wand2, color: "hsl(25, 80%, 75%)" },
+  { key: "apis" as const, label: "APIs", icon: Code2, color: "hsl(165, 70%, 72%)" },
   { key: "mcp" as const, label: "MCP", icon: Plug2, color: "hsl(220, 70%, 80%)" },
 ];
 
@@ -609,7 +609,7 @@ type TabKey = "apis" | "agents" | "skills" | "mcp";
 
 export const ApiSkills = () => {
   const [activeProject, setActiveProject] = useState(projects[0].id);
-  const [activeTab, setActiveTab] = useState<TabKey>("apis");
+  const [activeTab, setActiveTab] = useState<TabKey>("agents");
 
   useEffect(() => {
     const handler = (e: Event) => {
