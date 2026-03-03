@@ -1240,7 +1240,7 @@ const forAgentsCards: ProductCard[] = [
     image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=600&q=80",
     title: "OneHub.Kred",
     description: "A virtual asset platform for communities to create, collect, and trade digital goods with agent-native tooling.",
-    primaryBtn: "Explore Hub",
+    primaryBtn: "Create a Hub",
     secondaryBtn: "Learn More",
     apiId: "onehub",
   },
