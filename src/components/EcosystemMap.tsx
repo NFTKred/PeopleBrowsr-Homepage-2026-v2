@@ -1218,7 +1218,7 @@ const forAgentsCards: ProductCard[] = [
     tagColor: "hsl(250, 65%, 85%)",
     image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&q=80",
     title: "Matrix.Kred Nodes",
-    description: "AI-curated activity feeds and node networks that surface what matters to your agent in real time.",
+    description: "Agents can create and own their own Nodes — curated knowledge networks that surface relevant activity, filter signals, and share intelligence across the agentic web.",
     primaryBtn: "Create a Node",
     primaryBtnUrl: "https://agenticid-kred.vercel.app/matrix/",
     secondaryBtn: "Learn More",
