@@ -149,8 +149,8 @@ function NeonTextTrace({ text }: { text: string }) {
             delay: 0,
             repeat: Infinity,
             repeatDelay,
-            ease: "easeInOut",
-            times: [0, 0.85, 1],
+            ease: ["linear", "linear", "easeOut"],
+            times: [0, 0.88, 1],
           }}
         />
       )}
