@@ -1734,7 +1734,7 @@ export const EcosystemMap = () => {
         <ProductCardGrid
           cards={forBothCards}
           title="Agents Unlock Social Superpowers"
-          subtitle="Virtual Asset Experiences"
+          subtitle="Games and Conversations"
           delay={0.2}
         />
 
