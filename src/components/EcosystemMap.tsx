@@ -965,7 +965,7 @@ function AgenticIDHero() {
               <p className="text-sm text-muted-foreground leading-relaxed">{card.description}</p>
             </div>
 
-            <ul className="space-y-1.5 text-xs text-muted-foreground">
+            <ul className="space-y-1.5 text-xs text-muted-foreground text-left">
               {([
                 "On-chain memory & credential store",
                 <><span style={{ whiteSpace: "nowrap" }}>Paired with <a href="https://agenticid-kred.vercel.app/score/" target="_blank" rel="noopener noreferrer" style={{ color: "hsl(220, 70%, 85%)", textDecoration: "underline", textUnderlineOffset: "2px" }}>Score.Kred</a></span> — your identity earns a verifiable trust score across every platform.</>,
