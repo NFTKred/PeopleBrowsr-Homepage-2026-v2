@@ -946,7 +946,7 @@ function AgenticIDHero() {
 
       <div className="rounded-2xl border border-white/10 bg-card/40 backdrop-blur-sm overflow-hidden group hover:border-white/25 transition-all duration-300">
         <div className="grid md:grid-cols-2 gap-0">
-          <div className="relative h-64 md:h-auto md:min-h-[280px] overflow-hidden">
+          <div className="relative aspect-square overflow-hidden">
             <AgenticIDNodeMap />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/60 hidden md:block pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-transparent to-transparent md:hidden pointer-events-none" />
