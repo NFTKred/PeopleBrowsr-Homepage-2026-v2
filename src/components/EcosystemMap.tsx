@@ -963,16 +963,16 @@ function NodeCreationAnimation() {
 
 
 const nodeMapNodes = [
-  { id: "reputation", label: "Reputation", angle: 0,   r: 52, color: "hsl(180,60%,55%)" },
-  { id: "memory1",    label: "Memory",     angle: 60,  r: 50, color: "hsl(38,92%,60%)" },
-  { id: "score1",     label: "Score",      angle: 120, r: 54, color: "hsl(195,80%,55%)" },
-  { id: "reputation2",label: "Reputation", angle: 180, r: 50, color: "hsl(180,60%,55%)" },
-  { id: "memory2",    label: "Memory",     angle: 240, r: 52, color: "hsl(38,92%,60%)" },
-  { id: "score2",     label: "Score",      angle: 300, r: 50, color: "hsl(195,80%,55%)" },
+  { id: "reputation", label: "Reputation", angle: 0,   r: 52, color: "hsl(174,100%,55%)",  driftX: "0 0; 2.8 -1.6; -1.2 2.0; 0 0", dur: "4.2s" },
+  { id: "memory1",    label: "Memory",     angle: 60,  r: 50, color: "hsl(38,100%,62%)",   driftX: "0 0; -2.2 2.4; 1.8 -1.0; 0 0",  dur: "5.1s" },
+  { id: "score1",     label: "Score",      angle: 120, r: 54, color: "hsl(195,100%,65%)",  driftX: "0 0; 1.6 2.6; -2.4 -1.2; 0 0",  dur: "3.8s" },
+  { id: "reputation2",label: "Identity",   angle: 180, r: 50, color: "hsl(280,90%,72%)",   driftX: "0 0; -2.6 -1.8; 1.4 1.6; 0 0",  dur: "4.7s" },
+  { id: "memory2",    label: "Trust",      angle: 240, r: 52, color: "hsl(330,90%,68%)",   driftX: "0 0; 1.8 -2.8; -1.6 1.0; 0 0",  dur: "5.5s" },
+  { id: "score2",     label: "Skills",     angle: 300, r: 50, color: "hsl(88,90%,58%)",    driftX: "0 0; -1.4 1.8; 2.2 -2.2; 0 0",  dur: "4.0s" },
 ];
 
 function AgenticIDNodeMap() {
-  const cx = 50; // % center
+  const cx = 50;
   const cy = 50;
   const toXY = (angleDeg: number, r: number) => ({
     x: cx + r * Math.cos((angleDeg * Math.PI) / 180),
@@ -988,16 +988,27 @@ function AgenticIDNodeMap() {
       >
         <defs>
           <radialGradient id="agid-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="hsl(180,80%,55%)" stopOpacity="0.38" />
+            <stop offset="0%" stopColor="hsl(180,100%,55%)" stopOpacity="0.5" />
+            <stop offset="60%" stopColor="hsl(250,80%,55%)" stopOpacity="0.15" />
             <stop offset="100%" stopColor="transparent" stopOpacity="0" />
           </radialGradient>
-          <filter id="agid-node-glow" x="-40%" y="-40%" width="180%" height="180%">
-            <feGaussianBlur stdDeviation="1.5" result="blur" />
+          <filter id="agid-node-glow" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="1.8" result="blur" />
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="agid-centre-glow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
         </defs>
+
+        {/* Background radial glow */}
         <circle cx="50" cy="50" r="48" fill="url(#agid-glow)" />
 
+        {/* Orbit ring */}
+        <circle cx="50" cy="50" r="52" fill="none" stroke="hsl(180,60%,55%)" strokeWidth="0.15" strokeOpacity="0.25" strokeDasharray="2 4" />
+
+        {/* Connecting lines with pulse */}
         {nodeMapNodes.map((node) => {
           const pos = toXY(node.angle, node.r);
           return (
@@ -1006,51 +1017,64 @@ function AgenticIDNodeMap() {
               x1="50" y1="50"
               x2={pos.x} y2={pos.y}
               stroke={node.color}
-              strokeWidth="0.6"
-              strokeOpacity="0.7"
-            />
+              strokeWidth="0.5"
+              strokeOpacity="0.6"
+            >
+              <animate attributeName="strokeOpacity" values="0.6;1;0.6" dur={node.dur} repeatCount="indefinite" />
+            </line>
           );
         })}
 
+        {/* Satellite nodes */}
         {nodeMapNodes.map((node, i) => {
           const pos = toXY(node.angle, node.r);
           return (
             <g key={node.id} filter="url(#agid-node-glow)">
+              {/* Outer halo ring */}
               <circle
                 cx={pos.x}
                 cy={pos.y}
-                r="6.5"
-                fill={node.color}
-                fillOpacity="0.35"
+                r="8.5"
+                fill="none"
                 stroke={node.color}
-                strokeWidth="1"
+                strokeWidth="0.4"
+                strokeOpacity="0.35"
+              >
+                <animateTransform attributeName="transform" type="translate"
+                  values={node.driftX} dur={node.dur} repeatCount="indefinite" calcMode="spline"
+                  keySplines="0.45 0 0.55 1; 0.45 0 0.55 1; 0.45 0 0.55 1" />
+                <animate attributeName="r" values="8.5;10;8.5" dur={node.dur} repeatCount="indefinite" />
+                <animate attributeName="strokeOpacity" values="0.35;0.7;0.35" dur={node.dur} repeatCount="indefinite" />
+              </circle>
+              {/* Main node circle */}
+              <circle
+                cx={pos.x}
+                cy={pos.y}
+                r="6"
+                fill={node.color}
+                fillOpacity="0.85"
+                stroke={node.color}
+                strokeWidth="0.8"
                 strokeOpacity="1"
               >
-                <animateTransform
-                  attributeName="transform"
-                  type="translate"
-                  values={`0 0; ${Math.sin(i) * 1.4} ${Math.cos(i) * 1.2}; 0 0`}
-                  dur={`${3.5 + i * 0.5}s`}
-                  repeatCount="indefinite"
-                />
+                <animateTransform attributeName="transform" type="translate"
+                  values={node.driftX} dur={node.dur} repeatCount="indefinite" calcMode="spline"
+                  keySplines="0.45 0 0.55 1; 0.45 0 0.55 1; 0.45 0 0.55 1" />
+                <animate attributeName="fillOpacity" values="0.85;1;0.85" dur={node.dur} repeatCount="indefinite" />
               </circle>
               <text
                 x={pos.x}
-                y={pos.y + 0.5}
+                y={pos.y + 0.4}
                 textAnchor="middle"
                 dominantBaseline="middle"
-                fontSize="3.2"
-                fill={node.color}
-                fillOpacity="1"
+                fontSize="2.8"
+                fontWeight="bold"
+                fill="hsl(222,47%,6%)"
                 style={{ fontFamily: "monospace" }}
               >
-                <animateTransform
-                  attributeName="transform"
-                  type="translate"
-                  values={`0 0; ${Math.sin(i) * 1.4} ${Math.cos(i) * 1.2}; 0 0`}
-                  dur={`${3.5 + i * 0.5}s`}
-                  repeatCount="indefinite"
-                />
+                <animateTransform attributeName="transform" type="translate"
+                  values={node.driftX} dur={node.dur} repeatCount="indefinite" calcMode="spline"
+                  keySplines="0.45 0 0.55 1; 0.45 0 0.55 1; 0.45 0 0.55 1" />
                 {node.label}
               </text>
             </g>
@@ -1058,13 +1082,13 @@ function AgenticIDNodeMap() {
         })}
 
         {/* Centre node */}
-        <circle cx="50" cy="50" r="11" fill="hsl(180,60%,14%)" stroke="hsl(180,80%,65%)" strokeWidth="1.2" strokeOpacity="1" filter="url(#agid-node-glow)" />
-        <circle cx="50" cy="50" r="9" fill="hsl(180,70%,30%)" fillOpacity="0.7">
-          <animate attributeName="r" values="9;10.5;9" dur="3s" repeatCount="indefinite" />
-          <animate attributeName="fillOpacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite" />
+        <circle cx="50" cy="50" r="13" fill="hsl(180,60%,8%)" stroke="hsl(174,100%,65%)" strokeWidth="1" strokeOpacity="1" filter="url(#agid-centre-glow)" />
+        <circle cx="50" cy="50" r="10" fill="hsl(180,80%,40%)" fillOpacity="0.9">
+          <animate attributeName="r" values="10;12;10" dur="2.8s" repeatCount="indefinite" />
+          <animate attributeName="fillOpacity" values="0.9;1;0.9" dur="2.8s" repeatCount="indefinite" />
         </circle>
-        <text x="50" y="48.5" textAnchor="middle" dominantBaseline="middle" fontSize="3.2" fill="hsl(180,90%,88%)" fontWeight="bold" style={{ fontFamily: "monospace" }}>agent</text>
-        <text x="50" y="52.5" textAnchor="middle" dominantBaseline="middle" fontSize="2.6" fill="hsl(165,80%,75%)" style={{ fontFamily: "monospace" }}>.kred</text>
+        <text x="50" y="48.5" textAnchor="middle" dominantBaseline="middle" fontSize="3.2" fill="hsl(180,100%,95%)" fontWeight="bold" style={{ fontFamily: "monospace" }}>agent</text>
+        <text x="50" y="52.8" textAnchor="middle" dominantBaseline="middle" fontSize="2.6" fill="hsl(174,100%,80%)" style={{ fontFamily: "monospace" }}>.kred</text>
       </svg>
       <div className="absolute inset-0 bg-gradient-to-t from-[hsl(165,30%,6%)/80%] via-transparent to-transparent pointer-events-none" />
     </div>
