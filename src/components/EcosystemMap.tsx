@@ -1104,7 +1104,7 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
 
 export const EcosystemMap = () => {
   return (
-    <section id="ecosystem" className="relative py-28 px-6">
+    <section id="ecosystem" className="relative py-16 md:py-28 px-5 md:px-6">
       <div className="max-w-5xl mx-auto">
         <AgenticIDHero />
         <ProductCardGrid
