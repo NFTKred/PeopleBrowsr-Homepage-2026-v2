@@ -75,15 +75,9 @@ export const Manifesto = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          <p className="text-lg text-muted-foreground font-display italic max-w-2xl mx-auto mb-8">
+          <p className="text-lg text-muted-foreground font-display italic max-w-2xl mx-auto">
             "We aren't just building Web3; we are building the space where agents become people and people become limitless."
           </p>
-          <a
-            href="/manifesto"
-            className="inline-flex items-center gap-2 px-8 py-3 text-base font-medium rounded-md border border-secondary/50 text-secondary hover:bg-secondary/10 hover:border-secondary transition-colors"
-          >
-            Read the Manifesto
-          </a>
         </motion.div>
       </div>
     </section>
