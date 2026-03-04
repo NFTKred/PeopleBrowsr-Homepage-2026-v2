@@ -55,8 +55,8 @@ function NeonHeadlineTrace({ children }: { children: React.ReactNode }) {
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-24">
-      <div className="max-w-5xl mx-auto text-center">
+    <section className="relative min-h-screen flex items-center justify-center px-5 pt-20 pb-12">
+      <div className="max-w-5xl mx-auto text-center w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -64,7 +64,7 @@ export const Hero = () => {
         >
           {/* Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/25 bg-primary/5 mb-8"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/25 bg-primary/5 mb-6 md:mb-8"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
@@ -77,7 +77,7 @@ export const Hero = () => {
 
           {/* Headline */}
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-[5.5rem] font-bold font-display leading-tight mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-bold font-display leading-tight mb-5 md:mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -90,7 +90,7 @@ export const Hero = () => {
 
           {/* Sub-headline */}
           <motion.p
-            className="text-base md:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed"
+            className="text-base md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 md:mb-10 leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -107,7 +107,7 @@ export const Hero = () => {
           >
             <Button
               size="lg"
-              className="group px-8 py-6 text-lg bg-primary hover:bg-primary/90 text-primary-foreground glow-primary"
+              className="group w-full sm:w-auto px-8 py-6 text-base md:text-lg bg-primary hover:bg-primary/90 text-primary-foreground glow-primary"
             >
               Explore the APIs
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -115,7 +115,7 @@ export const Hero = () => {
             <Button
               size="lg"
               variant="outline"
-              className="px-8 py-6 text-lg border-secondary/50 text-secondary hover:bg-secondary/10 hover:border-secondary"
+              className="w-full sm:w-auto px-8 py-6 text-base md:text-lg border-secondary/50 text-secondary hover:bg-secondary/10 hover:border-secondary"
               asChild
             >
               <Link to="/manifesto">Read the Manifesto</Link>
@@ -125,12 +125,12 @@ export const Hero = () => {
 
         {/* Floating elements */}
         <motion.div
-          className="absolute left-10 top-1/3 w-20 h-20 rounded-full bg-primary/10 blur-xl"
+          className="absolute left-4 md:left-10 top-1/3 w-16 md:w-20 h-16 md:h-20 rounded-full bg-primary/10 blur-xl"
           animate={{ y: [0, -20, 0], opacity: [0.3, 0.6, 0.3] }}
           transition={{ duration: 5, repeat: Infinity }}
         />
         <motion.div
-          className="absolute right-10 bottom-1/3 w-32 h-32 rounded-full bg-secondary/10 blur-xl"
+          className="absolute right-4 md:right-10 bottom-1/3 w-24 md:w-32 h-24 md:h-32 rounded-full bg-secondary/10 blur-xl"
           animate={{ y: [0, 20, 0], opacity: [0.2, 0.5, 0.2] }}
           transition={{ duration: 6, repeat: Infinity }}
         />

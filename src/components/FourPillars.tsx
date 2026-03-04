@@ -39,7 +39,7 @@ const humanPillars = [
 
 export const FourPillars = () => {
   return (
-    <section id="platform" className="relative py-28 px-6">
+    <section id="platform" className="relative py-16 md:py-28 px-5 md:px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="text-center mb-14"

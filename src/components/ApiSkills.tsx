@@ -722,7 +722,7 @@ export const ApiSkills = () => {
   const items = project[activeTab];
 
   return (
-    <section id="apis-and-skills" className="relative py-28 px-6">
+    <section id="apis-and-skills" className="relative py-16 md:py-28 px-5 md:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -806,7 +806,7 @@ export const ApiSkills = () => {
           transition={{ delay: 0.15 }}
         >
           {/* Tab bar */}
-          <div className="flex border-b border-border/40 bg-background/30">
+          <div className="flex border-b border-border/40 bg-background/30 overflow-x-auto scrollbar-none">
             {tabConfig.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.key;
@@ -814,7 +814,7 @@ export const ApiSkills = () => {
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
-                  className={`flex items-center gap-2 px-5 py-3.5 text-sm font-medium transition-all duration-200 border-b-2 ${
+                  className={`flex items-center gap-2 px-4 sm:px-5 py-3.5 text-xs sm:text-sm font-medium transition-all duration-200 border-b-2 whitespace-nowrap flex-shrink-0 ${
                     isActive
                       ? "border-current"
                       : "border-transparent text-muted-foreground hover:text-foreground"
