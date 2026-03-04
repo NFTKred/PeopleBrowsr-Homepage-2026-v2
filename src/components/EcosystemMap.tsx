@@ -749,7 +749,7 @@ function AgenticIDNodeMap() {
 
   return (
     <div className="w-full h-full bg-[hsl(222,47%,6%)] relative overflow-hidden">
-      <svg viewBox="0 0 100 100" className="w-full h-full" style={{ position: "absolute", inset: 0 }}>
+      <svg viewBox="-15 -15 130 130" className="w-full h-full" style={{ position: "absolute", inset: 0 }}>
         <defs>
           <radialGradient id="agid-glow" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="hsl(180,100%,55%)" stopOpacity="0.5" />
