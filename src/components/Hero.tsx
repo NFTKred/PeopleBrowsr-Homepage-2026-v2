@@ -4,61 +4,27 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
-function NeonTextTrace({ text }: { text: string }) {
+function NeonHeadlineTrace({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLSpanElement>(null);
-  const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const [fontSize, setFontSize] = useState(0);
-  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
-  const [letterPositions, setLetterPositions] = useState<{ x: number; y: number }[]>([]);
-
-  const letters = text.split("");
-  const perLetter = 3; // seconds each letter takes to trace
-  const letterDelay = 0.1; // seconds between each letter starting
-  const pause = 3;     // seconds gap before the cycle repeats
-  const n = letters.length;
-  const repeatDelay = (n - 1) * letterDelay + perLetter + pause;
+  const [containerWidth, setContainerWidth] = useState(0);
+  const duration = 3.5;
+  const pause = 3;
 
   useEffect(() => {
     const measure = () => {
       if (!containerRef.current) return;
-      const containerRect = containerRef.current.getBoundingClientRect();
-      const fs = parseFloat(window.getComputedStyle(containerRef.current).fontSize);
-      setFontSize(fs);
-      setContainerSize({ width: containerRect.width, height: containerRect.height });
-      const positions = letterRefs.current.map((ref) => {
-        if (!ref) return { x: 0, y: fs * 0.85 };
-        const r = ref.getBoundingClientRect();
-        return {
-          x: r.left - containerRect.left + r.width / 2,
-          y: fs * 0.85,
-        };
-      });
-      setLetterPositions(positions);
+      setContainerWidth(containerRef.current.getBoundingClientRect().width);
     };
     measure();
     const ro = new ResizeObserver(measure);
     if (containerRef.current) ro.observe(containerRef.current);
     return () => ro.disconnect();
-  }, [text]);
+  }, []);
 
   return (
     <span ref={containerRef} className="relative inline-block">
-      {/* Real visible text — each letter gets a ref for position measurement */}
-      <span className="text-foreground">
-        {letters.map((char, i) => (
-          <span
-            key={i}
-            ref={(el) => { letterRefs.current[i] = el; }}
-            className="inline-block"
-          >
-            {char}
-          </span>
-        ))}
-      </span>
-
-
-      {/* Vertical bar sweeping left → right, timed with the neon glow */}
-      {fontSize > 0 && containerSize.width > 0 && (
+      {children}
+      {containerWidth > 0 && (
         <motion.span
           aria-hidden="true"
           className="absolute top-0 pointer-events-none"
@@ -71,14 +37,13 @@ function NeonTextTrace({ text }: { text: string }) {
             borderRadius: 1,
           }}
           animate={{
-            x: [0, containerSize.width, containerSize.width],
+            x: [0, containerWidth, containerWidth],
             opacity: [0, 1, 0],
           }}
           transition={{
-            duration: (n - 1) * letterDelay + perLetter,
-            delay: 0,
+            duration,
             repeat: Infinity,
-            repeatDelay,
+            repeatDelay: pause,
             ease: ["linear", "linear", "easeOut"],
             times: [0, 0.88, 1],
           }}
@@ -117,9 +82,10 @@ export const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <NeonTextTrace text="Superpowers" />
-            <span className="text-foreground"> for </span>
-            <span className="text-gradient-primary">Agents</span>
+            <NeonHeadlineTrace>
+              <span className="text-foreground">Superpowers for </span>
+              <span className="text-gradient-primary">Agents</span>
+            </NeonHeadlineTrace>
           </motion.h1>
 
           {/* Sub-headline */}
