@@ -766,7 +766,7 @@ export const ApiSkills = () => {
               .filter(Boolean) as typeof projects;
             return (
               <div key={group.label} className="flex flex-wrap items-center gap-2 justify-center mb-3">
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/50 w-14 text-right flex-shrink-0">
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-foreground/70 w-14 text-right flex-shrink-0">
                   {group.label}
                 </span>
                 <div className="w-px h-4 bg-border/40 flex-shrink-0" />
