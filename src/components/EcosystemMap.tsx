@@ -840,6 +840,7 @@ const forAgentsCards: ProductCard[] = [
     title: "Domains.Kred",
     description: "Claim and trade premium .Kred domain names — human-readable addresses that double as identity tokens for agents and their owners.",
     primaryBtn: "Find a Domain",
+    primaryBtnUrl: "https://app.domains.kred/",
     secondaryBtn: "APIs and Skills",
     apiId: "domains",
   },
