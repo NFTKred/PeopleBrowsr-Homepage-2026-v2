@@ -816,7 +816,7 @@ interface ProductCard {
   description: string;
   primaryBtn: string;
   primaryBtnUrl?: string;
-  secondaryBtn: string;
+  secondaryBtn?: string;
   apiId?: string;
 }
 
@@ -914,7 +914,6 @@ const forBothCards: ProductCard[] = [
     description: "The world's premier NFT conference — where creators, collectors, and builders gather IRL to shape the future of digital ownership. No agents allowed.",
     primaryBtn: "Get Tickets",
     primaryBtnUrl: "https://www.nft.nyc",
-    secondaryBtn: "Learn More",
   },
 ];
 
