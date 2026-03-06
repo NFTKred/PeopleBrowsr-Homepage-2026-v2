@@ -982,14 +982,23 @@ function AgenticIDHero() {
             </ul>
 
             <div className="flex items-center gap-3 pt-1">
-              <a
-                href={card.primaryBtnUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 text-center text-xs font-semibold py-2 px-4 rounded-lg border border-border/60 bg-muted/40 text-foreground hover:bg-muted hover:border-border transition-colors"
-              >
-                {card.primaryBtn}
-              </a>
+              {card.primaryBtnUrl && !card.primaryBtnDisabled ? (
+                <a
+                  href={card.primaryBtnUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-center text-xs font-semibold py-2 px-4 rounded-lg border border-border/60 bg-muted/40 text-foreground hover:bg-muted hover:border-border transition-colors"
+                >
+                  {card.primaryBtn}
+                </a>
+              ) : (
+                <button
+                  disabled={card.primaryBtnDisabled}
+                  className="flex-1 text-center text-xs font-semibold py-2 px-4 rounded-lg border border-border/60 bg-muted/40 text-foreground transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  {card.primaryBtn}
+                </button>
+              )}
               {card.secondaryBtn && (
                 <button
                   className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-2 hover:underline shrink-0"
@@ -1079,7 +1088,7 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
               </div>
 
               <div className="flex items-center gap-3 pt-1">
-                {card.primaryBtnUrl ? (
+                {card.primaryBtnUrl && !card.primaryBtnDisabled ? (
                   <a
                     href={card.primaryBtnUrl}
                     target="_blank"
@@ -1089,7 +1098,10 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
                     {card.primaryBtn}
                   </a>
                 ) : (
-                  <button className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 bg-muted/40 text-foreground hover:bg-muted hover:border-border transition-colors">
+                  <button
+                    disabled={card.primaryBtnDisabled}
+                    className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 bg-muted/40 text-foreground transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
                     {card.primaryBtn}
                   </button>
                 )}
