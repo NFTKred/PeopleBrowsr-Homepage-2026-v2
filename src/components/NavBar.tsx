@@ -37,7 +37,7 @@ export const NavBar = () => {
           {/* Logo */}
           <a href="/" className="flex items-center flex-shrink-0">
             <span className="font-display font-semibold text-foreground text-[15px] tracking-tight whitespace-nowrap">
-              PeopleBrowsr
+              People<span className="text-gradient-primary">Browsr</span>
             </span>
           </a>
 
