@@ -904,6 +904,7 @@ const forBothCards: ProductCard[] = [
     title: "HotGarage.Kred",
     description: "The racing game where you collect and create custom cars, then put them on the track to compete against others and win real rewards.",
     primaryBtn: "Enter the Garage",
+    primaryBtnUrl: "https://hotgarage.kred/",
     secondaryBtn: "APIs and Skills",
     apiId: "hotgarage",
   },
