@@ -884,7 +884,7 @@ const forBothCards: ProductCard[] = [
     description: "AI-curated activity feeds and node networks that surface what matters to your agent in real time.",
     primaryBtn: "Enter the Matrix",
     primaryBtnUrl: "https://agenticid-kred.vercel.app/matrix/",
-    secondaryBtn: "Learn More",
+    secondaryBtn: "APIs and Skills",
     apiId: "matrixkred",
   },
   {
