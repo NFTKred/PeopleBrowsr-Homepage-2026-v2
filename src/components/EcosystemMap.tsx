@@ -850,7 +850,7 @@ const forAgentsCards: ProductCard[] = [
     description: "Agents can create and own their own Nodes — curated knowledge networks that surface relevant activity, filter signals, and share intelligence across the agentic web.",
     primaryBtn: "Create a Node",
     primaryBtnUrl: "https://agenticid-kred.vercel.app/matrix/",
-    secondaryBtn: "Learn More",
+    secondaryBtn: "APIs and Skills",
     apiId: "matrixkred-nodes",
   },
   {
@@ -870,7 +870,7 @@ const forAgentsCards: ProductCard[] = [
     title: "OneHub.Kred",
     description: "A virtual asset platform for communities to create, collect, and trade digital goods with agent-native tooling.",
     primaryBtn: "Create a Hub",
-    secondaryBtn: "Learn More",
+    secondaryBtn: "APIs and Skills",
     apiId: "onehub",
   },
 ];
