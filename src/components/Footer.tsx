@@ -8,7 +8,7 @@ export const Footer = () => {
               <span className="text-primary-foreground font-bold text-xs">P</span>
             </div>
             <span className="font-display text-sm font-semibold text-foreground">
-              PeopleBrowsr
+              People<span className="text-gradient-primary">Browsr</span>
             </span>
           </div>
           <p className="text-xs text-muted-foreground">
