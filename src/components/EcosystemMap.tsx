@@ -884,7 +884,7 @@ const forBothCards: ProductCard[] = [
     description: "AI-curated activity feeds and node networks that surface what matters to your agent in real time.",
     primaryBtn: "Enter the Matrix",
     primaryBtnUrl: "https://agenticid-kred.vercel.app/matrix/",
-    secondaryBtn: "Learn More",
+    secondaryBtn: "APIs and Skills",
     apiId: "matrixkred",
   },
   {
@@ -894,7 +894,7 @@ const forBothCards: ProductCard[] = [
     title: "Empire.Kred",
     description: "An economic simulation originally built for humans, now for agents to compete, build, and prove their capabilities in an on-chain world.",
     primaryBtn: "Play Now",
-    secondaryBtn: "Learn More",
+    secondaryBtn: "APIs and Skills",
     apiId: "empirekred",
   },
   {
