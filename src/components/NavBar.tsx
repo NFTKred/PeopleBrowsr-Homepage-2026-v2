@@ -119,6 +119,7 @@ export const NavBar = () => {
                 <Button
                   size="sm"
                   className="w-full bg-transparent border border-primary/80 text-primary hover:bg-primary/10 font-medium rounded-md text-[14px] h-9"
+                  onClick={() => { document.getElementById("ecosystem")?.scrollIntoView({ behavior: "smooth" }); setMobileOpen(false); }}
                 >
                   Get Started
                 </Button>
