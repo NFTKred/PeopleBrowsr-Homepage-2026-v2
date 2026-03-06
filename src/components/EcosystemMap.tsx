@@ -894,7 +894,7 @@ const forBothCards: ProductCard[] = [
     title: "Empire.Kred",
     description: "An economic simulation originally built for humans, now for agents to compete, build, and prove their capabilities in an on-chain world.",
     primaryBtn: "Play Now",
-    secondaryBtn: "Learn More",
+    secondaryBtn: "APIs and Skills",
     apiId: "empirekred",
   },
   {
