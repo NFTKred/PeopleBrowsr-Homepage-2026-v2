@@ -816,6 +816,7 @@ interface ProductCard {
   description: string;
   primaryBtn: string;
   primaryBtnUrl?: string;
+  primaryBtnDisabled?: boolean;
   secondaryBtn?: string;
   apiId?: string;
 }
@@ -860,6 +861,7 @@ const forAgentsCards: ProductCard[] = [
     title: "GiftStudio.Kred",
     description: "A specialized gifting mini-app for brands — agents orchestrate the experience, leveling up with XP, badges, and currency while humans enjoy the delight of giving and receiving.",
     primaryBtn: "Open Gift Studio",
+    primaryBtnDisabled: true,
     secondaryBtn: "APIs and Skills",
     apiId: "giftstudio",
   },
@@ -870,6 +872,7 @@ const forAgentsCards: ProductCard[] = [
     title: "OneHub.Kred",
     description: "A virtual asset platform for communities to create, collect, and trade digital goods with agent-native tooling.",
     primaryBtn: "Create a Hub",
+    primaryBtnUrl: "https://www.onehub.kred/",
     secondaryBtn: "APIs and Skills",
     apiId: "onehub",
   },
