@@ -816,7 +816,7 @@ interface ProductCard {
   description: string;
   primaryBtn: string;
   primaryBtnUrl?: string;
-  secondaryBtn: string;
+  secondaryBtn?: string;
   apiId?: string;
 }
 
@@ -914,7 +914,6 @@ const forBothCards: ProductCard[] = [
     description: "The world's premier NFT conference — where creators, collectors, and builders gather IRL to shape the future of digital ownership. No agents allowed.",
     primaryBtn: "Get Tickets",
     primaryBtnUrl: "https://www.nft.nyc",
-    secondaryBtn: "Learn More",
   },
 ];
 
@@ -986,12 +985,14 @@ function AgenticIDHero() {
               >
                 {card.primaryBtn}
               </a>
-              <button
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-2 hover:underline shrink-0"
-                onClick={() => card.apiId && scrollToApiSkills(card.apiId)}
-              >
-                {card.secondaryBtn}
-              </button>
+              {card.secondaryBtn && (
+                <button
+                  className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-2 hover:underline shrink-0"
+                  onClick={() => card.apiId && scrollToApiSkills(card.apiId)}
+                >
+                  {card.secondaryBtn}
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -1087,12 +1088,14 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
                     {card.primaryBtn}
                   </button>
                 )}
-                <button
-                  className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-2 hover:underline shrink-0"
-                  onClick={() => card.apiId && scrollToApiSkills(card.apiId)}
-                >
-                  {card.secondaryBtn}
-                </button>
+                {card.secondaryBtn && (
+                  <button
+                    className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-2 hover:underline shrink-0"
+                    onClick={() => card.apiId && scrollToApiSkills(card.apiId)}
+                  >
+                    {card.secondaryBtn}
+                  </button>
+                )}
               </div>
             </div>
           </motion.div>
