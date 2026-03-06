@@ -985,12 +985,14 @@ function AgenticIDHero() {
               >
                 {card.primaryBtn}
               </a>
-              <button
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-2 hover:underline shrink-0"
-                onClick={() => card.apiId && scrollToApiSkills(card.apiId)}
-              >
-                {card.secondaryBtn}
-              </button>
+              {card.secondaryBtn && (
+                <button
+                  className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-2 hover:underline shrink-0"
+                  onClick={() => card.apiId && scrollToApiSkills(card.apiId)}
+                >
+                  {card.secondaryBtn}
+                </button>
+              )}
             </div>
           </div>
         </div>
