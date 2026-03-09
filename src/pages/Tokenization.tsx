@@ -152,15 +152,9 @@ export default function TokenizationPage() {
               layer for the next generation of tokenized asset markets.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              <a
-                href="/manifesto"
-                className="inline-flex items-center justify-center px-7 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold font-display hover:opacity-90 transition-opacity"
-              >
-                Read the Manifesto
-              </a>
               <button
                 onClick={openContact}
-                className="inline-flex items-center justify-center px-7 py-3 rounded-full border border-primary/50 text-primary text-sm font-semibold font-display hover:bg-primary/10 transition-colors"
+                className="inline-flex items-center justify-center px-7 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold font-display hover:opacity-90 transition-opacity"
               >
                 Contact Us
               </button>
