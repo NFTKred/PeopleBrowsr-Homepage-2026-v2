@@ -127,7 +127,7 @@ export const NavBar = () => {
               <div className="px-6 py-3 border-t border-border/20 mt-1">
                 <Button
                   size="sm"
-                  className="w-full bg-transparent border border-primary/80 text-primary hover:bg-primary/10 font-medium rounded-md text-[14px] h-9"
+                  className="w-full bg-transparent border border-primary/80 text-primary hover:bg-primary/10 font-medium rounded-full text-[14px] h-9"
                   onClick={() => { document.getElementById("ecosystem")?.scrollIntoView({ behavior: "smooth" }); setMobileOpen(false); }}
                 >
                   Get Started
