@@ -433,6 +433,24 @@ export default function ManifestoPage() {
             </div>
           </Section>
 
+          {/* ── Concept 2: Cinematic Hero Image ── */}
+          <motion.figure
+            className="my-12"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <img
+              src={manifestoConcept2}
+              alt="A human hand issuing a .Kred identity passport to a geometric AI agent, with a queue of agents waiting. The nine-product Kred constellation floats above and 17 years of social data streams flow beneath."
+              className="w-full rounded-xl border border-border/40 shadow-lg"
+            />
+            <figcaption className="text-xs text-muted-foreground/60 text-center mt-3 italic">
+              The passport office is open. A human issues a .Kred identity to an agent — sovereign, portable, verifiable.
+            </figcaption>
+          </motion.figure>
+
           {/* ── Section 7 FAQ ── */}
           <Section id="s07" number="07" title="Frequently Asked Questions">
             {[
