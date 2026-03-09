@@ -153,10 +153,10 @@ export default function TokenizationPage() {
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <a
-                href="#contact"
+                href="/manifesto"
                 className="inline-flex items-center justify-center px-7 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold font-display hover:opacity-90 transition-opacity"
               >
-                Read the White Paper
+                Read the Manifesto
               </a>
               <button
                 onClick={openContact}

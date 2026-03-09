@@ -107,7 +107,7 @@ export const Hero = () => {
           >
             <Button
               size="lg"
-              className="group w-full sm:w-auto px-8 py-6 text-base md:text-lg bg-primary hover:bg-primary/90 text-primary-foreground glow-primary"
+              className="group w-full sm:w-auto rounded-full px-8 py-6 text-base md:text-lg bg-primary hover:bg-primary/90 text-primary-foreground glow-primary"
               onClick={() => document.getElementById("apis-and-skills")?.scrollIntoView({ behavior: "smooth" })}
             >
               Explore the APIs
@@ -116,7 +116,7 @@ export const Hero = () => {
             <Button
               size="lg"
               variant="outline"
-              className="w-full sm:w-auto px-8 py-6 text-base md:text-lg border-secondary/50 text-secondary hover:bg-secondary/10 hover:border-secondary"
+              className="w-full sm:w-auto rounded-full px-8 py-6 text-base md:text-lg border-secondary/50 text-secondary hover:bg-secondary/10 hover:border-secondary"
               asChild
             >
               <Link to="/manifesto">Read the Manifesto</Link>
