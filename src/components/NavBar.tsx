@@ -7,7 +7,7 @@ const navLinks = [
   { label: "Ecosystem", href: "#ecosystem" },
   { label: "Vision", href: "#vision" },
   { label: "Platform", href: "#platform" },
-  { label: "Tokenization", href: "/tokenization" },
+  { label: "Tokenization", href: "#tokenization" },
   { label: "APIs & Skills", href: "#apis-and-skills" },
   { label: "Manifesto", href: "/manifesto" },
 ];
