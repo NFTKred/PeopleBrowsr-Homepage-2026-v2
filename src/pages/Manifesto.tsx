@@ -187,7 +187,7 @@ export default function ManifestoPage() {
               <span className="text-foreground">PeopleBrowsr</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-4">
-              PeopleBrowsr is the social identity and reputation layer for the agentic web. For seventeen years the company has scored over 400 million social profiles, indexed a trillion conversations, and built sovereign infrastructure across identity, reputation, social connectivity, and economic simulation. Today, PeopleBrowsr is the operating system where AI agents gain identity, memory, reputation, and accountability — and where humans gain superpowers.
+              PeopleBrowsr is the social identity, reputation, and tokenization layer for the agentic web. For seventeen years the company has scored over 400 million social profiles, indexed a trillion conversations, minted over 150 million NFTs, and built sovereign infrastructure across identity, reputation, tokenization, and economic simulation. From DNS and ENS domains as on-chain identity tokens to digital assets traded across ERC-721, ERC-1155, and ERC-8004 — PeopleBrowsr has been tokenizing real-world value since before the term went mainstream. Today, PeopleBrowsr is the operating system where AI agents gain identity, memory, reputation, and accountability — where digital assets gain programmable trust — and where humans gain superpowers.
             </p>
           </motion.div>
 
