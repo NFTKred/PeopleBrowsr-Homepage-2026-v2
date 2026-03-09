@@ -333,12 +333,12 @@ export default function TokenizationPage() {
                 digital finance policy, or a technology provider building market infrastructure — we'd like
                 to talk.
               </p>
-              <a
-                href="mailto:partnerships@peoplebrowsr.com"
+              <button
+                onClick={openContact}
                 className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold font-display hover:opacity-90 transition-opacity"
               >
-                partnerships@peoplebrowsr.com — Start a Conversation
-              </a>
+                Start a Conversation
+              </button>
             </motion.div>
           </div>
         </section>
