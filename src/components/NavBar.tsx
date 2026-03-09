@@ -102,11 +102,12 @@ export const NavBar = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex flex-col py-2">
-              {navLinks.map((link) =>
-                link.href.startsWith("/") ? (
+            {navLinks.map((link) => {
+                const href = resolveHref(link.href);
+                return href.startsWith("/") && !href.includes("#") ? (
                   <Link
                     key={link.label}
-                    to={link.href}
+                    to={href}
                     onClick={handleLinkClick}
                     className="px-6 py-3.5 text-base text-foreground hover:bg-muted/40 transition-colors"
                   >
@@ -115,14 +116,14 @@ export const NavBar = () => {
                 ) : (
                   <a
                     key={link.label}
-                    href={link.href}
+                    href={href}
                     onClick={handleLinkClick}
                     className="px-6 py-3.5 text-base text-foreground hover:bg-muted/40 transition-colors"
                   >
                     {link.label}
                   </a>
-                )
-              )}
+                );
+              })}
               <div className="px-6 py-3 border-t border-border/20 mt-1">
                 <Button
                   size="sm"
