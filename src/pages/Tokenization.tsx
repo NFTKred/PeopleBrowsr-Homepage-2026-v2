@@ -2,11 +2,10 @@ import { motion } from "framer-motion";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
+import { useContactModal } from "@/hooks/use-contact-modal";
 import {
   ShieldCheck,
-  LayoutGrid,
   BarChart2,
-  Globe,
   Star,
   Layers,
 } from "lucide-react";
@@ -126,6 +125,8 @@ const platformCards = [
 ];
 
 export default function TokenizationPage() {
+  const { open: openContact } = useContactModal();
+
   return (
     <div className="relative min-h-screen">
       <AnimatedBackground />
@@ -157,12 +158,12 @@ export default function TokenizationPage() {
               >
                 Read the White Paper
               </a>
-              <a
-                href="#contact"
+              <button
+                onClick={openContact}
                 className="inline-flex items-center justify-center px-7 py-3 rounded-full border border-primary/50 text-primary text-sm font-semibold font-display hover:bg-primary/10 transition-colors"
               >
                 Contact Us
-              </a>
+              </button>
             </div>
           </motion.div>
         </section>
@@ -332,12 +333,12 @@ export default function TokenizationPage() {
                 digital finance policy, or a technology provider building market infrastructure — we'd like
                 to talk.
               </p>
-              <a
-                href="mailto:partnerships@peoplebrowsr.com"
+              <button
+                onClick={openContact}
                 className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold font-display hover:opacity-90 transition-opacity"
               >
-                partnerships@peoplebrowsr.com — Start a Conversation
-              </a>
+                Start a Conversation
+              </button>
             </motion.div>
           </div>
         </section>
