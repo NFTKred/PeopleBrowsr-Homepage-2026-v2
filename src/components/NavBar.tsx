@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -15,6 +15,12 @@ const navLinks = [
 export const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
+
+  // Prefix anchor links with "/" when not on the homepage so they navigate correctly
+  const resolveHref = (href: string) =>
+    !isHome && href.startsWith("#") ? `/${href}` : href;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -44,11 +50,12 @@ export const NavBar = () => {
 
           {/* Nav links — desktop */}
           <div className="hidden md:flex items-center gap-4">
-            {navLinks.map((link) =>
-              link.href.startsWith("/") ? (
+          {navLinks.map((link) => {
+              const href = resolveHref(link.href);
+              return href.startsWith("/") && !href.includes("#") ? (
                 <Link
                   key={link.label}
-                  to={link.href}
+                  to={href}
                   className="text-[14px] text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
                 >
                   {link.label}
@@ -56,13 +63,13 @@ export const NavBar = () => {
               ) : (
                 <a
                   key={link.label}
-                  href={link.href}
+                  href={href}
                   className="text-[14px] text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
                 >
                   {link.label}
                 </a>
-              )
-            )}
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-2">
@@ -95,11 +102,12 @@ export const NavBar = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex flex-col py-2">
-              {navLinks.map((link) =>
-                link.href.startsWith("/") ? (
+            {navLinks.map((link) => {
+                const href = resolveHref(link.href);
+                return href.startsWith("/") && !href.includes("#") ? (
                   <Link
                     key={link.label}
-                    to={link.href}
+                    to={href}
                     onClick={handleLinkClick}
                     className="px-6 py-3.5 text-base text-foreground hover:bg-muted/40 transition-colors"
                   >
@@ -108,14 +116,14 @@ export const NavBar = () => {
                 ) : (
                   <a
                     key={link.label}
-                    href={link.href}
+                    href={href}
                     onClick={handleLinkClick}
                     className="px-6 py-3.5 text-base text-foreground hover:bg-muted/40 transition-colors"
                   >
                     {link.label}
                   </a>
-                )
-              )}
+                );
+              })}
               <div className="px-6 py-3 border-t border-border/20 mt-1">
                 <Button
                   size="sm"
