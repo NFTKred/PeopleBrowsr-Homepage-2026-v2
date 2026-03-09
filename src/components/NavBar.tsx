@@ -76,7 +76,7 @@ export const NavBar = () => {
             {/* CTA */}
             <Button
               size="sm"
-              className="bg-transparent border border-primary/80 text-primary hover:bg-primary/10 font-medium rounded-md text-[14px] px-5 h-8 flex-shrink-0 hidden sm:inline-flex"
+              className="bg-transparent border border-primary/80 text-primary hover:bg-primary/10 font-medium rounded-full text-[14px] px-5 h-8 flex-shrink-0 hidden sm:inline-flex"
               onClick={() => document.getElementById("ecosystem")?.scrollIntoView({ behavior: "smooth" })}
             >
               Get Started
