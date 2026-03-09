@@ -15,6 +15,12 @@ const navLinks = [
 export const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
+
+  // Prefix anchor links with "/" when not on the homepage so they navigate correctly
+  const resolveHref = (href: string) =>
+    !isHome && href.startsWith("#") ? `/${href}` : href;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
