@@ -2,11 +2,10 @@ import { motion } from "framer-motion";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
+import { useContactModal } from "@/hooks/use-contact-modal";
 import {
   ShieldCheck,
-  LayoutGrid,
   BarChart2,
-  Globe,
   Star,
   Layers,
 } from "lucide-react";
