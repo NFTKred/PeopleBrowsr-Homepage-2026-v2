@@ -69,7 +69,7 @@ export const TokenizationStrip = () => {
           ))}
         </div>
 
-        {/* Divider + CTA */}
+        {/* Divider + Trust badges */}
         <motion.div
           className="border-t border-border/30 pt-8 flex flex-col items-center gap-5"
           initial={{ opacity: 0 }}
@@ -77,14 +77,6 @@ export const TokenizationStrip = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          <Link
-            to="/tokenization"
-            className="inline-flex items-center justify-center px-7 py-2.5 rounded-full border border-primary/80 bg-primary/10 text-primary text-sm font-medium font-display hover:bg-primary/20 transition-colors"
-          >
-            Tokenization →
-          </Link>
-
-          {/* Trust badges */}
           <p className="text-xs text-muted-foreground/60 flex items-center gap-2 flex-wrap justify-center">
             <span>AUSTRAC-Registered</span>
             <span className="opacity-40">·</span>
