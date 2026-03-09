@@ -54,7 +54,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         from: "PeopleBrowsr Contact <onboarding@resend.dev>",
-        to: ["contact@peoplebrowsr.com"],
+        to: ["cameronbale@peoplebrowsr.com"],
         reply_to: email,
         subject: `Partnership Inquiry from ${name}${organization ? ` (${organization})` : ""}`,
         html,
