@@ -125,6 +125,8 @@ const platformCards = [
 ];
 
 export default function TokenizationPage() {
+  const { open: openContact } = useContactModal();
+
   return (
     <div className="relative min-h-screen">
       <AnimatedBackground />
@@ -156,12 +158,12 @@ export default function TokenizationPage() {
               >
                 Read the White Paper
               </a>
-              <a
-                href="#contact"
+              <button
+                onClick={openContact}
                 className="inline-flex items-center justify-center px-7 py-3 rounded-full border border-primary/50 text-primary text-sm font-semibold font-display hover:bg-primary/10 transition-colors"
               >
                 Contact Us
-              </a>
+              </button>
             </div>
           </motion.div>
         </section>
