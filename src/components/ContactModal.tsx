@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, CheckCircle2 } from "lucide-react";
 import { useContactModal } from "@/hooks/use-contact-modal";
+import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 
 const schema = z.object({
@@ -21,13 +22,16 @@ export function ContactModal() {
   const [form, setForm] = useState<FormState>(empty);
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
 
   const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [k]: e.target.value }));
     if (errors[k]) setErrors((prev) => ({ ...prev, [k]: undefined }));
+    if (sendError) setSendError(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = schema.safeParse(form);
     if (!result.success) {
@@ -39,13 +43,27 @@ export function ContactModal() {
       setErrors(fieldErrors);
       return;
     }
-    // Open mailto as the submission action (no backend required)
-    const subject = encodeURIComponent("Partnership Inquiry — PeopleBrowsr");
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}${form.organization ? `\nOrganization: ${form.organization}` : ""}\n\n${form.message}`
-    );
-    window.open(`mailto:partnerships@peoplebrowsr.com?subject=${subject}&body=${body}`, "_blank");
-    setSubmitted(true);
+
+    setSending(true);
+    setSendError(null);
+
+    try {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          name: form.name.trim(),
+          email: form.email.trim(),
+          organization: form.organization.trim() || undefined,
+          message: form.message.trim(),
+        },
+      });
+
+      if (error) throw new Error(error.message);
+      setSubmitted(true);
+    } catch (err) {
+      setSendError("Something went wrong. Please try again or email us directly at contact@peoplebrowsr.com");
+    } finally {
+      setSending(false);
+    }
   };
 
   const handleClose = () => {
@@ -54,6 +72,7 @@ export function ContactModal() {
       setForm(empty);
       setErrors({});
       setSubmitted(false);
+      setSendError(null);
     }, 300);
   };
 
@@ -108,9 +127,9 @@ export function ContactModal() {
                     animate={{ opacity: 1, y: 0 }}
                   >
                     <CheckCircle2 className="w-12 h-12 text-primary" />
-                    <h3 className="text-lg font-bold font-display text-foreground">Your message is ready</h3>
+                    <h3 className="text-lg font-bold font-display text-foreground">Message sent!</h3>
                     <p className="text-sm text-muted-foreground">
-                      Your email client has opened with your message pre-filled. Send it to complete your inquiry.
+                      Your message has been delivered to the PeopleBrowsr team. We'll be in touch soon.
                     </p>
                     <button
                       onClick={handleClose}
@@ -130,6 +149,7 @@ export function ContactModal() {
                           onChange={set("name")}
                           className={inputCls(!!errors.name)}
                           maxLength={100}
+                          disabled={sending}
                         />
                       </Field>
                       <Field label="Email *" error={errors.email}>
@@ -140,6 +160,7 @@ export function ContactModal() {
                           onChange={set("email")}
                           className={inputCls(!!errors.email)}
                           maxLength={255}
+                          disabled={sending}
                         />
                       </Field>
                     </div>
@@ -152,6 +173,7 @@ export function ContactModal() {
                         onChange={set("organization")}
                         className={inputCls(false)}
                         maxLength={150}
+                        disabled={sending}
                       />
                     </Field>
 
@@ -163,19 +185,36 @@ export function ContactModal() {
                         onChange={set("message")}
                         className={`${inputCls(!!errors.message)} resize-none`}
                         maxLength={2000}
+                        disabled={sending}
                       />
                     </Field>
 
+                    {sendError && (
+                      <p className="text-xs text-destructive bg-destructive/10 rounded-lg px-3 py-2">
+                        {sendError}
+                      </p>
+                    )}
+
                     <div className="pt-1 flex items-center justify-between">
                       <p className="text-[11px] text-muted-foreground/60">
-                        Sends via partnerships@peoplebrowsr.com
+                        Sent to contact@peoplebrowsr.com
                       </p>
                       <button
                         type="submit"
-                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold font-display hover:opacity-90 transition-opacity"
+                        disabled={sending}
+                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold font-display hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
                       >
-                        <Send className="w-3.5 h-3.5" />
-                        Send Message
+                        {sending ? (
+                          <>
+                            <span className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                            Sending…
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-3.5 h-3.5" />
+                            Send Message
+                          </>
+                        )}
                       </button>
                     </div>
                   </form>
@@ -192,7 +231,7 @@ export function ContactModal() {
 function inputCls(hasError: boolean) {
   return `w-full rounded-lg border ${
     hasError ? "border-destructive/60" : "border-border/40"
-  } bg-background/40 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary/50 transition-colors`;
+  } bg-background/40 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary/50 transition-colors disabled:opacity-50`;
 }
 
 function Field({
