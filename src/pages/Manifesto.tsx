@@ -5,6 +5,8 @@ import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import manifestoConcept1 from "@/assets/manifesto-concept-1-infographic.jpg";
+import manifestoConcept2 from "@/assets/manifesto-concept-2-hero.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
