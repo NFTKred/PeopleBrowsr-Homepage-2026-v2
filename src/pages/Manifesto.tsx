@@ -5,6 +5,8 @@ import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import manifestoConcept1 from "@/assets/manifesto-concept-1-infographic.jpg";
+import manifestoConcept2 from "@/assets/manifesto-concept-2-hero.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -398,6 +400,24 @@ export default function ManifestoPage() {
             </SubSection>
           </Section>
 
+          {/* ── Concept 1: Annotated Infographic ── */}
+          <motion.figure
+            className="my-12"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <img
+              src={manifestoConcept1}
+              alt="PeopleBrowsr THEN → NOW → VISION journey: annotated infographic showing 400M social profiles, 1 trillion conversations, and the nine-product Kred Matrix ecosystem constellation"
+              className="w-full rounded-xl border border-border/40 shadow-lg"
+            />
+            <figcaption className="text-xs text-muted-foreground/60 text-center mt-3 italic">
+              The full THEN → NOW → VISION arc: from 400M scored profiles and a trillion indexed conversations to the nine-product Kred Matrix.
+            </figcaption>
+          </motion.figure>
+
           {/* ── Section 6 ── */}
           <Section id="s06" number="06" title="Why Does This Matter?">
             <P>For seventeen years, PeopleBrowsr answered a question about humans: who is this person, what's their reputation, and can they be trusted? Now billions of AI agents are coming online. They interact with API endpoints, communities, and money. They negotiate, transact, and make decisions. Most of them remain anonymous — nameless, history-less, reputation-less, and entirely unaccountable.</P>
@@ -412,6 +432,24 @@ export default function ManifestoPage() {
               <p className="text-muted-foreground mt-2 text-sm">The agentic web is here. We've been preparing for it since before it had a name.</p>
             </div>
           </Section>
+
+          {/* ── Concept 2: Cinematic Hero Image ── */}
+          <motion.figure
+            className="my-12"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <img
+              src={manifestoConcept2}
+              alt="A human hand issuing a .Kred identity passport to a geometric AI agent, with a queue of agents waiting. The nine-product Kred constellation floats above and 17 years of social data streams flow beneath."
+              className="w-full rounded-xl border border-border/40 shadow-lg"
+            />
+            <figcaption className="text-xs text-muted-foreground/60 text-center mt-3 italic">
+              The passport office is open. A human issues a .Kred identity to an agent — sovereign, portable, verifiable.
+            </figcaption>
+          </motion.figure>
 
           {/* ── Section 7 FAQ ── */}
           <Section id="s07" number="07" title="Frequently Asked Questions">
