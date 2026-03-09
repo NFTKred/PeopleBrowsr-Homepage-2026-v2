@@ -195,10 +195,7 @@ export function ContactModal() {
                       </p>
                     )}
 
-                    <div className="pt-1 flex items-center justify-between">
-                      <p className="text-[11px] text-muted-foreground/60">
-                        Sent to contact@peoplebrowsr.com
-                      </p>
+                    <div className="pt-1 flex justify-end">
                       <button
                         type="submit"
                         disabled={sending}
