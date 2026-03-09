@@ -50,11 +50,12 @@ export const NavBar = () => {
 
           {/* Nav links — desktop */}
           <div className="hidden md:flex items-center gap-4">
-            {navLinks.map((link) =>
-              link.href.startsWith("/") ? (
+          {navLinks.map((link) => {
+              const href = resolveHref(link.href);
+              return href.startsWith("/") && !href.includes("#") ? (
                 <Link
                   key={link.label}
-                  to={link.href}
+                  to={href}
                   className="text-[14px] text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
                 >
                   {link.label}
@@ -62,13 +63,13 @@ export const NavBar = () => {
               ) : (
                 <a
                   key={link.label}
-                  href={link.href}
+                  href={href}
                   className="text-[14px] text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
                 >
                   {link.label}
                 </a>
-              )
-            )}
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-2">
