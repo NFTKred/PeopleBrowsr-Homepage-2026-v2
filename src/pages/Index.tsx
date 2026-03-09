@@ -3,6 +3,7 @@ import { NavBar } from "@/components/NavBar";
 import { Hero } from "@/components/Hero";
 import { EcosystemMap } from "@/components/EcosystemMap";
 import { Manifesto } from "@/components/Manifesto";
+import { TokenizationStrip } from "@/components/TokenizationStrip";
 import { FourPillars } from "@/components/FourPillars";
 import { ApiSkills } from "@/components/ApiSkills";
 import { Footer } from "@/components/Footer";
@@ -17,6 +18,7 @@ const Index = () => {
         <Hero />
         <EcosystemMap />
         <Manifesto />
+        <TokenizationStrip />
         <FourPillars />
         <ApiSkills />
       </main>
