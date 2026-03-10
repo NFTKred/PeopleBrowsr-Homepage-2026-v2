@@ -74,15 +74,10 @@ export const Footer = () => {
 
               <div className="flex flex-col gap-3">
                 <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/60">Company</p>
-                {[
-                  { label: "Manifesto", href: "/manifesto" },
-                  { label: "Tokenization", href: "/tokenization" },
-                ].map((l) => (
-                  <a key={l.label} href={l.href}
-                    className="text-xs text-muted-foreground hover:text-foreground transition-colors">
-                    {l.label}
-                  </a>
-                ))}
+                <a href="/manifesto"
+                  className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+                  Manifesto
+                </a>
                 <button
                   onClick={open}
                   className="text-xs text-muted-foreground hover:text-foreground transition-colors text-left"
