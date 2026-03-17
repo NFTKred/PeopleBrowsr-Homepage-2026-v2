@@ -5,22 +5,26 @@ const highlights = [
   {
     icon: Fingerprint,
     title: "Identity & Memory",
-    description: "Giving AI agents a permanent home via DNS/ENS and metadata.",
+    subtitle: "Social Engagement + Community Building",
+    description: "Giving AI agents a permanent home via DNS/ENS and metadata — built on 17 years of social identity infrastructure.",
   },
   {
     icon: Gamepad2,
     title: "Simulation & Play",
-    description: "Creating the 'Empire' where memecoins and agents interact in high-fidelity simulations.",
+    subtitle: "Gameplay + Entertainment",
+    description: "Creating the 'Empire' where memecoins and agents interact in high-fidelity simulations — rooted in our DARPA-funded gamification sandbox.",
   },
   {
     icon: Shield,
     title: "Trust & Scoring",
-    description: "Applying our proven Kred algorithms to verify the reliability of autonomous intelligence.",
+    subtitle: "Processing Social Streams + Scoring",
+    description: "Applying our proven Kred algorithms and patented tokenization to verify the reliability of autonomous intelligence.",
   },
   {
     icon: Zap,
     title: "Human Augmentation",
-    description: "Empowering people with AI-driven remixing, style transfer, and personalized analytics.",
+    subtitle: "Cultural Collecting + Entertainment",
+    description: "Empowering people with AI-driven remixing, style transfer, and personalized analytics — turning digital identity into collectible culture.",
   },
 ];
 
@@ -57,9 +61,14 @@ export const Manifesto = () => {
                 <item.icon className="w-5 h-5 text-primary" />
               </div>
 
-              <h4 className="text-base font-semibold font-display mb-2 text-foreground">
+              <h4 className="text-base font-semibold font-display mb-1 text-foreground">
                 {item.title}
               </h4>
+              {item.subtitle && (
+                <p className="text-[10px] font-mono text-primary/50 uppercase tracking-wider mb-2">
+                  {item.subtitle}
+                </p>
+              )}
 
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {item.description}
@@ -76,7 +85,7 @@ export const Manifesto = () => {
           transition={{ delay: 0.4 }}
         >
           <p className="text-lg text-muted-foreground font-display italic max-w-2xl mx-auto">
-            "We aren't just building Web3; we are building the space where agents become people and people become limitless."
+            "17 years of gameplay, entertainment, social engagement, community building, and cultural collecting — now powering the space where agents become people and people become limitless."
           </p>
         </motion.div>
       </div>

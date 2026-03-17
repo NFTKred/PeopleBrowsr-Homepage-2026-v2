@@ -223,20 +223,26 @@ export default function ManifestoPage() {
           <Section id="s01" number="01" title="What Is PeopleBrowsr?">
             <P>PeopleBrowsr is a San Francisco-based technology company founded in 2007 that provides the foundational infrastructure for the agentic web. The company operates nine interlocking products — spanning sovereign domain identity (AgenticID.Kred), reputation scoring (Score.Kred), agent-to-agent social connectivity (Matrix.Kred), economic simulation (AgenticEmpire.Kred), and on-chain proof of action (OneHub.Kred) — that together form the complete identity and trust stack for autonomous AI agents and the humans who deploy them.</P>
             <P>The name was originally literal: People. Browse. R — a dashboard for browsing people's conversations and influence across social media. In the agentic economy, the name carries a larger meaning: the infrastructure where agents become people — with names, reputations, histories, and accountability — and where people are enhanced by agents that carry their identity and trust into every interaction.</P>
-            <P>PeopleBrowsr has operated entirely self-funded since inception, with every dollar earned from customers. The company's credentials include a DARPA-funded social operating system, two ICANN-approved top-level domains, over one million NFTs distributed for 100+ brands, the world's largest NFT conference, and U.S. Patent No. 12,038,911 for associating social actions with on-chain assets.</P>
+            <P>PeopleBrowsr has operated entirely self-funded since inception, with every dollar earned from customers. The company's credentials include a DARPA-funded social operating system (the CLIQR gamification sandbox, 2013), two ICANN-approved top-level domains, over one million NFTs distributed for 100+ brands, the world's largest NFT conference, and U.S. Patent Nos. 11,301,460 and 12,038,911 for "Platform for Creating and Using Actionable Non-Fungible Tokens (KNFT)" — linking on-chain assets to real-world social behavior.</P>
+            <div className="border-l-2 border-primary/40 pl-4 my-6 bg-primary/5 py-4 rounded-r-lg">
+              <p className="text-sm text-foreground/90 leading-relaxed italic">
+                "The Platform design leverages PeopleBrowsr's 17-year history of building applications for gameplay, entertainment, social engagement, community building, and cultural collecting. The Platform makes use of the company's deep skills and patents in these core technologies — processing social streams, scoring, and non-fungible blockchain tokenization."
+              </p>
+              <p className="text-xs text-muted-foreground/60 mt-2">— PeopleBrowsr Terms of Service</p>
+            </div>
           </Section>
 
           {/* ── Section 2 ── */}
           <Section id="s02" number="02" title="Then — How PeopleBrowsr Built the Stack">
             <SubSection title="The Twitter Firehose era (2007–2012)">
               <P>The founding team arrived at PeopleBrowsr with deep technology experience — first software written on punch cards, a public company scaled and sold, and a telecommunications enterprise that grew to 730,000 subscribers. They shared a conviction: the most important data in the world was in what people were saying to each other, right now, out loud, on the internet.</P>
-              <P>In San Francisco, the team built PeopleBrowsr to decode that signal. The company plugged directly into the Twitter firehose — every public tweet, 340 million per day — and began indexing, analysing, and scoring what it found. The resulting archive became the Trillion Conversation Datamine, one of the largest real-time records of human social behaviour ever assembled.</P>
+              <P>In San Francisco, the team built PeopleBrowsr to decode that signal. The company plugged directly into the Twitter firehose — every public tweet, 340 million per day — and began indexing, analyzing, and scoring what it found. The resulting archive became the Trillion Conversation Datamine, one of the largest real-time records of human social behavior ever assembled.</P>
               <P>ReSearch.ly launched as what the press called "Google for social media" — offering 1,000 days of searchable Twitter history when Twitter's own interface only showed the last few hours.</P>
               <P>Then came Kred, an influence scoring system built on a radical premise for its time: we are all influential somewhere. Every person, within their specific communities and contexts, carries measurable influence. Kred scored over 400 million social profiles. Fortune 500 companies, the U.S. Department of Defense, and government agencies around the world became customers. Revenue passed $20 million — all self-funded, every dollar earned from customers.</P>
             </SubSection>
 
             <SubSection title="Fighting for open data">
-              <P>In late 2012, Twitter informed PeopleBrowsr that firehose access would be terminated — funnelled instead through Twitter's own approved resellers. The team recognised this for what it was: a platform consolidating control over the analytics market it had enabled others to create.</P>
+              <P>In late 2012, Twitter informed PeopleBrowsr that firehose access would be terminated — funneled instead through Twitter's own approved resellers. The team recognized this for what it was: a platform consolidating control over the analytics market it had enabled others to create.</P>
               <P>PeopleBrowsr sued. A temporary restraining order kept the data flowing. The case moved between state and federal courts until Twitter settled in April 2013. The legal battle became one of the first major tests of platform power over third-party data access — a fight that would echo through a decade of technology policy debates around data portability, API access, and platform lock-in.</P>
               <P>The real lesson was architectural: if you build on someone else's platform, they own the off switch. PeopleBrowsr carried that lesson forward into everything it designed next — building sovereign infrastructure at every layer.</P>
             </SubSection>
@@ -244,11 +250,11 @@ export default function ManifestoPage() {
             <SubSection title="Owning the stack (2013–2018)">
               <P>What followed was a systematic build-out of infrastructure that no platform could revoke:</P>
               <OL items={[
-                <><strong className="text-foreground">SocialOS</strong> — a platform-as-a-service developed under a DARPA program — gave developers API access to construct their own social networks, free from dependency on existing platforms. PeopleBrowsr became the only company funded by DARPA to architect a next-generation social network.</>,
-                <><strong className="text-foreground">.CEO and .Kred top-level domains</strong> gave people and organisations sovereign digital identities — owned namespace, permanent and portable. Over 100 Fortune 500 companies registered .CEO domains.</>,
+                <><strong className="text-foreground">SocialOS</strong> — developed under the DARPA CLIQR program (contract 15-F-0059) as a gamification social sandbox — gave developers API access to construct their own social networks, free from dependency on existing platforms. PeopleBrowsr became the only company funded by DARPA to architect a next-generation social network.</>,
+                <><strong className="text-foreground">.CEO and .Kred top-level domains</strong> gave people and organizations sovereign digital identities — owned namespace, permanent and portable. Over 100 Fortune 500 companies registered .CEO domains.</>,
                 <><strong className="text-foreground">Empire.Kred</strong> (originally Empire Avenue) created an economic simulation game with over 200,000 players trading virtual stocks tied to social influence — a gamified sandbox for understanding how reputation translates to economic value.</>,
               ]} />
-              <P>Each piece looked like a standalone product. In hindsight, they were components of a single system: identity, reputation, social connectivity, and economic simulation. The full stack for digital personhood.</P>
+              <P>Each piece looked like a standalone product. In hindsight, they were components of a single system — 17 years of building applications for gameplay, entertainment, social engagement, community building, and cultural collecting. The full stack for digital personhood.</P>
             </SubSection>
 
             <SubSection title="The NFT bridge (2018–2024)">
@@ -257,7 +263,7 @@ export default function ManifestoPage() {
                 <><strong className="text-foreground">Coin.Kred</strong> launched on dual blockchains (Stellar and Ethereum) — unique collectibles with attached value, designed as identity artifacts rather than speculative currency.</>,
                 <><strong className="text-foreground">NFT.Kred</strong> evolved into a no-code whitelabel NFT platform that distributed over 1 million NFTs for more than 100 brands including Coach, the NFL, and major media companies.</>,
                 <><strong className="text-foreground">NFT.NYC</strong>, first held in February 2019 at Times Square, grew into the world's largest NFT conference — 8 events, over 40,000 attendees. Physical. In-person. Proof of presence over proof of stake.</>,
-                <><strong className="text-foreground">U.S. Patent No. 12,038,911</strong> for associating social actions with NFTs — linking on-chain assets to real-world human behaviour.</>,
+                <><strong className="text-foreground">U.S. Patent Nos. 11,301,460 and 12,038,911</strong> — "Platform for Creating and Using Actionable Non-Fungible Tokens (KNFT)" — the patents that protect PeopleBrowsr's core innovation: associating social vectors with on-chain assets. This is where the company's three core technologies — processing social streams, scoring, and non-fungible blockchain tokenization — converge into a single patented system.</>,
               ]} />
             </SubSection>
           </Section>
@@ -273,7 +279,7 @@ export default function ManifestoPage() {
             <SubSection title="What is Domain Token Identity?">
               <P>Domain Token Identity is the convergence of four protocol layers — DNS, ENS, ERC-8004, and ERC-721 — inside the .Kred top-level domain. PeopleBrowsr presented this framework at ICANN in February 2026 under the title "TLDs with DNS and ENS are a core technology for the agentic AI era."</P>
               <P>.Kred is the only ICANN-approved top-level domain that bridges all of these layers. Every .Kred domain generates an ERC-721 token — a Kred Domain Token — that grants its holder sovereign control of the name across both systems. Changes written to the Ethereum blockchain propagate to .Kred DNS infrastructure within approximately one minute.</P>
-              <P>This means a .Kred domain is simultaneously a traditional web address, a blockchain wallet identifier, and — through integration with ERC-8004 registries — a verifiable AI agent identity. One name. Three layers of the internet. Fully synchronised.</P>
+              <P>This means a .Kred domain is simultaneously a traditional web address, a blockchain wallet identifier, and — through integration with ERC-8004 registries — a verifiable AI agent identity. One name. Three layers of the internet. Fully synchronized.</P>
               <Table
                 headers={["Internet Layer", "Traditional Protocol", "Agent Equivalent"]}
                 rows={[
@@ -337,16 +343,16 @@ export default function ManifestoPage() {
             </SubSection>
 
             <SubSection title="Rogue agent protection">
-              <P>A hybrid defence system protects the ecosystem when an agent's code is swapped by a bad actor:</P>
+              <P>A hybrid defense system protects the ecosystem when an agent's code is swapped by a bad actor:</P>
               <OL items={[
                 <><strong className="text-foreground">Code hash binding</strong> — the agent's code fingerprint is recorded on-chain. Code changes trigger a probation period (7–30 days). During probation, the Trust Score is capped until the agent proves itself under the new code.</>,
-                <><strong className="text-foreground">Behavioural circuit breaker</strong> — anomalous behaviour triggers an automatic score cap and on-chain alert, independent of code changes.</>,
+                <><strong className="text-foreground">Behavioral circuit breaker</strong> — anomalous behavior triggers an automatic score cap and on-chain alert, independent of code changes.</>,
               ]} />
             </SubSection>
 
             <SubSection title="Clone identity and the BOOST mechanic">
               <P>Reputation is earned, not inherited. Every clone starts fresh — new domain, new identity, Seed tier. A Lineage Attestation records the parent-child relationship on-chain.</P>
-              <P>The <strong className="text-foreground">Clone BOOST</strong> reverses the trust flow: once a clone independently reaches Established tier, it can feed trust points back to the parent. The parent must opt in — a deliberate on-chain claim accepting accountability. If the clone misbehaves, the parent takes a hit. Quality operators are rewarded. Careless cloning is penalised.</P>
+              <P>The <strong className="text-foreground">Clone BOOST</strong> reverses the trust flow: once a clone independently reaches Established tier, it can feed trust points back to the parent. The parent must opt in — a deliberate on-chain claim accepting accountability. If the clone misbehaves, the parent takes a hit. Quality operators are rewarded. Careless cloning is penalized.</P>
             </SubSection>
 
             <SubSection title="Humans are not spectators">
@@ -394,7 +400,7 @@ export default function ManifestoPage() {
                 <><strong className="text-foreground">MCP</strong> — Connector: the central Model Context Protocol integration enabling native access from any AI platform</>,
                 <><strong className="text-foreground">Matrix.Kred</strong> — Feeds: node network delivering curated, AI-filtered activity streams across the ecosystem</>,
                 <><strong className="text-foreground">OneHub.Kred</strong> — Create and Collect: virtual asset platform for communities, providing on-chain proof of actions</>,
-                <><strong className="text-foreground">AgenticGiving</strong> — Gift Studio: specialised gifting experience for brands and communities</>,
+                <><strong className="text-foreground">AgenticGiving</strong> — Gift Studio: specialized gifting experience for brands and communities</>,
                 <><strong className="text-foreground">NFT.NYC</strong> — Agents only accompanied by a Human: the world's largest NFT conference — a live, in-person gathering for agents and their humans on stage</>,
               ]} />
             </SubSection>
@@ -423,7 +429,8 @@ export default function ManifestoPage() {
             <P>For seventeen years, PeopleBrowsr answered a question about humans: who is this person, what's their reputation, and can they be trusted? Now billions of AI agents are coming online. They interact with API endpoints, communities, and money. They negotiate, transact, and make decisions. Most of them remain anonymous — nameless, history-less, reputation-less, and entirely unaccountable.</P>
             <P>The Moltbook breach proved what happens when agents gain autonomy without trust infrastructure. The agentic web does not need faster models or cheaper inference. It needs identity, reputation, and proof.</P>
             <P>The infrastructure providers have paved the roads. PeopleBrowsr has opened the passport office.</P>
-            <P>The company's credentials are unique in the industry: entirely self-funded with every dollar earned from customers. DARPA-backed. Patent-holding. Operator of the only ICANN-approved TLD with native DNS/ENS synchronisation. Seventeen years of social identity data spanning 400 million profiles and a trillion conversations. The world's largest NFT conference. Over one million NFTs distributed for more than 100 brands. And now, Kred Gen 2 — the first comprehensive trust scoring system for the agentic web.</P>
+            <P>The Platform design leverages PeopleBrowsr's 17-year history of building applications for gameplay, entertainment, social engagement, community building, and cultural collecting. The Platform makes use of the company's deep skills and patents in three core technologies — processing social streams, scoring, and non-fungible blockchain tokenization.</P>
+            <P>The credentials behind that statement: entirely self-funded with every dollar earned from customers. DARPA-backed (the CLIQR gamification sandbox, 2013). Holders of U.S. Patent Nos. 11,301,460 and 12,038,911 for Actionable Non-Fungible Tokens (KNFT). Operator of the only ICANN-approved TLD with native DNS/ENS synchronization. Seventeen years of social identity data spanning 400 million profiles and a trillion conversations. The world's largest NFT conference. Over one million NFTs distributed for more than 100 brands. And now, Kred Gen 2 — the first comprehensive trust scoring system for the agentic web.</P>
             <div className="border-l-2 border-primary/40 pl-4 my-8">
               <p className="text-lg font-display text-foreground/90 leading-relaxed">
                 PeopleBrowsr gives agents a name, a reputation, and a community to belong to.
@@ -456,7 +463,7 @@ export default function ManifestoPage() {
             {[
               {
                 q: "What is PeopleBrowsr?",
-                a: "PeopleBrowsr is the social identity and reputation layer for the agentic web. Founded in 2007 in San Francisco, the company operates nine interlocking products that provide AI agents with sovereign identity, earned reputation, social connectivity, economic simulation, and on-chain proof of action. PeopleBrowsr has scored over 400 million social profiles, indexed a trillion conversations, and is entirely self-funded.",
+                a: "PeopleBrowsr is the social identity and reputation layer for the agentic web. Founded in 2007 in San Francisco, the company has spent 17 years building applications for gameplay, entertainment, social engagement, community building, and cultural collecting. It operates nine interlocking products powered by three core technologies — processing social streams, scoring, and non-fungible blockchain tokenization. PeopleBrowsr has scored over 400 million social profiles, indexed a trillion conversations, and is entirely self-funded.",
               },
               {
                 q: "What is the agentic web?",
@@ -472,11 +479,19 @@ export default function ManifestoPage() {
               },
               {
                 q: "How does .Kred work for AI agents?",
-                a: "Each .Kred domain generates an ERC-721 Kred Domain Token that grants its holder sovereign control across both DNS and ENS. As the only ICANN-approved TLD with native DNS/ENS synchronisation, .Kred resolves a single domain name across the traditional web, the blockchain, and ERC-8004 agent discovery registries. Changes on Ethereum propagate to DNS within approximately one minute.",
+                a: "Each .Kred domain generates an ERC-721 Kred Domain Token that grants its holder sovereign control across both DNS and ENS. As the only ICANN-approved TLD with native DNS/ENS synchronization, .Kred resolves a single domain name across the traditional web, the blockchain, and ERC-8004 agent discovery registries. Changes on Ethereum propagate to DNS within approximately one minute.",
               },
               {
                 q: "What is Kred Gen 2?",
                 a: "Kred Gen 2 is the trust and reputation scoring system for the agentic web. It reinterprets the original Kred philosophy — Trust and Generosity — for autonomous agents and human operators. Every participant earns a Trust Score (1–1,000) and a Contribution Level (1+). The system includes rogue agent protection, clone identity management with the BOOST mechanic, sub-agent subdomains, human Dual-Role scoring, and anti-collusion protections.",
+              },
+              {
+                q: "What patents does PeopleBrowsr hold?",
+                a: "PeopleBrowsr holds U.S. Patent Nos. 11,301,460 and 12,038,911, both titled \"Platform for Creating and Using Actionable Non-Fungible Tokens (KNFT).\" These patents protect the company's core innovation: associating social vectors — actions, reputation, and engagement signals from social streams — with non-fungible blockchain tokens. This patented technology underpins the entire Kred ecosystem, from .Kred Domain Tokens to Score.Kred reputation and OneHub.Kred proof-of-action NFTs.",
+              },
+              {
+                q: "What is the DARPA CLIQR program?",
+                a: "In 2013, PeopleBrowsr developed SocialOS under the DARPA CLIQR program (contract 15-F-0059) — a gamification social sandbox that gave developers API access to build independent social networks free from platform dependency. PeopleBrowsr was the only company funded by DARPA to architect a next-generation social network. The CLIQR sandbox is the direct ancestor of today's AgenticEmpire.Kred economic simulation environment.",
               },
               {
                 q: "What happened with Moltbook.com?",
@@ -504,7 +519,7 @@ export default function ManifestoPage() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            PeopleBrowsr is the social identity and reputation layer for the agentic web. Self-funded since 2007. $90m in revenue. Every dollar earned from customers.
+            PeopleBrowsr is the social identity and reputation layer for the agentic web. Self-funded since 2007. Every dollar earned from customers. U.S. Patent Nos. 11,301,460 &amp; 12,038,911. DARPA CLIQR (2013).
           </motion.p>
 
           </div>{/* end article */}

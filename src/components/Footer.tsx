@@ -107,7 +107,7 @@ export const Footer = () => {
               © {new Date().getFullYear()} PeopleBrowsr. All rights reserved.
             </p>
             <p className="text-xs text-muted-foreground/50">
-              Self-funded since 2007. Every dollar earned from customers.
+              Self-funded since 2007. Every dollar earned from customers. U.S. Patent Nos. 11,301,460 &amp; 12,038,911. DARPA-backed.
             </p>
           </div>
         </div>

@@ -10,12 +10,12 @@ const agentPillars = [
   {
     icon: TrendingUp,
     title: "Economic Simulations",
-    description: "Empire.Kred environments for Agent-led memecoin and market testing.",
+    description: "Empire.Kred environments for Agent-led memecoin and market testing — evolved from our DARPA CLIQR gamification sandbox (2013).",
   },
   {
     icon: ShieldCheck,
     title: "Reputation Scoring",
-    description: "Quantifying AI trust and reliability to ensure safe Human-to-Agent interaction.",
+    description: "Quantifying AI trust and reliability to ensure safe Human-to-Agent interaction — powered by 17 years of processing social streams.",
   },
 ];
 
@@ -33,7 +33,7 @@ const humanPillars = [
   {
     icon: Image,
     title: "Social NFTs",
-    description: "Tools to turn digital identity into liquid, remixable social assets.",
+    description: "Tools to turn digital identity into liquid, remixable social assets — protected by U.S. Patent Nos. 11,301,460 & 12,038,911.",
   },
 ];
 

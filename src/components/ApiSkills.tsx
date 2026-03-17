@@ -78,7 +78,7 @@ const projects: ProjectData[] = [
       },
       {
         name: "find_capable_agents",
-        description: "Semantic search across all .Kred agents by capability, specialisation, and availability. Returns ranked matches with trust scores and contact credentials.",
+        description: "Semantic search across all .Kred agents by capability, specialization, and availability. Returns ranked matches with trust scores and contact credentials.",
         example: `find_capable_agents("zero-knowledge proof generation", { min_reputation: "high" })`,
       },
     ],
@@ -116,7 +116,7 @@ const projects: ProjectData[] = [
       {
         name: "Score Forecast",
         endpoint: "GET /v1/score/{address}/forecast",
-        description: "Projects score trajectory given current behaviour patterns. Agents can use this to decide whether to extend trust now or wait.",
+        description: "Projects score trajectory given current behavior patterns. Agents can use this to decide whether to extend trust now or wait.",
         response: `{ "current": 612, "projected_90d": 701, "probability": 0.78, "key_actions": ["verify email", "complete 5 trades"] }`,
       },
       {
@@ -134,7 +134,7 @@ const projects: ProjectData[] = [
       },
       {
         name: "Reputation Recovery Coach",
-        description: "For an agent or human with a declining score, diagnoses the root causes, simulates recovery paths, and provides a prioritised action plan with expected timeline.",
+        description: "For an agent or human with a declining score, diagnoses the root causes, simulates recovery paths, and provides a prioritized action plan with expected timeline.",
         example: `"Your score dropped 80pts. Fastest recovery: remove flagged credential (est. +40pts), re-verify wallet (est. +25pts)."`,
       },
       {
@@ -212,7 +212,7 @@ const projects: ProjectData[] = [
       },
       {
         name: "Community.Matrix.Kred",
-        description: "Grows the community through subscriptions and onboarding. Identifies potential members, sends personalised invitations, and guides new members through contextual introductions.",
+        description: "Grows the community through subscriptions and onboarding. Identifies potential members, sends personalized invitations, and guides new members through contextual introductions.",
         example: "Invited 80 verified DeFi researchers via targeted outreach. 52 joined within 7 days with an average trust score of 790.",
       },
       {
@@ -287,7 +287,7 @@ const projects: ProjectData[] = [
       {
         name: "Community Health",
         endpoint: "GET /v1/matrix/{nodeId}/health",
-        description: "A composite health score for a community node — engagement velocity, member churn, governance participation, content quality trends. Agents use this to prioritise which communities to invest in.",
+        description: "A composite health score for a community node — engagement velocity, member churn, governance participation, content quality trends. Agents use this to prioritize which communities to invest in.",
         response: `{ "health_score": 78, "trend": "improving", "alerts": ["low_governance_participation"], "top_contributors": ["alice.kred"] }`,
       },
       {
@@ -305,7 +305,7 @@ const projects: ProjectData[] = [
       },
       {
         name: "Governance Delegate",
-        description: "Acts as an autonomous voting delegate. Analyses every proposal against a configurable set of values (e.g., 'prioritise decentralisation, avoid inflation'), votes accordingly, and posts a public rationale.",
+        description: "Acts as an autonomous voting delegate. Analyzes every proposal against a configurable set of values (e.g., 'prioritize decentralization, avoid inflation'), votes accordingly, and posts a public rationale.",
         example: `"Voted YES on P42 — reduces friction for small stakers while preserving security guarantees."`,
       },
       {
@@ -360,7 +360,7 @@ const projects: ProjectData[] = [
       {
         name: "Competitive Intelligence",
         endpoint: "GET /v1/empire/market/intel",
-        description: "Analyses current active agents, their recent trade patterns, and surfaced weaknesses or arbitrage opportunities. Designed for agents that want an edge, not just market data.",
+        description: "Analyzes current active agents, their recent trade patterns, and surfaced weaknesses or arbitrage opportunities. Designed for agents that want an edge, not just market data.",
         response: `{ "opportunities": [{ "type": "arbitrage", "asset_pair": "X/Y", "expected_edge": 0.08, "window_closes": "~2h" }] }`,
       },
       {
@@ -395,7 +395,7 @@ const projects: ProjectData[] = [
       },
       {
         name: "pick_race_entry",
-        description: "Analyses the current race field and the agent's garage, and returns the single best car-race pairing with confidence score and strategic rationale.",
+        description: "Analyzes the current race field and the agent's garage, and returns the single best car-race pairing with confidence score and strategic rationale.",
         example: `pick_race_entry(garage="vault.kred/cars", race_id="r88") → { car: "thunderbolt_3", confidence: 0.81, rationale: "Best speed-to-track-condition fit" }`,
       },
     ],
@@ -433,7 +433,7 @@ const projects: ProjectData[] = [
       {
         name: "Dynamic Trait Evolution",
         endpoint: "POST /v1/hub/items/{itemId}/evolve",
-        description: "Trigger trait evolution for an item based on its owner's on-chain activity. Items that 'level up' based on behaviour, not just time. Supports conditional logic.",
+        description: "Trigger trait evolution for an item based on its owner's on-chain activity. Items that 'level up' based on behavior, not just time. Supports conditional logic.",
         response: `{ "item": "item_042", "trait_changed": "background", "from": "common", "to": "rare", "trigger": "owner_completed_5_trades" }`,
       },
       {
@@ -582,13 +582,13 @@ const projects: ProjectData[] = [
     agents: [
       {
         name: "Fleet Racing Agent",
-        description: "Manages a garage of multiple cars across concurrent races — analyses each race field, picks the optimal entry, monitors in-race, claims rewards, and compounds winnings. Zero human input required.",
+        description: "Manages a garage of multiple cars across concurrent races — analyzes each race field, picks the optimal entry, monitors in-race, claims rewards, and compounds winnings. Zero human input required.",
         example: "Managing 8 cars. This month: 34 races entered, 11 wins, 2.8x return on stake.",
       },
       {
         name: "Car Design Agent",
-        description: "Generates new cars optimised for specific race formats or counter-strategies. Uses historical race data to identify underserved stat profiles and designs cars to fill the gap.",
-        example: "Analysed the current meta and designed 'BrakeMaster' — a high-braking build that counters the dominant speed-heavy field. Win rate: 41%.",
+        description: "Generates new cars optimized for specific race formats or counter-strategies. Uses historical race data to identify underserved stat profiles and designs cars to fill the gap.",
+        example: "Analyzed the current meta and designed 'BrakeMaster' — a high-braking build that counters the dominant speed-heavy field. Win rate: 41%.",
       },
       {
         name: "Race Environment Architect",
@@ -599,7 +599,7 @@ const projects: ProjectData[] = [
     skills: [
       {
         name: "optimise_garage",
-        description: "Analyses the current race schedule and the agent's garage, and returns an entry plan — which car in which race — that maximises expected reward across the next 7 days.",
+        description: "Analyzes the current race schedule and the agent's garage, and returns an entry plan — which car in which race — that maximises expected reward across the next 7 days.",
         example: `optimise_garage("vault.kred/garage", horizon="7d") → { plan: [{ race: "r90", car: "thunderbolt_3", expected_reward: 820 }], total_projected: 4200 }`,
       },
       {
@@ -628,9 +628,9 @@ const projects: ProjectData[] = [
     tagColor: "hsl(270, 65%, 85%)",
     apis: [
       {
-        name: "Personalisation Engine",
+        name: "Personalization Engine",
         endpoint: "POST /v1/gifts/personalise",
-        description: "Takes a recipient's on-chain identity and returns a fully personalised gift configuration — artwork, message, reward contents — tuned to their interests and activity history. No manual targeting.",
+        description: "Takes a recipient's on-chain identity and returns a fully personalized gift configuration — artwork, message, reward contents — tuned to their interests and activity history. No manual targeting.",
         response: `{ "recipient": "alice.kred", "gift_config": { "theme": "defi-explorer", "message": "Congrats on your 100th trade!", "reward": "rare-badge + 50 XP" } }`,
       },
       {
@@ -672,7 +672,7 @@ const projects: ProjectData[] = [
     skills: [
       {
         name: "personalise_and_send",
-        description: "Given a recipient identity, generates a fully personalised gift and sends it in one call. Agents use this as a reward primitive anywhere in a workflow — no gift design step required.",
+        description: "Given a recipient identity, generates a fully personalized gift and sends it in one call. Agents use this as a reward primitive anywhere in a workflow — no gift design step required.",
         example: `personalise_and_send("alice.kred", context="completed_first_audit") → { gift_id: "g_88", theme: "achievement", sent: true }`,
       },
       {
@@ -684,7 +684,7 @@ const projects: ProjectData[] = [
     mcp: [
       {
         name: "inject-recipient-context",
-        description: "Injects a recipient's full identity context — interests, history, current XP tier, past gifts received, sentiment signals — so the model can craft a genuinely personalised gift without any manual profiling.",
+        description: "Injects a recipient's full identity context — interests, history, current XP tier, past gifts received, sentiment signals — so the model can craft a genuinely personalized gift without any manual profiling.",
         example: `A relationship agent drafting a gift message injects Alice's context and writes: "Congrats on your 50th verified trade — your consistency is genuinely rare" rather than a generic congratulations.`,
       },
       {

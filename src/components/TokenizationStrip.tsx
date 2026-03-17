@@ -42,7 +42,8 @@ export const TokenizationStrip = () => {
           </h2>
           <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             PeopleBrowsr has minted over 150 million NFTs — digital collectibles, DNS and ENS domains as
-            on-chain identity tokens — across ERC-721, ERC-1155, and ERC-8004.
+            on-chain identity tokens — across ERC-721, ERC-1155, and ERC-8004. Protected by U.S. Patent
+            Nos. 11,301,460 &amp; 12,038,911 for Actionable Non-Fungible Tokens (KNFT).
           </p>
         </motion.div>
 
@@ -77,6 +78,8 @@ export const TokenizationStrip = () => {
           transition={{ delay: 0.3 }}
         >
           <p className="text-xs text-muted-foreground/60 flex items-center gap-2 flex-wrap justify-center">
+            <span>U.S. Patent-Protected</span>
+            <span className="opacity-40">·</span>
             <span>AUSTRAC-Registered</span>
             <span className="opacity-40">·</span>
             <span>AML/CTF Compliant</span>
