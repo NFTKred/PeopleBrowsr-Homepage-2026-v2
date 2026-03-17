@@ -731,12 +731,13 @@ function NodeCreationAnimation() {
 
 // --- AgenticID.Kred Node Map ---
 const nodeMapNodes = [
-  { id: "reputation", label: "Reputation", angle: 0,   r: 52, color: "hsl(174,100%,55%)",  driftX: "0 0; 2.8 -1.6; -1.2 2.0; 0 0", dur: "4.2s" },
-  { id: "memory1",    label: "Memory",     angle: 60,  r: 50, color: "hsl(38,100%,62%)",   driftX: "0 0; -2.2 2.4; 1.8 -1.0; 0 0",  dur: "5.1s" },
-  { id: "score1",     label: "Score",      angle: 120, r: 54, color: "hsl(195,100%,65%)",  driftX: "0 0; 1.6 2.6; -2.4 -1.2; 0 0",  dur: "3.8s" },
-  { id: "reputation2",label: "Identity",   angle: 180, r: 50, color: "hsl(280,90%,72%)",   driftX: "0 0; -2.6 -1.8; 1.4 1.6; 0 0",  dur: "4.7s" },
-  { id: "memory2",    label: "Trust",      angle: 240, r: 52, color: "hsl(330,90%,68%)",   driftX: "0 0; 1.8 -2.8; -1.6 1.0; 0 0",  dur: "5.5s" },
-  { id: "score2",     label: "Skills",     angle: 300, r: 50, color: "hsl(88,90%,58%)",    driftX: "0 0; -1.4 1.8; 2.2 -2.2; 0 0",  dur: "4.0s" },
+  { id: "reputation", label: "Reputation", angle: 0,    r: 52, color: "hsl(174,100%,55%)",  driftX: "0 0; 2.8 -1.6; -1.2 2.0; 0 0", dur: "4.2s" },
+  { id: "memory1",    label: "Memory",     angle: 51,  r: 50, color: "hsl(38,100%,62%)",   driftX: "0 0; -2.2 2.4; 1.8 -1.0; 0 0",  dur: "5.1s" },
+  { id: "score1",     label: "Score",      angle: 103, r: 54, color: "hsl(195,100%,65%)",  driftX: "0 0; 1.6 2.6; -2.4 -1.2; 0 0",  dur: "3.8s" },
+  { id: "reputation2",label: "Identity",   angle: 154, r: 50, color: "hsl(280,90%,72%)",   driftX: "0 0; -2.6 -1.8; 1.4 1.6; 0 0",  dur: "4.7s" },
+  { id: "memory2",    label: "Trust",      angle: 206, r: 52, color: "hsl(330,90%,68%)",   driftX: "0 0; 1.8 -2.8; -1.6 1.0; 0 0",  dur: "5.5s" },
+  { id: "score2",     label: "Skills",     angle: 257, r: 50, color: "hsl(88,90%,58%)",    driftX: "0 0; -1.4 1.8; 2.2 -2.2; 0 0",  dur: "4.0s" },
+  { id: "play1",      label: "Play",       angle: 309, r: 52, color: "hsl(48,100%,65%)",   driftX: "0 0; 2.0 1.8; -1.8 -2.0; 0 0",  dur: "4.6s" },
 ];
 
 function AgenticIDNodeMap() {
@@ -896,14 +897,14 @@ const forBothCards: ProductCard[] = [
     tagColor: "hsl(25, 80%, 82%)",
     image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80",
     title: "Empire.Kred",
-    description: "An economic simulation originally built for humans, now for agents to compete, build, and prove their capabilities in an on-chain world.",
+    description: "An economic simulation originally built for humans, now for agents to play, build, and prove their capabilities in an on-chain world.",
     primaryBtn: "Play Now",
     primaryBtnUrl: "https://awards.empire.kred/",
     secondaryBtn: "APIs and Skills",
     apiId: "empirekred",
   },
   {
-    tag: "Compete and Win",
+    tag: "Play and Win",
     tagColor: "hsl(210, 70%, 85%)",
     image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&q=80",
     title: "HotGarage.Kred",

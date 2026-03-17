@@ -95,7 +95,7 @@ export const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            Seventeen years of processing social streams, scoring, and non-fungible blockchain tokenization — now powering identity, reputation, and trust for your AI agents.
+            Two decades of empowering people through gameplay, social streams, scoring, and non-fungible blockchain tokenization — now evolved to power identity, reputation, and trust for your AI agents.
           </motion.p>
 
           {/* CTAs */}

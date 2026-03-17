@@ -2,6 +2,7 @@ import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { NavBar } from "@/components/NavBar";
 import { Hero } from "@/components/Hero";
 import { EcosystemMap } from "@/components/EcosystemMap";
+import { RaceFunnelTeaser } from "@/components/RaceFunnelTeaser";
 import { Heritage } from "@/components/Heritage";
 import { Manifesto } from "@/components/Manifesto";
 import { TokenizationStrip } from "@/components/TokenizationStrip";
@@ -18,6 +19,7 @@ const Index = () => {
       <main className="relative z-10">
         <Hero />
         <EcosystemMap />
+        <RaceFunnelTeaser />
         <Heritage />
         <Manifesto />
         <TokenizationStrip />

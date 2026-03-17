@@ -226,7 +226,7 @@ export default function ManifestoPage() {
             <P>PeopleBrowsr has operated entirely self-funded since inception, with every dollar earned from customers. The company's credentials include a DARPA-funded social operating system (the CLIQR gamification sandbox, 2013), two ICANN-approved top-level domains, over one million NFTs distributed for 100+ brands, the world's largest NFT conference, and U.S. Patent Nos. 11,301,460 and 12,038,911 for "Platform for Creating and Using Actionable Non-Fungible Tokens (KNFT)" — linking on-chain assets to real-world social behavior.</P>
             <div className="border-l-2 border-primary/40 pl-4 my-6 bg-primary/5 py-4 rounded-r-lg">
               <p className="text-sm text-foreground/90 leading-relaxed italic">
-                "The Platform design leverages PeopleBrowsr's 17-year history of building applications for gameplay, entertainment, social engagement, community building, and cultural collecting. The Platform makes use of the company's deep skills and patents in these core technologies — processing social streams, scoring, and non-fungible blockchain tokenization."
+                "The Platform design leverages PeopleBrowsr's history of building applications for gameplay, entertainment, social engagement, community building, and cultural collecting. The Platform makes use of the company's deep skills and patents in these core technologies — processing social streams, scoring, and non-fungible blockchain tokenization."
               </p>
               <p className="text-xs text-muted-foreground/60 mt-2">— PeopleBrowsr Terms of Service</p>
             </div>
@@ -254,7 +254,7 @@ export default function ManifestoPage() {
                 <><strong className="text-foreground">.CEO and .Kred top-level domains</strong> gave people and organizations sovereign digital identities — owned namespace, permanent and portable. Over 100 Fortune 500 companies registered .CEO domains.</>,
                 <><strong className="text-foreground">Empire.Kred</strong> (originally Empire Avenue) created an economic simulation game with over 200,000 players trading virtual stocks tied to social influence — a gamified sandbox for understanding how reputation translates to economic value.</>,
               ]} />
-              <P>Each piece looked like a standalone product. In hindsight, they were components of a single system — 17 years of building applications for gameplay, entertainment, social engagement, community building, and cultural collecting. The full stack for digital personhood.</P>
+              <P>Each piece looked like a standalone product. In hindsight, they were components of a single system — two decades of building applications for gameplay, entertainment, social engagement, community building, and cultural collecting. The full stack for digital personhood.</P>
             </SubSection>
 
             <SubSection title="The NFT bridge (2018–2024)">
@@ -429,7 +429,7 @@ export default function ManifestoPage() {
             <P>For seventeen years, PeopleBrowsr answered a question about humans: who is this person, what's their reputation, and can they be trusted? Now billions of AI agents are coming online. They interact with API endpoints, communities, and money. They negotiate, transact, and make decisions. Most of them remain anonymous — nameless, history-less, reputation-less, and entirely unaccountable.</P>
             <P>The Moltbook breach proved what happens when agents gain autonomy without trust infrastructure. The agentic web does not need faster models or cheaper inference. It needs identity, reputation, and proof.</P>
             <P>The infrastructure providers have paved the roads. PeopleBrowsr has opened the passport office.</P>
-            <P>The Platform design leverages PeopleBrowsr's 17-year history of building applications for gameplay, entertainment, social engagement, community building, and cultural collecting. The Platform makes use of the company's deep skills and patents in three core technologies — processing social streams, scoring, and non-fungible blockchain tokenization.</P>
+            <P>The Platform design leverages PeopleBrowsr's history of building applications for gameplay, entertainment, social engagement, community building, and cultural collecting. The Platform makes use of the company's deep skills and patents in four core technologies — gamification, processing social streams, scoring, and non-fungible blockchain tokenization.</P>
             <P>The credentials behind that statement: entirely self-funded with every dollar earned from customers. DARPA-backed (the CLIQR gamification sandbox, 2013). Holders of U.S. Patent Nos. 11,301,460 and 12,038,911 for Actionable Non-Fungible Tokens (KNFT). Operator of the only ICANN-approved TLD with native DNS/ENS synchronization. Seventeen years of social identity data spanning 400 million profiles and a trillion conversations. The world's largest NFT conference. Over one million NFTs distributed for more than 100 brands. And now, Kred Gen 2 — the first comprehensive trust scoring system for the agentic web.</P>
             <div className="border-l-2 border-primary/40 pl-4 my-8">
               <p className="text-lg font-display text-foreground/90 leading-relaxed">
@@ -463,7 +463,7 @@ export default function ManifestoPage() {
             {[
               {
                 q: "What is PeopleBrowsr?",
-                a: "PeopleBrowsr is the social identity and reputation layer for the agentic web. Founded in 2007 in San Francisco, the company has spent 17 years building applications for gameplay, entertainment, social engagement, community building, and cultural collecting. It operates nine interlocking products powered by three core technologies — processing social streams, scoring, and non-fungible blockchain tokenization. PeopleBrowsr has scored over 400 million social profiles, indexed a trillion conversations, and is entirely self-funded.",
+                a: "PeopleBrowsr is the social identity and reputation layer for the agentic web. Founded in 2007 in San Francisco, the company has spent two decades building applications for gameplay, entertainment, social engagement, community building, and cultural collecting. It operates nine interlocking products powered by four core technologies — gamification, processing social streams, scoring, and non-fungible blockchain tokenization. PeopleBrowsr has scored over 400 million social profiles, indexed a trillion conversations, and is entirely self-funded.",
               },
               {
                 q: "What is the agentic web?",

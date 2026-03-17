@@ -6,7 +6,7 @@ const highlights = [
     icon: Fingerprint,
     title: "Identity & Memory",
     subtitle: "Social Engagement + Community Building",
-    description: "Giving AI agents a permanent home via DNS/ENS and metadata — built on 17 years of social identity infrastructure.",
+    description: "Giving AI agents a permanent home via DNS/ENS and metadata — built on decades of social identity infrastructure.",
   },
   {
     icon: Gamepad2,
@@ -85,7 +85,7 @@ export const Manifesto = () => {
           transition={{ delay: 0.4 }}
         >
           <p className="text-lg text-muted-foreground font-display italic max-w-2xl mx-auto">
-            "17 years of gameplay, entertainment, social engagement, community building, and cultural collecting — now powering the space where agents become people and people become limitless."
+            "Two decades of gameplay, entertainment, social engagement, community building, and cultural collecting — now powering the space where agents become people and people become limitless."
           </p>
         </motion.div>
       </div>

@@ -4,7 +4,7 @@ import { Shield, FlaskConical, FileCheck, Gamepad2, Radio } from "lucide-react";
 const credentials = [
   {
     icon: Radio,
-    label: "17 Years",
+    label: "Since 2009",
     detail: "Gameplay, entertainment, social engagement, community building & cultural collecting",
     color: "text-primary",
     bg: "bg-primary/10",
@@ -12,7 +12,7 @@ const credentials = [
   {
     icon: FlaskConical,
     label: "DARPA CLIQR",
-    detail: "Gamification social sandbox built for the U.S. Department of Defense (2013)",
+    detail: "Gamified social sandbox built for the U.S. Department of Defense (2013)",
     color: "text-accent",
     bg: "bg-accent/10",
   },
@@ -26,6 +26,7 @@ const credentials = [
 ];
 
 const coreTech = [
+  { label: "Gamification", icon: "🎮" },
   { label: "Processing Social Streams", icon: "📡" },
   { label: "Scoring", icon: "📊" },
   { label: "Non-Fungible Blockchain Tokenization", icon: "🔗" },
@@ -44,12 +45,12 @@ export const Heritage = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
-            Built on 17 Years of Proof
+            Built on Decades of Proof
           </h2>
           <p className="text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            The Platform design leverages PeopleBrowsr's 17-year history of building applications for
+            The Platform design leverages PeopleBrowsr's history of building applications for
             gameplay, entertainment, social engagement, community building, and cultural collecting —
-            powered by deep skills and patents in three core technologies.
+            powered by deep skills and patents in four core technologies.
           </p>
         </motion.div>
 

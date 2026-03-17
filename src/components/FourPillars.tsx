@@ -15,7 +15,7 @@ const agentPillars = [
   {
     icon: ShieldCheck,
     title: "Reputation Scoring",
-    description: "Quantifying AI trust and reliability to ensure safe Human-to-Agent interaction — powered by 17 years of processing social streams.",
+    description: "Quantifying AI trust and reliability to ensure safe Human-to-Agent interaction — powered by decades of processing social streams.",
   },
 ];
 

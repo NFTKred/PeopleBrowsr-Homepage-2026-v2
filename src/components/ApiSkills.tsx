@@ -551,7 +551,7 @@ const projects: ProjectData[] = [
   {
     id: "hotgarage",
     name: "HotGarage.Kred",
-    tag: "Compete and Win",
+    tag: "Play and Win",
     tagColor: "hsl(210, 70%, 85%)",
     apis: [
       {
