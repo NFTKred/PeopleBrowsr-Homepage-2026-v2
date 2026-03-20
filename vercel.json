@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/meet",
+      "destination": "https://meet.google.com/kxi-pdvf-hug",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
