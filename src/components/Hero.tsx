@@ -3,6 +3,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { isStage1 } from "@/config/stage";
 
 function NeonHeadlineTrace({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLSpanElement>(null);
@@ -105,14 +106,16 @@ export const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <Button
-              size="lg"
-              className="group w-full sm:w-auto rounded-full px-8 py-6 text-base md:text-lg bg-primary hover:bg-primary/90 text-primary-foreground glow-primary"
-              onClick={() => document.getElementById("apis-and-skills")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              Explore the APIs
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            {isStage1 && (
+              <Button
+                size="lg"
+                className="group w-full sm:w-auto rounded-full px-8 py-6 text-base md:text-lg bg-primary hover:bg-primary/90 text-primary-foreground glow-primary"
+                onClick={() => document.getElementById("apis-and-skills")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                Explore the APIs
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            )}
             <Button
               size="lg"
               variant="outline"

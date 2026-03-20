@@ -2,14 +2,24 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { isStage1 } from "@/config/stage";
 
-const navLinks = [
+const baseNavLinks = [
+  { label: "Ecosystem", href: "#ecosystem" },
+  { label: "Vision", href: "#vision" },
+  { label: "Platform", href: "#platform" },
+  { label: "Manifesto", href: "/manifesto" },
+];
+
+const stage1NavLinks = [
   { label: "Ecosystem", href: "#ecosystem" },
   { label: "Vision", href: "#vision" },
   { label: "Platform", href: "#platform" },
   { label: "APIs & Skills", href: "#apis-and-skills" },
   { label: "Manifesto", href: "/manifesto" },
 ];
+
+const navLinks = isStage1 ? stage1NavLinks : baseNavLinks;
 
 export const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -72,14 +82,16 @@ export const NavBar = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            {/* CTA */}
-            <Button
-              size="sm"
-              className="bg-transparent border border-primary/80 text-primary hover:bg-primary/10 font-medium rounded-full text-[14px] px-5 h-8 flex-shrink-0 hidden sm:inline-flex"
-              onClick={() => document.getElementById("ecosystem")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              Get Started
-            </Button>
+            {/* CTA — Stage 1 only */}
+            {isStage1 && (
+              <Button
+                size="sm"
+                className="bg-transparent border border-primary/80 text-primary hover:bg-primary/10 font-medium rounded-full text-[14px] px-5 h-8 flex-shrink-0 hidden sm:inline-flex"
+                onClick={() => document.getElementById("ecosystem")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                Get Started
+              </Button>
+            )}
 
             {/* Hamburger — mobile only */}
             <button
@@ -123,15 +135,17 @@ export const NavBar = () => {
                   </a>
                 );
               })}
-              <div className="px-6 py-3 border-t border-border/20 mt-1">
-                <Button
-                  size="sm"
-                  className="w-full bg-transparent border border-primary/80 text-primary hover:bg-primary/10 font-medium rounded-full text-[14px] h-9"
-                  onClick={() => { document.getElementById("ecosystem")?.scrollIntoView({ behavior: "smooth" }); setMobileOpen(false); }}
-                >
-                  Get Started
-                </Button>
-              </div>
+              {isStage1 && (
+                <div className="px-6 py-3 border-t border-border/20 mt-1">
+                  <Button
+                    size="sm"
+                    className="w-full bg-transparent border border-primary/80 text-primary hover:bg-primary/10 font-medium rounded-full text-[14px] h-9"
+                    onClick={() => { document.getElementById("ecosystem")?.scrollIntoView({ behavior: "smooth" }); setMobileOpen(false); }}
+                  >
+                    Get Started
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </div>

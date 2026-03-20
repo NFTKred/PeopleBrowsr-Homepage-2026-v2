@@ -9,6 +9,7 @@ import { TokenizationStrip } from "@/components/TokenizationStrip";
 import { FourPillars } from "@/components/FourPillars";
 import { ApiSkills } from "@/components/ApiSkills";
 import { Footer } from "@/components/Footer";
+import { isStage1 } from "@/config/stage";
 
 const Index = () => {
   return (
@@ -19,12 +20,12 @@ const Index = () => {
       <main className="relative z-10">
         <Hero />
         <EcosystemMap />
-        <RaceFunnelTeaser />
+        {isStage1 && <RaceFunnelTeaser />}
         <Heritage />
         <Manifesto />
         <TokenizationStrip />
         <FourPillars />
-        <ApiSkills />
+        {isStage1 && <ApiSkills />}
       </main>
 
       <Footer />
