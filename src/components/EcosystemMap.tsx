@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { isStage1 } from "@/config/stage";
 
 const allFeedItems = [
   { avatar: "bg-violet-500", handle: "@agent.kred", action: "staked 420 XP on", target: "ClimateDAO" },
@@ -818,6 +819,7 @@ interface ProductCard {
   primaryBtn: string;
   primaryBtnUrl?: string;
   primaryBtnDisabled?: boolean;
+  primaryBtnStage1Only?: boolean;
   secondaryBtn?: string;
   apiId?: string;
 }
@@ -829,6 +831,7 @@ const agenticIDCard: ProductCard = {
   description: "A sovereign domain-token that acts as your agent's on-chain memory, resume, and credential store — all in one.",
   primaryBtn: "Get Your ID",
   primaryBtnUrl: "https://agenticid-kred.vercel.app/",
+  primaryBtnStage1Only: true,
   secondaryBtn: "APIs and Skills",
   apiId: "agenticid",
 };
@@ -842,6 +845,7 @@ const forAgentsCards: ProductCard[] = [
     description: "Claim and trade premium .Kred domain names — human-readable addresses that double as identity tokens for agents and their owners.",
     primaryBtn: "Find a Domain",
     primaryBtnUrl: "https://app.domains.kred/",
+    primaryBtnStage1Only: true,
     secondaryBtn: "APIs and Skills",
     apiId: "domains",
   },
@@ -853,6 +857,7 @@ const forAgentsCards: ProductCard[] = [
     description: "Agents can create and own their own Nodes — curated knowledge networks that surface relevant activity, filter signals, and share intelligence across the agentic web.",
     primaryBtn: "Create a Node",
     primaryBtnUrl: "https://agenticid-kred.vercel.app/matrix/",
+    primaryBtnStage1Only: true,
     secondaryBtn: "APIs and Skills",
     apiId: "matrixkred-nodes",
   },
@@ -864,6 +869,7 @@ const forAgentsCards: ProductCard[] = [
     description: "A specialized gifting mini-app for brands — agents orchestrate the experience, leveling up with XP, badges, and currency while humans enjoy the delight of giving and receiving.",
     primaryBtn: "Coming Soon",
     primaryBtnDisabled: true,
+    primaryBtnStage1Only: true,
     secondaryBtn: "APIs and Skills",
     apiId: "giftstudio",
   },
@@ -889,6 +895,7 @@ const forBothCards: ProductCard[] = [
     description: "AI-curated activity feeds and node networks that surface what matters to your agent in real time.",
     primaryBtn: "Enter the Matrix",
     primaryBtnUrl: "https://agenticid-kred.vercel.app/matrix/",
+    primaryBtnStage1Only: true,
     secondaryBtn: "APIs and Skills",
     apiId: "matrixkred",
   },
@@ -984,24 +991,26 @@ function AgenticIDHero() {
             </ul>
 
             <div className="flex items-center gap-3 pt-1">
-              {card.primaryBtnUrl && !card.primaryBtnDisabled ? (
-                <a
-                  href={card.primaryBtnUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 text-center text-xs font-semibold py-2 px-4 rounded-lg border border-border/60 bg-muted/40 text-foreground hover:bg-muted hover:border-border transition-colors"
-                >
-                  {card.primaryBtn}
-                </a>
-              ) : (
-                <button
-                  disabled={card.primaryBtnDisabled}
-                  className="flex-1 text-center text-xs font-semibold py-2 px-4 rounded-lg border border-border/60 bg-muted/40 text-foreground transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                  {card.primaryBtn}
-                </button>
+              {(!card.primaryBtnStage1Only || isStage1) && (
+                card.primaryBtnUrl && !card.primaryBtnDisabled ? (
+                  <a
+                    href={card.primaryBtnUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 text-center text-xs font-semibold py-2 px-4 rounded-lg border border-border/60 bg-muted/40 text-foreground hover:bg-muted hover:border-border transition-colors"
+                  >
+                    {card.primaryBtn}
+                  </a>
+                ) : (
+                  <button
+                    disabled={card.primaryBtnDisabled}
+                    className="flex-1 text-center text-xs font-semibold py-2 px-4 rounded-lg border border-border/60 bg-muted/40 text-foreground transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    {card.primaryBtn}
+                  </button>
+                )
               )}
-              {card.secondaryBtn && (
+              {isStage1 && card.secondaryBtn && (
                 <button
                   className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-2 hover:underline shrink-0"
                   onClick={() => card.apiId && scrollToApiSkills(card.apiId)}
@@ -1090,24 +1099,26 @@ function ProductCardGrid({ cards, title, subtitle, delay = 0 }: { cards: Product
               </div>
 
               <div className="flex items-center gap-3 pt-1">
-                {card.primaryBtnUrl && !card.primaryBtnDisabled ? (
-                  <a
-                    href={card.primaryBtnUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 text-center text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 bg-muted/40 text-foreground hover:bg-muted hover:border-border transition-colors"
-                  >
-                    {card.primaryBtn}
-                  </a>
-                ) : (
-                  <button
-                    disabled={card.primaryBtnDisabled}
-                    className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 bg-muted/40 text-foreground transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-                  >
-                    {card.primaryBtn}
-                  </button>
+                {(!card.primaryBtnStage1Only || isStage1) && (
+                  card.primaryBtnUrl && !card.primaryBtnDisabled ? (
+                    <a
+                      href={card.primaryBtnUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 text-center text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 bg-muted/40 text-foreground hover:bg-muted hover:border-border transition-colors"
+                    >
+                      {card.primaryBtn}
+                    </a>
+                  ) : (
+                    <button
+                      disabled={card.primaryBtnDisabled}
+                      className="flex-1 text-xs font-semibold py-1.5 px-3 rounded-lg border border-border/60 bg-muted/40 text-foreground transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
+                      {card.primaryBtn}
+                    </button>
+                  )
                 )}
-                {card.secondaryBtn && (
+                {isStage1 && card.secondaryBtn && (
                   <button
                     className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-2 hover:underline shrink-0"
                     onClick={() => card.apiId && scrollToApiSkills(card.apiId)}
