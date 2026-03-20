@@ -1,4 +1,5 @@
 import { useContactModal } from "@/hooks/use-contact-modal";
+import { isStage1 } from "@/config/stage";
 
 const socialLinks = [
   {
@@ -59,9 +60,11 @@ export const Footer = () => {
               <div className="flex flex-col gap-3">
                 <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/60">Products</p>
                 {[
-                  { label: "AgenticID.Kred", href: "https://agenticid-kred.vercel.app/" },
-                  { label: "Score.Kred", href: "https://agenticid-kred.vercel.app/score/" },
-                  { label: "Matrix.Kred", href: "https://agenticid-kred.vercel.app/matrix/" },
+                  ...(isStage1 ? [
+                    { label: "AgenticID.Kred", href: "https://agenticid-kred.vercel.app/" },
+                    { label: "Score.Kred", href: "https://agenticid-kred.vercel.app/score/" },
+                    { label: "Matrix.Kred", href: "https://agenticid-kred.vercel.app/matrix/" },
+                  ] : []),
                   { label: "Empire.Kred", href: "https://awards.empire.kred/" },
                   { label: "NFT.NYC", href: "https://www.nft.nyc" },
                 ].map((l) => (
