@@ -66,6 +66,8 @@ export const Footer = () => {
                     { label: "Matrix.Kred", href: "https://agenticid-kred.vercel.app/matrix/" },
                   ] : []),
                   { label: "Empire.Kred", href: "https://awards.empire.kred/" },
+                  { label: "OneHub.Kred", href: "https://www.onehub.kred/" },
+                  { label: "HotGarage.Kred", href: "https://hotgarage.kred/" },
                   { label: "NFT.NYC", href: "https://www.nft.nyc" },
                 ].map((l) => (
                   <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
