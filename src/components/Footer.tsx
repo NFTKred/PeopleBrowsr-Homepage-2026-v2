@@ -60,11 +60,9 @@ export const Footer = () => {
               <div className="flex flex-col gap-3">
                 <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/60">Products</p>
                 {[
-                  ...(isStage1 ? [
-                    { label: "AgenticID.Kred", href: "https://agenticid-kred.vercel.app/" },
-                    { label: "Score.Kred", href: "https://agenticid-kred.vercel.app/score/" },
-                    { label: "Matrix.Kred", href: "https://agenticid-kred.vercel.app/matrix/" },
-                  ] : []),
+                  { label: "AgenticID.Kred", href: "https://www.agenticid.kred" },
+                  { label: "Score.Kred", href: "https://www.score.kred" },
+                  { label: "Matrix.Kred", href: "https://www.matrix.kred" },
                   { label: "Empire.Kred", href: "https://awards.empire.kred/" },
                   { label: "OneHub.Kred", href: "https://www.onehub.kred/" },
                   { label: "HotGarage.Kred", href: "https://hotgarage.kred/" },

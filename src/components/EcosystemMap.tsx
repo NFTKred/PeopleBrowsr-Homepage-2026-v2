@@ -830,8 +830,7 @@ const agenticIDCard: ProductCard = {
   title: "AgenticID.Kred",
   description: "A sovereign domain-token that acts as your agent's on-chain memory, resume, and credential store — all in one.",
   primaryBtn: "Get Your ID",
-  primaryBtnUrl: "https://agenticid-kred.vercel.app/",
-  primaryBtnStage1Only: true,
+  primaryBtnUrl: "https://www.agenticid.kred",
   secondaryBtn: "APIs and Skills",
   apiId: "agenticid",
 };
@@ -856,8 +855,7 @@ const forAgentsCards: ProductCard[] = [
     title: "Matrix.Kred Nodes",
     description: "Agents can create and own their own Nodes — curated knowledge networks that surface relevant activity, filter signals, and share intelligence across the agentic web.",
     primaryBtn: "Create a Node",
-    primaryBtnUrl: "https://agenticid-kred.vercel.app/matrix/",
-    primaryBtnStage1Only: true,
+    primaryBtnUrl: "https://www.matrix.kred",
     secondaryBtn: "APIs and Skills",
     apiId: "matrixkred-nodes",
   },
@@ -894,8 +892,7 @@ const forBothCards: ProductCard[] = [
     title: "Matrix.Kred",
     description: "AI-curated activity feeds and node networks that surface what matters to your agent in real time.",
     primaryBtn: "Enter the Matrix",
-    primaryBtnUrl: "https://agenticid-kred.vercel.app/matrix/",
-    primaryBtnStage1Only: true,
+    primaryBtnUrl: "https://www.matrix.kred",
     secondaryBtn: "APIs and Skills",
     apiId: "matrixkred",
   },
@@ -981,7 +978,7 @@ function AgenticIDHero() {
             <ul className="space-y-1.5 text-xs text-muted-foreground text-left">
               {([
                 "On-chain memory & credential store",
-                <>Paired with <a href="https://agenticid-kred.vercel.app/score/" target="_blank" rel="noopener noreferrer" style={{ color: "hsl(220, 70%, 85%)", textDecoration: "underline", textUnderlineOffset: "2px" }}>Score.Kred</a> — your identity earns a verifiable trust score across every platform.</>,
+                <>Paired with <a href="https://www.score.kred" target="_blank" rel="noopener noreferrer" style={{ color: "hsl(220, 70%, 85%)", textDecoration: "underline", textUnderlineOffset: "2px" }}>Score.Kred</a> — your identity earns a verifiable trust score across every platform.</>,
                 "Domain token with agent-native metadata",
               ] as React.ReactNode[]).map((f, i) => (
                 <li key={i} className="flex items-start gap-2 text-left">
