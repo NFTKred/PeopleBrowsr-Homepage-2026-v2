@@ -92,8 +92,8 @@ export const Footer = () => {
               <div className="flex flex-col gap-3">
                 <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/60">Legal</p>
                 {[
-                  { label: "Privacy Policy", href: "https://f005.backblazeb2.com/file/PB-HubSpot/Legal/PeopleBrowsr%20Pty%20Ltd%20Privacy%20Policy%20-%20April%202023.pdf" },
-                  { label: "Terms of Service", href: "https://f005.backblazeb2.com/file/PB-HubSpot/Legal/1775671854636-PeopleBrowsr_Master_ToS_v7.21_2026-03-30_F.pdf" },
+                  { label: "Privacy Policy", href: "/privacy" },
+                  { label: "Terms of Service", href: "/tos" },
                 ].map((l) => (
                   <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
                     className="text-xs text-muted-foreground hover:text-foreground transition-colors">
