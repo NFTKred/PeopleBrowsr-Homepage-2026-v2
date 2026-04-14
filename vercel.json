@@ -4,6 +4,16 @@
       "source": "/meet",
       "destination": "https://meet.google.com/kxi-pdvf-hug",
       "permanent": false
+    },
+    {
+      "source": "/tos",
+      "destination": "https://f005.backblazeb2.com/file/PB-HubSpot/Legal/1775671854636-PeopleBrowsr_Master_ToS_v7.21_2026-03-30_F.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/privacy",
+      "destination": "https://f005.backblazeb2.com/file/PB-HubSpot/Legal/PeopleBrowsr%20Pty%20Ltd%20Privacy%20Policy%20-%20April%202023.pdf",
+      "permanent": false
     }
   ],
   "rewrites": [
