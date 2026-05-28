@@ -11,7 +11,7 @@
       "permanent": false
     },
     {
-      "source": "/privacy",
+      "source": "/:path(privacy|Privacy|PRIVACY)",
       "destination": "https://f005.backblazeb2.com/file/PB-HubSpot/Legal/PeopleBrowsr%20Pty%20Ltd%20Privacy%20Policy%20-%20April%202023.pdf",
       "permanent": false
     }
