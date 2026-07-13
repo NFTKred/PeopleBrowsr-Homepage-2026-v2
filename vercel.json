@@ -6,8 +6,8 @@
       "permanent": false
     },
     {
-      "source": "/:path(tos|Tos|ToS|TOS|TOs|tOs|tOS|toS)",
-      "destination": "https://f005.backblazeb2.com/file/PB-HubSpot/ToS_v7.23_2026-05-28.pdf",
+      "source": "/:path([tT][oO][sS]|[tT][eE][rR][mM][sS])",
+      "destination": "https://f005.backblazeb2.com/file/PB-HubSpot/ToS_v7.24_2026-06-30.pdf",
       "permanent": false
     },
     {
