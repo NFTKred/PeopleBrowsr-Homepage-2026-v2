@@ -7,12 +7,12 @@
     },
     {
       "source": "/:path([tT][oO][sS]|[tT][eE][rR][mM][sS])",
-      "destination": "https://f005.backblazeb2.com/file/PB-HubSpot/ToS_v7.26_August_2026__1_.pdf",
+      "destination": "https://f005.backblazeb2.com/file/PB-HubSpot/ToS_v7.26_October_2026.pdf",
       "permanent": false
     },
     {
       "source": "/:path(privacy|Privacy|PRIVACY)",
-      "destination": "https://f005.backblazeb2.com/file/PB-HubSpot/Legal/PeopleBrowsr%20Pty%20Ltd%20Privacy%20Policy%20-%20April%202023.pdf",
+      "destination": "https://f005.backblazeb2.com/file/PB-HubSpot/PeopleBrowsr_Pty_Ltd_Privacy_Policy_-_October_2026.pdf",
       "permanent": false
     }
   ],
