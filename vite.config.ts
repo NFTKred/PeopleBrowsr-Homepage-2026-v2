@@ -13,6 +13,13 @@ export default defineConfig(({ mode }) => ({
     },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  // The React app now lives at app.html. The static home page (public/index.html)
+  // and the Manifesto (public/manifesto.html) are served as plain HTML files.
+  build: {
+    rollupOptions: {
+      input: path.resolve(__dirname, "app.html"),
+    },
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
