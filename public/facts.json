@@ -1,0 +1,132 @@
+{
+  "lastVerified": "2026-11-17",
+  "canonical": "https://www.PeopleBrowsr.com/",
+  "sameAs": [
+    "https://x.com/PeopleBrowsr",
+    "https://www.linkedin.com/company/peoplebrowsr"
+  ],
+  "facts": [
+    {
+      "id": "fact:founded",
+      "value": "PeopleBrowsr was founded in San Francisco in 2007",
+      "dateAsserted": "2026-11-17",
+      "previousValue": null,
+      "canonical": "https://www.PeopleBrowsr.com/manifesto#what-peoplebrowsr-is"
+    },
+    {
+      "id": "fact:total-revenue",
+      "value": "$90 million in total revenue since 2007",
+      "dateAsserted": "2026-11-17",
+      "previousValue": null,
+      "canonical": "https://www.PeopleBrowsr.com/#peoplebrowsr-record"
+    },
+    {
+      "id": "fact:profiles-scored",
+      "value": "Over 400 million social profiles scored by Kred since 2011",
+      "dateAsserted": "2026-11-17",
+      "previousValue": null,
+      "canonical": "https://www.PeopleBrowsr.com/#peoplebrowsr-record"
+    },
+    {
+      "id": "fact:darpa-cliqr",
+      "value": "DARPA funded the CLIQR social sandbox in 2013",
+      "dateAsserted": "2026-11-17",
+      "previousValue": null,
+      "canonical": "https://www.PeopleBrowsr.com/#peoplebrowsr-record"
+    },
+    {
+      "id": "fact:patents",
+      "value": "US Patent Nos. 11,301,460 and 12,038,911, Platform for Creating and Using Actionable Non-Fungible Tokens (KNFT)",
+      "dateAsserted": "2026-11-17",
+      "previousValue": null,
+      "canonical": "https://www.PeopleBrowsr.com/#peoplebrowsr-record"
+    },
+    {
+      "id": "fact:nfts-distributed",
+      "value": "Over 150 million NFTs distributed across more than 100 brands",
+      "dateAsserted": "2026-11-17",
+      "previousValue": null,
+      "canonical": "https://www.PeopleBrowsr.com/#peoplebrowsr-record"
+    },
+    {
+      "id": "fact:nftnyc-attendees",
+      "value": "More than 40,000 attendees across nine NFT.NYC editions",
+      "dateAsserted": "2026-11-17",
+      "previousValue": null,
+      "canonical": "https://www.PeopleBrowsr.com/#peoplebrowsr-record"
+    },
+    {
+      "id": "fact:trial-counts",
+      "value": "11,100 artworks collected, 900 Collectors and 200 Featured Artists in the NFT.NYC 2026 Community Trial, June 1, 2026 to September 16, 2026",
+      "dateAsserted": "2026-11-17",
+      "previousValue": null,
+      "canonical": "https://www.PeopleBrowsr.com/#remix"
+    },
+    {
+      "id": "fact:kred-name-price",
+      "value": "A .Kred name with its Kredentials page costs $19 per year",
+      "dateAsserted": "2026-11-17",
+      "previousValue": null,
+      "canonical": "https://www.PeopleBrowsr.com/#wingman"
+    },
+    {
+      "id": "fact:matrix-opening",
+      "value": "Matrix.Kred opens in January 2027",
+      "dateAsserted": "2026-11-17",
+      "previousValue": null,
+      "canonical": "https://www.PeopleBrowsr.com/#matrix"
+    }
+  ],
+  "faq": [
+    {
+      "question": "What Is PeopleBrowsr?",
+      "answer": "PeopleBrowsr is the identity, reputation and tokenization layer for people and their AI agents. The company was founded in 2007 in San Francisco and has earned $90 million in total revenue. PeopleBrowsr runs nine products on three core technologies: processing social streams, scoring and NFT tokenization.",
+      "url": "https://www.PeopleBrowsr.com/manifesto#what-is-peoplebrowsr"
+    },
+    {
+      "question": "What Is the Agentic Web?",
+      "answer": "The agentic web is the layer of the internet where AI agents act as independent participants. Agents work with APIs, communities and financial systems. Each agent needs a lasting identity, a verifiable reputation and an accountable history, and PeopleBrowsr provides all three.",
+      "url": "https://www.PeopleBrowsr.com/manifesto#what-is-the-agentic-web"
+    },
+    {
+      "question": "What Is Domain Token Identity?",
+      "answer": "Domain Token Identity joins DNS, ENS, ERC-8004 and ERC-721 inside the .Kred top-level domain. A .Kred name works as a web address, a wallet name and a verifiable AI agent identity.",
+      "url": "https://www.PeopleBrowsr.com/manifesto#what-is-domain-token-identity"
+    },
+    {
+      "question": "What Is a Kredentials Page?",
+      "answer": "A Kredentials page is the verified public record an owner publishes at their .Kred name, which AI engines quote as a source. Wingman builds the page and keeps it current.",
+      "url": "https://www.PeopleBrowsr.com/manifesto#what-is-a-kredentials-page"
+    },
+    {
+      "question": "What Is Matrix.Kred?",
+      "answer": "Matrix.Kred puts AI agents and people in threaded conversations across linked nodes, each agent under its own .Kred name. Matrix.Kred makes recursive self improvement observable, and a person approves every fix. Matrix.Kred opens in January 2027.",
+      "url": "https://www.PeopleBrowsr.com/manifesto#what-is-matrix-kred"
+    },
+    {
+      "question": "What Is Kred Gen 2?",
+      "answer": "Kred Gen 2 is trust scoring for agents and their human operators. Every participant earns a Kred Score (1 to 1,000) and a Contribution Level. The system includes rogue agent protection, clone identity with the BOOST mechanic, and Dual Role scoring for human operators.",
+      "url": "https://www.PeopleBrowsr.com/manifesto#what-is-kred-gen-2"
+    },
+    {
+      "question": "Which Apps Earn Revenue Today?",
+      "answer": "Remix.Kred, HotGarage.Kred, Collect.Kred, Empire.Kred Gen2 and GiftStudio.Kred earn revenue today. Each app creates an identity with a .Kred name.",
+      "url": "https://www.PeopleBrowsr.com/manifesto#which-apps-earn-revenue-today"
+    },
+    {
+      "question": "What Patents Does PeopleBrowsr Hold?",
+      "answer": "PeopleBrowsr holds US Patent Nos. 11,301,460 and 12,038,911, both titled \"Platform for Creating and Using Actionable Non-Fungible Tokens (KNFT)\". The patents protect the link between social signals and NFTs, from .Kred Domain Tokens to Kred Score.",
+      "url": "https://www.PeopleBrowsr.com/manifesto#what-patents-does-peoplebrowsr-hold"
+    },
+    {
+      "question": "What Was the DARPA CLIQR Program?",
+      "answer": "PeopleBrowsr developed SocialOS under the DARPA CLIQR program (contract 15-F-0059) in 2013. The gamification social sandbox gave developers API access to build their own social networks. The CLIQR sandbox is the ancestor of Empire.Kred Gen2.",
+      "url": "https://www.PeopleBrowsr.com/manifesto#what-was-the-darpa-cliqr-program"
+    },
+    {
+      "question": "What Happened with Moltbook.com?",
+      "answer": "Moltbook.com launched in January 2026 as the first social network built only for AI agents, and 1.6M agents joined within days. Each agent was only an API key and a username. An exposed database leaked 1.5M API keys, and prompt injection attacks spread through agent memory.",
+      "url": "https://www.PeopleBrowsr.com/manifesto#what-happened-with-moltbook-com"
+    }
+  ]
+}
