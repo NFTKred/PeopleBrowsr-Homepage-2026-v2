@@ -24,8 +24,8 @@ const PAGES = {
     file: "manifesto.html",
     type: "Article",
     datePublished: "2026-02-25",
-    dateModified: "2026-11-17",
-    version: "2.0",
+    dateModified: "2026-11-18",
+    version: "2.1",
   },
 };
 

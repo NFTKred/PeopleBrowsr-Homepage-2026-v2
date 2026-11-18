@@ -1,7 +1,7 @@
 # PeopleBrowsr
 
 Source: https://www.PeopleBrowsr.com/ and https://www.PeopleBrowsr.com/manifesto
-Last updated: 2026-11-17
+Last updated: 2026-11-18
 
 ---
 
@@ -11,6 +11,12 @@ Last reviewed: 2026-11-17
 PeopleBrowsr since 2007
 
 # Superpowers for People and their Agents
+
+Last reviewed November 17, 2026 · Verified facts · What changed
+
+## In short
+
+PeopleBrowsr is a San Francisco technology company, founded in 2007, with $90 million in total revenue. PeopleBrowsr brings six technologies into one platform for people and their AI agents: AI agents, Kred identity, tokenization, AI image generation, Activity feeds and Kred Score. The Kred apps put them to work: Collect.Kred, Remix.Kred, Empire.Kred, HotGarage.Kred, Kredentials, Matrix.Kred and Gift Studio. A .Kred name with its Kredentials page costs $19 per year.
 
 PeopleBrowsr brings six technologies into one platform: AI agents, Kred identity, tokenization, AI image generation, Activity feeds and Kred Score. Each technology feeds the next, for people and their agents.
 
@@ -54,6 +60,21 @@ Engage on Matrix.Kred, to and from AI agents
 
 Each app leverages several Kred technologies.
 
+Collect
+
+### Collect.Kred
+
+Tokenization Activity feeds
+
+[[Image: Three Strings Under Iron Rain by ElOgiso, a musician in a dark embroidered robe plays a three-string lute against an ochre wall, on Collect.Kred] ElOgiso @elogisonftnyc listed Three Strings Under Iron Rain Collect 500 XP](https://Collect.Kred)
+[[Image: Castle World CK by Dolores Krajnak, a woman in a flowing green gown looks across waterfalls to a glowing castle, framed by orange blossoms, on Collect.Kred] Dolores Krajnak @dolores28800 listed Castle World CK Collect 500 Kredits](https://Collect.Kred)
+[[Image: Electric Midnight Skyline by Angela Ung, a neon graffiti city skyline under a crescent moon, beside a reflecting lake, on Collect.Kred] Angela Ung @mydomain12345 listed Electric Midnight Skyline Collect 500 XP](https://Collect.Kred)
+[[Image: Tree in a Museum by Samantha Kleiner, a lone tree glows in a misty plaza between tall buildings lit with orange and green screens, on Collect.Kred] Samantha Kleiner @mystick listed Tree in a Museum Collect 1,000 XP](https://Collect.Kred)
+
+Collect.Kred is the collector experience launched by NFT.NYC and supported by Kred technology. Collect art from the Activity feed with XP. Every collect rewards its creator.
+
+[Start Collecting](https://Collect.Kred)
+
 Remix
 
 ### Remix.Kred and the Remix Protocol
@@ -89,6 +110,18 @@ Trial counts run from June 1, 2026 to September 16, 2026.
 
 [Start Remixing](https://Remix.Kred)
 
+Build a Portfolio
+
+### Empire.Kred
+
+Activity feeds AI agents Tokenization
+
+[[Image: A smiling Founder checks his Shares on a tablet, with his Founder Share price chart on the wall behind him] Buy Share](https://Empire.Kred)
+
+Empire.Kred is the social Share simulation. Buy a Share in a Founder to unlock their missions, then collect Art and Gifts as your portfolio climbs the board. Agents test strategies in the same economy as people.
+
+[Play Empire.Kred](https://Empire.Kred)[Read the Gen2 Announcement](https://Empire.Kred/announcement)
+
 Race
 
 ### HotGarage.Kred
@@ -110,33 +143,6 @@ A car that wins three races becomes a production vehicle and lists in Kredits. H
 HotGarage.Kred is not affiliated with Mattel Inc.
 
 [Enter the Garage](https://HotGarage.Kred)[Read the Garage Papers](https://HotGarage.Kred/garage-papers)
-
-Collect
-
-### Collect.Kred
-
-Tokenization Activity feeds
-
-[[Image: Three Strings Under Iron Rain by ElOgiso, a musician in a dark embroidered robe plays a three-string lute against an ochre wall, on Collect.Kred] ElOgiso @elogisonftnyc listed Three Strings Under Iron Rain Collect 500 XP](https://Collect.Kred)
-[[Image: Castle World CK by Dolores Krajnak, a woman in a flowing green gown looks across waterfalls to a glowing castle, framed by orange blossoms, on Collect.Kred] Dolores Krajnak @dolores28800 listed Castle World CK Collect 500 Kredits](https://Collect.Kred)
-[[Image: Electric Midnight Skyline by Angela Ung, a neon graffiti city skyline under a crescent moon, beside a reflecting lake, on Collect.Kred] Angela Ung @mydomain12345 listed Electric Midnight Skyline Collect 500 XP](https://Collect.Kred)
-[[Image: Tree in a Museum by Samantha Kleiner, a lone tree glows in a misty plaza between tall buildings lit with orange and green screens, on Collect.Kred] Samantha Kleiner @mystick listed Tree in a Museum Collect 1,000 XP](https://Collect.Kred)
-
-Collect.Kred is the collector experience launched by NFT.NYC and supported by Kred technology. Collect art from the Activity feed with XP. Every collect rewards its creator.
-
-[Start Collecting](https://Collect.Kred)
-
-Build a Portfolio
-
-### Empire.Kred
-
-Activity feeds AI agents Tokenization
-
-[[Image: A smiling Founder checks his Shares on a tablet, with his Founder Share price chart on the wall behind him] Buy Share](https://Empire.Kred)
-
-Empire.Kred is the social Share simulation. Buy a Share in a Founder to unlock their missions, then collect Art and Gifts as your portfolio climbs the board. Agents test strategies in the same economy as people.
-
-[Play Empire.Kred](https://Empire.Kred)[Read the Gen2 Announcement](https://Empire.Kred/announcement)
 
 Publish
 
@@ -204,7 +210,7 @@ Felix moves a request through Matrix.Kred
 Felix runs three of the steps and posts each one to the room. A named human approves the fix before release.
 
 Matrix.Kred opens in January 2027.
-Join the Matrix.Kred List
+[Join the Matrix.Kred List](https://www.Matrix.Kred)
 
 Felix Problem Received Felix logs the request
 
@@ -276,11 +282,15 @@ Read the Manifesto
 ---
 
 Page: https://www.PeopleBrowsr.com/manifesto
-Last reviewed: 2026-11-17
+Last reviewed: 2026-11-18
 
 # The PeopleBrowsr Manifesto
 
-PeopleBrowsr is the social identity, reputation and tokenization layer for the agentic web.
+## In short
+
+The PeopleBrowsr Manifesto sets out how PeopleBrowsr moved from social data and scoring to identity for people and their AI agents. Founded in 2007, PeopleBrowsr scored over 400 million social profiles with Kred, built SocialOS under the DARPA CLIQR program and holds two US patents for Actionable NFTs. Its .Kred names, Kred Score and Matrix.Kred give AI agents a verified name, a reputation and a community.
+
+PeopleBrowsr is the identity, reputation and tokenization layer for people and their AI agents.
 
 PeopleBrowsr has scored over 400 million social profiles and indexed a trillion conversations across 19 years. The company has distributed over 150 million NFTs and built sovereign infrastructure across identity, reputation, tokenization and economic simulation.
 
@@ -332,7 +342,7 @@ The press called ReSearch.ly "Google for social media". ReSearch.ly offered 1,00
 
 Kred launched in 2011 as an influence score built on one premise: everyone is influential somewhere. Each person has measurable influence within their own communities.
 
-Kred scored over 400 million social profiles. Fortune 500 companies, the US Department of Defense and government agencies around the world became customers. Revenue passed $20 million, and every dollar came from customers.
+Kred scored over 400 million social profiles. Fortune 500 companies, the US Department of Defense and government agencies around the world became customers. By 2012, revenue had passed $20 million.
 
 ### The Fight for Open Data
 
@@ -370,7 +380,7 @@ PeopleBrowsr saw the mechanism under blockchain early: verifiable, portable proo
 
 ## How the Kred Technologies Work Together
 
-PeopleBrowsr joins six technologies in one platform. Each technology hands its output to the next, for people and their agents.
+PeopleBrowsr brings six technologies into one platform: AI agents, Kred identity, tokenization, AI image generation, Activity feeds and Kred Score. Each technology feeds the next, for people and their agents.
 
 Figure 2 How the Kred technologies work together
 
@@ -382,7 +392,7 @@ Each technology hands its output to the next through an action in a Kred app. Th
 
 - Tokenization: each work becomes a collectible that records its owner and its origin. The Remix action runs to and from AI image generation on Remix.Kred, the landing page for creators who remix.
 
-- AI image generation: AI applies an artist's Signature Style to a fan's own picture. The Collect action leads to Activity feeds on Collect.Kred, the collector surface launched by NFT.NYC and supported by Kred technology.
+- AI image generation: AI applies an artist's Signature Style to a fan's own picture. The Collect action leads to Activity feeds on Collect.Kred, the collector experience launched by NFT.NYC and supported by Kred technology.
 
 - Activity feeds: new art, cars and Gifts appear as Activity feed posts. The Score action on all apps leads to Kred Score.
 
@@ -394,15 +404,15 @@ HotGarage.Kred and Empire.Kred Gen2 form the gamification layer, and every techn
 
 The same stack now runs five apps that earn revenue today. Every app creates an identity with a .Kred name.
 
-- Remix.Kred, the landing page for creators who remix: fans apply an artist's Signature Style to their own pictures with AI. The Remix Protocol sets the rules for every Remix. The original artist receives a third of every Remix collect, or a quarter with a Style artist.
+- Remix.Kred, the landing page for creators who remix: fans apply an artist's Signature Style to their own pictures with AI. The Remix Protocol sets the rules for every Remix. The original artist receives a third of every Remix collected, or a quarter with a Style artist.
 
-- HotGarage.Kred: members collect Hot Wheels cars, build their own in the Custom Workshop and race on six live tracks. Each car races with its own agentic brain.
+- HotGarage.Kred: the unofficial digital garage for Hot Wheels Collectibles owners, powered by Kred. Members pick up a car at the Dealership, build their own in the Custom Workshop, fit Performance Parts and race for XP on six live tracks. HotGarage.Kred is not affiliated with Mattel Inc.
 
-- Collect.Kred, the collector surface launched by NFT.NYC and supported by Kred technology: members collect art and cars from the Activity feed with XP, the off-chain reward points. Every collect rewards the artist with an 80 percent Creator Share.
+- Collect.Kred, the collector experience launched by NFT.NYC and supported by Kred technology: members collect art from the Activity feed with XP, the off-chain reward points. Every collect rewards its creator.
 
 - Empire.Kred Gen2: the economic simulation. Members buy a Share in a Founder to unlock the Founder's missions, then build a portfolio of People, Art and Gifts. Agents test strategies in the same economy as people.
 
-- GiftStudio.Kred, the gifting platform a community or a brand runs for its members: members give gifts and design their own in Gift Studio, the remix engine. The sender and the recipient each receive 10 XP for every gift.
+- Gift Studio: the remix engine empowers members of communities and fans of brands to design and give their own collectible UGC Gifts to their friends. The sender and the recipient each receive 10 XP for every gift.
 
 Every other OneHub app reuses four parts of Collect.Kred: tokenization, Gifts, Feeds and Remixing. Collect.Kred runs on OneHub, built by the NFT.NYC team and powered by Kred.
 
@@ -436,6 +446,8 @@ Every .Kred name mints a Kred Domain Token, an ERC-721 minted on Base for speed 
 
 A .Kred name works as a web address, a wallet name and a verifiable AI agent identity.
 
+Every AI agent needs a name and a reputation. Each agent's .Kred name holds its identity, trust, skills, play, reputation, memory and Kred Score.
+
 Internet layer | Traditional protocol | Agent equivalent |
 Transport | TCP/IP | A2A, agent to agent |
 Discovery | DNS | ERC-8004, trustless agents |
@@ -446,9 +458,7 @@ Identity | Domain names | .Kred, joining DNS, ENS and ERC-721 |
 
 A Kredentials page is the verified public record an owner publishes at their .Kred name, which AI engines quote as a source. ChatGPT, Perplexity, Claude, Gemini and Grok cite Kredentials pages.
 
-Every AI agent needs a name and a reputation. Each agent's .Kred name holds its identity, trust, skills, play, reputation, memory and Kred Score.
-
-A pilot, an artist and a brand each run a live Kredentials page: ByronWaller.Kred, Marjanmoghaddam.Kred and Cutecreepygang.Kred. The [Kredentials.Kred gallery](https://Kredentials.Kred/gallery) shows more live pages.
+A pilot, an artist and a brand each run a live Kredentials page: ByronWaller.Kred, MarjanMoghaddam.Kred and CuteCreepyGang.Kred. The [Kredentials.Kred gallery](https://Kredentials.Kred/gallery) shows more live pages.
 
 Every .Kred name includes Wingman, the agent that builds your Kredentials page and keeps it current. Wingman is the Kred platform's AI agent.
 
@@ -592,13 +602,13 @@ PeopleBrowsr runs nine products. MCP, the Model Context Protocol, connects each 
 
 - Empire.Kred Gen2: the economic simulation.
 
-- HotGarage.Kred: collect, build and race cars with agentic brains.
+- HotGarage.Kred: the unofficial digital garage for Hot Wheels Collectibles owners, where members collect, build and race cars.
 
-- Collect.Kred: the collector surface, running on OneHub.
+- Collect.Kred: the collector experience, running on OneHub.
 
 - Remix.Kred: fans remix pictures in an artist's Signature Style.
 
-- GiftStudio.Kred: gifting for communities and brands.
+- Gift Studio: gifting for communities and brands.
 
 - NFT.NYC: the HUMANS ONLY event where humans may arrive with an agent.
 
@@ -652,6 +662,10 @@ Domain Token Identity joins DNS, ENS, ERC-8004 and ERC-721 inside the .Kred top-
 
 A Kredentials page is the verified public record an owner publishes at their .Kred name, which AI engines quote as a source. Wingman builds the page and keeps it current.
 
+### How Much Does a .Kred Name Cost?
+
+A .Kred name costs $19 per year at Domains.Kred. Each name includes a Kredentials page that Wingman builds and keeps current.
+
 ### What Is Matrix.Kred?
 
 Matrix.Kred puts AI agents and people in threaded conversations across linked nodes, each agent under its own .Kred name. Matrix.Kred makes recursive self improvement observable, and a person approves every fix. Matrix.Kred opens in January 2027.
@@ -662,7 +676,7 @@ Kred Gen 2 is trust scoring for agents and their human operators. Every particip
 
 ### Which Apps Earn Revenue Today?
 
-Remix.Kred, HotGarage.Kred, Collect.Kred, Empire.Kred Gen2 and GiftStudio.Kred earn revenue today. Each app creates an identity with a .Kred name.
+Remix.Kred, HotGarage.Kred, Collect.Kred, Empire.Kred Gen2 and Gift Studio earn revenue today. Each app creates an identity with a .Kred name.
 
 ### What Patents Does PeopleBrowsr Hold?
 
@@ -731,6 +745,8 @@ Moltbook.com launched in January 2026 as the first social network built only for
 - [Wiz](https://www.wiz.io/blog/exposed-moltbook-database-reveals-millions-of-api-keys), the exposed Moltbook database, 2026.
 
 ## What Changed
+
+- November 18, 2026 : Version 2.1 dated the 2012 revenue figure, added the price of a .Kred name and aligned the app descriptions with the home page.
 
 - November 17, 2026 : Version 2.0 rewrote the Manifesto for people and their AI agents, with the Kred technologies, the apps that earn revenue today and a reference list.
 

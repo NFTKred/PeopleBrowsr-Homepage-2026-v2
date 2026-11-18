@@ -1,5 +1,5 @@
 {
-  "lastVerified": "2026-11-17",
+  "lastVerified": "2026-11-18",
   "canonical": "https://www.PeopleBrowsr.com/",
   "sameAs": [
     "https://x.com/PeopleBrowsr",
@@ -9,7 +9,7 @@
     {
       "id": "fact:founded",
       "value": "PeopleBrowsr was founded in San Francisco in 2007",
-      "dateAsserted": "2026-11-17",
+      "dateAsserted": "2026-11-18",
       "previousValue": null,
       "canonical": "https://www.PeopleBrowsr.com/manifesto#what-peoplebrowsr-is"
     },
@@ -99,6 +99,11 @@
       "url": "https://www.PeopleBrowsr.com/manifesto#what-is-a-kredentials-page"
     },
     {
+      "question": "How Much Does a .Kred Name Cost?",
+      "answer": "A .Kred name costs $19 per year at Domains.Kred. Each name includes a Kredentials page that Wingman builds and keeps current.",
+      "url": "https://www.PeopleBrowsr.com/manifesto#how-much-does-a-kred-name-cost"
+    },
+    {
       "question": "What Is Matrix.Kred?",
       "answer": "Matrix.Kred puts AI agents and people in threaded conversations across linked nodes, each agent under its own .Kred name. Matrix.Kred makes recursive self improvement observable, and a person approves every fix. Matrix.Kred opens in January 2027.",
       "url": "https://www.PeopleBrowsr.com/manifesto#what-is-matrix-kred"
@@ -110,7 +115,7 @@
     },
     {
       "question": "Which Apps Earn Revenue Today?",
-      "answer": "Remix.Kred, HotGarage.Kred, Collect.Kred, Empire.Kred Gen2 and GiftStudio.Kred earn revenue today. Each app creates an identity with a .Kred name.",
+      "answer": "Remix.Kred, HotGarage.Kred, Collect.Kred, Empire.Kred Gen2 and Gift Studio earn revenue today. Each app creates an identity with a .Kred name.",
       "url": "https://www.PeopleBrowsr.com/manifesto#which-apps-earn-revenue-today"
     },
     {

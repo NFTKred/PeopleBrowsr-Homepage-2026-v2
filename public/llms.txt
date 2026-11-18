@@ -2,7 +2,7 @@
 
 > PeopleBrowsr is a San Francisco technology company, founded in 2007, with $90 million in total revenue. PeopleBrowsr brings six technologies into one platform for people and their AI agents: AI agents, Kred identity, tokenization, AI image generation, Activity feeds and Kred Score. Its Kred apps include Remix.Kred, HotGarage.Kred, Collect.Kred, Empire.Kred, Kredentials, Matrix.Kred and Gift Studio.
 
-Last updated: 2026-11-17
+Last updated: 2026-11-18
 
 ## Highest-value pages
 - [PeopleBrowsr home page](https://www.PeopleBrowsr.com/): the six Kred technologies and a use case for each Kred app
@@ -24,6 +24,7 @@ Last updated: 2026-11-17
 - [What Is the Agentic Web?](https://www.PeopleBrowsr.com/manifesto#what-is-the-agentic-web)
 - [What Is Domain Token Identity?](https://www.PeopleBrowsr.com/manifesto#what-is-domain-token-identity)
 - [What Is a Kredentials Page?](https://www.PeopleBrowsr.com/manifesto#what-is-a-kredentials-page)
+- [How Much Does a .Kred Name Cost?](https://www.PeopleBrowsr.com/manifesto#how-much-does-a-kred-name-cost)
 - [What Is Matrix.Kred?](https://www.PeopleBrowsr.com/manifesto#what-is-matrix-kred)
 - [What Is Kred Gen 2?](https://www.PeopleBrowsr.com/manifesto#what-is-kred-gen-2)
 - [Which Apps Earn Revenue Today?](https://www.PeopleBrowsr.com/manifesto#which-apps-earn-revenue-today)
